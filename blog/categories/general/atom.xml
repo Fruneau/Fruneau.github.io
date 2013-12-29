@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[Mind...]]></title>
-  <link href="http://Fruneau.github.io/atom.xml" rel="self"/>
+  <title><![CDATA[Category: Général | Mind...]]></title>
+  <link href="http://Fruneau.github.io/blog/categories/general/atom.xml" rel="self"/>
   <link href="http://Fruneau.github.io/"/>
   <updated>2013-12-29T15:05:14+01:00</updated>
   <id>http://Fruneau.github.io/</id>
@@ -18,11 +18,11 @@
     <link href="http://Fruneau.github.io/blog/2007/02/23/il-faut-bien-commencer-par-quelque-part-dot-dot-dot/"/>
     <updated>2007-02-23T21:12:00+01:00</updated>
     <id>http://Fruneau.github.io/blog/2007/02/23/il-faut-bien-commencer-par-quelque-part-dot-dot-dot</id>
-    <content type="html"><![CDATA[<p>Et comme, pour l&#8217;instant je suis encore en train de configurer mon
-<a href="http://www.dotclear.net">dotclear</a>, ce post est plus un test qu&#8217;autre
+    <content type="html"><![CDATA[<p>Et comme, pour l'instant je suis encore en train de configurer mon
+<a href="http://www.dotclear.net">dotclear</a>, ce post est plus un test qu'autre
 chose.</p>
 
-<p>D&#8217;ailleurs, j&#8217;en profite pour féliciter l&#8217;équipe de dotclear&hellip; c&#8217;est clairement un excellent logiciel, tant pour ses fonctionnalités que pour sa réalisation (j&#8217;ai déjà eu l&#8217;occasion de travailler sur du code récupéré de dotclear pour réaliser <a href="http://2003.polytechnique.org">le site de ma promo</a>, le code est lisible et facile à adapter aux besoins de chacun).</p>
+<p>D'ailleurs, j'en profite pour féliciter l'équipe de dotclear&hellip; c'est clairement un excellent logiciel, tant pour ses fonctionnalités que pour sa réalisation (j'ai déjà eu l'occasion de travailler sur du code récupéré de dotclear pour réaliser <a href="http://2003.polytechnique.org">le site de ma promo</a>, le code est lisible et facile à adapter aux besoins de chacun).</p>
 
 <p>Voilà, en plus ce message me permettra de paufiner le skinnage de mon blog&hellip; ce que je ne pouvais évidemment pas faire sans !</p>
 ]]></content>
