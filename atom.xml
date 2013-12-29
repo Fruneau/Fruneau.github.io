@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Mind...]]></title>
-  <link href="http://Fruneau.github.io/atom.xml" rel="self"/>
-  <link href="http://Fruneau.github.io/"/>
-  <updated>2013-12-29T20:04:51+01:00</updated>
-  <id>http://Fruneau.github.io/</id>
+  <link href="http://blog.mymind.fr/atom.xml" rel="self"/>
+  <link href="http://blog.mymind.fr/"/>
+  <updated>2013-12-29T20:08:31+01:00</updated>
+  <id>http://blog.mymind.fr/</id>
   <author>
     <name><![CDATA[Florent Bruneau]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[Yet Another Policy Daemon for Postfix]]></title>
-    <link href="http://Fruneau.github.io/blog/2009/04/07/yet-another-policy-daemon-for-postfix2/"/>
+    <link href="http://blog.mymind.fr/blog/2009/04/07/yet-another-policy-daemon-for-postfix2/"/>
     <updated>2009-04-07T00:04:00+02:00</updated>
-    <id>http://Fruneau.github.io/blog/2009/04/07/yet-another-policy-daemon-for-postfix2</id>
+    <id>http://blog.mymind.fr/blog/2009/04/07/yet-another-policy-daemon-for-postfix2</id>
     <content type="html"><![CDATA[<p><a href="http://blog.madism.org/index.php/2007/08/29/136-postfix-and-srs">MadCoder announced it months ago</a>, he has been working on the pfixtools. The second tool of the <a href="http://www.postfix.com">postfix</a>-related toolsuite is named <strong>postlicyd</strong>.</p>
 
 <p>postlicyd is a versatile <a href="http://www.postfix.org/SMTPD_POLICY_README.html">policy daemon</a> written in C. It does greylisting (far faster than postgrey), it performs R(H)BL access (both locally directly from rbldns zone files and remotely by using DNS), &hellip; So, it can be used as a replacement for <a href="http://packages.qa.debian.org/w/whitelister.html">whitelister</a> and <a href="http://postgrey.schweikert.ch/">postgrey</a> with a significant improvement of the performances.</p>
@@ -38,9 +38,9 @@
   
   <entry>
     <title type="html"><![CDATA[Polytechnique.org Lance Son Blog]]></title>
-    <link href="http://Fruneau.github.io/blog/2008/06/04/polytechniqueorg-lance-son-blog/"/>
+    <link href="http://blog.mymind.fr/blog/2008/06/04/polytechniqueorg-lance-son-blog/"/>
     <updated>2008-06-04T01:33:00+02:00</updated>
-    <id>http://Fruneau.github.io/blog/2008/06/04/polytechniqueorg-lance-son-blog</id>
+    <id>http://blog.mymind.fr/blog/2008/06/04/polytechniqueorg-lance-son-blog</id>
     <content type="html"><![CDATA[<p>Voilà&hellip; cela fait assez longtemps que nous recevons des demandes d&#8217;utilisateurs pour la mise en place de blog via Polytechnique.org. Afin de préparer la mise en place de ce service, Polytechnique.org lance son blog. Cela permettra à la fois :</p>
 
 <ul>
@@ -55,9 +55,9 @@
   
   <entry>
     <title type="html"><![CDATA[Vieux Trucs]]></title>
-    <link href="http://Fruneau.github.io/blog/2008/05/19/vieux-trucs/"/>
+    <link href="http://blog.mymind.fr/blog/2008/05/19/vieux-trucs/"/>
     <updated>2008-05-19T00:50:00+02:00</updated>
-    <id>http://Fruneau.github.io/blog/2008/05/19/vieux-trucs</id>
+    <id>http://blog.mymind.fr/blog/2008/05/19/vieux-trucs</id>
     <content type="html"><![CDATA[<p>Un peu de nostalgie. Je suis retombé sur de vieux programmes que j&#8217;avais fait pour ma calculatrice (TI-92) quand j&#8217;étais en 1^^ère^^/Terminale. A mon époque (pas si lointaine&hellip; j&#8217;ai passé mon bac en 2001), ces outils couvraient le programme de Terminal S (spécialité maths) avec :</p>
 
 <!-- more -->
@@ -88,7 +88,7 @@
 
 <p>Le tout avec une interface permettant de passer d&#8217;un programme à l&#8217;autre simplement. Histoire que tout ceci ne se perde pas, je les met à disposition (ils sont également trouvables sur diverses banques de programmes pour TI) :</p>
 
-<p><a href="http://Fruneau.github.io/public/misc/maths3.zip|fr">Télécharger le programme de maths niveau Terminal pour TI-92</a></p>
+<p><a href="http://blog.mymind.fr/public/misc/maths3.zip|fr">Télécharger le programme de maths niveau Terminal pour TI-92</a></p>
 
 <p>Evidemment, ces programmes ne dispensent pas d&#8217;apprendre le cours pour passer le Bac.</p>
 ]]></content>
@@ -96,9 +96,9 @@
   
   <entry>
     <title type="html"><![CDATA[Encodage Et Terminal]]></title>
-    <link href="http://Fruneau.github.io/blog/2008/03/02/encodage-et-terminal/"/>
+    <link href="http://blog.mymind.fr/blog/2008/03/02/encodage-et-terminal/"/>
     <updated>2008-03-02T12:57:00+01:00</updated>
-    <id>http://Fruneau.github.io/blog/2008/03/02/encodage-et-terminal</id>
+    <id>http://blog.mymind.fr/blog/2008/03/02/encodage-et-terminal</id>
     <content type="html"><![CDATA[<p>Beaucoup de personnes avec qui je discute sur IRC ont des problèmes avec l&#8217;encodage de leur terminal, de leur shell, de leur irssi, ou de tout autre logiciel en &ldquo;ligne de commande&rdquo;. Comme j&#8217;en ai un peu marre d&#8217;expliquer la même chose toutes les semaines, voici une petite mise au point sur les réglages à faire pour travailler efficacement en ligne de commande.</p>
 
 <!-- more -->
@@ -165,9 +165,9 @@ conversions = {
   
   <entry>
     <title type="html"><![CDATA[Afficher Des Discussions]]></title>
-    <link href="http://Fruneau.github.io/blog/2007/11/01/afficher-des-discussions/"/>
+    <link href="http://blog.mymind.fr/blog/2007/11/01/afficher-des-discussions/"/>
     <updated>2007-11-01T18:24:00+01:00</updated>
-    <id>http://Fruneau.github.io/blog/2007/11/01/afficher-des-discussions</id>
+    <id>http://blog.mymind.fr/blog/2007/11/01/afficher-des-discussions</id>
     <content type="html"><![CDATA[<p>Lorsqu&#8217;un logiciel a pour vocation d&#8217;afficher des discussions, on attend de sa part qu&#8217;il nous permette de voir simplement qui répond à qui, dans quel contexte&hellip; Ce n&#8217;est pas toujours ce qui est le mieux fait. Par exemple, les programmes de fora en ligne à la mode (phpBB par exemple) affiche les discussion comme une succession de rectangles juxtaposés et seul le contenu du message permet de voir qu&#8217;il en cite un autre. D&#8217;autres logiciels comme Mail.app ont ce défaut et parfois la fâcheuse manie de ne pas vouloir corriger ce problème.</p>
 
 <p>L&#8217;affichage de l&#8217;arborescence dans <a href="http://opensource.polytechnique.org/banana">Banana</a> est une des fonctionnalités clés&hellip; et elle va beaucoup changer dans la prochaine version.</p>
@@ -205,9 +205,9 @@ conversions = {
   
   <entry>
     <title type="html"><![CDATA[15 000]]></title>
-    <link href="http://Fruneau.github.io/blog/2007/10/08/15-000/"/>
+    <link href="http://blog.mymind.fr/blog/2007/10/08/15-000/"/>
     <updated>2007-10-08T00:32:00+02:00</updated>
-    <id>http://Fruneau.github.io/blog/2007/10/08/15-000</id>
+    <id>http://blog.mymind.fr/blog/2007/10/08/15-000</id>
     <content type="html"><![CDATA[<p>Ca y est&hellip; 15 000 inscrits à <a href="https://www.polytechnique.org">Polytechnique.org</a>.</p>
 
 <p><a href="15.000%20inscrits">((/public/screenshots/15.000.png</a>)|/public/screenshots/15.000.png)</p>
@@ -218,9 +218,9 @@ conversions = {
   
   <entry>
     <title type="html"><![CDATA[Compter Les Fichiers]]></title>
-    <link href="http://Fruneau.github.io/blog/2007/08/31/compter-les-fichiers/"/>
+    <link href="http://blog.mymind.fr/blog/2007/08/31/compter-les-fichiers/"/>
     <updated>2007-08-31T01:12:00+02:00</updated>
-    <id>http://Fruneau.github.io/blog/2007/08/31/compter-les-fichiers</id>
+    <id>http://blog.mymind.fr/blog/2007/08/31/compter-les-fichiers</id>
     <content type="html"><![CDATA[<p>C&#8217;est un peu la suite de mon post &ldquo;Outils pratiques&rdquo; où je donnais deux scripts permettant de rendre les commandes SVN plus conviviales. Encore une fois, je réinvente sans doute la roue (des outils équivalents doivent déjà exister&hellip; sans doute en mieux), mais je pense que chercher ce genre d&#8217;outils sur internet m&#8217;aurait pris plus de temps que ce qu&#8217;il m&#8217;a fallu pour le développer.</p>
 
 <p>En ce moment je manipule des fichiers, beaucoup de fichiers (et même, beaucoup de gros fichiers), que j&#8217;ouvre, rouvre, et ferme et puis referme. Et à force d&#8217;ouvrir, on oublie parfois de refermer, et là, c&#8217;est comme une fuite de mémoire, sauf que le nombre limite de fichiers ouverts est beaucoup plus rapidement atteinte que la limite de mémoire&hellip; dans la configuration de base sur un linux, un programme n&#8217;a le droit qu&#8217;à 1024 descripteurs de fichiers. D&#8217;où mon problème : comment traquer les &ldquo;file-handle leaks&rdquo; ?</p>
@@ -328,9 +328,9 @@ int main() {
   
   <entry>
     <title type="html"><![CDATA[Templates en C]]></title>
-    <link href="http://Fruneau.github.io/blog/2007/08/17/templates-en-c/"/>
+    <link href="http://blog.mymind.fr/blog/2007/08/17/templates-en-c/"/>
     <updated>2007-08-17T00:53:00+02:00</updated>
-    <id>http://Fruneau.github.io/blog/2007/08/17/templates-en-c</id>
+    <id>http://blog.mymind.fr/blog/2007/08/17/templates-en-c</id>
     <content type="html"><![CDATA[<p>En C++, il existe un mécanisme extrêmement pratique pour généré du code générique : les templates. Une fonction templatée est une fonction dont le code comporte un trou qui sera remplacé à la compilation par le nom d&#8217;un type, ou une valeur&hellip; Par exemple :</p>
 
 <pre><code>template &lt;class T&gt; 
@@ -440,9 +440,9 @@ maFonctionBuild(MaStruct) /* génère maFonction_MaStruct */</code></pre>
   
   <entry>
     <title type="html"><![CDATA[Comprendre Du Code]]></title>
-    <link href="http://Fruneau.github.io/blog/2007/08/15/comprendre-du-code/"/>
+    <link href="http://blog.mymind.fr/blog/2007/08/15/comprendre-du-code/"/>
     <updated>2007-08-15T03:28:00+02:00</updated>
-    <id>http://Fruneau.github.io/blog/2007/08/15/comprendre-du-code</id>
+    <id>http://blog.mymind.fr/blog/2007/08/15/comprendre-du-code</id>
     <content type="html"><![CDATA[<p>J&#8217;ai tenté cet après-midi une petite expérience sur IRC. J&#8217;ai posté 3 lignes de code en demandant &ldquo;que font ces trois lignes&rdquo;. Après quelques minutes (sans doute trop peu), j&#8217;ai donné la solution car personne n&#8217;avait vraiment trouvé. En effet, même si on réussi facilement à lire le code et à reconstituer la suite d&#8217;opération qu&#8217;il génère, il est très difficile de vraiment comprendre ce qu&#8217;il fait, d&#8217;imaginer son application dans un contexte et d&#8217;en déduire son usage.</p>
 
 <p>Juste pour continuer à m&#8217;amuser, et pour amuser ceux qui se perdraient ici, voici le code en question.</p>
@@ -535,9 +535,9 @@ function show_answer() {
   
   <entry>
     <title type="html"><![CDATA[BlueScreen]]></title>
-    <link href="http://Fruneau.github.io/blog/2007/07/28/bluescreen/"/>
+    <link href="http://blog.mymind.fr/blog/2007/07/28/bluescreen/"/>
     <updated>2007-07-28T23:15:00+02:00</updated>
-    <id>http://Fruneau.github.io/blog/2007/07/28/bluescreen</id>
+    <id>http://blog.mymind.fr/blog/2007/07/28/bluescreen</id>
     <content type="html"><![CDATA[<p>Juste parce que je trouve ça amusant : lorsque Vista plante en raison d&#8217;une erreur sérieuse, il fait un écran bleu (exactement le même que sous Windows XP). Ce qui est amusant, c&#8217;est le message affiché lors du démarrage suivant de Windows.</p>
 
 <p>((/public/screenshots/BlueScreen.png|Vista-bluescreen))</p>
@@ -548,9 +548,9 @@ function show_answer() {
   
   <entry>
     <title type="html"><![CDATA[Mail.app, IMAP Et Signatures...]]></title>
-    <link href="http://Fruneau.github.io/blog/2007/06/12/mailapp-imap-et-signatures/"/>
+    <link href="http://blog.mymind.fr/blog/2007/06/12/mailapp-imap-et-signatures/"/>
     <updated>2007-06-12T01:24:00+02:00</updated>
-    <id>http://Fruneau.github.io/blog/2007/06/12/mailapp-imap-et-signatures</id>
+    <id>http://blog.mymind.fr/blog/2007/06/12/mailapp-imap-et-signatures</id>
     <content type="html"><![CDATA[<p>Les temps sont durs pour les utilisateurs de IMAP&hellip; jusqu&#8217;à présent je n&#8217;ai pas trouvé de client idéal pour travailler avec ce protocole :</p>
 
 <ul>
@@ -617,9 +617,9 @@ Même si je ne me fais pas trop d'illusion sur le sujet, j'espère que ce genre 
   
   <entry>
     <title type="html"><![CDATA[Khtml2png 2.6.5 Est Sorti]]></title>
-    <link href="http://Fruneau.github.io/blog/2007/06/06/khtml2png-265-est-sorti/"/>
+    <link href="http://blog.mymind.fr/blog/2007/06/06/khtml2png-265-est-sorti/"/>
     <updated>2007-06-06T00:31:00+02:00</updated>
-    <id>http://Fruneau.github.io/blog/2007/06/06/khtml2png-265-est-sorti</id>
+    <id>http://blog.mymind.fr/blog/2007/06/06/khtml2png-265-est-sorti</id>
     <content type="html"><![CDATA[<p>Après 3 mois d&#8217;un travail pas très intensif, une nouvelle version de <a href="http://khtml2png.sf.net">khtml2png</a> est disponible. Cette version est partie du fait que les versions précédentes du programme ont parfois du mal à gérer les grandes captures d&#8217;écran (en fait, des bugs peuvent apparaître dès que la taille de la zone à capturer est plus grande que la taille affichable).</p>
 
 <p>Donc, rapidement après la sortie de la 2.6.0, j&#8217;avais envoyé un correctif (en fait une réécriture du moteur de rendu) au développeur de <code>khtml2png</code>. Malheureusement, ce correctif ne fonctionnait pas correctement chez lui. Donc, pendant 3 mois, j&#8217;ai fait du débuggage à distance : j&#8217;envoie une version modifiée (1 ou 2 lignes à chaque fois), j&#8217;attends 2 ou 3 semaine une réponse, etc&hellip; Du développement efficace !</p>
@@ -641,15 +641,15 @@ Même si je ne me fais pas trop d'illusion sur le sujet, j'espère que ce genre 
 </ul>
 
 
-<p>Comme d&#8217;habitude, vous pouvez télécharger <a href="http://Fruneau.github.io/mind/public/khtml2png/khtml2png-fru-last.tar.bz2">ma dernière version du programme</a>.</p>
+<p>Comme d&#8217;habitude, vous pouvez télécharger <a href="http://blog.mymind.fr/mind/public/khtml2png/khtml2png-fru-last.tar.bz2">ma dernière version du programme</a>.</p>
 ]]></content>
   </entry>
   
   <entry>
     <title type="html"><![CDATA[Spaces]]></title>
-    <link href="http://Fruneau.github.io/blog/2007/06/02/spaces/"/>
+    <link href="http://blog.mymind.fr/blog/2007/06/02/spaces/"/>
     <updated>2007-06-02T16:44:00+02:00</updated>
-    <id>http://Fruneau.github.io/blog/2007/06/02/spaces</id>
+    <id>http://blog.mymind.fr/blog/2007/06/02/spaces</id>
     <content type="html"><![CDATA[<p>Comme un certain nombre de personnes le sait déjà, j&#8217;ai repris le développement de <a href="http://virtuedesktops.info">VirtueDesktops</a> depuis quelques semaines. Dans un premier temps je n&#8217;avais pas regardé le fonctionnement bas niveau du programme, mais la semaine dernière j&#8217;ai commencé à rechercher dans les sources &ldquo;Comment Virtue fait-il pour cacher les fenêtres, faire les transitions etc&hellip; ?&rdquo;.</p>
 
 <!-- more -->
@@ -675,9 +675,9 @@ extern OSStatus CGSSetWorkspace(const CGSConnection cid, int workspace);</code><
   
   <entry>
     <title type="html"><![CDATA[Et Si on Oubliait Les Bases ?]]></title>
-    <link href="http://Fruneau.github.io/blog/2007/05/26/et-si-on-oubliait-les-bases/"/>
+    <link href="http://blog.mymind.fr/blog/2007/05/26/et-si-on-oubliait-les-bases/"/>
     <updated>2007-05-26T13:40:00+02:00</updated>
-    <id>http://Fruneau.github.io/blog/2007/05/26/et-si-on-oubliait-les-bases</id>
+    <id>http://blog.mymind.fr/blog/2007/05/26/et-si-on-oubliait-les-bases</id>
     <content type="html"><![CDATA[<p>MacOS X est un Unix&hellip; compatible POSIX. Voilà ce qu&#8217;un certain nombre de personnes semblent oublier assez fréquemment. C&#8217;est assez dommage quand ces personnes programment pour MacOS, on se retrouve parfois avec du code complexe pour réécrire des fonctions POSIX (en moins bien ?).</p>
 
 <!-- more -->
@@ -789,9 +789,9 @@ static int getProcmodGid()
   
   <entry>
     <title type="html"><![CDATA[Mac C'est Bien... Mais Pas Top]]></title>
-    <link href="http://Fruneau.github.io/blog/2007/05/22/mac-cest-bien-mais-pas-top/"/>
+    <link href="http://blog.mymind.fr/blog/2007/05/22/mac-cest-bien-mais-pas-top/"/>
     <updated>2007-05-22T23:44:00+02:00</updated>
-    <id>http://Fruneau.github.io/blog/2007/05/22/mac-cest-bien-mais-pas-top</id>
+    <id>http://blog.mymind.fr/blog/2007/05/22/mac-cest-bien-mais-pas-top</id>
     <content type="html"><![CDATA[<p>Bon, la suite des mes problèmes avec les machines Apple !</p>
 
 <p>Alors que la carte mère de mon portable a été changée il y a un peu plus d&#8217;un mois, mon portable a décidé aujourd&#8217;hui d&#8217;arrêter de vouloir fonctionner. Symptômes ? Il s&#8217;allume (des fois), fonctionne (rarement) quelques secondes puis s&#8217;éteint brutalement&hellip; et ce qu&#8217;il démarre sur secteur, sur batterie ou les deux ensemble, que ce soit sur le disque dur, sur le DVD d&#8217;installation ou encore en mode <em>target</em> (en tant que disque dur externe).</p>
@@ -804,9 +804,9 @@ static int getProcmodGid()
   
   <entry>
     <title type="html"><![CDATA[VirtueDesktops Revient...]]></title>
-    <link href="http://Fruneau.github.io/blog/2007/05/18/virtuedesktops-revient/"/>
+    <link href="http://blog.mymind.fr/blog/2007/05/18/virtuedesktops-revient/"/>
     <updated>2007-05-18T14:25:00+02:00</updated>
-    <id>http://Fruneau.github.io/blog/2007/05/18/virtuedesktops-revient</id>
+    <id>http://blog.mymind.fr/blog/2007/05/18/virtuedesktops-revient</id>
     <content type="html"><![CDATA[<p>Voici plus ou moins trois mois que j&#8217;ai découvert <a href="http://synergy2.sf.net">synergy</a>, c&#8217;est vraiment très agréable de pouvoir contrôler les deux ordinateurs sans changer de clavier/souris continuellement. Seul problème, c&#8217;est que sur la machine qui héberge le serveur <code>synergy</code>, <a href="http://virtuedesktops.info">VirtueDesktops</a>, un <em>excellent</em> gestionnaire de bureaux virtuels pour MacOS, n&#8217;arrête pas de crasher. J&#8217;avais donc posté un bugreport sur le trac de Virtue&hellip; malheureusement pour diverses raisons, Tony Arnold a décidé peu après de stopper le développement de Virtue.</p>
 
 <!-- more -->
@@ -838,9 +838,9 @@ static int getProcmodGid()
   
   <entry>
     <title type="html"><![CDATA[La Banane Et L'escargot]]></title>
-    <link href="http://Fruneau.github.io/blog/2007/05/07/la-banane-et-lescargot/"/>
+    <link href="http://blog.mymind.fr/blog/2007/05/07/la-banane-et-lescargot/"/>
     <updated>2007-05-07T19:44:00+02:00</updated>
-    <id>http://Fruneau.github.io/blog/2007/05/07/la-banane-et-lescargot</id>
+    <id>http://blog.mymind.fr/blog/2007/05/07/la-banane-et-lescargot</id>
     <content type="html"><![CDATA[<p>La release de <a href="http://opensource.polytechnique.org/banana/">Banana</a> 1.6 en même temps que celle de plat/al 0.9.14 a mis en évidence un certain nombre de faiblesses dans Banana. En particuliers la génération du spool (mise en cache de l&#8217;arborescence des messages) et des flux RSS s&#8217;est révélé extrêmement lourde pour plusieurs raisons :</p>
 
 <ul>
@@ -897,9 +897,9 @@ do_something($lines);</code></pre>
   
   <entry>
     <title type="html"><![CDATA[Vista ?]]></title>
-    <link href="http://Fruneau.github.io/blog/2007/05/03/vista/"/>
+    <link href="http://blog.mymind.fr/blog/2007/05/03/vista/"/>
     <updated>2007-05-03T18:07:00+02:00</updated>
-    <id>http://Fruneau.github.io/blog/2007/05/03/vista</id>
+    <id>http://blog.mymind.fr/blog/2007/05/03/vista</id>
     <content type="html"><![CDATA[<p>Étant curieux, en tout cas pour ce qui est informatique, je n&#8217;ai pas pu m&#8217;empêcher de mettre un Windows Vista en double boot sur mon MacBook Pro&hellip; Grâce à BootCamp, l&#8217;installation ne pose pas de problème. Par contre une fois l&#8217;OS installé, je n&#8217;ai pas arrêtez d&#8217;enchaîner les petits problèmes qui ont été plus une perte de temps qu&#8217;autre chose&hellip;</p>
 
 <!-- more -->
@@ -951,10 +951,10 @@ do_something($lines);</code></pre>
   
   <entry>
     <title type="html"><![CDATA[0.9.14 en Ligne !]]></title>
-    <link href="http://Fruneau.github.io/blog/2007/04/29/0914-en-ligne/"/>
+    <link href="http://blog.mymind.fr/blog/2007/04/29/0914-en-ligne/"/>
     <updated>2007-04-29T21:09:00+02:00</updated>
-    <id>http://Fruneau.github.io/blog/2007/04/29/0914-en-ligne</id>
-    <content type="html"><![CDATA[<p>Ca y est, comme annoncé dans <a href="http://Fruneau.github.io/mind/post/2007/03/30/Un-apercu-de-la-version-0914-de-plat/al">mon billet de fin mars</a>, la version 0.9.14 de <a href="http://opensource.polytechnique.org/platal">plat/al</a> est en ligne depuis vendredi soir. Comme expliqué précédemment, cette version apporte un grand nombre d&#8217;innovations comme <a href="http://Fruneau.github.io/mind/post/2007/02/25/Un-client-RSS-pour-lire-les-Forums-NNTP-et-les-Mailing-Lists">le flux RSS pour les Mailing-Lists et les Fora</a>, la <a href="http://Fruneau.github.io/mind/post/2007/03/15/Soundex-Francais">recherche par proximité sonore améliorée</a> et généralisée, un système d&#8217;annonces retravaillé pour offrir un approche plus conviviale, et bien sûr, le passage en UTF-8.</p>
+    <id>http://blog.mymind.fr/blog/2007/04/29/0914-en-ligne</id>
+    <content type="html"><![CDATA[<p>Ca y est, comme annoncé dans <a href="http://blog.mymind.fr/mind/post/2007/03/30/Un-apercu-de-la-version-0914-de-plat/al">mon billet de fin mars</a>, la version 0.9.14 de <a href="http://opensource.polytechnique.org/platal">plat/al</a> est en ligne depuis vendredi soir. Comme expliqué précédemment, cette version apporte un grand nombre d&#8217;innovations comme <a href="http://blog.mymind.fr/mind/post/2007/02/25/Un-client-RSS-pour-lire-les-Forums-NNTP-et-les-Mailing-Lists">le flux RSS pour les Mailing-Lists et les Fora</a>, la <a href="http://blog.mymind.fr/mind/post/2007/03/15/Soundex-Francais">recherche par proximité sonore améliorée</a> et généralisée, un système d&#8217;annonces retravaillé pour offrir un approche plus conviviale, et bien sûr, le passage en UTF-8.</p>
 
 <p>Mais de tout cela, j&#8217;en ai déjà parlé&hellip; je tiens par contre à m&#8217;étendre sur les quelques fonctionnalités qui ont été développées durant le dernier mois (en fait, durant les dernières deux semaines de développement, le reste du temps ayant été consacré aux tests).</p>
 
@@ -1030,9 +1030,9 @@ $view-&gt;apply(&#39;annuaire&#39;, $page, $action, $subaction);</code></pre>
   
   <entry>
     <title type="html"><![CDATA[Stats]]></title>
-    <link href="http://Fruneau.github.io/blog/2007/04/21/stats/"/>
+    <link href="http://blog.mymind.fr/blog/2007/04/21/stats/"/>
     <updated>2007-04-21T02:59:00+02:00</updated>
-    <id>http://Fruneau.github.io/blog/2007/04/21/stats</id>
+    <id>http://blog.mymind.fr/blog/2007/04/21/stats</id>
     <content type="html"><![CDATA[<p>Depuis le début, j&#8217;ai installé <a href="http://awstats.sf.net">awstats</a> pour avoir des statistiques sur l&#8217;utilisation de mon serveur web.</p>
 
 <p>J&#8217;ai choisi awstats un peu par hasard :</p>

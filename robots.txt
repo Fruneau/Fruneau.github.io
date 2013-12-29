@@ -1,4 +1,4 @@
 User-agent: *
 Disallow: 
 
-Sitemap: http://Fruneau.github.io/sitemap.xml 
+Sitemap: http://blog.mymind.fr/sitemap.xml 

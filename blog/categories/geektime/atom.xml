@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: GeekTime | Mind...]]></title>
-  <link href="http://Fruneau.github.io/blog/categories/geektime/atom.xml" rel="self"/>
-  <link href="http://Fruneau.github.io/"/>
-  <updated>2013-12-29T20:04:51+01:00</updated>
-  <id>http://Fruneau.github.io/</id>
+  <link href="http://blog.mymind.fr/blog/categories/geektime/atom.xml" rel="self"/>
+  <link href="http://blog.mymind.fr/"/>
+  <updated>2013-12-29T20:08:31+01:00</updated>
+  <id>http://blog.mymind.fr/</id>
   <author>
     <name><![CDATA[Florent Bruneau]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[Yet Another Policy Daemon for Postfix]]></title>
-    <link href="http://Fruneau.github.io/blog/2009/04/07/yet-another-policy-daemon-for-postfix2/"/>
+    <link href="http://blog.mymind.fr/blog/2009/04/07/yet-another-policy-daemon-for-postfix2/"/>
     <updated>2009-04-07T00:04:00+02:00</updated>
-    <id>http://Fruneau.github.io/blog/2009/04/07/yet-another-policy-daemon-for-postfix2</id>
+    <id>http://blog.mymind.fr/blog/2009/04/07/yet-another-policy-daemon-for-postfix2</id>
     <content type="html"><![CDATA[<p><a href="http://blog.madism.org/index.php/2007/08/29/136-postfix-and-srs">MadCoder announced it months ago</a>, he has been working on the pfixtools. The second tool of the <a href="http://www.postfix.com">postfix</a>-related toolsuite is named <strong>postlicyd</strong>.</p>
 
 <p>postlicyd is a versatile <a href="http://www.postfix.org/SMTPD_POLICY_README.html">policy daemon</a> written in C. It does greylisting (far faster than postgrey), it performs R(H)BL access (both locally directly from rbldns zone files and remotely by using DNS), &hellip; So, it can be used as a replacement for <a href="http://packages.qa.debian.org/w/whitelister.html">whitelister</a> and <a href="http://postgrey.schweikert.ch/">postgrey</a> with a significant improvement of the performances.</p>
@@ -38,9 +38,9 @@
   
   <entry>
     <title type="html"><![CDATA[Compter Les Fichiers]]></title>
-    <link href="http://Fruneau.github.io/blog/2007/08/31/compter-les-fichiers/"/>
+    <link href="http://blog.mymind.fr/blog/2007/08/31/compter-les-fichiers/"/>
     <updated>2007-08-31T01:12:00+02:00</updated>
-    <id>http://Fruneau.github.io/blog/2007/08/31/compter-les-fichiers</id>
+    <id>http://blog.mymind.fr/blog/2007/08/31/compter-les-fichiers</id>
     <content type="html"><![CDATA[<p>C'est un peu la suite de mon post &ldquo;Outils pratiques&rdquo; où je donnais deux scripts permettant de rendre les commandes SVN plus conviviales. Encore une fois, je réinvente sans doute la roue (des outils équivalents doivent déjà exister&hellip; sans doute en mieux), mais je pense que chercher ce genre d'outils sur internet m'aurait pris plus de temps que ce qu'il m'a fallu pour le développer.</p>
 
 <p>En ce moment je manipule des fichiers, beaucoup de fichiers (et même, beaucoup de gros fichiers), que j'ouvre, rouvre, et ferme et puis referme. Et à force d'ouvrir, on oublie parfois de refermer, et là, c'est comme une fuite de mémoire, sauf que le nombre limite de fichiers ouverts est beaucoup plus rapidement atteinte que la limite de mémoire&hellip; dans la configuration de base sur un linux, un programme n'a le droit qu'à 1024 descripteurs de fichiers. D'où mon problème : comment traquer les &ldquo;file-handle leaks&rdquo; ?</p>
@@ -157,9 +157,9 @@ for $id (keys %files) {
   
   <entry>
     <title type="html"><![CDATA[Templates en C]]></title>
-    <link href="http://Fruneau.github.io/blog/2007/08/17/templates-en-c/"/>
+    <link href="http://blog.mymind.fr/blog/2007/08/17/templates-en-c/"/>
     <updated>2007-08-17T00:53:00+02:00</updated>
-    <id>http://Fruneau.github.io/blog/2007/08/17/templates-en-c</id>
+    <id>http://blog.mymind.fr/blog/2007/08/17/templates-en-c</id>
     <content type="html"><![CDATA[<p>En C++, il existe un mécanisme extrêmement pratique pour généré du code générique : les templates. Une fonction templatée est une fonction dont le code comporte un trou qui sera remplacé à la compilation par le nom d'un type, ou une valeur&hellip; Par exemple :</p>
 
 <pre><code>template &lt;class T&gt; 
@@ -275,9 +275,9 @@ maFonctionBuild(MaStruct) /&lt;em&gt; génère maFonction_MaStruct &lt;/em&gt;/<
   
   <entry>
     <title type="html"><![CDATA[Comprendre Du Code]]></title>
-    <link href="http://Fruneau.github.io/blog/2007/08/15/comprendre-du-code/"/>
+    <link href="http://blog.mymind.fr/blog/2007/08/15/comprendre-du-code/"/>
     <updated>2007-08-15T03:28:00+02:00</updated>
-    <id>http://Fruneau.github.io/blog/2007/08/15/comprendre-du-code</id>
+    <id>http://blog.mymind.fr/blog/2007/08/15/comprendre-du-code</id>
     <content type="html"><![CDATA[<p>J'ai tenté cet après-midi une petite expérience sur IRC. J'ai posté 3 lignes de code en demandant &ldquo;que font ces trois lignes&rdquo;. Après quelques minutes (sans doute trop peu), j'ai donné la solution car personne n'avait vraiment trouvé. En effet, même si on réussi facilement à lire le code et à reconstituer la suite d'opération qu'il génère, il est très difficile de vraiment comprendre ce qu'il fait, d'imaginer son application dans un contexte et d'en déduire son usage.</p>
 
 <p>Juste pour continuer à m'amuser, et pour amuser ceux qui se perdraient ici, voici le code en question.</p>
@@ -297,7 +297,7 @@ maFonctionBuild(MaStruct) /&lt;em&gt; génère maFonction_MaStruct &lt;/em&gt;/<
 <p><div>
   <pre><code class='html'>&lt;/p&gt;
 
-&lt;script type=&quot;text/javascript&quot; src=&quot;http://Fruneau.github.io/jquery.js&quot;&gt;&lt;/script&gt;
+&lt;script type=&quot;text/javascript&quot; src=&quot;http://blog.mymind.fr/jquery.js&quot;&gt;&lt;/script&gt;
 
 
 &lt;script type=&quot;text/javascript&quot;&gt;//&amp;lt;![CDATA[
@@ -377,9 +377,9 @@ Tout ceci n'était bien sûr qu'un exemple. Il est toujours très dur de compren
   
   <entry>
     <title type="html"><![CDATA[Khtml2png 2.6.5 Est Sorti]]></title>
-    <link href="http://Fruneau.github.io/blog/2007/06/06/khtml2png-265-est-sorti/"/>
+    <link href="http://blog.mymind.fr/blog/2007/06/06/khtml2png-265-est-sorti/"/>
     <updated>2007-06-06T00:31:00+02:00</updated>
-    <id>http://Fruneau.github.io/blog/2007/06/06/khtml2png-265-est-sorti</id>
+    <id>http://blog.mymind.fr/blog/2007/06/06/khtml2png-265-est-sorti</id>
     <content type="html"><![CDATA[<p>Après 3 mois d'un travail pas très intensif, une nouvelle version de <a href="http://khtml2png.sf.net">khtml2png</a> est disponible. Cette version est partie du fait que les versions précédentes du programme ont parfois du mal à gérer les grandes captures d'écran (en fait, des bugs peuvent apparaître dès que la taille de la zone à capturer est plus grande que la taille affichable).</p>
 
 <p>Donc, rapidement après la sortie de la 2.6.0, j'avais envoyé un correctif (en fait une réécriture du moteur de rendu) au développeur de <code>khtml2png</code>. Malheureusement, ce correctif ne fonctionnait pas correctement chez lui. Donc, pendant 3 mois, j'ai fait du débuggage à distance : j'envoie une version modifiée (1 ou 2 lignes à chaque fois), j'attends 2 ou 3 semaine une réponse, etc&hellip; Du développement efficace !</p>

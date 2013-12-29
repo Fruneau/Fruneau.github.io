@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: Polytechnique.org | Mind...]]></title>
-  <link href="http://Fruneau.github.io/blog/categories/polytechnique-dot-org/atom.xml" rel="self"/>
-  <link href="http://Fruneau.github.io/"/>
-  <updated>2013-12-29T20:04:51+01:00</updated>
-  <id>http://Fruneau.github.io/</id>
+  <link href="http://blog.mymind.fr/blog/categories/polytechnique-dot-org/atom.xml" rel="self"/>
+  <link href="http://blog.mymind.fr/"/>
+  <updated>2013-12-29T20:08:31+01:00</updated>
+  <id>http://blog.mymind.fr/</id>
   <author>
     <name><![CDATA[Florent Bruneau]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[Polytechnique.org Lance Son Blog]]></title>
-    <link href="http://Fruneau.github.io/blog/2008/06/04/polytechniqueorg-lance-son-blog/"/>
+    <link href="http://blog.mymind.fr/blog/2008/06/04/polytechniqueorg-lance-son-blog/"/>
     <updated>2008-06-04T01:33:00+02:00</updated>
-    <id>http://Fruneau.github.io/blog/2008/06/04/polytechniqueorg-lance-son-blog</id>
+    <id>http://blog.mymind.fr/blog/2008/06/04/polytechniqueorg-lance-son-blog</id>
     <content type="html"><![CDATA[<p>Voilà&hellip; cela fait assez longtemps que nous recevons des demandes d'utilisateurs pour la mise en place de blog via Polytechnique.org. Afin de préparer la mise en place de ce service, Polytechnique.org lance son blog. Cela permettra à la fois :</p>
 
 <ul>
@@ -32,9 +32,9 @@
   
   <entry>
     <title type="html"><![CDATA[Afficher Des Discussions]]></title>
-    <link href="http://Fruneau.github.io/blog/2007/11/01/afficher-des-discussions/"/>
+    <link href="http://blog.mymind.fr/blog/2007/11/01/afficher-des-discussions/"/>
     <updated>2007-11-01T18:24:00+01:00</updated>
-    <id>http://Fruneau.github.io/blog/2007/11/01/afficher-des-discussions</id>
+    <id>http://blog.mymind.fr/blog/2007/11/01/afficher-des-discussions</id>
     <content type="html"><![CDATA[<p>Lorsqu'un logiciel a pour vocation d'afficher des discussions, on attend de sa part qu'il nous permette de voir simplement qui répond à qui, dans quel contexte&hellip; Ce n'est pas toujours ce qui est le mieux fait. Par exemple, les programmes de fora en ligne à la mode (phpBB par exemple) affiche les discussion comme une succession de rectangles juxtaposés et seul le contenu du message permet de voir qu'il en cite un autre. D'autres logiciels comme Mail.app ont ce défaut et parfois la fâcheuse manie de ne pas vouloir corriger ce problème.</p>
 
 <p>L'affichage de l'arborescence dans <a href="http://opensource.polytechnique.org/banana">Banana</a> est une des fonctionnalités clés&hellip; et elle va beaucoup changer dans la prochaine version.</p>
@@ -72,9 +72,9 @@
   
   <entry>
     <title type="html"><![CDATA[15 000]]></title>
-    <link href="http://Fruneau.github.io/blog/2007/10/08/15-000/"/>
+    <link href="http://blog.mymind.fr/blog/2007/10/08/15-000/"/>
     <updated>2007-10-08T00:32:00+02:00</updated>
-    <id>http://Fruneau.github.io/blog/2007/10/08/15-000</id>
+    <id>http://blog.mymind.fr/blog/2007/10/08/15-000</id>
     <content type="html"><![CDATA[<p>Ca y est&hellip; 15 000 inscrits à <a href="https://www.polytechnique.org">Polytechnique.org</a>.</p>
 
 <p><a href="15.000%20inscrits">((/public/screenshots/15.000.png</a>)|/public/screenshots/15.000.png)</p>
@@ -85,9 +85,9 @@
   
   <entry>
     <title type="html"><![CDATA[La Banane Et L'escargot]]></title>
-    <link href="http://Fruneau.github.io/blog/2007/05/07/la-banane-et-lescargot/"/>
+    <link href="http://blog.mymind.fr/blog/2007/05/07/la-banane-et-lescargot/"/>
     <updated>2007-05-07T19:44:00+02:00</updated>
-    <id>http://Fruneau.github.io/blog/2007/05/07/la-banane-et-lescargot</id>
+    <id>http://blog.mymind.fr/blog/2007/05/07/la-banane-et-lescargot</id>
     <content type="html"><![CDATA[<p>La release de <a href="http://opensource.polytechnique.org/banana/">Banana</a> 1.6 en même temps que celle de plat/al 0.9.14 a mis en évidence un certain nombre de faiblesses dans Banana. En particuliers la génération du spool (mise en cache de l'arborescence des messages) et des flux RSS s'est révélé extrêmement lourde pour plusieurs raisons :</p>
 
 <ul>
@@ -150,9 +150,9 @@ do_something($lines);</code></pre>
   
   <entry>
     <title type="html"><![CDATA[0.9.14 en Ligne !]]></title>
-    <link href="http://Fruneau.github.io/blog/2007/04/29/0914-en-ligne/"/>
+    <link href="http://blog.mymind.fr/blog/2007/04/29/0914-en-ligne/"/>
     <updated>2007-04-29T21:09:00+02:00</updated>
-    <id>http://Fruneau.github.io/blog/2007/04/29/0914-en-ligne</id>
+    <id>http://blog.mymind.fr/blog/2007/04/29/0914-en-ligne</id>
     <content type="html"><![CDATA[<p>Ca y est, comme annoncé dans <a href="/mind/post/2007/03/30/Un-apercu-de-la-version-0914-de-plat/al">mon billet de fin mars</a>, la version 0.9.14 de <a href="http://opensource.polytechnique.org/platal">plat/al</a> est en ligne depuis vendredi soir. Comme expliqué précédemment, cette version apporte un grand nombre d'innovations comme <a href="/mind/post/2007/02/25/Un-client-RSS-pour-lire-les-Forums-NNTP-et-les-Mailing-Lists">le flux RSS pour les Mailing-Lists et les Fora</a>, la <a href="/mind/post/2007/03/15/Soundex-Francais">recherche par proximité sonore améliorée</a> et généralisée, un système d'annonces retravaillé pour offrir un approche plus conviviale, et bien sûr, le passage en UTF-8.</p>
 
 <p>Mais de tout cela, j'en ai déjà parlé&hellip; je tiens par contre à m'étendre sur les quelques fonctionnalités qui ont été développées durant le dernier mois (en fait, durant les dernières deux semaines de développement, le reste du temps ayant été consacré aux tests).</p>

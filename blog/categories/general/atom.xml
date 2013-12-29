@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: Général | Mind...]]></title>
-  <link href="http://Fruneau.github.io/blog/categories/general/atom.xml" rel="self"/>
-  <link href="http://Fruneau.github.io/"/>
-  <updated>2013-12-29T20:04:51+01:00</updated>
-  <id>http://Fruneau.github.io/</id>
+  <link href="http://blog.mymind.fr/blog/categories/general/atom.xml" rel="self"/>
+  <link href="http://blog.mymind.fr/"/>
+  <updated>2013-12-29T20:08:31+01:00</updated>
+  <id>http://blog.mymind.fr/</id>
   <author>
     <name><![CDATA[Florent Bruneau]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[Vieux Trucs]]></title>
-    <link href="http://Fruneau.github.io/blog/2008/05/19/vieux-trucs/"/>
+    <link href="http://blog.mymind.fr/blog/2008/05/19/vieux-trucs/"/>
     <updated>2008-05-19T00:50:00+02:00</updated>
-    <id>http://Fruneau.github.io/blog/2008/05/19/vieux-trucs</id>
+    <id>http://blog.mymind.fr/blog/2008/05/19/vieux-trucs</id>
     <content type="html"><![CDATA[<p>Un peu de nostalgie. Je suis retombé sur de vieux programmes que j'avais fait pour ma calculatrice (TI-92) quand j'étais en 1^^ère^^/Terminale. A mon époque (pas si lointaine&hellip; j'ai passé mon bac en 2001), ces outils couvraient le programme de Terminal S (spécialité maths) avec :</p>
 
 <!-- more -->
@@ -56,9 +56,9 @@
   
   <entry>
     <title type="html"><![CDATA[Encodage Et Terminal]]></title>
-    <link href="http://Fruneau.github.io/blog/2008/03/02/encodage-et-terminal/"/>
+    <link href="http://blog.mymind.fr/blog/2008/03/02/encodage-et-terminal/"/>
     <updated>2008-03-02T12:57:00+01:00</updated>
-    <id>http://Fruneau.github.io/blog/2008/03/02/encodage-et-terminal</id>
+    <id>http://blog.mymind.fr/blog/2008/03/02/encodage-et-terminal</id>
     <content type="html"><![CDATA[<p>Beaucoup de personnes avec qui je discute sur IRC ont des problèmes avec l'encodage de leur terminal, de leur shell, de leur irssi, ou de tout autre logiciel en &ldquo;ligne de commande&rdquo;. Comme j'en ai un peu marre d'expliquer la même chose toutes les semaines, voici une petite mise au point sur les réglages à faire pour travailler efficacement en ligne de commande.</p>
 
 <!-- more -->
@@ -125,9 +125,9 @@ conversions = {
   
   <entry>
     <title type="html"><![CDATA[BlueScreen]]></title>
-    <link href="http://Fruneau.github.io/blog/2007/07/28/bluescreen/"/>
+    <link href="http://blog.mymind.fr/blog/2007/07/28/bluescreen/"/>
     <updated>2007-07-28T23:15:00+02:00</updated>
-    <id>http://Fruneau.github.io/blog/2007/07/28/bluescreen</id>
+    <id>http://blog.mymind.fr/blog/2007/07/28/bluescreen</id>
     <content type="html"><![CDATA[<p>Juste parce que je trouve ça amusant : lorsque Vista plante en raison d'une erreur sérieuse, il fait un écran bleu (exactement le même que sous Windows XP). Ce qui est amusant, c'est le message affiché lors du démarrage suivant de Windows.</p>
 
 <p>((/public/screenshots/BlueScreen.png|Vista-bluescreen))</p>
@@ -138,9 +138,9 @@ conversions = {
   
   <entry>
     <title type="html"><![CDATA[Mail.app, IMAP Et Signatures...]]></title>
-    <link href="http://Fruneau.github.io/blog/2007/06/12/mailapp-imap-et-signatures/"/>
+    <link href="http://blog.mymind.fr/blog/2007/06/12/mailapp-imap-et-signatures/"/>
     <updated>2007-06-12T01:24:00+02:00</updated>
-    <id>http://Fruneau.github.io/blog/2007/06/12/mailapp-imap-et-signatures</id>
+    <id>http://blog.mymind.fr/blog/2007/06/12/mailapp-imap-et-signatures</id>
     <content type="html"><![CDATA[<p>Les temps sont durs pour les utilisateurs de IMAP&hellip; jusqu'à présent je n'ai pas trouvé de client idéal pour travailler avec ce protocole :</p>
 
 <ul>
@@ -208,9 +208,9 @@ Même si je ne me fais pas trop d'illusion sur le sujet, j'espère que ce genre 
   
   <entry>
     <title type="html"><![CDATA[Mac C'est Bien... Mais Pas Top]]></title>
-    <link href="http://Fruneau.github.io/blog/2007/05/22/mac-cest-bien-mais-pas-top/"/>
+    <link href="http://blog.mymind.fr/blog/2007/05/22/mac-cest-bien-mais-pas-top/"/>
     <updated>2007-05-22T23:44:00+02:00</updated>
-    <id>http://Fruneau.github.io/blog/2007/05/22/mac-cest-bien-mais-pas-top</id>
+    <id>http://blog.mymind.fr/blog/2007/05/22/mac-cest-bien-mais-pas-top</id>
     <content type="html"><![CDATA[<p>Bon, la suite des mes problèmes avec les machines Apple !</p>
 
 <p>Alors que la carte mère de mon portable a été changée il y a un peu plus d'un mois, mon portable a décidé aujourd'hui d'arrêter de vouloir fonctionner. Symptômes ? Il s'allume (des fois), fonctionne (rarement) quelques secondes puis s'éteint brutalement&hellip; et ce qu'il démarre sur secteur, sur batterie ou les deux ensemble, que ce soit sur le disque dur, sur le DVD d'installation ou encore en mode <em>target</em> (en tant que disque dur externe).</p>
