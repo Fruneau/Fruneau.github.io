@@ -4,7 +4,7 @@
   <title><![CDATA[Mind...]]></title>
   <link href="http://blog.mymind.fr/atom.xml" rel="self"/>
   <link href="http://blog.mymind.fr/"/>
-  <updated>2013-12-29T20:42:33+01:00</updated>
+  <updated>2013-12-29T21:05:31+01:00</updated>
   <id>http://blog.mymind.fr/</id>
   <author>
     <name><![CDATA[Florent Bruneau]]></name>
@@ -58,7 +58,7 @@
     <link href="http://blog.mymind.fr/blog/2008/05/19/vieux-trucs/"/>
     <updated>2008-05-19T00:50:00+02:00</updated>
     <id>http://blog.mymind.fr/blog/2008/05/19/vieux-trucs</id>
-    <content type="html"><![CDATA[<p>Un peu de nostalgie. Je suis retombé sur de vieux programmes que j&#8217;avais fait pour ma calculatrice (TI-92) quand j&#8217;étais en 1^^ère^^/Terminale. A mon époque (pas si lointaine&hellip; j&#8217;ai passé mon bac en 2001), ces outils couvraient le programme de Terminal S (spécialité maths) avec :</p>
+    <content type="html"><![CDATA[<p>Un peu de nostalgie. Je suis retombé sur de vieux programmes que j&#8217;avais fait pour ma calculatrice (TI-92) quand j&#8217;étais en 1<sup>ère</sup>/Terminale. A mon époque (pas si lointaine&hellip; j&#8217;ai passé mon bac en 2001), ces outils couvraient le programme de Terminal S (spécialité maths) avec :</p>
 
 <!-- more -->
 
@@ -66,10 +66,10 @@
 <ul>
 <li>En analyse et algèbre :</li>
 <li>  tableaux de signe et de variation (avec détection de la périodicité des fonctions en cas de besoin)</li>
-<li>  équation différentielles (de Terminal, donc <code>y' = a.y + w</code> ou <code>y" + w^^2^^.y = 0</code>)</li>
+<li>  équation différentielles (de Terminal, donc <code>y' = a.y + w</code> ou <code>y" + w&lt;sup&gt;2&lt;/sup&gt;.y = 0</code>)</li>
 <li>  division polynomiale</li>
 <li>  linéarisation trigonométrique</li>
-<li>  équations du 1^^er^^ et 2^^nd^^ degré</li>
+<li>  équations du 1<sup>er</sup> et 2<sup>nd</sup> degré</li>
 <li>  résolution de systèmes d&#8217;équations</li>
 <li>  <a href="http://fr.wikipedia.org/wiki/Triangle_de_Pascal|fr">triangle de Pascal</a></li>
 <li>En géométrie :</li>
@@ -238,7 +238,7 @@ conversions = {
 <p>Et ainsi, le fichier <code>/quelque/part</code> contient la liste complète des appels à <code>open</code> et <code>close</code> effectués par mon programme (et ses processus fils). Il ne reste plus alors qu&#8217;à analyser le contenu de <code>/quelque/part</code>. Pour ceci, il suffit de peu de lignes de code (en perl pour ma part, mais d&#8217;autres auraient fait la même chose en shell, python&hellip; ou n&#8217;importe quel langage de scripting) :</p>
 
 <div>
-  <pre><code class='perl'>1  !/usr/bin/perl 
+  <pre><code class='perl'>#!/usr/bin/perl 
  
 my %files; 
 my %modes; 
@@ -260,8 +260,8 @@ for $line (&lt;STDIN&gt;) {
       $maxOpened = $currentOpened; 
     } 
   } 
-  if ($line =~ /close\\\\((\\\\d+)\\\\)/ &amp;&amp; $files{$1} ne _) { 
-    $files{$1} = _; 
+  if ($line =~ /close\\\\((\\\\d+)\\\\)/ &amp;&amp; $files{$1} ne &#39;&#39;) { 
+    $files{$1} = &#39;&#39;; 
     $currentOpened--; 
   } 
   $lineNb++; 
@@ -276,7 +276,7 @@ for $id (keys %files) {
   local $mode = $modes{$id}; 
   local $line = $lines{$id}; 
  
-  if ($file ne _) { 
+  if ($file ne &#39;&#39;) { 
     print &quot;[line $line] id=$id, open $file with mode $mode
 &quot;; 
   } 
@@ -306,7 +306,7 @@ for $id (keys %files) {
 <p>Si maintenant, je fais un programme minimaliste qui oublie de fermer un fichier :</p>
 
 <div>
-  <pre><code class='c'>1  include &lt;stdio.h&gt; 
+  <pre><code class='c'>#include &lt;stdio.h&gt; 
  
 int main() { 
   FILE* file = fopen(&quot;test&quot;, &quot;r&quot;); 
@@ -375,7 +375,7 @@ read&lt;MaClass&gt;(const char* buffer) // lit un objet de type "MaClass"
 <p>Le préprocesseur en C possède des outils sympathique&hellip; Nous nous attarderons particulièrement sur le ##. Il s&#8217;agit tout simplement d&#8217;un opérateur de concaténation. Donc :</p>
 
 <div>
-  <pre><code class='c'>1  define Truc(Machin) Truc ## Machin
+  <pre><code class='c'>#define Truc(Machin) Truc ## Machin
 
 Truc(Bidule) /* génère TrucBidule */</code></pre>
 </div>
@@ -384,7 +384,7 @@ Truc(Bidule) /* génère TrucBidule */</code></pre>
 <p>C&#8217;est donc très pratique. On peut facilement par exemple, imaginer une petite macro du genre :</p>
 
 <div>
-  <pre><code class='c'>1  define maFonction(Type) maFonction_ ## Type</code></pre>
+  <pre><code class='c'>#define maFonction(Type) maFonction_ ## Type</code></pre>
 </div>
 
 
@@ -400,7 +400,7 @@ maFonction(MaStruct)(args); /* appelle maFonction_MaStruct */</code></pre>
 <p>Maintenant, il ne reste plus qu&#8217;à générer les fonctions&hellip; sans avoir à toutes les écrire une à une. Pour ceci, nous allons encore une fois profiter de la présence du préprocesseur.</p>
 
 <div>
-  <pre><code class='c'>1  define maFonctionBuild(Type) \\\\
+  <pre><code class='c'>#define maFonctionBuild(Type) \\\\
   Type maFonction_ ## Type(const char* buffer) { \\\\
     Type val; \\\\
     memcpy(&amp;val, buffer, sizeof(Type)); \\\\
@@ -461,75 +461,74 @@ maFonctionBuild(MaStruct) /* génère maFonction_MaStruct */</code></pre>
 
 <p>Vous pouvez remarquer dès à présent que ce code n&#8217;est pas volontairement rendu illisible (il serait facile de supprimer des parenthèses et de changer le test de nullité en une négation. Le but est donc de comprendre la suite d&#8217;instruction, de dire ce qu&#8217;elle fait et ensuite de comprendre dans quel contexte elle est utilisable. La question est aussi de savoir en combien de temps vous allez trouver la solution.</p>
 
-<div>
-  <pre><code class='html'>&lt;script type=&quot;text/javascript&quot; src=&quot;/jquery.js&quot;&gt;&lt;/script&gt;
-&lt;script type=&quot;text/javascript&quot;&gt;//&lt;![CDATA[
+<script type="text/javascript" src="http://blog.mymind.fr/jquery.js"></script>
+
+
+<script type="text/javascript">//&lt;![CDATA[
 function show_answer() {
-  $(&quot;#show_answer&quot;).hide();
-  $(&quot;#answer&quot;).show(&quot;slow&quot;);
+  $("#show_answer").hide();
+  $("#answer").show("slow");
   return false;
 }
-//]]&gt;&lt;/script&gt;
-&lt;p&gt;
-&lt;a href=&quot;&quot; onclick=&quot;return show_answer()&quot; id=&quot;show_answer&quot;&gt;Cliquer ici pour afficher la répondre&lt;/a&gt;
-&lt;/p&gt;
-&lt;div id=&quot;answer&quot; style=&quot;display: none&quot;&gt;</code></pre>
-</div>
+//]]&gt;</script>
 
 
-<h2> Fonctionnement</h2>
+<p>
+<a href="" onclick="return show_answer()" id="show_answer">Cliquer ici pour afficher la répondre</a>
+</p>
 
-<p>Si on lit le code, on voit qu&#8217;il fait la suite d&#8217;opération suivante :</p>
 
-<p>1   on incrémente la valeur pointée par pos
+<div id="answer" style="display: none">
+ Fonctionnement
+&#8212;&#8212;&#8212;&#8212;&#8212;
+
+Si on lit le code, on voit qu&#8217;il fait la suite d&#8217;opération suivante :
+
+1   on incrémente la valeur pointée par pos
 1   on regarde si la valeur obtenue est nulle
 1   on incrémente le pointeur pos
-1   si le test 2 est vrai, on retourne en 1, sinon, on quitte la boucle</p>
+1   si le test 2 est vrai, on retourne en 1, sinon, on quitte la boucle
 
-<p>Il s&#8217;agit donc d&#8217;une petite boucle qui incrémente des objets successifs jusqu&#8217;à ce qu&#8217;elle en trouve un qui, une fois incrémenté, n&#8217;est pas nul.</p>
+Il s&#8217;agit donc d&#8217;une petite boucle qui incrémente des objets successifs jusqu&#8217;à ce qu&#8217;elle en trouve un qui, une fois incrémenté, n&#8217;est pas nul.
 
-<p>Voilà donc la solution du pauvre au problème, celle qu&#8217;on peut trouver en lisant le code, sans chercher à le comprendre.</p>
+Voilà donc la solution du pauvre au problème, celle qu&#8217;on peut trouver en lisant le code, sans chercher à le comprendre.
 
-<h2> Interprétation</h2>
+ Interprétation
+&#8212;&#8212;&#8212;&#8212;&#8212;-
 
-<p>Mais en fait, ce code va plus loin. Imaginons maintenant la zone mémoire sur laquelle pos pointe initialement :</p>
+Mais en fait, ce code va plus loin. Imaginons maintenant la zone mémoire sur laquelle pos pointe initialement :
 
-<pre><code> oct1 oct2 oct3 oct4
-  ^
- pos
-</code></pre>
+     oct1 oct2 oct3 oct4
+      ^
+     pos
 
-<p>L&#8217;octet 1 à une certaine valeur. Je l&#8217;incrémente et je m&#8217;aperçois que sa nouvelle valeur est 0. Quand un octet incrémenté peut-il retomber à 0 ? Quand il fait un overflow. On a donc fait déborder le premier octet&hellip; et quand cet octet déborde on incrémente le suivant :</p>
+L&#8217;octet 1 à une certaine valeur. Je l&#8217;incrémente et je m&#8217;aperçois que sa nouvelle valeur est 0. Quand un octet incrémenté peut-il retomber à 0 ? Quand il fait un overflow. On a donc fait déborder le premier octet&#8230; et quand cet octet déborde on incrémente le suivant :
 
-<pre><code>    _+1__
-   |     |
- oct1 oct2 oct3 oct4
-       ^
-      pos
-</code></pre>
+        _+1__
+       |     |
+     oct1 oct2 oct3 oct4
+           ^
+          pos
 
-<p>Il s&#8217;agit donc ni plus ni moins que d&#8217;une retenue (comme quand on apprend à faire les additions ou les multiplications) : quand je fais déborder un octet, je déplace le surplus vers le suivant. Finalement, ces 3 lignes de code ne sont que l&#8217;implémentation d&#8217;une incrémentation, mais sur plusieurs octets&hellip; et même sur un nombre non défini d&#8217;octets (puisqu&#8217;il n&#8217;y a pas de limite explicitée sur le nombre d&#8217;étapes autorisées).</p>
+Il s&#8217;agit donc ni plus ni moins que d&#8217;une retenue (comme quand on apprend à faire les additions ou les multiplications) : quand je fais déborder un octet, je déplace le surplus vers le suivant. Finalement, ces 3 lignes de code ne sont que l&#8217;implémentation d&#8217;une incrémentation, mais sur plusieurs octets&#8230; et même sur un nombre non défini d&#8217;octets (puisqu&#8217;il n&#8217;y a pas de limite explicitée sur le nombre d&#8217;étapes autorisées).
 
-<p>Pour être plus précis, il s&#8217;agit d&#8217;un incrémenteur d&#8217;entier stocké en Little Endian sur un nombre illimité d&#8217;octets.</p>
+Pour être plus précis, il s&#8217;agit d&#8217;un incrémenteur d&#8217;entier stocké en Little Endian sur un nombre illimité d&#8217;octets.
 
-<h2> Encore ?</h2>
+ Encore ?
+&#8212;&#8212;&#8212;
 
-<p>Bon, pour ceux qui tiennent vraiment à s&#8217;assurer que ce n&#8217;est pas du code illisible, voici une version vraiment illisible de la même machine :</p>
+Bon, pour ceux qui tiennent vraiment à s&#8217;assurer que ce n&#8217;est pas du code illisible, voici une version vraiment illisible de la même machine :
 
 <div>
   <pre><code class='c'>for(++*pos;!*pos++;++*pos);</code></pre>
 </div>
 
 
-<p>(Merci Falco)</p>
+(Merci Falco)
 
-<p>Tout ceci n&#8217;était bien sûr qu&#8217;un exemple. Il est toujours très dur de comprendre du code, alors pour éviter de passer dix minutes sur 3 lignes lors de la prochaine relecture il suffit de documenter ce qu&#8217;on écrit.</p>
+Tout ceci n&#8217;était bien sûr qu&#8217;un exemple. Il est toujours très dur de comprendre du code, alors pour éviter de passer dix minutes sur 3 lignes lors de la prochaine relecture il suffit de documenter ce qu&#8217;on écrit.
 
-<div>
-  <pre><code class='html'>&lt;/div&gt;</code></pre>
 </div>
-
-
 
 ]]></content>
   </entry>
@@ -586,7 +585,7 @@ function show_answer() {
  Content-Disposition: inline
  ///
 
-Le contenu de la partie signée n&#39;est pas identique dans les deux mails. Pour ceux qui ne connaissent pas la structure d&#39;un mail signé, je les invite à jeter un coup d&#39;oeil à la [RFC1847](http://www.faqs.org/rfcs/rfc1847.html) qui se résume au schéma suivant :</code></pre>
+Le contenu de la partie signée n&#39;est pas identique dans les deux mails. Pour ceux qui ne connaissent pas la structure d&#39;un mail signé, je les invite à jeter un coup d&#39;oeil à la [RFC1847|http://www.faqs.org/rfcs/rfc1847.html] qui se résume au schéma suivant :</code></pre>
 </div>
 
 
@@ -691,9 +690,9 @@ extern OSStatus CGSSetWorkspace(const CGSConnection cid, int workspace);</code><
 <p>C&#8217;est intéressant&hellip; jusqu&#8217;à maintenant Virtue suppose que le gid du groupe procmod est celui par défaut de MacOS (c&#8217;est à dire qu&#8217;il vaut 9)&hellip; et le problème est donc que si un utilisateur a un procmod différent (ou si Apple décide un jour de changer le gid du groupe), le code actuel peut avoir des résultats inattendus, il faut donc faire un code plus portable qui recherche le gid de procmod au lieu de le stocker en dur. Ce n&#8217;est clairement pas une mauvaise idée ! Seul problème, le patch soumis est le suivant (au cas où certain voudrait réutiliser ce code, je tiens à signaler que c&#8217;est une mauvaise idée !) :</p>
 
 <div>
-  <pre><code class='c'>1  define NI_DOMAIN  &quot;.&quot;
-1  define NI_PATH       &quot;/name=groups/name=procmod&quot;
-1  define NI_KEY        &quot;gid&quot;
+  <pre><code class='c'>#define NI_DOMAIN    &quot;.&quot;
+#define NI_PATH     &quot;/name=groups/name=procmod&quot;
+#define NI_KEY      &quot;gid&quot;
 
 // Sucked from netinfo-369.5/tools/niutil/niutil.c
 ni_status ni_read_single_prop(char **property)
@@ -759,7 +758,7 @@ ni_status ni_read_single_prop(char **property)
 <p>Voici donc une solution qui fait la même chose que la fonction ci-dessus, en mieux et surtout en beaucoup moins de lignes :</p>
 
 <div>
-  <pre><code class='c'>1  include &lt;grp.h&gt;
+  <pre><code class='c'>#include &lt;grp.h&gt;
 
 static int getProcmodGid()
 {

@@ -131,54 +131,50 @@
 
 <p>Le traitement des données consiste à reconnaître les sonorités. Pour ceci on utilise la table de conversion suivante qui associe à chaque sonorité complexe un caractère :</p>
 
-<div>
-  <pre><code class='html'>&lt;table&gt;
-  &lt;tr&gt;&lt;th&gt;Combinaison&lt;/th&gt;&lt;th&gt;Caractère&lt;/th&gt;&lt;/tr&gt;
-  &lt;tr&gt;&lt;td&gt;G (prononcé GUE), C (prononcé Q), CK, K, QU, Q&lt;/td&gt;&lt;td&gt;K&lt;/td&gt;&lt;/tr&gt;
-  &lt;tr&gt;&lt;td&gt;CH, SH, SCH&lt;/td&gt;&lt;td&gt;9&lt;/td&gt;&lt;/tr&gt;
-  &lt;tr&gt;&lt;td&gt;ST&lt;/td&gt;&lt;td&gt;T&lt;/td&gt;&lt;/tr&gt;
-  &lt;tr&gt;&lt;td&gt;PF (en début de mot), PH&lt;/td&gt;&lt;td&gt;F&lt;/td&gt;&lt;/tr&gt;
-  &lt;tr&gt;&lt;td&gt;Z (en fin de mot)&lt;/td&gt;&lt;td&gt;ZE&lt;/td&gt;&lt;/tr&gt;
-  &lt;tr&gt;&lt;td&gt;Z, ZZ, C (prononcé SE)&lt;/td&gt;&lt;td&gt;S&lt;/td&gt;&lt;/tr&gt;
-  &lt;tr&gt;&lt;td&gt;G (prononcé JE)&lt;/td&gt;&lt;td&gt;J&lt;/td&gt;&lt;/tr&gt;
-  &lt;tr&gt;&lt;td&gt;EAU, AU&lt;/td&gt;&lt;td&gt;O&lt;/td&gt;&lt;/tr&gt;
-  &lt;tr&gt;&lt;td&gt;IN, UN, AIN, EIN (proncés UN)&lt;/td&gt;&lt;td&gt;1&lt;/td&gt;&lt;/tr&gt;
-  &lt;tr&gt;&lt;td&gt;AON, AOM, EN, AN (prononcés EN)&lt;/td&gt;&lt;td&gt;A&lt;/td&gt;&lt;/tr&gt;
-  &lt;tr&gt;&lt;td&gt;EY, EI, AY, AI, OE, OEU, EU, ER&lt;/td&gt;&lt;td&gt;E&lt;/td&gt;&lt;/tr&gt;
-  &lt;tr&gt;&lt;td&gt;OI&lt;/td&gt;&lt;td&gt;O&lt;/td&gt;&lt;/tr&gt;
-  &lt;tr&gt;&lt;td&gt;ILLE, I&lt;/td&gt;&lt;td&gt;Y&lt;/td&gt;&lt;/tr&gt;
-  &lt;tr&gt;&lt;td&gt;OU, OW&lt;/td&gt;&lt;td&gt;U&lt;/td&gt;&lt;/tr&gt;
-  &lt;tr&gt;&lt;td&gt;ON, OM&lt;/td&gt;&lt;td&gt;O&lt;/td&gt;&lt;/tr&gt;
-  &lt;tr&gt;&lt;td&gt;KN (en début de mot)&lt;/td&gt;&lt;td&gt;N&lt;/td&gt;&lt;/tr&gt;
-&lt;/table&gt;</code></pre>
-</div>
+<table>
+  <tr><th>Combinaison</th><th>Caractère</th></tr>
+  <tr><td>G (prononcé GUE), C (prononcé Q), CK, K, QU, Q</td><td>K</td></tr>
+  <tr><td>CH, SH, SCH</td><td>9</td></tr>
+  <tr><td>ST</td><td>T</td></tr>
+  <tr><td>PF (en début de mot), PH</td><td>F</td></tr>
+  <tr><td>Z (en fin de mot)</td><td>ZE</td></tr>
+  <tr><td>Z, ZZ, C (prononcé SE)</td><td>S</td></tr>
+  <tr><td>G (prononcé JE)</td><td>J</td></tr>
+  <tr><td>EAU, AU</td><td>O</td></tr>
+  <tr><td>IN, UN, AIN, EIN (proncés UN)</td><td>1</td></tr>
+  <tr><td>AON, AOM, EN, AN (prononcés EN)</td><td>A</td></tr>
+  <tr><td>EY, EI, AY, AI, OE, OEU, EU, ER</td><td>E</td></tr>
+  <tr><td>OI</td><td>O</td></tr>
+  <tr><td>ILLE, I</td><td>Y</td></tr>
+  <tr><td>OU, OW</td><td>U</td></tr>
+  <tr><td>ON, OM</td><td>O</td></tr>
+  <tr><td>KN (en début de mot)</td><td>N</td></tr>
+</table>
 
 
 <p>Une fois qu&#8217;on a cette table de correspondances (elle n&#8217;est peut-être pas exhaustive&hellip; je n&#8217;hésiterais pas à l&#8217;améliorer), on applique toutes les modifications, on supprime les lettres qui sont présentes en doublon et finalement on supprime les H restants. Il faut également supprimer les caractères muets en fin de mot. En français, ce seront les X, T, D, S (et le L qui les précède si il existe) ou les E.</p>
 
 <p>Ensuite, il faut faire un nettoyage sur la chaîne de caractère. Ce nettoyage consiste à rechercher les phonèmes importants et à supprimer les caractères muets ou peu audibles : on veut identifier ce qui fait la particularité d&#8217;une syllabe. Frédéric Brouard considère que toutes les voyelles (exceptés les Y précédés d&#8217;une voyelle) placées autre part qu&#8217;en début de mot sont insignifiantes&hellip; ça me paraît le gros point faible de sa méthode. Personnellement j&#8217;ai essayé d&#8217;identifier une liste de sonorité dominantes. Voici celles que j&#8217;ai actuellement :</p>
 
-<div>
-  <pre><code class='html'>&lt;table&gt;
-  &lt;tr&gt;&lt;th&gt;Sonorité&lt;/th&gt;&lt;th&gt;Informations&lt;/th&gt;&lt;/tr&gt;
-  &lt;tr&gt;
-    &lt;td&gt;K, T, P&lt;/td&gt;
-    &lt;td&gt;Ce sont les consonnes qui sont très marquées, qui rythment le mot&lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-    &lt;td&gt;A, U, O, 1&lt;/td&gt;
-    &lt;td&gt;Ce sont les son qu&#39;on entend le mieux, contrairement aux I ou aux E qui mettent plus en avant les consonnes. Le A est à mon avis particulier, car il est faible mais suffisamment marquant pour effacer des consonnes comme le R&lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-    &lt;td&gt;Y&lt;/td&gt;
-    &lt;td&gt;Y n&#39;est marquant que lorsqu&#39;il a un rôle de consonne : quand il permet de lier deux parties du mot, comme dans _voyelle_, où il lie le _vo_ et le _elle_. Il est donc important lorsqu&#39;il est encadré par une ou des voyelles. Dans les autres cas, c&#39;est une voyelle faible&lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-    &lt;td&gt;L&lt;/td&gt;
-    &lt;td&gt;Contrairement aux K, T et P, le L permet d&#39;adoucir le mot, en particulier lorsqu&#39;il sert de liaison entre une consonne et une voyelle. Il est donc important de le conserver&lt;/tr&gt;
-  &lt;/tr&gt;
-&lt;/table&gt;</code></pre>
-</div>
+<table>
+  <tr><th>Sonorité</th><th>Informations</th></tr>
+  <tr>
+    <td>K, T, P</td>
+    <td>Ce sont les consonnes qui sont très marquées, qui rythment le mot</td>
+  </tr>
+  <tr>
+    <td>A, U, O, 1</td>
+    <td>Ce sont les son qu&#8217;on entend le mieux, contrairement aux I ou aux E qui mettent plus en avant les consonnes. Le A est à mon avis particulier, car il est faible mais suffisamment marquant pour effacer des consonnes comme le R</td>
+  </tr>
+  <tr>
+    <td>Y</td>
+    <td>Y n&#8217;est marquant que lorsqu&#8217;il a un rôle de consonne : quand il permet de lier deux parties du mot, comme dans &#8221;voyelle&#8221;, où il lie le &#8221;vo&#8221; et le &#8221;elle&#8221;. Il est donc important lorsqu&#8217;il est encadré par une ou des voyelles. Dans les autres cas, c&#8217;est une voyelle faible</td>
+  </tr>
+  <tr>
+    <td>L</td>
+    <td>Contrairement aux K, T et P, le L permet d&#8217;adoucir le mot, en particulier lorsqu&#8217;il sert de liaison entre une consonne et une voyelle. Il est donc important de le conserver</tr>
+  </tr>
+</table>
 
 
 <p>Ces choix sont relativement arbitraires. Le comportement de l&#8217;algorithme est alors simple :</p>
@@ -230,16 +226,16 @@
                             &#39;Y&#39;, &#39;U&#39;, &#39;O\\\\1&#39;, &#39;9&#39;,- 
                             &#39;\\\\1\\\\2\\\\3&#39;, &#39;\\\\1\\\\2\\\\3&#39;, &#39;N&#39;, 
                             &#39;F&#39;, &#39;K\\\\1&#39;, &#39;E&#39;, 
-                            &#39;S&#39;, &#39;SE&#39;, &#39;S&#39;, _, &#39;V&#39;); 
+                            &#39;S&#39;, &#39;SE&#39;, &#39;S&#39;, &#39;&#39;, &#39;V&#39;); 
     } 
     // Si il n&#39;y a pas de mot, on sort immédiatement
-    if ( $sIn === _ ) return &#39;    &#39;; 
+    if ( $sIn === &#39;&#39; ) return &#39;    &#39;; 
     // On supprime les accents- 
     $sIn = strtr( $sIn, $accents); 
     // On met tout en minuscule- 
     $sIn = strtoupper( $sIn ); 
     // On supprime tout ce qui n&#39;est pas une lettre
-    $sIn = preg_replace( &#39;`[^A-Z]`&#39;, _, $sIn ); 
+    $sIn = preg_replace( &#39;`[^A-Z]`&#39;, &#39;&#39;, $sIn ); 
     // Si la chaîne ne fait qu&#39;un seul caractère, on sort avec.
     if ( strlen( $sIn ) === 1 ) return $sIn . &#39;   &#39;; 
     // on remplace les consonnances primaires
@@ -250,10 +246,10 @@
     $sIn = preg_replace( $convVIn, $convVOut, $sIn); 
  
     // on supprime les terminaisons T, D, S, X (et le L qui précède si existe)
-    $sIn = preg_replace( &#39;`L?[TDX]?S?$`&#39;, _, $sIn ); 
+    $sIn = preg_replace( &#39;`L?[TDX]?S?$`&#39;, &#39;&#39;, $sIn ); 
     // on supprime les E, A et Y qui ne sont pas en première position 
     $sIn = preg_replace( &#39;`(?!^)Y([^AEOU]|$)`&#39;, &#39;\\\\1&#39;, $sIn); 
-    $sIn = preg_replace( &#39;`(?!^)[EA]`&#39;, _, $sIn); 
+    $sIn = preg_replace( &#39;`(?!^)[EA]`&#39;, &#39;&#39;, $sIn); 
     return substr( $sIn . &#39;    &#39;, 0, 4); 
 }</code></pre>
 </div>
@@ -263,41 +259,41 @@
 
 <p>Avec cette implémentation, on a par exemple :</p>
 
-<div>
-  <pre><code class='html'>&lt;table&gt;
-  &lt;tr&gt;&lt;th&gt;Mot&lt;/th&gt;&lt;th&gt;Soundex&lt;/th&gt;&lt;th&gt;Mot&lt;/th&gt;&lt;th&gt;Soundex&lt;/th&gt;&lt;/tr&gt;
-  &lt;tr&gt;&lt;td&gt;Aymeric&lt;/td&gt;&lt;td&gt;EMRK&lt;/td&gt;&lt;td&gt;Emeric&lt;/td&gt;&lt;td&gt;EMRK&lt;/td&gt;&lt;/tr&gt;
-  &lt;tr&gt;&lt;td&gt;Banane&lt;/td&gt;&lt;td&gt;BNN&lt;/td&gt;&lt;td&gt;Bananne&lt;/td&gt;&lt;td&gt;BNN&lt;/td&gt;&lt;/tr&gt;
-  &lt;tr&gt;&lt;td&gt;Palper&lt;/td&gt;&lt;td&gt;PLP&lt;/td&gt;&lt;td&gt;Palpé&lt;/td&gt;&lt;td&gt;PLP&lt;/td&gt;&lt;/tr&gt;
-  &lt;tr&gt;&lt;td&gt;Palpa&lt;/td&gt;&lt;td&gt;PLP&lt;/td&gt;&lt;td&gt;Poulpe&lt;/td&gt;&lt;td&gt;PULP&lt;/td&gt;&lt;/tr&gt;
-  &lt;tr&gt;&lt;td&gt;Mario&lt;/td&gt;&lt;td&gt;MRYO&lt;/td&gt;&lt;td&gt;Marion&lt;/td&gt;&lt;td&gt;MRYO&lt;/td&gt;&lt;/tr&gt;
-&lt;/table&gt;</code></pre>
-</div>
+<table>
+  <tr><th>Mot</th><th>Soundex</th><th>Mot</th><th>Soundex</th></tr>
+  <tr><td>Aymeric</td><td>EMRK</td><td>Emeric</td><td>EMRK</td></tr>
+  <tr><td>Banane</td><td>BNN</td><td>Bananne</td><td>BNN</td></tr>
+  <tr><td>Palper</td><td>PLP</td><td>Palpé</td><td>PLP</td></tr>
+  <tr><td>Palpa</td><td>PLP</td><td>Poulpe</td><td>PULP</td></tr>
+  <tr><td>Mario</td><td>MRYO</td><td>Marion</td><td>MRYO</td></tr>
+</table>
 
 
 <p>On a par contre des résultats moyens lorsque des H séparent des voyelles faibles : par exemple <em>Mouahaha</em> donne MU (contre M avec la version précédente).</p>
 
 <p>~test~</p>
 
-<div>
-  <pre><code class='html'>&lt;script type=&quot;text/javascript&quot; src=&quot;/ajax.js&quot;&gt;&lt;/script&gt;
-&lt;script type=&quot;text/javascript&quot;&gt;
+<script type="text/javascript" src="/ajax.js"></script>
+
+
+<script type="text/javascript">
 function get_soundex()
 {
-    Ajax.update_html(&quot;sdx_result&quot;, &quot;/soundex_fr.php?text=&quot; + encodeURIComponent(document.getElementById(&quot;sdx_form&quot;).value));
+    Ajax.update_html("sdx_result", "/soundex_fr.php?text=" + encodeURIComponent(document.getElementById("sdx_form").value));
     return false;
 }
-&lt;/script&gt;
-&lt;div&gt;
-&lt;form action=&quot;&quot; method=&quot;get&quot; onsubmit=&quot;return false;&quot;&gt;
-   &lt;p&gt;
-      &lt;strong&gt;Entrer un texte à convertir : &lt;/strong&gt;
-      &lt;input type=&quot;text&quot; id=&quot;sdx_form&quot; name=&quot;sdx_form&quot; value=&quot;&quot; /&gt;
-      &lt;input type=&quot;submit&quot; name=&quot;submit&quot; value=&quot;Obtenir le Soundex&quot;  onclick=&quot;get_soundex(); return false;&quot;/&gt;&lt;br /&gt;
-      &lt;strong&gt;Résultat : &lt;span id=&quot;sdx_result&quot; style=&quot;color: red&quot;&gt; &lt;/span&gt;&lt;/strong&gt;
-   &lt;/p&gt;
-&lt;/form&gt;
-&lt;/div&gt;</code></pre>
+</script>
+
+
+<div>
+<form action="" method="get" onsubmit="return false;">
+   <p>
+      <strong>Entrer un texte à convertir : </strong>
+      <input type="text" id="sdx_form" name="sdx_form" value="" />
+      <input type="submit" name="submit" value="Obtenir le Soundex"  onclick="get_soundex(); return false;"/><br />
+      <strong>Résultat : <span id="sdx_result" style="color: red"> </span></strong>
+   </p>
+</form>
 </div>
 
 

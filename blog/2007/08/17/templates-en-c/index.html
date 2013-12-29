@@ -136,7 +136,7 @@ read&lt;MaClass&gt;(const char* buffer) // lit un objet de type "MaClass"
 <p>Le préprocesseur en C possède des outils sympathique&hellip; Nous nous attarderons particulièrement sur le ##. Il s&#8217;agit tout simplement d&#8217;un opérateur de concaténation. Donc :</p>
 
 <div>
-  <pre><code class='c'>1  define Truc(Machin) Truc ## Machin
+  <pre><code class='c'>#define Truc(Machin) Truc ## Machin
 
 Truc(Bidule) /* génère TrucBidule */</code></pre>
 </div>
@@ -145,7 +145,7 @@ Truc(Bidule) /* génère TrucBidule */</code></pre>
 <p>C&#8217;est donc très pratique. On peut facilement par exemple, imaginer une petite macro du genre :</p>
 
 <div>
-  <pre><code class='c'>1  define maFonction(Type) maFonction_ ## Type</code></pre>
+  <pre><code class='c'>#define maFonction(Type) maFonction_ ## Type</code></pre>
 </div>
 
 
@@ -161,7 +161,7 @@ maFonction(MaStruct)(args); /* appelle maFonction_MaStruct */</code></pre>
 <p>Maintenant, il ne reste plus qu&#8217;à générer les fonctions&hellip; sans avoir à toutes les écrire une à une. Pour ceci, nous allons encore une fois profiter de la présence du préprocesseur.</p>
 
 <div>
-  <pre><code class='c'>1  define maFonctionBuild(Type) \\\\
+  <pre><code class='c'>#define maFonctionBuild(Type) \\\\
   Type maFonction_ ## Type(const char* buffer) { \\\\
     Type val; \\\\
     memcpy(&amp;val, buffer, sizeof(Type)); \\\\

@@ -101,9 +101,9 @@
 
 <div>
   <pre><code class='bash'>function svn() {
-    if [[ $1 == &quot;ci&quot; ](| $1 == &quot;commit&quot; || $1 == &quot;propedit&quot; || $1 == &quot;propset&quot; || $1 == &quot;help&quot; )]; then
+    if [[ $1 == &quot;ci&quot; || $1 == &quot;commit&quot; || $1 == &quot;propedit&quot; || $1 == &quot;propset&quot; || $1 == &quot;help&quot; ]]; then
         /usr/local/bin/svn $*
-    elif [[ $1 == &quot;preci&quot; ](| $1 == &quot;precommit&quot; )]; then
+    elif [[ $1 == &quot;preci&quot; || $1 == &quot;precommit&quot; ]]; then
         /usr/local/bin/svn status | grep -v &#39;?&#39; | ~/.zsh/zshcolorsvn
     else
         /usr/local/bin/svn $* | ~/.zsh/zshcolorsvn
@@ -129,21 +129,20 @@
 <p>C&#8217;est donc extrêmement pratique ; ça permet de distinguer facilement les modifications, ça permet aussi de voir d&#8217;un seul coup d&#8217;oeil les conflits et la liste des fichiers modifiés. En plus ça fonctionne également avec des commandes comme <code>cvs</code> ou <code>diff</code> :</p>
 
 <div>
-  <pre><code class='bash'>1   SVN
+  <pre><code class='bash'># SVN
 function svn() {
-    if [[ $1 == &quot;ci&quot; ](| $1 == &quot;commit&quot; || $1 == &quot;propedit&quot; || $1 == &quot;propset&quot; || $1 == &quot;help&quot; )]; then
+    if [[ $1 == &quot;ci&quot; || $1 == &quot;commit&quot; || $1 == &quot;propedit&quot; || $1 == &quot;propset&quot; || $1 == &quot;help&quot; ]]; then
         /usr/local/bin/svn $*
-    elif [[ $1 == &quot;preci&quot; ](| $1 == &quot;precommit&quot; )]; then
+    elif [[ $1 == &quot;preci&quot; || $1 == &quot;precommit&quot; ]]; then
         /usr/local/bin/svn status | grep -v &#39;?&#39; | ~/.zsh/zshcolorsvn
     else
         /usr/local/bin/svn $* | ~/.zsh/zshcolorsvn
     fi; fi
 }
 
-
-1   SVN avec conversion de la sortie en latin1
+# SVN avec conversion de la sortie en latin1
 function svn_utf8() {
-    if [[ $1 == &quot;ci&quot; ](| $1 == &quot;commit&quot; )]; then
+    if [[ $1 == &quot;ci&quot; || $1 == &quot;commit&quot; ]]; then
         svn $*
     else
         svn $* | iconv -f utf8 -t iso-8859-1
@@ -154,7 +153,7 @@ function cvs() {
     if [[ $1 == &quot;diff&quot; ]]; then
         shift 1
         /usr/bin/cvs diff -ubN $* 2&gt; /dev/null | ~/.zsh/zshcolorsvn
-    elif [[ $1 == &quot;ci&quot; ](| $1 == &quot;commit&quot; || $1 == &quot;propedit&quot; || $1 == &quot;propset&quot; || $1 == &quot;help&quot; )]; then
+    elif [[ $1 == &quot;ci&quot; || $1 == &quot;commit&quot; || $1 == &quot;propedit&quot; || $1 == &quot;propset&quot; || $1 == &quot;help&quot; ]]; then
         /usr/bin/cvs $*
     else
         /usr/bin/cvs $* 2&gt; /dev/null | ~/.zsh/zshcolorsvn

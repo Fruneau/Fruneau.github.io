@@ -110,75 +110,74 @@
 
 <p>Vous pouvez remarquer dès à présent que ce code n&#8217;est pas volontairement rendu illisible (il serait facile de supprimer des parenthèses et de changer le test de nullité en une négation. Le but est donc de comprendre la suite d&#8217;instruction, de dire ce qu&#8217;elle fait et ensuite de comprendre dans quel contexte elle est utilisable. La question est aussi de savoir en combien de temps vous allez trouver la solution.</p>
 
-<div>
-  <pre><code class='html'>&lt;script type=&quot;text/javascript&quot; src=&quot;/jquery.js&quot;&gt;&lt;/script&gt;
-&lt;script type=&quot;text/javascript&quot;&gt;//&lt;![CDATA[
+<script type="text/javascript" src="/jquery.js"></script>
+
+
+<script type="text/javascript">//<![CDATA[
 function show_answer() {
-  $(&quot;#show_answer&quot;).hide();
-  $(&quot;#answer&quot;).show(&quot;slow&quot;);
+  $("#show_answer").hide();
+  $("#answer").show("slow");
   return false;
 }
-//]]&gt;&lt;/script&gt;
-&lt;p&gt;
-&lt;a href=&quot;&quot; onclick=&quot;return show_answer()&quot; id=&quot;show_answer&quot;&gt;Cliquer ici pour afficher la répondre&lt;/a&gt;
-&lt;/p&gt;
-&lt;div id=&quot;answer&quot; style=&quot;display: none&quot;&gt;</code></pre>
-</div>
+//]]></script>
 
 
-<h2> Fonctionnement</h2>
+<p>
+<a href="" onclick="return show_answer()" id="show_answer">Cliquer ici pour afficher la répondre</a>
+</p>
 
-<p>Si on lit le code, on voit qu&#8217;il fait la suite d&#8217;opération suivante :</p>
 
-<p>1   on incrémente la valeur pointée par pos
+<div id="answer" style="display: none">
+ Fonctionnement
+&#8212;&#8212;&#8212;&#8212;&#8212;
+
+Si on lit le code, on voit qu&#8217;il fait la suite d&#8217;opération suivante :
+
+1   on incrémente la valeur pointée par pos
 1   on regarde si la valeur obtenue est nulle
 1   on incrémente le pointeur pos
-1   si le test 2 est vrai, on retourne en 1, sinon, on quitte la boucle</p>
+1   si le test 2 est vrai, on retourne en 1, sinon, on quitte la boucle
 
-<p>Il s&#8217;agit donc d&#8217;une petite boucle qui incrémente des objets successifs jusqu&#8217;à ce qu&#8217;elle en trouve un qui, une fois incrémenté, n&#8217;est pas nul.</p>
+Il s&#8217;agit donc d&#8217;une petite boucle qui incrémente des objets successifs jusqu&#8217;à ce qu&#8217;elle en trouve un qui, une fois incrémenté, n&#8217;est pas nul.
 
-<p>Voilà donc la solution du pauvre au problème, celle qu&#8217;on peut trouver en lisant le code, sans chercher à le comprendre.</p>
+Voilà donc la solution du pauvre au problème, celle qu&#8217;on peut trouver en lisant le code, sans chercher à le comprendre.
 
-<h2> Interprétation</h2>
+ Interprétation
+&#8212;&#8212;&#8212;&#8212;&#8212;-
 
-<p>Mais en fait, ce code va plus loin. Imaginons maintenant la zone mémoire sur laquelle pos pointe initialement :</p>
+Mais en fait, ce code va plus loin. Imaginons maintenant la zone mémoire sur laquelle pos pointe initialement :
 
-<pre><code> oct1 oct2 oct3 oct4
-  ^
- pos
-</code></pre>
+     oct1 oct2 oct3 oct4
+      ^
+     pos
 
-<p>L&#8217;octet 1 à une certaine valeur. Je l&#8217;incrémente et je m&#8217;aperçois que sa nouvelle valeur est 0. Quand un octet incrémenté peut-il retomber à 0 ? Quand il fait un overflow. On a donc fait déborder le premier octet&hellip; et quand cet octet déborde on incrémente le suivant :</p>
+L&#8217;octet 1 à une certaine valeur. Je l&#8217;incrémente et je m&#8217;aperçois que sa nouvelle valeur est 0. Quand un octet incrémenté peut-il retomber à 0 ? Quand il fait un overflow. On a donc fait déborder le premier octet&#8230; et quand cet octet déborde on incrémente le suivant :
 
-<pre><code>    _+1__
-   |     |
- oct1 oct2 oct3 oct4
-       ^
-      pos
-</code></pre>
+        _+1__
+       |     |
+     oct1 oct2 oct3 oct4
+           ^
+          pos
 
-<p>Il s&#8217;agit donc ni plus ni moins que d&#8217;une retenue (comme quand on apprend à faire les additions ou les multiplications) : quand je fais déborder un octet, je déplace le surplus vers le suivant. Finalement, ces 3 lignes de code ne sont que l&#8217;implémentation d&#8217;une incrémentation, mais sur plusieurs octets&hellip; et même sur un nombre non défini d&#8217;octets (puisqu&#8217;il n&#8217;y a pas de limite explicitée sur le nombre d&#8217;étapes autorisées).</p>
+Il s&#8217;agit donc ni plus ni moins que d&#8217;une retenue (comme quand on apprend à faire les additions ou les multiplications) : quand je fais déborder un octet, je déplace le surplus vers le suivant. Finalement, ces 3 lignes de code ne sont que l&#8217;implémentation d&#8217;une incrémentation, mais sur plusieurs octets&#8230; et même sur un nombre non défini d&#8217;octets (puisqu&#8217;il n&#8217;y a pas de limite explicitée sur le nombre d&#8217;étapes autorisées).
 
-<p>Pour être plus précis, il s&#8217;agit d&#8217;un incrémenteur d&#8217;entier stocké en Little Endian sur un nombre illimité d&#8217;octets.</p>
+Pour être plus précis, il s&#8217;agit d&#8217;un incrémenteur d&#8217;entier stocké en Little Endian sur un nombre illimité d&#8217;octets.
 
-<h2> Encore ?</h2>
+ Encore ?
+&#8212;&#8212;&#8212;
 
-<p>Bon, pour ceux qui tiennent vraiment à s&#8217;assurer que ce n&#8217;est pas du code illisible, voici une version vraiment illisible de la même machine :</p>
+Bon, pour ceux qui tiennent vraiment à s&#8217;assurer que ce n&#8217;est pas du code illisible, voici une version vraiment illisible de la même machine :
 
 <div>
   <pre><code class='c'>for(++*pos;!*pos++;++*pos);</code></pre>
 </div>
 
 
-<p>(Merci Falco)</p>
+(Merci Falco)
 
-<p>Tout ceci n&#8217;était bien sûr qu&#8217;un exemple. Il est toujours très dur de comprendre du code, alors pour éviter de passer dix minutes sur 3 lignes lors de la prochaine relecture il suffit de documenter ce qu&#8217;on écrit.</p>
+Tout ceci n&#8217;était bien sûr qu&#8217;un exemple. Il est toujours très dur de comprendre du code, alors pour éviter de passer dix minutes sur 3 lignes lors de la prochaine relecture il suffit de documenter ce qu&#8217;on écrit.
 
-<div>
-  <pre><code class='html'>&lt;/div&gt;</code></pre>
 </div>
-
-
 
 </div>
 

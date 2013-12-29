@@ -109,7 +109,7 @@
 <p>Et ainsi, le fichier <code>/quelque/part</code> contient la liste complète des appels à <code>open</code> et <code>close</code> effectués par mon programme (et ses processus fils). Il ne reste plus alors qu&#8217;à analyser le contenu de <code>/quelque/part</code>. Pour ceci, il suffit de peu de lignes de code (en perl pour ma part, mais d&#8217;autres auraient fait la même chose en shell, python&hellip; ou n&#8217;importe quel langage de scripting) :</p>
 
 <div>
-  <pre><code class='perl'>1  !/usr/bin/perl 
+  <pre><code class='perl'>#!/usr/bin/perl 
  
 my %files; 
 my %modes; 
@@ -131,8 +131,8 @@ for $line (&lt;STDIN&gt;) {
       $maxOpened = $currentOpened; 
     } 
   } 
-  if ($line =~ /close\\\\((\\\\d+)\\\\)/ &amp;&amp; $files{$1} ne _) { 
-    $files{$1} = _; 
+  if ($line =~ /close\\\\((\\\\d+)\\\\)/ &amp;&amp; $files{$1} ne &#39;&#39;) { 
+    $files{$1} = &#39;&#39;; 
     $currentOpened--; 
   } 
   $lineNb++; 
@@ -147,7 +147,7 @@ for $id (keys %files) {
   local $mode = $modes{$id}; 
   local $line = $lines{$id}; 
  
-  if ($file ne _) { 
+  if ($file ne &#39;&#39;) { 
     print &quot;[line $line] id=$id, open $file with mode $mode
 &quot;; 
   } 
@@ -177,7 +177,7 @@ for $id (keys %files) {
 <p>Si maintenant, je fais un programme minimaliste qui oublie de fermer un fichier :</p>
 
 <div>
-  <pre><code class='c'>1  include &lt;stdio.h&gt; 
+  <pre><code class='c'>#include &lt;stdio.h&gt; 
  
 int main() { 
   FILE* file = fopen(&quot;test&quot;, &quot;r&quot;); 

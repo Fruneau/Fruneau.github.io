@@ -4,7 +4,7 @@
   <title><![CDATA[Category: GeekTime | Mind...]]></title>
   <link href="http://blog.mymind.fr/blog/categories/geektime/atom.xml" rel="self"/>
   <link href="http://blog.mymind.fr/"/>
-  <updated>2013-12-29T20:42:33+01:00</updated>
+  <updated>2013-12-29T21:05:31+01:00</updated>
   <id>http://blog.mymind.fr/</id>
   <author>
     <name><![CDATA[Florent Bruneau]]></name>
@@ -60,7 +60,7 @@
 <p><div>
   <pre><code class='perl'>&lt;/p&gt;
 
-&lt;p&gt;1  !/usr/bin/perl&lt;/p&gt;
+&lt;h1&gt;!/usr/bin/perl&lt;/h1&gt;
 
 &lt;p&gt;my %files;
 my %modes;
@@ -85,9 +85,9 @@ if ($currentOpened &amp;gt; $maxOpened) {
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;  }
-  if ($line =~ /close\\((\\d+)\\)/ &amp;amp;&amp;amp; $files{$1} ne _) {&lt;/p&gt;
+  if ($line =~ /close\\((\\d+)\\)/ &amp;amp;&amp;amp; $files{$1} ne &amp;lsquo;&amp;rsquo;) {&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;$files{$1} = _; 
+&lt;pre&gt;&lt;code&gt;$files{$1} = &#39;&#39;; 
 $currentOpened--; 
 &lt;/code&gt;&lt;/pre&gt;
 
@@ -104,7 +104,7 @@ for $id (keys %files) {
   local $mode = $modes{$id};
   local $line = $lines{$id};&lt;/p&gt;
 
-&lt;p&gt;  if ($file ne _) {&lt;/p&gt;
+&lt;p&gt;  if ($file ne &amp;lsquo;&amp;rsquo;) {&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;print &quot;[line $line] id=$id, open $file with mode $mode
 &lt;/code&gt;&lt;/pre&gt;
@@ -139,7 +139,7 @@ for $id (keys %files) {
 <p><div>
   <pre><code class='c'>&lt;/p&gt;
 
-&lt;p&gt;1  include &amp;lt;stdio.h&gt;&lt;/p&gt;
+&lt;h1&gt;include &amp;lt;stdio.h&gt;&lt;/h1&gt;
 
 &lt;p&gt;int main() {
   FILE* file = fopen(&amp;ldquo;test&amp;rdquo;, &amp;ldquo;r&amp;rdquo;);
@@ -213,7 +213,7 @@ return val;
 <p><div>
   <pre><code class='c'>&lt;/p&gt;
 
-&lt;p&gt;1  define Truc(Machin) Truc ## Machin&lt;/p&gt;
+&lt;h1&gt;define Truc(Machin) Truc ## Machin&lt;/h1&gt;
 
 &lt;p&gt;Truc(Bidule) /&lt;em&gt; génère TrucBidule &lt;/em&gt;/</code></pre>
 </div>
@@ -224,7 +224,9 @@ return val;
 <p><div>
   <pre><code class='c'>&lt;/p&gt;
 
-&lt;p&gt;1  define maFonction(Type) maFonction_ ## Type</code></pre>
+&lt;h1&gt;define maFonction(Type) maFonction_ ## Type&lt;/h1&gt;
+
+&lt;p&gt;</code></pre>
 </div>
 </p>
 
@@ -242,8 +244,9 @@ maFonction(MaStruct)(args); /&lt;em&gt; appelle maFonction_MaStruct &lt;/em&gt;/
 <p><div>
   <pre><code class='c'>&lt;/p&gt;
 
-&lt;p&gt;1  define maFonctionBuild(Type) \\
-  Type maFonction_ ## Type(const char* buffer) { \\&lt;/p&gt;
+&lt;h1&gt;define maFonctionBuild(Type) \\&lt;/h1&gt;
+
+&lt;p&gt;  Type maFonction_ ## Type(const char* buffer) { \\&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;Type val; \\\\
 memcpy(&amp;amp;val, buffer, sizeof(Type)); \\\\
@@ -304,29 +307,24 @@ maFonctionBuild(MaStruct) /&lt;em&gt; génère maFonction_MaStruct &lt;/em&gt;/<
 
 <p>Vous pouvez remarquer dès à présent que ce code n'est pas volontairement rendu illisible (il serait facile de supprimer des parenthèses et de changer le test de nullité en une négation. Le but est donc de comprendre la suite d'instruction, de dire ce qu'elle fait et ensuite de comprendre dans quel contexte elle est utilisable. La question est aussi de savoir en combien de temps vous allez trouver la solution.</p>
 
-<p><div>
-  <pre><code class='html'>&lt;/p&gt;
-
-&lt;script type=&quot;text/javascript&quot; src=&quot;http://blog.mymind.fr/jquery.js&quot;&gt;&lt;/script&gt;
+<script type="text/javascript" src="http://blog.mymind.fr/jquery.js"></script>
 
 
-&lt;script type=&quot;text/javascript&quot;&gt;//&amp;lt;![CDATA[
+<script type="text/javascript">//&lt;![CDATA[
 function show_answer() {
-  $(&quot;#show_answer&quot;).hide();
-  $(&quot;#answer&quot;).show(&quot;slow&quot;);
+  $("#show_answer").hide();
+  $("#answer").show("slow");
   return false;
 }
-//]]&amp;gt;&lt;/script&gt;
+//]]&gt;</script>
 
 
-&lt;p&gt;
-&lt;a href=&quot;&quot; onclick=&quot;return show_answer()&quot; id=&quot;show_answer&quot;&gt;Cliquer ici pour afficher la répondre&lt;/a&gt;
-&lt;/p&gt;
+<p>
+<a href="" onclick="return show_answer()" id="show_answer">Cliquer ici pour afficher la répondre</a>
+</p>
 
 
-&lt;div id=&quot;answer&quot; style=&quot;display: none&quot;&gt;</code></pre>
-</div>
-
+<div id="answer" style="display: none">
  Fonctionnement
 ---------------
 
@@ -376,13 +374,8 @@ Bon, pour ceux qui tiennent vraiment à s'assurer que ce n'est pas du code illis
 
 Tout ceci n'était bien sûr qu'un exemple. Il est toujours très dur de comprendre du code, alors pour éviter de passer dix minutes sur 3 lignes lors de la prochaine relecture il suffit de documenter ce qu'on écrit.
 
-<div>
-  <pre><code class='html'>&lt;/div&gt;
-
-
-&lt;p&gt;</code></pre>
 </div>
-</p>
+
 ]]></content>
   </entry>
   

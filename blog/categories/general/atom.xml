@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Général | Mind...]]></title>
   <link href="http://blog.mymind.fr/blog/categories/general/atom.xml" rel="self"/>
   <link href="http://blog.mymind.fr/"/>
-  <updated>2013-12-29T20:42:33+01:00</updated>
+  <updated>2013-12-29T21:05:31+01:00</updated>
   <id>http://blog.mymind.fr/</id>
   <author>
     <name><![CDATA[Florent Bruneau]]></name>
@@ -18,7 +18,7 @@
     <link href="http://blog.mymind.fr/blog/2008/05/19/vieux-trucs/"/>
     <updated>2008-05-19T00:50:00+02:00</updated>
     <id>http://blog.mymind.fr/blog/2008/05/19/vieux-trucs</id>
-    <content type="html"><![CDATA[<p>Un peu de nostalgie. Je suis retombé sur de vieux programmes que j'avais fait pour ma calculatrice (TI-92) quand j'étais en 1^^ère^^/Terminale. A mon époque (pas si lointaine&hellip; j'ai passé mon bac en 2001), ces outils couvraient le programme de Terminal S (spécialité maths) avec :</p>
+    <content type="html"><![CDATA[<p>Un peu de nostalgie. Je suis retombé sur de vieux programmes que j'avais fait pour ma calculatrice (TI-92) quand j'étais en 1<sup>ère</sup>/Terminale. A mon époque (pas si lointaine&hellip; j'ai passé mon bac en 2001), ces outils couvraient le programme de Terminal S (spécialité maths) avec :</p>
 
 <!-- more -->
 
@@ -26,10 +26,10 @@
 <ul>
 <li>En analyse et algèbre :</li>
 <li>  tableaux de signe et de variation (avec détection de la périodicité des fonctions en cas de besoin)</li>
-<li>  équation différentielles (de Terminal, donc <code>y' = a.y + w</code> ou <code>y" + w^^2^^.y = 0</code>)</li>
+<li>  équation différentielles (de Terminal, donc <code>y' = a.y + w</code> ou <code>y" + w&lt;sup&gt;2&lt;/sup&gt;.y = 0</code>)</li>
 <li>  division polynomiale</li>
 <li>  linéarisation trigonométrique</li>
-<li>  équations du 1^^er^^ et 2^^nd^^ degré</li>
+<li>  équations du 1<sup>er</sup> et 2<sup>nd</sup> degré</li>
 <li>  résolution de systèmes d'équations</li>
 <li>  <a href="http://fr.wikipedia.org/wiki/Triangle_de_Pascal|fr">triangle de Pascal</a></li>
 <li>En géométrie :</li>
@@ -175,7 +175,7 @@ conversions = {
  Content-Disposition: inline
  ///&lt;/p&gt;
 
-&lt;p&gt;Le contenu de la partie signée n&#39;est pas identique dans les deux mails. Pour ceux qui ne connaissent pas la structure d&#39;un mail signé, je les invite à jeter un coup d&#39;oeil à la &lt;a href=&quot;http://www.faqs.org/rfcs/rfc1847.html&quot;&gt;RFC1847&lt;/a&gt; qui se résume au schéma suivant :&lt;/p&gt;
+&lt;p&gt;Le contenu de la partie signée n&#39;est pas identique dans les deux mails. Pour ceux qui ne connaissent pas la structure d&#39;un mail signé, je les invite à jeter un coup d&#39;oeil à la [RFC1847|&lt;a href=&quot;http://www.faqs.org/rfcs/rfc1847.html&quot;&gt;http://www.faqs.org/rfcs/rfc1847.html&lt;/a&gt;] qui se résume au schéma suivant :&lt;/p&gt;
 
 &lt;p&gt;</code></pre>
 </div>
