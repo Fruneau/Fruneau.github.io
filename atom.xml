@@ -4,7 +4,7 @@
   <title><![CDATA[Mind...]]></title>
   <link href="http://blog.mymind.fr/atom.xml" rel="self"/>
   <link href="http://blog.mymind.fr/"/>
-  <updated>2013-12-29T20:08:31+01:00</updated>
+  <updated>2013-12-29T20:42:33+01:00</updated>
   <id>http://blog.mymind.fr/</id>
   <author>
     <name><![CDATA[Florent Bruneau]]></name>
@@ -179,7 +179,7 @@ conversions = {
 
 <p>La solution habituelle pour afficher l&#8217;arborescence est d&#8217;utiliser un message par ligne de telle, des + ou &ndash; pour ouvrir ou fermer les noeuds. C&#8217;est la solution actuelle de banana.</p>
 
-<p>((/public/screenshots/old-thread.png|Banana Thread up to 1.7))</p>
+<p><img src="http://blog.mymind.fr/assets/screenshots/old-thread.png" alt="Banana Thread up to 1.7" /></p>
 
 <p>Avec cette solution, on perd très rapidement en lisibilité : dès que la discussion dépasse une vingtaine de messages, l&#8217;arborescence devient très haute et plus ça va, plus le titre dérive vers la droite rendant parfois le lien inaccessible. Lorsqu&#8217;il y a un troll, il est de fait très courant que certains nouveaux messages se trouvent perdus plusieurs pages en arrière dans l&#8217;arborescence, ou que sur certains navigateurs, il soit difficile d&#8217;y accéder. De plus l&#8217;interface se trouve souvent surchargée, à la limite de la lisibilité : c&#8217;est dur de faire tenir un maximum d&#8217;informations en un minimum de place en gardant la lisibilité de l&#8217;ensemble.</p>
 
@@ -191,13 +191,13 @@ conversions = {
 
 <p>Cette interface est compacte, visuelle et permet d&#8217;accéder rapidement à n&#8217;importe quel message du thread. Pour la prochaine version de Banana, je me suis fortement inspiré de cette interface pour réécrire de 0 l&#8217;affichage de l&#8217;arborescence. Ceci donne :</p>
 
-<p>((/public/screenshots/new-thread.png|Thread view in Banana))</p>
+<p><img src="http://blog.mymind.fr/assets/screenshots/new-thread.png" alt="Thread view in Banana" /></p>
 
 <p>Il s&#8217;agit de la même discussion que précédemment. On voit donc ici facilement l&#8217;arborescence. Lorsqu&#8217;un message est non lu, la branche à laquelle il est attaché est noire au lieu de grise ce qui permet de l&#8217;identifier du premier coup d&#8217;oeil. Les couleurs de fond des noeuds (une idée de <a href="http://www.falco.bz">Falco</a>) sont obtenue à partir d&#8217;un hash quelconque sur l&#8217;émetteur et permettent donc d&#8217;identifier les messages envoyés par la même personne. Lorsqu&#8217;on laisse la souris sur un noeud, le nom de l&#8217;expéditeur et l&#8217;heure du post s&#8217;affichent (malheureusement le pointeur de la souris n&#8217;apparaît pas sur la capture d&#8217;écran)&hellip; et bien sûr quand on clique sur un noeud, on va sur le message correspondant.</p>
 
 <p>Lorsqu&#8217;on est sur un message, on garde également la vue du thread ce qui permet de toujours savoir où on est dans la discussion :</p>
 
-<p>((/public/screenshots/new-thread-nav.png|Thread view with selected message))</p>
+<p><img src="http://blog.mymind.fr/assets/screenshots/new-thread-nav.png" alt="Thread view with selected message" /></p>
 
 <p>Il y a encore un peu de travail à faire pour améliorer les performances de la génération des arbres et pour augmenter sa compacité (éviter les branches qui descendent très bas alors qu&#8217;elles auraient pu trouver leur place dans le l&#8217;espace vide disponible).</p>
 ]]></content>
@@ -210,7 +210,7 @@ conversions = {
     <id>http://blog.mymind.fr/blog/2007/10/08/15-000</id>
     <content type="html"><![CDATA[<p>Ca y est&hellip; 15 000 inscrits à <a href="https://www.polytechnique.org">Polytechnique.org</a>.</p>
 
-<p><a href="15.000%20inscrits">((/public/screenshots/15.000.png</a>)|/public/screenshots/15.000.png)</p>
+<p><img src="http://blog.mymind.fr/assets/screenshots/15.000.png" alt="15.000 inscrits" /></p>
 
 <p>Si l&#8217;ascension continue, nous devrions atteindre les 16 000 l&#8217;année prochaine.</p>
 ]]></content>
@@ -479,8 +479,9 @@ function show_answer() {
 
 <h2> Fonctionnement</h2>
 
-<p>Si on lit le code, on voit qu&#8217;il fait la suite d&#8217;opération suivante :
-1   on incrémente la valeur pointée par pos
+<p>Si on lit le code, on voit qu&#8217;il fait la suite d&#8217;opération suivante :</p>
+
+<p>1   on incrémente la valeur pointée par pos
 1   on regarde si la valeur obtenue est nulle
 1   on incrémente le pointeur pos
 1   si le test 2 est vrai, on retourne en 1, sinon, on quitte la boucle</p>
@@ -540,7 +541,7 @@ function show_answer() {
     <id>http://blog.mymind.fr/blog/2007/07/28/bluescreen</id>
     <content type="html"><![CDATA[<p>Juste parce que je trouve ça amusant : lorsque Vista plante en raison d&#8217;une erreur sérieuse, il fait un écran bleu (exactement le même que sous Windows XP). Ce qui est amusant, c&#8217;est le message affiché lors du démarrage suivant de Windows.</p>
 
-<p>((/public/screenshots/BlueScreen.png|Vista-bluescreen))</p>
+<p><img src="http://blog.mymind.fr/assets/screenshots/BlueScreen.png" alt="Vista-bluescreen" /></p>
 
 <p>Windows récupère donc d&#8217;une erreur de type &ldquo;BlueScreen&rdquo;&hellip; cela a l&#8217;intérêt d&#8217;être précis. En temps normal, on identifie une erreur à sa cause, et non à sa conséquence.</p>
 ]]></content>
@@ -909,11 +910,11 @@ do_something($lines);</code></pre>
 
 <p>Les problèmes commencent dès l&#8217;arrivée sous Vista. Déjà un premier coup d&#8217;oeil : c&#8217;est loin d&#8217;être laid à regarder&hellip; même si les ombres sont moins agréables que celles de MacOS X et que les effets de flouté sous les fenêtres me fatiguent un peu. Quand on arrive sous Vista, on tombe sur la fenêtre <em>Accueil de Windows</em> ci-dessous :</p>
 
-<p><a href="Fen%C3%AAtre%20d'accueil%20de%20Windows%20Vista|C">((/public/screenshots/Vista/.Vista-accueil1_m.jpg</a>)|/public/screenshots/Vista/Vista-accueil1.PNG)</p>
+<p><img src="http://blog.mymind.fr/assets/screenshots/Vista/Vista-accueil1.PNG" alt="Fenêtre d'accueil de Windows Vista" /></p>
 
 <p>Cet écran est sympathique : un navigateur pratique pour circuler entre les fonctionnalités de Windows&hellip; le problème provient lorsque justement je clique sur une de ces fonctionnalités, par exemple &ldquo;Transfert de fichiers&rdquo;&hellip; rien ne se passe. Enfin, je m&#8217;attendais à voir surgir un assistant, mais rien n&#8217;apparaît. Après quelques secondes, je me rends compte qu&#8217;en fait l&#8217;en-tête de la fenêtre à changé :</p>
 
-<p><a href="Fen%C3%AAtre%20accueil%20apr%C3%A8s%20s%C3%A9lection|C">((/public/screenshots/Vista/.Vista-accueil2_m.jpg</a>)|/public/screenshots/Vista/Vista-accueil2.PNG)</p>
+<p><img src="http://blog.mymind.fr/assets/screenshots/Vista/Vista-accueil2.PNG" alt="Fenêtre accueil après sélection" /></p>
 
 <p>Il faut cliquer sur le texte en bas de l&#8217;en-tête pour enfin avoir le logiciel de Transfert de fichier&hellip; qui se lance dans un environnement bizarre en plein écran avec une petite fenêtre au milieu.</p>
 
@@ -921,7 +922,7 @@ do_something($lines);</code></pre>
 
 <p>Le premier réflexe après avoir installé un nouveau système, c&#8217;est de le personnaliser. Ceci passe donc par le changement du fond d&#8217;écran, de l&#8217;écran de veille, etc&hellip; Sous Vista, ceci se fait via une page du panneau de configuration :</p>
 
-<p><a href="R%C3%A9glages%20de%20l'apparence%20de%20Windows|C">((/public/screenshots/Vista/.Vista-apparence_m.jpg</a>)|/public/screenshots/Vista/Vista-apparence.PNG)</p>
+<p><img src="http://blog.mymind.fr/assets/screenshots/Vista/Vista-apparence.PNG" alt="Réglages de l'apparence de Windows" /></p>
 
 <p>C&#8217;est très bien, ça marche&hellip; sauf que lorsqu&#8217;on arrive à la catégorie <em>Thèmes</em>, changer le thème change <strong>tous</strong> les réglages qu&#8217;on avait faits précédemment pour les remplacer par ceux du thème sélectionné&hellip; L&#8217;art et la manière de perdre 10 minutes à faire 2 fois la même configuration, et à refaire tout ce que j&#8217;avais déjà fait alors que si <em>Thèmes</em> se trouvait en première place de cette liste, j&#8217;aurais d&#8217;abord choisi un thème avant de le personnaliser.</p>
 
@@ -935,7 +936,7 @@ do_something($lines);</code></pre>
 </ul>
 
 
-<p>((/public/screenshots/Vista/Vista-performances.PNG|Occupation du processeur à vide)) ((/public/screenshots/Vista/Vista-performances2.PNG|Occupation du processeur changement de fenêtre))</p>
+<p><img src="http://blog.mymind.fr/assets/screenshots/Vista/Vista-performances.PNG" alt="Occupation du processeur à vide)) ((/public/screenshots/Vista/Vista-performances2.PNG" /></p>
 
 <p>C&#8217;est donc mon processeur qui gère les effets graphiques ??? Pourtant j&#8217;ai une bonne carte graphique (ATI X1600) et d&#8217;après les benchmarks effectués par Vista, j&#8217;ai même une bonne machine, bien adaptée à Vista&hellip; je n&#8217;ose pas imaginer ce que ça donnerait sur une machine un peu moins puissante.</p>
 
@@ -965,13 +966,13 @@ do_something($lines);</code></pre>
 
 <p>Caribou a réalisé un énorme travail sur la mise en place d&#8217;un remplissage automatique (auto-completion pour les geeks) sur la recherche avancée. Ainsi, lorsqu&#8217;on tape quelques caractères dans un champ, une liste de propositions apparaît avec pour chaque proposition le nombre de camarades correspondant à la requête. Ce qui donne par exemple :</p>
 
-<p>((/mind/public/screenshots/select-ville.png|Auto-Completion sur les villes))</p>
+<p><img src="http://blog.mymind.fr/assets/screenshots/select-ville.png" alt="Auto-Completion sur les villes" /></p>
 
-<p>((/mind/public/screenshots/select-pays.png|Auto-Completion sur les pays))</p>
+<p><img src="http://blog.mymind.fr/assets/screenshots/select-pays.png" alt="Auto-Completion sur les pays" /></p>
 
 <p>Par contre, là où cela devient très intéressant, c&#8217;est que l&#8217;interface reste flexible : si vous préférez choisir dans une liste des valeurs possibles plutôt que d&#8217;utiliser l&#8217;auto-completion, ce qui est envisageable, il suffit, si c&#8217;est disponible pour le champ correspondant, de cliquer sur la petite icône représentant une liste en fin de ligne&hellip; Ainsi, pour les pays, cela donne :</p>
 
-<p>((/mind/public/screenshots/select-pays-dropdown.png|Choix sur les pays))</p>
+<p><img src="http://blog.mymind.fr/assets/screenshots/select-pays-dropdown.png" alt="Choix sur les pays" /></p>
 
 <p>Il s&#8217;agit du même champ dont le <input type="text"> a été remplacé par une <select>.</p>
 

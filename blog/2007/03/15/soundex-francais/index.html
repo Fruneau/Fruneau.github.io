@@ -112,14 +112,16 @@
 
 <h1>Algorithme</h1>
 
-<p>Mon algorithme, comme je l&#8217;ai déjà dit, est une adaptation de celui de <a href="http://sqlpro.developpez.com/cours/soundex/">Frédéric Brouard</a>. Il se compose de 2 étapes principales :
-1   le préformatage, qui consiste à transformer le chaîne de caractère brute, en une chaîne analysable.
+<p>Mon algorithme, comme je l&#8217;ai déjà dit, est une adaptation de celui de <a href="http://sqlpro.developpez.com/cours/soundex/">Frédéric Brouard</a>. Il se compose de 2 étapes principales :</p>
+
+<p>1   le préformatage, qui consiste à transformer le chaîne de caractère brute, en une chaîne analysable.
 1   l&#8217;analyse de la chaîne, et la recherche de entités phoniques élémentaires qui la composent</p>
 
 <h2>Préformatage</h2>
 
-<p>Le préformatage est extrêmement simple :
-1   On converti la chaîne en majuscule
+<p>Le préformatage est extrêmement simple :</p>
+
+<p>1   On converti la chaîne en majuscule
 1   On converti chaque caractère accentué vers son caractère non-accentué correspondant
 1   On filtre pour ne conserver que les lettres (de A à Z)</p>
 

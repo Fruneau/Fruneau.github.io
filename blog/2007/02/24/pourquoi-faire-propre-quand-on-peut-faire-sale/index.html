@@ -5,11 +5,11 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Un Client RSS Pour Lire Les Forums NNTP Et Les Mailing-Lists... - Mind...</title>
+  <title>Pourquoi Faire Propre Quand on Peut Faire Sale ? - Mind...</title>
   <meta name="author" content="Florent Bruneau">
 
   
-  <meta name="description" content="Si il y a un bout de code dont je suis content au sein de Polytechnique.org, c&#8217;est Banana. Banana est à l&#8217;origine un client Web pour le &hellip;">
+  <meta name="description" content="Il y a quelques jours, mYk est venu me voir pour me dire qu&#8217;il avait réussi à se débrouiller pour que IE6 fasse un rendu correct de son site &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -18,7 +18,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://blog.mymind.fr/blog/2007/02/25/un-client-rss-pour-lire-les-forums-nntp-et-les-mailing-lists-dot-dot-dot">
+  <link rel="canonical" href="http://blog.mymind.fr/blog/2007/02/24/pourquoi-faire-propre-quand-on-peut-faire-sale">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="/atom.xml" rel="alternate" title="Mind..." type="application/atom+xml">
@@ -66,7 +66,7 @@
   
   <header>
     
-      <h1 class="entry-title">Un Client RSS Pour Lire Les Forums NNTP Et Les Mailing-Lists...</h1>
+      <h1 class="entry-title">Pourquoi Faire Propre Quand on Peut Faire Sale ?</h1>
     
     
       <p class="meta">
@@ -82,7 +82,7 @@
   
 
 
-<time datetime="2007-02-25T19:05:42+01:00" pubdate data-updated="true">Feb 25<span>th</span>, 2007</time>
+<time datetime="2007-02-24T00:08:00+01:00" pubdate data-updated="true">Feb 24<span>th</span>, 2007</time>
         
            | <a href="#disqus_thread"
              data-disqus-identifier="http://blog.mymind.fr">Comments</a>
@@ -92,11 +92,46 @@
   </header>
 
 
-<div class="entry-content"><p>Si il y a un bout de code dont je suis content au sein de <a href="https://www.polytechnique.org">Polytechnique.org</a>, c&#8217;est <a href="http://opensource.polytechnique.org/banana/">Banana</a>. Banana est à l&#8217;origine un client Web pour le protocole NNTP (c&#8217;est à dire le protocole utilisé par Usenet). Depuis sa dernière version (la 1.5), Banana est capable d&#8217;utiliser n&#8217;importe quel protocole comme source (les protocoles actuellement implémentés étant le NNTP et la lecture de MBox, mais on pourrait envisager d&#8217;ajouter le support des Maildir ou d&#8217;IMAP sans problème), ainsi, à Polytechnique.org, nous utilisons Banana pour offrir une plateforme Web vers <a href="https://www.polytechnique.org/banana">nos forums</a> et pour mettre en ligne les archives des Mailing-Lists que nous hébergeons.</p>
+<div class="entry-content"><p>Il y a quelques jours, <a href="http://myks.org">mYk</a> est venu me voir pour me dire qu&#8217;il avait réussi à se débrouiller pour que IE6 fasse un rendu correct de son site web perso&hellip; c&#8217;est à dire que le site (XHTML avec une CSS non triviale) ressemble à quelque chose sur IE6.</p>
 
-<p>Banana est à mon avis un bon outils : il permet un rendu plus que correct de la plupart des mails HTML (même ceux dont le formatage est défini dans une feuille de style), il affiche les discussions proprement et rapidement (grâce à un système de cache du côté serveur). C&#8217;est donc un gros plus en comparaison des interfaces habituelles de consultation d&#8217;archives de Mailing-List qu&#8217;on peut trouver sur Internet&hellip; et puis, ce n&#8217;est pas un forum php, pas de fioritures à la phpbb : Banana est clair, lisible et rapide&hellip; et facile à installer. Pour s&#8217;en convaincre, il suffit de regarder la <a href="http://opensource.polytechnique.org/viewsvn/filedetails.php?repname=Banana&amp;path=/trunk/examples/index.php&amp;rev=0&amp;sc=1">fichier d&#8217;exemple</a> qui fournit un banana totalement fonctionnel (à chacun ensuite d&#8217;y ajouter sa couche d&#8217;authentification si nécessaire).</p>
+<p>Il m&#8217;explique alors que IE6 a 2 modes de fonctionnement pour le rendu :</p>
 
-<p>La grande nouveauté de la prochaine version de Banana est l&#8217;intégration de flux RSS&hellip; ainsi il sera possible de lire les forums sans se connecter au site et sans client news, ou de suivre les discussions des mailing-lists sans relever son courrier (le premier des 2 cas étant certainement le plus intéressant). Pour les utilisateurs de Polytechnique.org, la fonctionnalité est d&#8217;ores et déjà disponible sur <a href="http://dev.m4x.org/~x2003bruneau/banana">ma version de développement</a>. Deux types de flux son disponibles : soit un flux par groupe, soit un flux regroupant tous les groupes auxquels on est abonné.</p>
+<ul>
+<li>Le premier, qu&#8217;il appelle &ldquo;mode normal&rdquo; fait un rendu correct (pas parfait, mais correct)</li>
+<li>Le second, (dont je ne me souviens plus le nom à dormir debout), a quant à lui un rendu &ldquo;tout pourri&rdquo;&hellip; par exemple, le margin: auto; de CSS ne fonctionne pas, le margin est à l&#8217;intérieur des boîtes et une partie de la CSS n&#8217;est tout bonnement pas pris en compte.</li>
+</ul>
+
+
+<!-- more -->
+
+
+<p>Mais alors, comment passer d&#8217;un mode à l&#8217;autre ? Un des facteur, toujours d&#8217;après mYk est la présence d&#8217;un tag &lt;?xml &hellip;> en en-tête du fichier, comme par exemple :</p>
+
+<div>
+  <pre><code class='html4strict'>&lt;?xml version=&quot;1.0&quot; encoding=&quot;iso-8859-15&quot;?&gt;
+&lt;!DOCTYPE html PUBLIC &quot;-//W3C//DTD XHTML 1.1//EN&quot; &quot;http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd&quot;&gt;
+&lt;html xmlns=&quot;http://www.w3.org/1999/xhtml&quot;&gt;
+  &lt;head&gt;
+  &lt;/head&gt;
+...</code></pre>
+</div>
+
+
+<p>Donc, j&#8217;ai testé sur <a href="http://opensource.polytechnique.org/platal/">plat/al</a>, le site web de Polytechnique.org : le résultat est impressionnant !</p>
+
+<p>Tout d&#8217;abord, voici l&#8217;état actuel de le prod de Polytechnique.org sous IE6 :</p>
+
+<p><img src="http://blog.mymind.fr/assets/screenshots/ie6-prod.jpg" alt="Polytechnique.org sous IE6 avec &lt;?xml &gt;" /></p>
+
+<p>Le corps du site n&#8217;est pas centré, le menu est mal formaté, les polices sont énormes, les backgrounds ne sont pas tous respectés&hellip; donc clairement c&#8217;est IE6 dans toute sa grandeur. Maintenant, en supprimant le <code>&lt;?xml version="1.0" encoding="iso-8859-15"?&gt;</code> du code (il faut faire abstraction du bandeau de développement) :</p>
+
+<p><img src="http://blog.mymind.fr/assets/screenshots/ie6-dev.jpg" alt="Version de développement de Polytechnique.org sous IE6, sans le &lt;?xml ...&gt;" /></p>
+
+<p>Cette fois-ci la mise en page est correcte, le menu qui est dans un tableau bicolore est <strong>vraiment</strong> bicolore&hellip; on a là un site rendu quasiment aussi bien que sur les navigateurs récents, et en particuliers, le rendu d&#8217;IE6 dans ces conditions est quasiment celui d&#8217;IE7 (en tout cas, ils ont les mêmes bugs sur les fieldset/legend en particuliers).</p>
+
+<p>Donc, il semblerait qu&#8217;IE7 n&#8217;a pas un moteur de rendu si <em>révolutionnaire</em>&hellip; au moins, les utilisateurs d&#8217;IE6 retrouveront enfin un site agréable à utiliser lors de la prochaine release de plat/al&hellip; d&#8217;ici un gros mois sans doute.</p>
+
+<p>Edit du 21 mars 2007 : pour plus de détail sur les modes de fonctionnement des navigateurs, vous pouvez regarder sur <a href="http://hsivonen.iki.fi/doctype/">cette page</a>.</p>
 </div>
 
 
@@ -119,7 +154,7 @@
   
 
 
-<time datetime="2007-02-25T19:05:42+01:00" pubdate data-updated="true">Feb 25<span>th</span>, 2007</time>
+<time datetime="2007-02-24T00:08:00+01:00" pubdate data-updated="true">Feb 24<span>th</span>, 2007</time>
       
 
 <span class="categories">
@@ -133,7 +168,7 @@
     
       <div class="sharing">
   
-  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://blog.mymind.fr/blog/2007/02/25/un-client-rss-pour-lire-les-forums-nntp-et-les-mailing-lists-dot-dot-dot/" data-via="FlorentBruneau" data-counturl="http://blog.mymind.fr/blog/2007/02/25/un-client-rss-pour-lire-les-forums-nntp-et-les-mailing-lists-dot-dot-dot/" >Tweet</a>
+  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://blog.mymind.fr/blog/2007/02/24/pourquoi-faire-propre-quand-on-peut-faire-sale/" data-via="FlorentBruneau" data-counturl="http://blog.mymind.fr/blog/2007/02/24/pourquoi-faire-propre-quand-on-peut-faire-sale/" >Tweet</a>
   
   
   <div class="g-plusone" data-size="medium"></div>
@@ -144,10 +179,10 @@
     
     <p class="meta">
       
-        <a class="basic-alignment left" href="/blog/2007/02/24/se-decouvrir-sur-internet-dot-dot-dot/" title="Previous Post: Se découvrir sur Internet...">&laquo; Se découvrir sur Internet...</a>
+        <a class="basic-alignment left" href="/blog/2007/02/23/il-faut-bien-commencer-par-quelque-part/" title="Previous Post: Il faut bien commencer par quelque part...">&laquo; Il faut bien commencer par quelque part...</a>
       
       
-        <a class="basic-alignment right" href="/blog/2007/02/27/un-premier-bilan-sur-la-securite-dot-dot-dot/" title="Next Post: Un premier bilan sur la sécurité...">Un premier bilan sur la sécurité... &raquo;</a>
+        <a class="basic-alignment right" href="/blog/2007/02/24/se-decouvrir-sur-internet/" title="Next Post: Se découvrir sur Internet...">Se découvrir sur Internet... &raquo;</a>
       
     </p>
   </footer>
@@ -222,8 +257,8 @@
       
         
         // var disqus_developer = 1;
-        var disqus_identifier = 'http://blog.mymind.fr/blog/2007/02/25/un-client-rss-pour-lire-les-forums-nntp-et-les-mailing-lists-dot-dot-dot/';
-        var disqus_url = 'http://blog.mymind.fr/blog/2007/02/25/un-client-rss-pour-lire-les-forums-nntp-et-les-mailing-lists-dot-dot-dot/';
+        var disqus_identifier = 'http://blog.mymind.fr/blog/2007/02/24/pourquoi-faire-propre-quand-on-peut-faire-sale/';
+        var disqus_url = 'http://blog.mymind.fr/blog/2007/02/24/pourquoi-faire-propre-quand-on-peut-faire-sale/';
         var disqus_script = 'embed.js';
       
     (function () {
