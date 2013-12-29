@@ -4,6 +4,7 @@ title: "Trous de mémoire"
 date: 2007-04-04 00:01:00
 comments: true
 categories: GeekTime
+tags: [Mac]
 ---
 Quand j'utilise mon ordinateur, j'aime bien que son fonctionnement soit fluide. C'est à dire que lorsque je passe d'une application à l'autre (ce qui arrive régulièrement), je ne veux pas qu'il y ait 10 secondes de latence parce que ma machine "swap". Malheureusement, je ne connais aucun OS sur lequel ça ne swap pas. Par exemple, sur mon portable à l'instant même j'ai 2Go de swap (donc 700Mo utilisés) sachant qu'à côté j'ai 600Mo de RAM utilisés (et les quelques 400Mo de RAM qui restent servent de cache disque...).
 

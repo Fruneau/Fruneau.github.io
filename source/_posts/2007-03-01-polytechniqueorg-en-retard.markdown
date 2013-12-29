@@ -4,6 +4,7 @@ title: "Polytechnique.org en retard ?"
 date: 2007-03-01 16:28:00
 comments: true
 categories: Polytechnique.org
+tags: [Devel, Ergonomie, platal]
 ---
 [Polytechnique.org](https://www.polytechnique.org) est, comme l'indique le nom du logiciel OpenSource sur lequel le site repose ([plat/al](http://opensource.polytechnique.org/platal/)), une plateforme pour les anciens élèves de l'[École](http://www.polytechnique.fr)... c'est à dire que Polytechnique.org devrait :
 

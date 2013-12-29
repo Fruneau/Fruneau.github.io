@@ -4,6 +4,7 @@ title: "Joie ! (bis)"
 date: 2007-03-21 20:19:00
 comments: true
 categories: GeekTime
+tags: [Devel, khtml2png, khtmld]
 ---
 Voilà, la nouvelle version de `[khtmld](/mind/post/2007/03/14/Demon-pour-khtml2png)` vient d'être releasée...
 

@@ -4,6 +4,7 @@ title: "Vieux trucs"
 date: 2008-05-18 22:50:00
 comments: true
 categories: Général
+tags: [Lycée, Maths, TI-92]
 ---
 Un peu de nostalgie. Je suis retombé sur de vieux programmes que j'avais fait pour ma calculatrice (TI-92) quand j'étais en 1<sup>ère</sup>/Terminale. A mon époque (pas si lointaine... j'ai passé mon bac en 2001), ces outils couvraient le programme de Terminal S (spécialité maths) avec :
 

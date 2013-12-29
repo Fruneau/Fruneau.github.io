@@ -4,6 +4,7 @@ title: "Spam nigerian"
 date: 2007-04-05 22:49:00
 comments: true
 categories: Général
+tags: [Escroc, Spam]
 ---
 J'ai souvent eu affaire dans les transports publics à des personnes _bizarres_ (entre les vendeurs escrocs, les personnes qui parlent toutes seules, les gens aggressifs, les jeunes des banlieues...), tout à l'heure j'ai eu l'occasion d'ajouter à cette liste les spammeurs nigérian par voie orale.
 

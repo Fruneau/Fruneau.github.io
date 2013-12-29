@@ -4,6 +4,7 @@ title: "Mac c'est bien... mais pas top"
 date: 2007-05-22 21:44:00
 comments: true
 categories: Général
+tags: [Mac]
 ---
 Bon, la suite des mes problèmes avec les machines Apple !
 

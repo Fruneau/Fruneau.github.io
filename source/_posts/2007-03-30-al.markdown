@@ -4,6 +4,7 @@ title: "Un aperçu de la version 0.9.14 de plat/al"
 date: 2007-03-30 11:39:00
 comments: true
 categories: Polytechnique.org
+tags: [Devel, platal]
 ---
 Le site de [Polytechnique.org](https://www.polytechnique.org) est prévu pour être mis à jour régulièrement, de l'ordre d'une fois tous les deux mois. Ainsi, les mises à jours sont suffisamment substantielles pour créer un effet d'annonce autour des améliorations apportées au site, sans pour autant laisser traîner les correctifs de bugs trop longtemps dans la branche de développement sans en faire profiter les utilisateurs.
 

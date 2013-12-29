@@ -4,6 +4,7 @@ title: "Vignette de site"
 date: 2007-03-12 10:40:00
 comments: true
 categories: Polytechnique.org
+tags: [khtml2png, root]
 ---
 Pour continuer sur le sujet de [mon billet précédent](/post/2007/03/10/A-croire-que-certains-le-font-expres), voici une solution simple pour réaliser des vignettes de site web.
 

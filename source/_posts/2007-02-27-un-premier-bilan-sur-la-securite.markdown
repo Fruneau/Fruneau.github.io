@@ -4,6 +4,7 @@ title: "Un premier bilan sur la sécurité..."
 date: 2007-02-27 16:47:00
 comments: true
 categories: Polytechnique.org
+tags: [Sécurité, Usurpation, platal]
 ---
 Sans entrer dans les détails du fonctionnement des filtres de protection de [Polytechnique.org](https://www.polytechnique.org) (je laisse ce plaisir à ceux qui auront le courage de lire le code de [plat/al](http://opensource.polytechnique.org/platal/)), nous avons ces derniers mois fortement amélioré les outils de surveillance. Alors qu'il y a encore un an, nous ne détections que quelques usurpations par an, nous sommes actuellement à environ une usurpation détectée par semaine.
 

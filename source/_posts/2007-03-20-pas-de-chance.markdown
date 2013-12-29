@@ -4,6 +4,7 @@ title: "Pas de chance"
 date: 2007-03-20 18:59:00
 comments: true
 categories: Général
+tags: [Mac, panne]
 ---
 J'en ai marre des Macs qui plantent à longueur de temps... Pourquoi est-ce que toutes les autres personnes qui ont des machines Apple s'en sortent sans problème alors que moi j'enchaîne les crashs inexplicables, bug matériels, etc...
 

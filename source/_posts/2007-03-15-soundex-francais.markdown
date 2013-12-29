@@ -4,6 +4,7 @@ title: "Soundex Français"
 date: 2007-03-15 18:06:00
 comments: true
 categories: Polytechnique.org
+tags: [Devel, PHP]
 ---
 Pour faire une recherche phonétique, on utilise souvent ce qu'on appelle une transcription __soundex__ des mots. C'est une réécriture du mot, dans un alphabet restreint et sur un nombre de caractères restreint également. La plupart des algorithmes qu'on peut trouver sur internet sont conçus uniquement à la langue anglaise. Pour utiliser la recherche phonétique en français, il faut donc adapter cet algorithme.
 
@@ -130,11 +131,11 @@ function soundex_fr($sIn)
                             '/([^AEIOUY1])[^AEIOUYLKTPNR]([UAO])([^AEIOUY])/', '/([^AEIOUY]|^)([AUO])[^AEIOUYLKTP]([^AEIOUY1])/', '/^KN/', 
                             '/^PF/', '/C([^AEIOUY]|$)/',  '/E(Z|R)$/', 
                             '/C/', '/Z$/', '/(?<!^)Z+/', '/H/', '/W/'); 
-        $convVOut  = array( 'O', '1\\\\3', 'A\\\\1', 
-                            'E\\\\1', '\\\\1E\\\\3', 'O', 
-                            'Y', 'U', 'O\\\\1', '9',- 
-                            '\\\\1\\\\2\\\\3', '\\\\1\\\\2\\\\3', 'N', 
-                            'F', 'K\\\\1', 'E', 
+        $convVOut  = array( 'O', '1\\3', 'A\\1', 
+                            'E\\1', '\\1E\\3', 'O', 
+                            'Y', 'U', 'O\\1', '9',- 
+                            '\\1\\2\\3', '\\1\\2\\3', 'N', 
+                            'F', 'K\\1', 'E', 
                             'S', 'SE', 'S', '', 'V'); 
     } 
     // Si il n'y a pas de mot, on sort immédiatement
@@ -150,14 +151,14 @@ function soundex_fr($sIn)
     // on remplace les consonnances primaires
     $sIn = str_replace( $convGuIn, $convGuOut, $sIn ); 
     // on supprime les lettres répétitives 
-    $sIn = preg_replace( '`(.)\\\\1`', '$1', $sIn ); 
+    $sIn = preg_replace( '`(.)\\1`', '$1', $sIn ); 
     // on réinterprète les voyelles 
     $sIn = preg_replace( $convVIn, $convVOut, $sIn); 
  
     // on supprime les terminaisons T, D, S, X (et le L qui précède si existe)
     $sIn = preg_replace( '`L?[TDX]?S?$`', '', $sIn ); 
     // on supprime les E, A et Y qui ne sont pas en première position 
-    $sIn = preg_replace( '`(?!^)Y([^AEOU]|$)`', '\\\\1', $sIn); 
+    $sIn = preg_replace( '`(?!^)Y([^AEOU]|$)`', '\\1', $sIn); 
     $sIn = preg_replace( '`(?!^)[EA]`', '', $sIn); 
     return substr( $sIn . '    ', 0, 4); 
 } 

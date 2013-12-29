@@ -4,6 +4,7 @@ title: "VirtueDesktops revient..."
 date: 2007-05-18 12:25:00
 comments: true
 categories: GeekTime
+tags: [Devel, Mac, VirtueDesktops]
 ---
 Voici plus ou moins trois mois que j'ai découvert [synergy](http://synergy2.sf.net), c'est vraiment très agréable de pouvoir contrôler les deux ordinateurs sans changer de clavier/souris continuellement. Seul problème, c'est que sur la machine qui héberge le serveur `synergy`, [VirtueDesktops](http://virtuedesktops.info), un _excellent_ gestionnaire de bureaux virtuels pour MacOS, n'arrête pas de crasher. J'avais donc posté un bugreport sur le trac de Virtue... malheureusement pour diverses raisons, Tony Arnold a décidé peu après de stopper le développement de Virtue.
 

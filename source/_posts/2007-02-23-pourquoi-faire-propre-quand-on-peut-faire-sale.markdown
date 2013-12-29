@@ -4,6 +4,7 @@ title: "Pourquoi faire propre quand on peut faire sale ?"
 date: 2007-02-23 23:08:00
 comments: true
 categories: Polytechnique.org
+tags: [Devel, HTML, IE6, platal]
 ---
 Il y a quelques jours, [mYk](http://myks.org) est venu me voir pour me dire qu'il avait réussi à se débrouiller pour que IE6 fasse un rendu correct de son site web perso... c'est à dire que le site (XHTML avec une CSS non triviale) ressemble à quelque chose sur IE6.
 
@@ -16,7 +17,7 @@ Il m'explique alors que IE6 a 2 modes de fonctionnement pour le rendu :
 
 Mais alors, comment passer d'un mode à l'autre ? Un des facteur, toujours d'après mYk est la présence d'un tag <?xml ...> en en-tête du fichier, comme par exemple :
 
-{% highlight html4strict %}
+{% highlight html %}
 <?xml version="1.0" encoding="iso-8859-15"?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">

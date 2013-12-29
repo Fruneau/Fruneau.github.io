@@ -4,6 +4,7 @@ title: "Afficher des discussions"
 date: 2007-11-01 17:24:00
 comments: true
 categories: Polytechnique.org
+tags: [Banana, Devel, PHP]
 ---
 Lorsqu'un logiciel a pour vocation d'afficher des discussions, on attend de sa part qu'il nous permette de voir simplement qui répond à qui, dans quel contexte... Ce n'est pas toujours ce qui est le mieux fait. Par exemple, les programmes de fora en ligne à la mode (phpBB par exemple) affiche les discussion comme une succession de rectangles juxtaposés et seul le contenu du message permet de voir qu'il en cite un autre. D'autres logiciels comme Mail.app ont ce défaut et parfois la fâcheuse manie de ne pas vouloir corriger ce problème.
 

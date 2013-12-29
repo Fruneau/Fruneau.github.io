@@ -4,6 +4,7 @@ title: "A croire que certains le font exprès !"
 date: 2007-03-10 19:57:00
 comments: true
 categories: Polytechnique.org
+tags: [Cpp, Devel, Qt, Sécurité, khtml2png]
 ---
 Depuis trois jours, je travaille sur la mise ne place d'un outil permettant de faire des aperçus graphiques de site web (des vignettes façon [Exalead](http://www.exalead.fr) par exemple). C'est une fonctionnalité très à la mode... et c'est aussi un bon moyen d'avoir un aperçu d'un site. Donc dans ce cadre, j'ai commencé à travailler sur [khtml2png](http://khtml2png.sourceforge.net). Malheureusement, comme il ne correspondait pas exactement à mes besoins, j'ai commencé à en modifier le code source... et j'ai eu quelques surprises !
 
@@ -19,7 +20,7 @@ Par exemple :
 {% highlight cpp %}
 QString filename = "/tmp/khtml2png.png";
 int g = sprintf(nrStr,"_x%iy%i",xNr,yNr);
-nrStr[g]='\\\\0';
+nrStr[g]='\\0';
 filename+=QString(nrStr);
 {% endhighlight %}
 

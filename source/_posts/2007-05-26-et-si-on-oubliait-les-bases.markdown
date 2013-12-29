@@ -4,6 +4,7 @@ title: "Et si on oubliait les bases ?"
 date: 2007-05-26 11:40:00
 comments: true
 categories: GeekTime
+tags: [Devel, Mac, POSIX, VirtueDesktops]
 ---
 MacOS X est un Unix... compatible POSIX. Voilà ce qu'un certain nombre de personnes semblent oublier assez fréquemment. C'est assez dommage quand ces personnes programment pour MacOS, on se retrouve parfois avec du code complexe pour réécrire des fonctions POSIX (en moins bien ?).
 

@@ -4,6 +4,7 @@ title: "Templates en C"
 date: 2007-08-16 22:53:00
 comments: true
 categories: GeekTime
+tags: [C, Cpp, Devel]
 ---
 En C++, il existe un mécanisme extrêmement pratique pour généré du code générique : les templates. Une fonction templatée est une fonction dont le code comporte un trou qui sera remplacé à la compilation par le nom d'un type, ou une valeur... Par exemple :
 
@@ -76,11 +77,11 @@ Maintenant, il ne reste plus qu'à générer les fonctions... sans avoir à tout
 
 
 {% highlight c %}
-#define maFonctionBuild(Type) \\\\
-  Type maFonction_ ## Type(const char* buffer) { \\\\
-    Type val; \\\\
-    memcpy(&val, buffer, sizeof(Type)); \\\\
-    return val; \\\\
+#define maFonctionBuild(Type) \\
+  Type maFonction_ ## Type(const char* buffer) { \\
+    Type val; \\
+    memcpy(&val, buffer, sizeof(Type)); \\
+    return val; \\
   } 
 
 maFonctionBuild(int) /* génère maFonction_int */

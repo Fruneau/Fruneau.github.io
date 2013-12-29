@@ -4,6 +4,7 @@ title: "Khtml2png 2.6.5 est sorti"
 date: 2007-06-05 22:31:00
 comments: true
 categories: GeekTime
+tags: [Devel, khtml2png]
 ---
 Après 3 mois d'un travail pas très intensif, une nouvelle version de [khtml2png](http://khtml2png.sf.net) est disponible. Cette version est partie du fait que les versions précédentes du programme ont parfois du mal à gérer les grandes captures d'écran (en fait, des bugs peuvent apparaître dès que la taille de la zone à capturer est plus grande que la taille affichable).
 

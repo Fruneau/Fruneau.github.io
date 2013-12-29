@@ -4,6 +4,7 @@ title: "Vista ?"
 date: 2007-05-03 16:07:00
 comments: true
 categories: Général
+tags: [Vista, Windows]
 ---
 Étant curieux, en tout cas pour ce qui est informatique, je n'ai pas pu m'empêcher de mettre un Windows Vista en double boot sur mon MacBook Pro... Grâce à BootCamp, l'installation ne pose pas de problème. Par contre une fois l'OS installé, je n'ai pas arrêtez d'enchaîner les petits problèmes qui ont été plus une perte de temps qu'autre chose...
 

@@ -4,6 +4,7 @@ title: "Compter les fichiers"
 date: 2007-08-30 23:12:00
 comments: true
 categories: GeekTime
+tags: [Devel, pratique, zsh]
 ---
 C'est un peu la suite de mon post "Outils pratiques" où je donnais deux scripts permettant de rendre les commandes SVN plus conviviales. Encore une fois, je réinvente sans doute la roue (des outils équivalents doivent déjà exister... sans doute en mieux), mais je pense que chercher ce genre d'outils sur internet m'aurait pris plus de temps que ce qu'il m'a fallu pour le développer.
 
@@ -34,7 +35,7 @@ my $currentOpened = 0;
 my $totalOpened = 0; 
  
 for $line (<STDIN>) { 
-  if ($line =~ /open\\\\("([^""]+)", ([^\\\\)]+)\\\\)\\\\s*=\\\\s*(\\\\d+)/) { 
+  if ($line =~ /open\\("([^""]+)", ([^\\)]+)\\)\\s*=\\s*(\\d+)/) { 
     $files{$3} = $1; 
     $modes{$3} = $2; 
     $lines{$3} = $lineNb; 
@@ -44,7 +45,7 @@ for $line (<STDIN>) {
       $maxOpened = $currentOpened; 
     } 
   } 
-  if ($line =~ /close\\\\((\\\\d+)\\\\)/ && $files{$1} ne '') { 
+  if ($line =~ /close\\((\\d+)\\)/ && $files{$1} ne '') { 
     $files{$1} = ''; 
     $currentOpened--; 
   } 

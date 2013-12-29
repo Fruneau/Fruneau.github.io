@@ -4,6 +4,7 @@ title: "Spaces"
 date: 2007-06-02 14:44:00
 comments: true
 categories: GeekTime
+tags: [Mac, VirtueDesktops]
 ---
 Comme un certain nombre de personnes le sait déjà, j'ai repris le développement de [VirtueDesktops](http://virtuedesktops.info) depuis quelques semaines. Dans un premier temps je n'avais pas regardé le fonctionnement bas niveau du programme, mais la semaine dernière j'ai commencé à rechercher dans les sources "Comment Virtue fait-il pour cacher les fenêtres, faire les transitions etc... ?".
 
@@ -12,7 +13,7 @@ Comme un certain nombre de personnes le sait déjà, j'ai repris le développeme
 A ma grande surprise, tout ceci est en fait géré nativement par MacOS X... la bibliothèque CoreGraphics contient en effet quelques fonctions cachées qui gèrent l'attribution d'une fenêtre à un Workspace et les transitions entre ces Workspaces. On peut trouver la liste complète de ces fonctions sur la [SVN de VirtueDesktops](http://trac.virtuedesktops.info/browser/trunk/Shared/Headers/CGSPrivate.h).
 
 
-{% highlight Objective-C %}
+{% highlight objective-c %}
 extern OSStatus CGSMoveWorkspaceWindowList(const CGSConnection connection, CGSWindow *wids, int count, int toWorkspace);
 extern OSStatus CGSGetWorkspace(const CGSConnection cid, int *workspace);
 extern OSStatus CGSGetWindowWorkspace(const CGSConnection cid, const CGSWindow wid, int *workspace);

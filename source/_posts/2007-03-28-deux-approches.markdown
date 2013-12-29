@@ -4,6 +4,7 @@ title: "Deux approches..."
 date: 2007-03-28 00:52:00
 comments: true
 categories: GeekTime
+tags: [Devel, PHP, Qt]
 ---
 Les deux APIs avec lesquelles j'ai eu le plus la chance de travailler sont celle de [Qt](http://doc.trolltech.com/) et celle de [PHP](http://www.php.net)... il n'y a pas à dire, entre ces deux bibliothèques, c'est comme le jour et la nuit.
 

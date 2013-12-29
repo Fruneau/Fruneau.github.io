@@ -4,6 +4,7 @@ title: "Démon pour khtml2png"
 date: 2007-03-14 18:24:00
 comments: true
 categories: Polytechnique.org
+tags: [C, Devel, khtml2png, khtmld]
 ---
 Une fois qu'on a un outils pour faire les vignettes de site, il devient utile de pouvoir automatiser le travail. Pour ceci, il existe un [démon pour khtml2png](http://wiki.goatpron.de/project/khtmld). Malheureusement (encore une fois), cet outil ne correspondait pas exactement à mes besoins. Donc je l'ai partiellement réécrit (mais rien d'extraordinaire).
 

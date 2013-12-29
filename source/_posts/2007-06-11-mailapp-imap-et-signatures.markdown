@@ -4,6 +4,7 @@ title: "Mail.app, IMAP et signatures..."
 date: 2007-06-11 23:24:00
 comments: true
 categories: Général
+tags: [IMAP, Mac, Mail, PGP]
 ---
 Les temps sont durs pour les utilisateurs de IMAP... jusqu'à présent je n'ai pas trouvé de client idéal pour travailler avec ce protocole :
 

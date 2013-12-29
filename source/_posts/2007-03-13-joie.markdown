@@ -4,6 +4,7 @@ title: "Joie !"
 date: 2007-03-13 12:41:00
 comments: true
 categories: GeekTime
+tags: [Devel, khtml2png]
 ---
 Mon travail sur [khtml2png](http://khtml2png.sourceforge.net/) vient d'être releasé (version 2.6.0) par Hauke (le programmeur principal du projet). Cette version corrige tous les bugs dont j'ai pu parler dans mes précédents billets :
 

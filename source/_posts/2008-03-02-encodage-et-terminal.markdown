@@ -4,6 +4,7 @@ title: "Encodage et terminal"
 date: 2008-03-02 11:57:00
 comments: true
 categories: Général
+tags: [encodage, shell, terminal, zsh]
 ---
 Beaucoup de personnes avec qui je discute sur IRC ont des problèmes avec l'encodage de leur terminal, de leur shell, de leur irssi, ou de tout autre logiciel en "ligne de commande". Comme j'en ai un peu marre d'expliquer la même chose toutes les semaines, voici une petite mise au point sur les réglages à faire pour travailler efficacement en ligne de commande.
 

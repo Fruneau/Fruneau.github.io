@@ -4,6 +4,7 @@ title: "Shell interdit"
 date: 2007-04-13 16:20:00
 comments: true
 categories: Général
+tags: [Mac]
 ---
 Etant donné que [Etch](http://www.debian.org/releases/etch/) est sorti et propose désormais `zsh` à la version 4.3.2, je me suis dit que le moment était venu de passer en UTF-8. En effet, `zsh` 4.3 est la première version de ce shell à supporter UTF-8. La migration en UTF-8 n'a pas spécialement posé de problème non plus sur mes Macs.
 

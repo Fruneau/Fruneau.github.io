@@ -4,6 +4,7 @@ title: "Comprendre du code"
 date: 2007-08-15 01:28:00
 comments: true
 categories: GeekTime
+tags: [Devel]
 ---
 J'ai tenté cet après-midi une petite expérience sur IRC. J'ai posté 3 lignes de code en demandant "que font ces trois lignes". Après quelques minutes (sans doute trop peu), j'ai donné la solution car personne n'avait vraiment trouvé. En effet, même si on réussi facilement à lire le code et à reconstituer la suite d'opération qu'il génère, il est très difficile de vraiment comprendre ce qu'il fait, d'imaginer son application dans un contexte et d'en déduire son usage.
 

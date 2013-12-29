@@ -4,6 +4,7 @@ title: "Se découvrir sur Internet..."
 date: 2007-02-24 15:48:00
 comments: true
 categories: Général
+tags: [Dégoût, Usurpation]
 ---
 C'est assez marrant de rechercher son nom sur Internet... pour ma part j'ai l'habitude de trouver pas mal de page me concernant (c'est l'avantage d'avoir une identité pas trop courante, et d'avoir au passage intégré une grande Ecole). Là où il y a un problème, c'est lorsqu'on découvre de cette manière qu'on a une double vie !
 

@@ -4,6 +4,7 @@ title: "La Banane et l'escargot"
 date: 2007-05-07 17:44:00
 comments: true
 categories: Polytechnique.org
+tags: [Banana, Devel, PHP]
 ---
 La release de [Banana](http://opensource.polytechnique.org/banana/) 1.6 en même temps que celle de plat/al 0.9.14 a mis en évidence un certain nombre de faiblesses dans Banana. En particuliers la génération du spool (mise en cache de l'arborescence des messages) et des flux RSS s'est révélé extrêmement lourde pour plusieurs raisons :
 

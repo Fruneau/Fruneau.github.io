@@ -4,6 +4,7 @@ title: "0.9.14 en ligne !"
 date: 2007-04-29 19:09:00
 comments: true
 categories: Polytechnique.org
+tags: [Devel, platal]
 ---
 Ca y est, comme annoncé dans [mon billet de fin mars](/mind/post/2007/03/30/Un-apercu-de-la-version-0914-de-plat/al), la version 0.9.14 de [plat/al](http://opensource.polytechnique.org/platal) est en ligne depuis vendredi soir. Comme expliqué précédemment, cette version apporte un grand nombre d'innovations comme [le flux RSS pour les Mailing-Lists et les Fora](/mind/post/2007/02/25/Un-client-RSS-pour-lire-les-Forums-NNTP-et-les-Mailing-Lists), la [recherche par proximité sonore améliorée](/mind/post/2007/03/15/Soundex-Francais) et généralisée, un système d'annonces retravaillé pour offrir un approche plus conviviale, et bien sûr, le passage en UTF-8.
 

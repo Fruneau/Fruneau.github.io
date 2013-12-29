@@ -4,6 +4,7 @@ title: "Outils pratiques"
 date: 2007-03-13 19:21:00
 comments: true
 categories: GeekTime
+tags: [Devel, SVN, pratique, zsh]
 ---
 Etant donné que je travaille énormément avec [SVN](http://subversion.tigris.org). C'est un outils très addictif... à tel point que je l'utilise dès que je travaille sur un projet (seul ou à plusieurs), je crée un reposoire pour le projet (c'est un excellent moyen de ne pas perdre son travail suite à une fausse manoeuvre). Comme en plus je ne supporte pas les front-end pour SVN, je travaille toujours en ligne de commandes...
 

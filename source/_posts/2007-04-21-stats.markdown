@@ -4,6 +4,7 @@ title: "Stats"
 date: 2007-04-21 00:59:00
 comments: true
 categories: GeekTime
+tags: [Devel, awstats, root]
 ---
 Depuis le début, j'ai installé [awstats](http://awstats.sf.net) pour avoir des statistiques sur l'utilisation de mon serveur web.
 
