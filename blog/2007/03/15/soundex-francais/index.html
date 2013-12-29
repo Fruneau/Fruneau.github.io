@@ -224,11 +224,11 @@
 <span class="x">                            &#39;/([^AEIOUY1])[^AEIOUYLKTPNR]([UAO])([^AEIOUY])/&#39;, &#39;/([^AEIOUY]|^)([AUO])[^AEIOUYLKTP]([^AEIOUY1])/&#39;, &#39;/^KN/&#39;, </span>
 <span class="x">                            &#39;/^PF/&#39;, &#39;/C([^AEIOUY]|$)/&#39;,  &#39;/E(Z|R)$/&#39;, </span>
 <span class="x">                            &#39;/C/&#39;, &#39;/Z$/&#39;, &#39;/(?&lt;!^)Z+/&#39;, &#39;/H/&#39;, &#39;/W/&#39;); </span>
-<span class="x">        $convVOut  = array( &#39;O&#39;, &#39;1\\\\3&#39;, &#39;A\\\\1&#39;, </span>
-<span class="x">                            &#39;E\\\\1&#39;, &#39;\\\\1E\\\\3&#39;, &#39;O&#39;, </span>
-<span class="x">                            &#39;Y&#39;, &#39;U&#39;, &#39;O\\\\1&#39;, &#39;9&#39;,- </span>
-<span class="x">                            &#39;\\\\1\\\\2\\\\3&#39;, &#39;\\\\1\\\\2\\\\3&#39;, &#39;N&#39;, </span>
-<span class="x">                            &#39;F&#39;, &#39;K\\\\1&#39;, &#39;E&#39;, </span>
+<span class="x">        $convVOut  = array( &#39;O&#39;, &#39;1\\3&#39;, &#39;A\\1&#39;, </span>
+<span class="x">                            &#39;E\\1&#39;, &#39;\\1E\\3&#39;, &#39;O&#39;, </span>
+<span class="x">                            &#39;Y&#39;, &#39;U&#39;, &#39;O\\1&#39;, &#39;9&#39;,- </span>
+<span class="x">                            &#39;\\1\\2\\3&#39;, &#39;\\1\\2\\3&#39;, &#39;N&#39;, </span>
+<span class="x">                            &#39;F&#39;, &#39;K\\1&#39;, &#39;E&#39;, </span>
 <span class="x">                            &#39;S&#39;, &#39;SE&#39;, &#39;S&#39;, &#39;&#39;, &#39;V&#39;); </span>
 <span class="x">    } </span>
 <span class="x">    // Si il n&#39;y a pas de mot, on sort immédiatement</span>
@@ -244,14 +244,14 @@
 <span class="x">    // on remplace les consonnances primaires</span>
 <span class="x">    $sIn = str_replace( $convGuIn, $convGuOut, $sIn ); </span>
 <span class="x">    // on supprime les lettres répétitives </span>
-<span class="x">    $sIn = preg_replace( &#39;`(.)\\\\1`&#39;, &#39;$1&#39;, $sIn ); </span>
+<span class="x">    $sIn = preg_replace( &#39;`(.)\\1`&#39;, &#39;$1&#39;, $sIn ); </span>
 <span class="x">    // on réinterprète les voyelles </span>
 <span class="x">    $sIn = preg_replace( $convVIn, $convVOut, $sIn); </span>
 <span class="x"> </span>
 <span class="x">    // on supprime les terminaisons T, D, S, X (et le L qui précède si existe)</span>
 <span class="x">    $sIn = preg_replace( &#39;`L?[TDX]?S?$`&#39;, &#39;&#39;, $sIn ); </span>
 <span class="x">    // on supprime les E, A et Y qui ne sont pas en première position </span>
-<span class="x">    $sIn = preg_replace( &#39;`(?!^)Y([^AEOU]|$)`&#39;, &#39;\\\\1&#39;, $sIn); </span>
+<span class="x">    $sIn = preg_replace( &#39;`(?!^)Y([^AEOU]|$)`&#39;, &#39;\\1&#39;, $sIn); </span>
 <span class="x">    $sIn = preg_replace( &#39;`(?!^)[EA]`&#39;, &#39;&#39;, $sIn); </span>
 <span class="x">    return substr( $sIn . &#39;    &#39;, 0, 4); </span>
 <span class="x">} </span>

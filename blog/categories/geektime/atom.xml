@@ -4,7 +4,7 @@
   <title><![CDATA[Category: GeekTime | Mind...]]></title>
   <link href="http://blog.mymind.fr/blog/categories/geektime/atom.xml" rel="self"/>
   <link href="http://blog.mymind.fr/"/>
-  <updated>2013-12-29T21:33:05+01:00</updated>
+  <updated>2013-12-29T21:39:24+01:00</updated>
   <id>http://blog.mymind.fr/</id>
   <author>
     <name><![CDATA[Florent Bruneau]]></name>
@@ -69,7 +69,7 @@
 <span class="k">my</span> <span class="nv">$totalOpened</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span><span class="sr">&lt;/p&gt;</span>
 
 <span class="sr">&lt;p&gt;</span><span class="k">for</span> <span class="nv">$line</span> <span class="p">(</span><span class="sr">&lt;STDIN&gt;</span><span class="p">)</span> <span class="p">{</span>
-  <span class="k">if</span> <span class="p">(</span><span class="nv">$line</span> <span class="o">=~</span><span class="sr"> /open\\(&amp;ldquo;([^&amp;rdquo;&amp;ldquo;]+)&amp;rdquo;, ([^\\)]+)\\)\\s&lt;em&gt;=\\s&lt;/</span><span class="n">em</span><span class="o">&gt;</span><span class="p">(</span><span class="o">\\</span><span class="n">d</span><span class="o">+</span><span class="p">)</span><span class="sr">/) {&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+  <span class="k">if</span> <span class="p">(</span><span class="nv">$line</span> <span class="o">=~</span><span class="sr"> /open\(&amp;ldquo;([^&amp;rdquo;&amp;ldquo;]+)&amp;rdquo;, ([^\)]+)\)\s&lt;em&gt;=\s&lt;/</span><span class="n">em</span><span class="o">&gt;</span><span class="p">(</span><span class="o">\</span><span class="n">d</span><span class="o">+</span><span class="p">)</span><span class="sr">/) {&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
 
 <span class="sr">&lt;pre&gt;&lt;code&gt;</span><span class="nv">$files</span><span class="p">{</span><span class="nv">$3</span><span class="p">}</span> <span class="o">=</span> <span class="nv">$1</span><span class="p">;</span> 
 <span class="nv">$modes</span><span class="p">{</span><span class="nv">$3</span><span class="p">}</span> <span class="o">=</span> <span class="nv">$2</span><span class="p">;</span> 
@@ -82,7 +82,7 @@
 <span class="sr">&lt;/code&gt;&lt;/pre&gt;</span>
 
 <span class="sr">&lt;p&gt;</span>  <span class="p">}</span>
-  <span class="k">if</span> <span class="p">(</span><span class="nv">$line</span> <span class="o">=~</span><span class="sr"> /close\\((\\d+)\\)/</span> <span class="o">&amp;</span><span class="n">amp</span><span class="p">;</span><span class="o">&amp;</span><span class="n">amp</span><span class="p">;</span> <span class="nv">$files</span><span class="p">{</span><span class="nv">$1</span><span class="p">}</span> <span class="ow">ne</span> <span class="o">&amp;</span><span class="n">lsquo</span><span class="p">;</span><span class="o">&amp;</span><span class="n">rsquo</span><span class="p">;)</span> <span class="p">{</span><span class="sr">&lt;/p&gt;</span>
+  <span class="k">if</span> <span class="p">(</span><span class="nv">$line</span> <span class="o">=~</span><span class="sr"> /close\((\d+)\)/</span> <span class="o">&amp;</span><span class="n">amp</span><span class="p">;</span><span class="o">&amp;</span><span class="n">amp</span><span class="p">;</span> <span class="nv">$files</span><span class="p">{</span><span class="nv">$1</span><span class="p">}</span> <span class="ow">ne</span> <span class="o">&amp;</span><span class="n">lsquo</span><span class="p">;</span><span class="o">&amp;</span><span class="n">rsquo</span><span class="p">;)</span> <span class="p">{</span><span class="sr">&lt;/p&gt;</span>
 
 <span class="sr">&lt;pre&gt;&lt;code&gt;</span><span class="nv">$files</span><span class="p">{</span><span class="nv">$1</span><span class="p">}</span> <span class="o">=</span> <span class="s">&#39;&#39;</span><span class="p">;</span> 
 <span class="nv">$currentOpened</span><span class="o">--</span><span class="p">;</span> 
@@ -227,13 +227,13 @@ read&lt;MaClass&gt;(const char* buffer) // lit un objet de type "MaClass"
 
 <p><div class="highlight"><pre><code class="c"><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
 
-<span class="o">&lt;</span><span class="n">h1</span><span class="o">&gt;</span><span class="n">define</span> <span class="n">maFonctionBuild</span><span class="p">(</span><span class="n">Type</span><span class="p">)</span> <span class="err">\\</span><span class="o">&lt;/</span><span class="n">h1</span><span class="o">&gt;</span>
+<span class="o">&lt;</span><span class="n">h1</span><span class="o">&gt;</span><span class="n">define</span> <span class="n">maFonctionBuild</span><span class="p">(</span><span class="n">Type</span><span class="p">)</span> <span class="err">\</span><span class="o">&lt;/</span><span class="n">h1</span><span class="o">&gt;</span>
 
-<span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span>  <span class="n">Type</span> <span class="n">maFonction_</span> <span class="err">##</span> <span class="n">Type</span><span class="p">(</span><span class="k">const</span> <span class="kt">char</span><span class="o">*</span> <span class="n">buffer</span><span class="p">)</span> <span class="p">{</span> <span class="err">\\</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+<span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span>  <span class="n">Type</span> <span class="n">maFonction_</span> <span class="err">##</span> <span class="n">Type</span><span class="p">(</span><span class="k">const</span> <span class="kt">char</span><span class="o">*</span> <span class="n">buffer</span><span class="p">)</span> <span class="p">{</span> <span class="err">\</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
 
-<span class="o">&lt;</span><span class="n">pre</span><span class="o">&gt;&lt;</span><span class="n">code</span><span class="o">&gt;</span><span class="n">Type</span> <span class="n">val</span><span class="p">;</span> <span class="err">\\\</span>\
-<span class="n">memcpy</span><span class="p">(</span><span class="o">&amp;</span><span class="n">amp</span><span class="p">;</span><span class="n">val</span><span class="p">,</span> <span class="n">buffer</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">Type</span><span class="p">));</span> <span class="err">\\\</span>\
-<span class="k">return</span> <span class="n">val</span><span class="p">;</span> <span class="err">\\\</span>\
+<span class="o">&lt;</span><span class="n">pre</span><span class="o">&gt;&lt;</span><span class="n">code</span><span class="o">&gt;</span><span class="n">Type</span> <span class="n">val</span><span class="p">;</span> <span class="err">\</span>\
+<span class="n">memcpy</span><span class="p">(</span><span class="o">&amp;</span><span class="n">amp</span><span class="p">;</span><span class="n">val</span><span class="p">,</span> <span class="n">buffer</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">Type</span><span class="p">));</span> <span class="err">\</span>\
+<span class="k">return</span> <span class="n">val</span><span class="p">;</span> <span class="err">\</span>\
 <span class="o">&lt;/</span><span class="n">code</span><span class="o">&gt;&lt;/</span><span class="n">pre</span><span class="o">&gt;</span>
 
 <span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span>  <span class="p">}</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>

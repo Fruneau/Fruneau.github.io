@@ -119,7 +119,7 @@
 <span class="k">my</span> <span class="nv">$totalOpened</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> 
  
 <span class="k">for</span> <span class="nv">$line</span> <span class="p">(</span><span class="sr">&lt;STDIN&gt;</span><span class="p">)</span> <span class="p">{</span> 
-  <span class="k">if</span> <span class="p">(</span><span class="nv">$line</span> <span class="o">=~</span><span class="sr"> /open\\\\(&quot;([^&quot;&quot;]+)&quot;, ([^\\\\)]+)\\\\)\\\\s*=\\\\s*(\\\\d+)/</span><span class="p">)</span> <span class="p">{</span> 
+  <span class="k">if</span> <span class="p">(</span><span class="nv">$line</span> <span class="o">=~</span><span class="sr"> /open\\(&quot;([^&quot;&quot;]+)&quot;, ([^\\)]+)\\)\\s*=\\s*(\\d+)/</span><span class="p">)</span> <span class="p">{</span> 
     <span class="nv">$files</span><span class="p">{</span><span class="nv">$3</span><span class="p">}</span> <span class="o">=</span> <span class="nv">$1</span><span class="p">;</span> 
     <span class="nv">$modes</span><span class="p">{</span><span class="nv">$3</span><span class="p">}</span> <span class="o">=</span> <span class="nv">$2</span><span class="p">;</span> 
     <span class="nv">$lines</span><span class="p">{</span><span class="nv">$3</span><span class="p">}</span> <span class="o">=</span> <span class="nv">$lineNb</span><span class="p">;</span> 
@@ -129,7 +129,7 @@
       <span class="nv">$maxOpened</span> <span class="o">=</span> <span class="nv">$currentOpened</span><span class="p">;</span> 
     <span class="p">}</span> 
   <span class="p">}</span> 
-  <span class="k">if</span> <span class="p">(</span><span class="nv">$line</span> <span class="o">=~</span><span class="sr"> /close\\\\((\\\\d+)\\\\)/</span> <span class="o">&amp;&amp;</span> <span class="nv">$files</span><span class="p">{</span><span class="nv">$1</span><span class="p">}</span> <span class="ow">ne</span> <span class="s">&#39;&#39;</span><span class="p">)</span> <span class="p">{</span> 
+  <span class="k">if</span> <span class="p">(</span><span class="nv">$line</span> <span class="o">=~</span><span class="sr"> /close\\((\\d+)\\)/</span> <span class="o">&amp;&amp;</span> <span class="nv">$files</span><span class="p">{</span><span class="nv">$1</span><span class="p">}</span> <span class="ow">ne</span> <span class="s">&#39;&#39;</span><span class="p">)</span> <span class="p">{</span> 
     <span class="nv">$files</span><span class="p">{</span><span class="nv">$1</span><span class="p">}</span> <span class="o">=</span> <span class="s">&#39;&#39;</span><span class="p">;</span> 
     <span class="nv">$currentOpened</span><span class="o">--</span><span class="p">;</span> 
   <span class="p">}</span> 

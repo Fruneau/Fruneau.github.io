@@ -156,11 +156,11 @@ read&lt;MaClass&gt;(const char* buffer) // lit un objet de type "MaClass"
 
 <p>Maintenant, il ne reste plus qu&#8217;à générer les fonctions&hellip; sans avoir à toutes les écrire une à une. Pour ceci, nous allons encore une fois profiter de la présence du préprocesseur.</p>
 
-<div class="highlight"><pre><code class="c"><span class="cp">#define maFonctionBuild(Type) \\\\</span>
-<span class="cp">  Type maFonction_ ## Type(const char* buffer) { \\\\</span>
-<span class="cp">    Type val; \\\\</span>
-<span class="cp">    memcpy(&amp;val, buffer, sizeof(Type)); \\\\</span>
-<span class="cp">    return val; \\\\</span>
+<div class="highlight"><pre><code class="c"><span class="cp">#define maFonctionBuild(Type) \\</span>
+<span class="cp">  Type maFonction_ ## Type(const char* buffer) { \\</span>
+<span class="cp">    Type val; \\</span>
+<span class="cp">    memcpy(&amp;val, buffer, sizeof(Type)); \\</span>
+<span class="cp">    return val; \\</span>
 <span class="cp">  } </span>
 
 <span class="n">maFonctionBuild</span><span class="p">(</span><span class="kt">int</span><span class="p">)</span> <span class="cm">/* génère maFonction_int */</span>

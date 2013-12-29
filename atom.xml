@@ -4,7 +4,7 @@
   <title><![CDATA[Mind...]]></title>
   <link href="http://blog.mymind.fr/atom.xml" rel="self"/>
   <link href="http://blog.mymind.fr/"/>
-  <updated>2013-12-29T21:33:05+01:00</updated>
+  <updated>2013-12-29T21:39:24+01:00</updated>
   <id>http://blog.mymind.fr/</id>
   <author>
     <name><![CDATA[Florent Bruneau]]></name>
@@ -260,7 +260,7 @@ conversions = {
 <span class="k">my</span> <span class="nv">$totalOpened</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> 
  
 <span class="k">for</span> <span class="nv">$line</span> <span class="p">(</span><span class="sr">&lt;STDIN&gt;</span><span class="p">)</span> <span class="p">{</span> 
-  <span class="k">if</span> <span class="p">(</span><span class="nv">$line</span> <span class="o">=~</span><span class="sr"> /open\\\\(&quot;([^&quot;&quot;]+)&quot;, ([^\\\\)]+)\\\\)\\\\s*=\\\\s*(\\\\d+)/</span><span class="p">)</span> <span class="p">{</span> 
+  <span class="k">if</span> <span class="p">(</span><span class="nv">$line</span> <span class="o">=~</span><span class="sr"> /open\\(&quot;([^&quot;&quot;]+)&quot;, ([^\\)]+)\\)\\s*=\\s*(\\d+)/</span><span class="p">)</span> <span class="p">{</span> 
     <span class="nv">$files</span><span class="p">{</span><span class="nv">$3</span><span class="p">}</span> <span class="o">=</span> <span class="nv">$1</span><span class="p">;</span> 
     <span class="nv">$modes</span><span class="p">{</span><span class="nv">$3</span><span class="p">}</span> <span class="o">=</span> <span class="nv">$2</span><span class="p">;</span> 
     <span class="nv">$lines</span><span class="p">{</span><span class="nv">$3</span><span class="p">}</span> <span class="o">=</span> <span class="nv">$lineNb</span><span class="p">;</span> 
@@ -270,7 +270,7 @@ conversions = {
       <span class="nv">$maxOpened</span> <span class="o">=</span> <span class="nv">$currentOpened</span><span class="p">;</span> 
     <span class="p">}</span> 
   <span class="p">}</span> 
-  <span class="k">if</span> <span class="p">(</span><span class="nv">$line</span> <span class="o">=~</span><span class="sr"> /close\\\\((\\\\d+)\\\\)/</span> <span class="o">&amp;&amp;</span> <span class="nv">$files</span><span class="p">{</span><span class="nv">$1</span><span class="p">}</span> <span class="ow">ne</span> <span class="s">&#39;&#39;</span><span class="p">)</span> <span class="p">{</span> 
+  <span class="k">if</span> <span class="p">(</span><span class="nv">$line</span> <span class="o">=~</span><span class="sr"> /close\\((\\d+)\\)/</span> <span class="o">&amp;&amp;</span> <span class="nv">$files</span><span class="p">{</span><span class="nv">$1</span><span class="p">}</span> <span class="ow">ne</span> <span class="s">&#39;&#39;</span><span class="p">)</span> <span class="p">{</span> 
     <span class="nv">$files</span><span class="p">{</span><span class="nv">$1</span><span class="p">}</span> <span class="o">=</span> <span class="s">&#39;&#39;</span><span class="p">;</span> 
     <span class="nv">$currentOpened</span><span class="o">--</span><span class="p">;</span> 
   <span class="p">}</span> 
@@ -403,11 +403,11 @@ read&lt;MaClass&gt;(const char* buffer) // lit un objet de type "MaClass"
 
 <p>Maintenant, il ne reste plus qu&#8217;à générer les fonctions&hellip; sans avoir à toutes les écrire une à une. Pour ceci, nous allons encore une fois profiter de la présence du préprocesseur.</p>
 
-<div class="highlight"><pre><code class="c"><span class="cp">#define maFonctionBuild(Type) \\\\</span>
-<span class="cp">  Type maFonction_ ## Type(const char* buffer) { \\\\</span>
-<span class="cp">    Type val; \\\\</span>
-<span class="cp">    memcpy(&amp;val, buffer, sizeof(Type)); \\\\</span>
-<span class="cp">    return val; \\\\</span>
+<div class="highlight"><pre><code class="c"><span class="cp">#define maFonctionBuild(Type) \\</span>
+<span class="cp">  Type maFonction_ ## Type(const char* buffer) { \\</span>
+<span class="cp">    Type val; \\</span>
+<span class="cp">    memcpy(&amp;val, buffer, sizeof(Type)); \\</span>
+<span class="cp">    return val; \\</span>
 <span class="cp">  } </span>
 
 <span class="n">maFonctionBuild</span><span class="p">(</span><span class="kt">int</span><span class="p">)</span> <span class="cm">/* génère maFonction_int */</span>
