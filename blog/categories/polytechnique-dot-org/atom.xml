@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Polytechnique.org | Mind...]]></title>
   <link href="http://blog.mymind.fr/blog/categories/polytechnique-dot-org/atom.xml" rel="self"/>
   <link href="http://blog.mymind.fr/"/>
-  <updated>2013-12-29T20:08:31+01:00</updated>
+  <updated>2013-12-29T20:41:30+01:00</updated>
   <id>http://blog.mymind.fr/</id>
   <author>
     <name><![CDATA[Florent Bruneau]]></name>
@@ -46,7 +46,7 @@
 
 <p>La solution habituelle pour afficher l'arborescence est d'utiliser un message par ligne de telle, des + ou &ndash; pour ouvrir ou fermer les noeuds. C'est la solution actuelle de banana.</p>
 
-<p>((/public/screenshots/old-thread.png|Banana Thread up to 1.7))</p>
+<p><img src="{{%20site.url%20}}/assets/screenshots/old-thread.png" alt="Banana Thread up to 1.7" /></p>
 
 <p>Avec cette solution, on perd très rapidement en lisibilité : dès que la discussion dépasse une vingtaine de messages, l'arborescence devient très haute et plus ça va, plus le titre dérive vers la droite rendant parfois le lien inaccessible. Lorsqu'il y a un troll, il est de fait très courant que certains nouveaux messages se trouvent perdus plusieurs pages en arrière dans l'arborescence, ou que sur certains navigateurs, il soit difficile d'y accéder. De plus l'interface se trouve souvent surchargée, à la limite de la lisibilité : c'est dur de faire tenir un maximum d'informations en un minimum de place en gardant la lisibilité de l'ensemble.</p>
 
@@ -58,13 +58,13 @@
 
 <p>Cette interface est compacte, visuelle et permet d'accéder rapidement à n'importe quel message du thread. Pour la prochaine version de Banana, je me suis fortement inspiré de cette interface pour réécrire de 0 l'affichage de l'arborescence. Ceci donne :</p>
 
-<p>((/public/screenshots/new-thread.png|Thread view in Banana))</p>
+<p><img src="{{%20site.url%20}}/assets/screenshots/new-thread.png" alt="Thread view in Banana" /></p>
 
 <p>Il s'agit de la même discussion que précédemment. On voit donc ici facilement l'arborescence. Lorsqu'un message est non lu, la branche à laquelle il est attaché est noire au lieu de grise ce qui permet de l'identifier du premier coup d'oeil. Les couleurs de fond des noeuds (une idée de <a href="http://www.falco.bz">Falco</a>) sont obtenue à partir d'un hash quelconque sur l'émetteur et permettent donc d'identifier les messages envoyés par la même personne. Lorsqu'on laisse la souris sur un noeud, le nom de l'expéditeur et l'heure du post s'affichent (malheureusement le pointeur de la souris n'apparaît pas sur la capture d'écran)&hellip; et bien sûr quand on clique sur un noeud, on va sur le message correspondant.</p>
 
 <p>Lorsqu'on est sur un message, on garde également la vue du thread ce qui permet de toujours savoir où on est dans la discussion :</p>
 
-<p>((/public/screenshots/new-thread-nav.png|Thread view with selected message))</p>
+<p><img src="{{%20site.url%20}}/assets/screenshots/new-thread-nav.png" alt="Thread view with selected message" /></p>
 
 <p>Il y a encore un peu de travail à faire pour améliorer les performances de la génération des arbres et pour augmenter sa compacité (éviter les branches qui descendent très bas alors qu'elles auraient pu trouver leur place dans le l'espace vide disponible).</p>
 ]]></content>
@@ -77,7 +77,7 @@
     <id>http://blog.mymind.fr/blog/2007/10/08/15-000</id>
     <content type="html"><![CDATA[<p>Ca y est&hellip; 15 000 inscrits à <a href="https://www.polytechnique.org">Polytechnique.org</a>.</p>
 
-<p><a href="15.000%20inscrits">((/public/screenshots/15.000.png</a>)|/public/screenshots/15.000.png)</p>
+<p><img src="{{%20site.url%20}}/assets/screenshots/15.000.png" alt="15.000 inscrits" /></p>
 
 <p>Si l'ascension continue, nous devrions atteindre les 16 000 l'année prochaine.</p>
 ]]></content>
@@ -113,30 +113,28 @@
 
 <p>Il est souvent extrêment pratique d'utiliser une pile de données. Cela permet de traiter les informations dans l'ordre de la pile sans excès de mémoire puisque chaque élément est dépilé avant d'être traité. C'est une technique que j'aime particulièrement lorsque j'ai une suite de lignes à traiter : je prend un tableau contenant une ligne par entrée et je le parcours avec <code>array_shift</code> qui permet de dépiler le premier élément du tableau. On obtient ainsi un code de la forme</p>
 
-<p><div>
-  <pre><code class='php'>while (!is_null($line = array_shift($lines))) {&lt;/p&gt;
+<p>{% highlight php %}
+while (!is_null($line = array_shift($lines))) {</p>
 
-&lt;pre&gt;&lt;code&gt;do_something($line);
-&lt;/code&gt;&lt;/pre&gt;
+<pre><code>do_something($line);
+</code></pre>
 
-&lt;p&gt;}
-do_something($lines);</code></pre>
-</div>
-</p>
+<p>}
+do_something($lines);
+{% endhighlight %}</p>
 
 <p>Un <code>foreach</code> peut très bien faire la même chose, mais on perd les avantages de la piles. Avec cette structure, pour avoir le même comportement que la boucle précédente, il faut ajouter un <code>unset()</code> :</p>
 
-<p><div>
-  <pre><code class='php'>foreach ($lines as $key=&gt;&amp;amp;$value) {&lt;/p&gt;
+<p>{% highlight php %}
+foreach ($lines as $key=>&amp;$value) {</p>
 
-&lt;pre&gt;&lt;code&gt;do_something($line);
+<pre><code>do_something($line);
 unset($lines[$key]);
-&lt;/code&gt;&lt;/pre&gt;
+</code></pre>
 
-&lt;p&gt;}
-do_something($lines);</code></pre>
-</div>
-</p>
+<p>}
+do_something($lines);
+{% endhighlight %}</p>
 
 <p>Certes le <code>foreach</code> sera sensiblement plus rapide que le <code>while</code>/<code>array_shift()</code> car il comprend un appel de fonction à chaque itération, mais on peut s'attendre raisonnablement à ce que cet appel soit en O(1), et ait donc un coût négligeable.</p>
 
@@ -164,13 +162,13 @@ do_something($lines);</code></pre>
 
 <p>Caribou a réalisé un énorme travail sur la mise en place d'un remplissage automatique (auto-completion pour les geeks) sur la recherche avancée. Ainsi, lorsqu'on tape quelques caractères dans un champ, une liste de propositions apparaît avec pour chaque proposition le nombre de camarades correspondant à la requête. Ce qui donne par exemple :</p>
 
-<p>((/mind/public/screenshots/select-ville.png|Auto-Completion sur les villes))</p>
+<p><img src="{{%20site.url%20}}/assets/screenshots/select-ville.png" alt="Auto-Completion sur les villes" /></p>
 
-<p>((/mind/public/screenshots/select-pays.png|Auto-Completion sur les pays))</p>
+<p><img src="{{%20site.url%20}}/assets/screenshots/select-pays.png" alt="Auto-Completion sur les pays" /></p>
 
 <p>Par contre, là où cela devient très intéressant, c'est que l'interface reste flexible : si vous préférez choisir dans une liste des valeurs possibles plutôt que d'utiliser l'auto-completion, ce qui est envisageable, il suffit, si c'est disponible pour le champ correspondant, de cliquer sur la petite icône représentant une liste en fin de ligne&hellip; Ainsi, pour les pays, cela donne :</p>
 
-<p>((/mind/public/screenshots/select-pays-dropdown.png|Choix sur les pays))</p>
+<p><img src="{{%20site.url%20}}/assets/screenshots/select-pays-dropdown.png" alt="Choix sur les pays" /></p>
 
 <p>Il s'agit du même champ dont le <input type="text"> a été remplacé par une <select>.</p>
 
@@ -198,26 +196,24 @@ do_something($lines);</code></pre>
 
 <p>Dans plat/al, le Model s'appelle PlSet (duquel hérite un UserSet spécialisé dans les ensembles d'utilisateurs), et le View s'appelle PlView. De cette manière, l'affichage des contacts se fait en 5 lignes de code :</p>
 
-<p><div>
-  <pre><code class='php'>$view = new UserSet(&amp;ldquo;INNER JOIN contacts AS c2 ON (u.user_id = c2.contact)&amp;rdquo;, &amp;ldquo; c2.uid = $uid &amp;rdquo;);
-$view-&gt;addMod(&amp;lsquo;minifiche&amp;rsquo;, &amp;lsquo;Mini-Fiches&amp;rsquo;, true);
-$view-&gt;addMod(&amp;lsquo;trombi&amp;rsquo;, &amp;lsquo;Trombinoscope&amp;rsquo;, false, array(&amp;lsquo;with_admin&amp;rsquo; =&gt; false, &amp;lsquo;with_promo&amp;rsquo; =&gt; true));
-$view-&gt;addMod(&amp;lsquo;geoloc&amp;rsquo;, &amp;lsquo;Planisphère&amp;rsquo;);
-$view-&gt;apply(&amp;lsquo;carnet/contacts&amp;rsquo;, $page, $action, $subaction);</code></pre>
-</div>
-</p>
+<p>{% highlight php %}
+$view = new UserSet(&ldquo;INNER JOIN contacts AS c2 ON (u.user_id = c2.contact)&rdquo;, &ldquo; c2.uid = $uid &rdquo;);
+$view->addMod(&lsquo;minifiche&rsquo;, &lsquo;Mini-Fiches&rsquo;, true);
+$view->addMod(&lsquo;trombi&rsquo;, &lsquo;Trombinoscope&rsquo;, false, array(&lsquo;with_admin&rsquo; => false, &lsquo;with_promo&rsquo; => true));
+$view->addMod(&lsquo;geoloc&rsquo;, &lsquo;Planisphère&rsquo;);
+$view->apply(&lsquo;carnet/contacts&rsquo;, $page, $action, $subaction);
+{% endhighlight %}</p>
 
-<p>On crée le UserSet en lui donnant les critères de sélection des utilisateurs à afficher, puis on ajoute les Views à utiliser, enfin on gère l'affichage (en fonction des arguments passés à l'affichage de la page). C'est le type d'abstraction qui font vraiment plaisir car finalement on se rapproche du slogan de Qt : .</p>
+<p>On crée le UserSet en lui donnant les critères de sélection des utilisateurs à afficher, puis on ajoute les Views à utiliser, enfin on gère l'affichage (en fonction des arguments passés à l'affichage de la page). C'est le type d'abstraction qui font vraiment plaisir car finalement on se rapproche du slogan de Qt : {{Code less, Do more}}.</p>
 
 <p>Bien sûr, il faut développer tout le background, mais le temps de développement est négligeable comparé à celui qu'on aurait passé à dupliquer ce code, voire justement à ne pas le dupliquer en raison de la complexité de certains cas. Un autre exemple d'utilisation est sur l'annuaire des groupes sur Polytechnique.net :</p>
 
-<p><div>
-  <pre><code class='php'>$view = new UserSet();
-$view-&gt;addMod(&amp;lsquo;trombi&amp;rsquo;, &amp;lsquo;Trombinoscope&amp;rsquo;);
-$view-&gt;addMod(&amp;lsquo;geoloc&amp;rsquo;, &amp;lsquo;Planisphère&amp;rsquo;);
-$view-&gt;apply(&amp;lsquo;annuaire&amp;rsquo;, $page, $action, $subaction);</code></pre>
-</div>
-</p>
+<p>{% highlight php %}
+$view = new UserSet();
+$view->addMod(&lsquo;trombi&rsquo;, &lsquo;Trombinoscope&rsquo;);
+$view->addMod(&lsquo;geoloc&rsquo;, &lsquo;Planisphère&rsquo;);
+$view->apply(&lsquo;annuaire&rsquo;, $page, $action, $subaction);
+{% endhighlight %}</p>
 
 <p>Dans ce cas, comme UserSet sait que s'il est appelé dans le cadre d'un groupe-X sur Polytechnique.net, il ne doit pas sélectionner d'utilisateurs hors de l'annuaire de ce groupe, il n'y a aucune restriction à lui indiquer : tout l'annuaire du groupe est sélectionné. On ajoute les deux modules de représentation qu'on désire utiliser : trombinoscope et Planispère, et applique à la page&hellip; en 4 lignes c'est fait.</p>
 

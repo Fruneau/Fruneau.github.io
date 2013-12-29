@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Général | Mind...]]></title>
   <link href="http://blog.mymind.fr/blog/categories/general/atom.xml" rel="self"/>
   <link href="http://blog.mymind.fr/"/>
-  <updated>2013-12-29T20:08:31+01:00</updated>
+  <updated>2013-12-29T20:41:30+01:00</updated>
   <id>http://blog.mymind.fr/</id>
   <author>
     <name><![CDATA[Florent Bruneau]]></name>
@@ -130,7 +130,7 @@ conversions = {
     <id>http://blog.mymind.fr/blog/2007/07/28/bluescreen</id>
     <content type="html"><![CDATA[<p>Juste parce que je trouve ça amusant : lorsque Vista plante en raison d'une erreur sérieuse, il fait un écran bleu (exactement le même que sous Windows XP). Ce qui est amusant, c'est le message affiché lors du démarrage suivant de Windows.</p>
 
-<p>((/public/screenshots/BlueScreen.png|Vista-bluescreen))</p>
+<p><img src="{{%20site.url%20}}/assets/screenshots/BlueScreen.png" alt="Vista-bluescreen" /></p>
 
 <p>Windows récupère donc d'une erreur de type &ldquo;BlueScreen&rdquo;&hellip; cela a l'intérêt d'être précis. En temps normal, on identifie une erreur à sa cause, et non à sa conséquence.</p>
 ]]></content>
@@ -165,21 +165,19 @@ conversions = {
 
 <p>J'ai demandé à NC s'il pouvait me donner les sources d'un mail signé qui a le mérite d'apparaître comme correctement signé chez lui, et mal signé chez moi. J'ai comparé les 2 versions du mail&hellip; et le <code>diff</code> a été on ne peut plus troublant :</p>
 
-<p><div>
-  <pre><code class='diff'>&amp;mdash;nextPart1631992.9B81mC3O8N
+<p>{% highlight diff %}
+ &mdash;nextPart1631992.9B81mC3O8N
 -Content-Type: text/plain;
-&amp;ndash;  charset=&amp;ldquo;iso-8859-1&amp;rdquo;
+&ndash;  charset=&ldquo;iso-8859-1&rdquo;
  Content-Transfer-Encoding: quoted-printable
 +Content-Type: text/plain;
 +       charset=iso-8859-1
  Content-Disposition: inline
- ///&lt;/p&gt;
+ ///</p>
 
-&lt;p&gt;Le contenu de la partie signée n&#39;est pas identique dans les deux mails. Pour ceux qui ne connaissent pas la structure d&#39;un mail signé, je les invite à jeter un coup d&#39;oeil à la &lt;a href=&quot;http://www.faqs.org/rfcs/rfc1847.html&quot;&gt;RFC1847&lt;/a&gt; qui se résume au schéma suivant :&lt;/p&gt;
+<p>Le contenu de la partie signée n'est pas identique dans les deux mails. Pour ceux qui ne connaissent pas la structure d'un mail signé, je les invite à jeter un coup d'oeil à la <a href="http://www.faqs.org/rfcs/rfc1847.html">RFC1847</a> qui se résume au schéma suivant :</p>
 
-&lt;p&gt;</code></pre>
-</div>
-
+<p>{% endhighlight %}
 Content-Type: multipart/signed; protocol=&ldquo;TYPE/STYPE&rdquo;;</p>
 
 <pre><code>     micalg="MICALG"; boundary="Signed Boundary"
