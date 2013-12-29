@@ -1,0 +1,77 @@
+---
+layout: post
+title: "0.9.14 en ligne !"
+date: 2007-04-29 19:09:00
+comments: true
+categories: Polytechnique.org
+---
+Ca y est, comme annoncé dans [mon billet de fin mars](/mind/post/2007/03/30/Un-apercu-de-la-version-0914-de-plat/al), la version 0.9.14 de [plat/al](http://opensource.polytechnique.org/platal) est en ligne depuis vendredi soir. Comme expliqué précédemment, cette version apporte un grand nombre d'innovations comme [le flux RSS pour les Mailing-Lists et les Fora](/mind/post/2007/02/25/Un-client-RSS-pour-lire-les-Forums-NNTP-et-les-Mailing-Lists), la [recherche par proximité sonore améliorée](/mind/post/2007/03/15/Soundex-Francais) et généralisée, un système d'annonces retravaillé pour offrir un approche plus conviviale, et bien sûr, le passage en UTF-8.
+
+Mais de tout cela, j'en ai déjà parlé... je tiens par contre à m'étendre sur les quelques fonctionnalités qui ont été développées durant le dernier mois (en fait, durant les dernières deux semaines de développement, le reste du temps ayant été consacré aux tests).
+
+<!-- more -->
+
+Recherche interactive
+=====================
+
+Caribou a réalisé un énorme travail sur la mise en place d'un remplissage automatique (auto-completion pour les geeks) sur la recherche avancée. Ainsi, lorsqu'on tape quelques caractères dans un champ, une liste de propositions apparaît avec pour chaque proposition le nombre de camarades correspondant à la requête. Ce qui donne par exemple :
+
+((/mind/public/screenshots/select-ville.png|Auto-Completion sur les villes))
+
+((/mind/public/screenshots/select-pays.png|Auto-Completion sur les pays))
+
+Par contre, là où cela devient très intéressant, c'est que l'interface reste flexible : si vous préférez choisir dans une liste des valeurs possibles plutôt que d'utiliser l'auto-completion, ce qui est envisageable, il suffit, si c'est disponible pour le champ correspondant, de cliquer sur la petite icône représentant une liste en fin de ligne... Ainsi, pour les pays, cela donne :
+
+((/mind/public/screenshots/select-pays-dropdown.png|Choix sur les pays))
+
+Il s'agit du même champ dont le <input type="text"> a été remplacé par une <select>.
+
+Sondages
+========
+
+Les sondages étaient la seule fonctionnalité du site qui avait été perdue lors du passage à plat/al il y a maintenant 2 ans et demi. C'est maintenant réparé grâce au travail de pika. Cette fonctionnalité étant de fait encore jeune, on peut s'attendre à ce que l'interface soit retravaillée fortement dans les prochaines versions du site pour s'adapter aux attentes des utilisateurs. Néanmoins, il est à noter que l'édition des sondages a été travaillée de telle sorte qu'un sondage soit facilement éditable : l'utilisateur qui crée un sondage peut aisément ajouter, supprimer ou modifier des questions, et les administrateurs ont accès exactement aux mêmes fonctionnalités pour la maintenance des sondages.
+
+Nous attendons maintenant l'utilisation de cette fonctionnalité pour avoir des retours de la part de nos utilisateurs. Si l'expérience se révèle concluante, les sondages seront intégrés à Polytechnique.net pour que les animateurs les aient à leur disposition directement depuis l'interface de gestion des groupes.
+
+Ensemble d'utilisateurs
+=======================
+
+Il s'agit de la partie sur laquelle j'ai travaillé, et donc celle que je connais le mieux, mais c'est aussi la partie la plus abstraite. Pour l'utilisateur, ça ne change quasiment rien, par contre au niveau du moteur du site, c'est à mon sens un pas en avant important vers des interfaces plus adaptées aux besoins des utilisateurs. C'est pour cette raison que cette partie risque d'être un poil technique.
+
+Ce dont je parlais au paragraphe précédent est la gestion des ensembles d'utilisateurs... mais qu'est-ce donc ? un ensemble d'utilisateur est tout simplement une sélection d'utilisateurs dans l'annuaire, ça peut être les membres d'une Mailing-List, les contacts d'un utilisateur, les membres d'un groupe, les camarades correspondant à une recherche...
+
+Le problème est que je voudrais que dès que sélectionne un ensemble d'utilisateur, je puisse séparer totalement la représentation de ces utilisateurs de la sélection qui est faite : ainsi si je choisi mes contacts, je veux pouvoir afficher mes contacts sur un planisphère, voir le trombinoscope de mes contacts, mais aussi voir leurs fiches... mais je voudrais avoir les mêmes outils pour toute autre sélection d'utilisateur.
+
+La résolution propre de ce problème (c'est-à-dire, sans tout recoder à chaque cas possible d'utilisation) est l'utilisation d'un outil orienté Model/View :
+
+*   le modèle gère la parti sélection des utilisateurs en fonction de la page
+*   l'afficheur sélectionne les données à afficher pour les utilisateurs et génère ce que l'utilisateur verra
+
+Dans plat/al, le Model s'appelle PlSet (duquel hérite un UserSet spécialisé dans les ensembles d'utilisateurs), et le View s'appelle PlView. De cette manière, l'affichage des contacts se fait en 5 lignes de code :
+
+
+{% highlight php %}
+$view = new UserSet("INNER JOIN contacts AS c2 ON (u.user_id = c2.contact)", " c2.uid = $uid ");
+$view->addMod('minifiche', 'Mini-Fiches', true); 
+$view->addMod('trombi', 'Trombinoscope', false, array('with_admin' => false, 'with_promo' => true)); 
+$view->addMod('geoloc', 'Planisphère'); 
+$view->apply('carnet/contacts', $page, $action, $subaction); 
+{% endhighlight %}
+
+On crée le UserSet en lui donnant les critères de sélection des utilisateurs à afficher, puis on ajoute les Views à utiliser, enfin on gère l'affichage (en fonction des arguments passés à l'affichage de la page). C'est le type d'abstraction qui font vraiment plaisir car finalement on se rapproche du slogan de Qt : {{Code less, Do more}}.
+
+Bien sûr, il faut développer tout le background, mais le temps de développement est négligeable comparé à celui qu'on aurait passé à dupliquer ce code, voire justement à ne pas le dupliquer en raison de la complexité de certains cas. Un autre exemple d'utilisation est sur l'annuaire des groupes sur Polytechnique.net :
+
+
+{% highlight php %}
+$view = new UserSet(); 
+$view->addMod('trombi', 'Trombinoscope'); 
+$view->addMod('geoloc', 'Planisphère'); 
+$view->apply('annuaire', $page, $action, $subaction); 
+{% endhighlight %}
+
+Dans ce cas, comme UserSet sait que s'il est appelé dans le cadre d'un groupe-X sur Polytechnique.net, il ne doit pas sélectionner d'utilisateurs hors de l'annuaire de ce groupe, il n'y a aucune restriction à lui indiquer : tout l'annuaire du groupe est sélectionné. On ajoute les deux modules de représentation qu'on désire utiliser : trombinoscope et Planispère, et applique à la page... en 4 lignes c'est fait.
+
+Je m'extasie devant ce travail parce que je suis content du résultat, mais il n'est pas pour autant parfait. Son problème actuel est dû au background basé sur SQL : chaque élément (PlSet ou PlView) apporte des bribes d'une requête SQL permettant de finalement obtenir toutes les informations à afficher (PlView) pour les utilisateurs sélectionnés (PlSet), mais il peut arriver qu'une même donnée soit utilisée pour la sélection et pour l'affichage. Dans ce cas, la solution la plus simple est de dupliquer les jointures dans la requête, mais c'est une solution qui peut sérieusement alourdir et ralentir la requête.
+
+L'implémentation actuelle gère la duplication au cas par cas : les PlView peuvent contenir tester s'il faut sélectionner un champ ou non en testant la classe du PlSet utilisé. Cette solution n'est pas particulièrement propre. La meilleure solution envisageable est d'utiliser une abstraction des champs SQL : chaque élément ne donnerait plus une bribe de requête SQL mais des informations sur "comment sélectionner la donnée"... ensuite la génération de la requête consiste à comparer toutes ces informations et à les assembler. Plat/al possède déjà les outils nécessaires pour réaliser ce jeu d'assemblage... ce sera très probablement pour la prochaine release.

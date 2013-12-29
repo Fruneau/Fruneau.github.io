@@ -1,0 +1,26 @@
+---
+layout: post
+title: "Spaces"
+date: 2007-06-02 14:44:00
+comments: true
+categories: GeekTime
+---
+Comme un certain nombre de personnes le sait déjà, j'ai repris le développement de [VirtueDesktops](http://virtuedesktops.info) depuis quelques semaines. Dans un premier temps je n'avais pas regardé le fonctionnement bas niveau du programme, mais la semaine dernière j'ai commencé à rechercher dans les sources "Comment Virtue fait-il pour cacher les fenêtres, faire les transitions etc... ?".
+
+<!-- more -->
+
+A ma grande surprise, tout ceci est en fait géré nativement par MacOS X... la bibliothèque CoreGraphics contient en effet quelques fonctions cachées qui gèrent l'attribution d'une fenêtre à un Workspace et les transitions entre ces Workspaces. On peut trouver la liste complète de ces fonctions sur la [SVN de VirtueDesktops](http://trac.virtuedesktops.info/browser/trunk/Shared/Headers/CGSPrivate.h).
+
+
+{% highlight Objective-C %}
+extern OSStatus CGSMoveWorkspaceWindowList(const CGSConnection connection, CGSWindow *wids, int count, int toWorkspace);
+extern OSStatus CGSGetWorkspace(const CGSConnection cid, int *workspace);
+extern OSStatus CGSGetWindowWorkspace(const CGSConnection cid, const CGSWindow wid, int *workspace);
+extern OSStatus CGSSetWorkspace(const CGSConnection cid, int workspace);
+{% endhighlight %}
+
+VirtueDesktops (et également DesktopsManager) n'est qu'une interface graphique qui tente d'utiliser ces fonctions. Et là [Spaces](http://www.apple.com/fr/macosx/leopard/spaces.html) part avec une longueur d'avance car contrairement à VirtueDesktops, il sera facile pour Apple de gérer les ouvertures, fermetures et masquage d'application ce qui est à mon avis le plus gros point faible de Virtue. J'ai beaucoup travaillé là-dessus et je pense arriver actuellement aux limites de ce qu'il est possible de faire avec un gestionnaire de bureaux virtuels sur Tiger.
+
+Un autre problème de VirtueDesktops est l'accès à l'ordonnancement des fenêtres. Comment être sûr que lorsqu'on arrive sur un bureau les fenêtres sont dans le bon ordre ? Idéalement il faudrait enregistrer l'ordre en temps réel et le restaurer lors du retour sur le bureau. Ceci permettrait également de toujours savoir quelle application activer lorsqu'on arrive sur un bureau, simplement en utilisant la fenêtre qui se trouve au premier plan.
+
+Voilà, je me suis certes lancé dans une cause perdue d'avance, mais je suis tout de même content du résultat obtenu lors de ces dernières semaines. Virtue a désormais un comportement qui correspond à ce que j'attends d'un gestionnaire de bureaux virtuels : quand je change d'application il va sur le bureau adéquat, et quand je change de bureau, il active bien la dernière application que j'ai utilisée sur ce bureau.

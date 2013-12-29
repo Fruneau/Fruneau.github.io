@@ -1,0 +1,14 @@
+---
+layout: post
+title: "Joie !"
+date: 2007-03-13 12:41:00
+comments: true
+categories: GeekTime
+---
+Mon travail sur [khtml2png](http://khtml2png.sourceforge.net/) vient d'être releasé (version 2.6.0) par Hauke (le programmeur principal du projet). Cette version corrige tous les bugs dont j'ai pu parler dans mes précédents billets :
+
+*   Des failles de sécurité
+*   Problème de bandes grises si X n'est pas assez grand
+*   Blocage du programme en cas de popup
+
+Elle supprime la dépendance à ImageMagick (ce qui permet au passage de simplifier le code). Ainsi, mon code permettait de passer de 600 lignes à 320 lignes, avec le travail de Hauke au dessus (principalement de l'alignement de code), le fichier source fait 390 lignes...

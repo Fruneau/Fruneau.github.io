@@ -1,0 +1,41 @@
+---
+layout: post
+title: "Pourquoi ?"
+date: 2007-03-07 14:05:00
+comments: true
+categories: GeekTime
+---
+Pourquoi est-ce que les utilisateurs se sentent obligés de laisser des commentaires sur les articles qu'ils lisent dès que c'est possible ? Dans certains cas, ces commentaires sont intéressants, mais dans 95% des cas, c'est uniquement du "Kikoo lol asv mdr :) :) :) ;) ;)"... __insupportable !__
+
+<!-- more -->
+
+Le problème c'est que ça ne concerne pas uniquement les Skyblog... mais également les sites d'informations (même les sites plutôt sérieux), les sites de documentation (comme celui de PHP par exemple)...
+
+Par exemple, pourquoi un gars poste-t-il un algorithme pour remplacer `str_repeat` sur php.net :
+
+{% highlight php %}
+<?php
+if(!function_exists("str_repeat")) {
+    function str_repeat($word, $length) {
+        $repeated = "";
+        for($i=0; $i < $length; $i++) {
+            $repeated .= $word;
+        }
+        return $repeated;
+    }
+}
+?>
+{% endhighlight %}
+
+Non seulement, j'espère que les utilisateurs qui n'ont pas la fonction en question (PHP < 4) sauront d'eux-même reproduire cette algorithme sans avoir à le recopier (sans quoi on peut se demander pourquoi ils utilisent PHP vu qu'ils ne savent tout bonnement pas programmer un algorithme trivial)... mais en plus cet algorithme est absolument sous-optimal (à chaque tour de boucle il faut réallouer le buffer stockant `$repeated` et le recopier...) et il n'y a donc pas de quoi être fier d'avoir écrit cette fonction.
+
+Pourquoi à la suite d'un article indiquant de l'arrivée prochaine du SATA 2.6, quelqu'un vient poster (et uniquement ce texte) :
+
+> Vite vite dépecher vous
+
+Quel est l'intérêt de ce commentaire ?  
+Le pire est que pour trouver cet exemple j'ai choisi au hasard un article sur [Clublic](http://www.clubic.com) et que le commentaire que j'ai pris était le premier sur cet article... Bon effectivement vu qu'il ne doit pas y avoir plus d'un commentaire intéressant par jour sur Clubic, c'était facile d'en trouver un inintéressant.
+
+Et je ne parle pas des commentaires sur les articles d'actualité en référence avec la campagne électorale en cours...
+
+Donc, si c'est possible : avant d'ajouter un commentaire sur Internet, réfléchissez pour savoir si ça vaut _vraiment_ le coup, ça permettrait au moins à ceux qui cherchent vraiment des informations de ne pas avoir à lire 90% de texte inintéressant avant de trouver __le__ commentaire intéressant de la page de doc de php.net (par exemple).

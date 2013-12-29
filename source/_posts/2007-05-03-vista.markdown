@@ -1,0 +1,56 @@
+---
+layout: post
+title: "Vista ?"
+date: 2007-05-03 16:07:00
+comments: true
+categories: Général
+---
+Étant curieux, en tout cas pour ce qui est informatique, je n'ai pas pu m'empêcher de mettre un Windows Vista en double boot sur mon MacBook Pro... Grâce à BootCamp, l'installation ne pose pas de problème. Par contre une fois l'OS installé, je n'ai pas arrêtez d'enchaîner les petits problèmes qui ont été plus une perte de temps qu'autre chose...
+
+<!-- more -->
+
+Accueil réussi
+---------------
+
+Les problèmes commencent dès l'arrivée sous Vista. Déjà un premier coup d'oeil : c'est loin d'être laid à regarder... même si les ombres sont moins agréables que celles de MacOS X et que les effets de flouté sous les fenêtres me fatiguent un peu. Quand on arrive sous Vista, on tombe sur la fenêtre _Accueil de Windows_ ci-dessous :
+
+[((/public/screenshots/Vista/.Vista-accueil1_m.jpg](Fenêtre d'accueil de Windows Vista|C))|/public/screenshots/Vista/Vista-accueil1.PNG)
+
+Cet écran est sympathique : un navigateur pratique pour circuler entre les fonctionnalités de Windows... le problème provient lorsque justement je clique sur une de ces fonctionnalités, par exemple "Transfert de fichiers"... rien ne se passe. Enfin, je m'attendais à voir surgir un assistant, mais rien n'apparaît. Après quelques secondes, je me rends compte qu'en fait l'en-tête de la fenêtre à changé :
+
+[((/public/screenshots/Vista/.Vista-accueil2_m.jpg](Fenêtre accueil après sélection|C))|/public/screenshots/Vista/Vista-accueil2.PNG)
+
+Il faut cliquer sur le texte en bas de l'en-tête pour enfin avoir le logiciel de Transfert de fichier... qui se lance dans un environnement bizarre en plein écran avec une petite fenêtre au milieu.
+
+
+Personnalisation
+----------------
+
+Le premier réflexe après avoir installé un nouveau système, c'est de le personnaliser. Ceci passe donc par le changement du fond d'écran, de l'écran de veille, etc... Sous Vista, ceci se fait via une page du panneau de configuration :
+
+[((/public/screenshots/Vista/.Vista-apparence_m.jpg](Réglages de l'apparence de Windows|C))|/public/screenshots/Vista/Vista-apparence.PNG)
+
+C'est très bien, ça marche... sauf que lorsqu'on arrive à la catégorie _Thèmes_, changer le thème change __tous__ les réglages qu'on avait faits précédemment pour les remplacer par ceux du thème sélectionné... L'art et la manière de perdre 10 minutes à faire 2 fois la même configuration, et à refaire tout ce que j'avais déjà fait alors que si _Thèmes_ se trouvait en première place de cette liste, j'aurais d'abord choisi un thème avant de le personnaliser.
+
+
+Inquiétude
+-----------
+
+Un autre problème se manifeste sous Windows Vista : les ventilateurs de mon MacBook Pro tournent quasiment à fond... alors qu'en temps normal c'est une machine silencieuse, sous Vista mon portable génère un fond sonore désagréable. Comme après avoir cherché un peu, je trouve qu'il y a un _gadget_ (ce n'est pas du tout la même chose que les _widgets_ de Dashboard) pour le panneau latéral de Windows qui permet de (plus ou moins) monitorer la charge CPU et l'occupation mémoire, je l'active. Et là, quelle bonne surprise ! Vista tourne à 15% proc comme occupation de croisière (étant donné que j'ai un dual-core, dois-je considérer que c'est 30% d'un des coeurs ?)... Quand je bouge la souris (si si, ça fait varier la charge), une fenêtre, ou que je travail sur une application, la charge proc augmente. Par exemple, les deux captures suivantes montre la charge de la machine lorsque j'utilise le logiciel de capture d'écran :
+
+*   la première lorsque je capture par sélection (une fois la sélection terminée, il est monté aussi à 30% CPU pendant quelques secondes)
+*   la deuxième lorsque je capture par fenêtre (dans ce cas, il prend du processeur pour faire de joli effets graphiques pour mettre en valeur la fenêtre sélectionnée)
+
+((/public/screenshots/Vista/Vista-performances.PNG|Occupation du processeur à vide)) ((/public/screenshots/Vista/Vista-performances2.PNG|Occupation du processeur changement de fenêtre))
+
+C'est donc mon processeur qui gère les effets graphiques ??? Pourtant j'ai une bonne carte graphique (ATI X1600) et d'après les benchmarks effectués par Vista, j'ai même une bonne machine, bien adaptée à Vista... je n'ose pas imaginer ce que ça donnerait sur une machine un peu moins puissante.
+
+
+Mais encore...
+--------------
+
+J'ai également passé beaucoup de temps à chercher comment diminuer l'espace disque occupé par Windows : je n'ai alloué que 20Go à la partition pour Windows, et j'aimerais bien pouvoir y installer 2 ou 3 jeux quand même... donc limité la taille de la mémoire virtuelle, la taille de la corbeille... par contre j'ai mis plus d'une demi-heure à trouver comment désactiver la restauration système. Et j'ai eu de la chance de finir par trouver en décochant au hasard une case dans une fenêtre de configuration sur laquelle j'ai abouti sans trop savoir comment !
+
+Je ne m'étendrais pas sur tous mes déboires avec le nouveau _menu démarrer_ de windows et le nouveau navigateur de programmes grâce auquel je n'ai toujours pas réussi à lancer une application du premier coup (à chaque fois je clique sur celle juste au-dessus), ni sur la gestion des droits d'accès qui n'arrêtent pas de me demander dans une jolie fenêtre sur un écran grisé si je veux continuer sans me demander de taper le moindre mot de passe (bah oui, mon compte ayant les droits d'administrateurs, je suppose que ça ne sert à rien de me demander un mot de passe), ni sur le temps et le nombre de clics nécessaires pour supprimer un fichier, ni sur Windows Mail qui ne trouve que 48 des 140 répertoires de mon serveur IMAP, ni même sur le pseudo-Exposé de Windows qui affiche les fenêtres les unes sur les autres et qui me force donc à scroller pour trouver celle que je veux alors qu'il serait tellement plus efficace de les mettre côte à côte (comme avec Exposé :).
+
+Donc, Vista c'est beau, mais c'est tout... Je trouve l'ergonomie du nouveau système de microsoft déplorable. Je suis bien content avec mon MacOS X qui utilise la carte graphique pour les effets graphiques, qui ne fait pas trop de fioritures et qui me permet de trouver rapidement ce que je cherche sans avoir à parcourir 50 menus.

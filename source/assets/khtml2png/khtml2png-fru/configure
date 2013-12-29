@@ -1,0 +1,3 @@
+./makeClean
+cmake . -G KDevelop3
+cmake .

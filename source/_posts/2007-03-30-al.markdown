@@ -1,0 +1,93 @@
+---
+layout: post
+title: "Un aperçu de la version 0.9.14 de plat/al"
+date: 2007-03-30 11:39:00
+comments: true
+categories: Polytechnique.org
+---
+Le site de [Polytechnique.org](https://www.polytechnique.org) est prévu pour être mis à jour régulièrement, de l'ordre d'une fois tous les deux mois. Ainsi, les mises à jours sont suffisamment substantielles pour créer un effet d'annonce autour des améliorations apportées au site, sans pour autant laisser traîner les correctifs de bugs trop longtemps dans la branche de développement sans en faire profiter les utilisateurs.
+
+La version 0.9.13 est sortie fin janvier, un peu plus d'un mois après la 0.9.12. La 0.9.14 sortira probablement fin avril (en tout cas, ce sera après le passage de [etch](http://www.debian.org/releases/etch/) en stable chez debian). Néanmoins, vue la masse de changement de cette nouvelle version, nous avons décidé de lancer les tests plus tôt qu'à l'accoutumée. Voici donc un aperçu des nouveautés (seulement un aperçu car le développement de cette version n'est pas freezé).
+
+Comme à l'accoutumée, la liste exhaustive des changements se trouve dans le [ChangeLog](http://dev.m4x.org/changelog).
+
+<!-- more -->
+
+Passage en UTF8
+===============
+
+C'est le changement le moins visible... mais le plus douloureux. En fait pour l'utilisateur a priori, rien ne change... mais en background __toutes__ les pages, sans exception, sont affectées et donc potentiellement buggées. La plupart du temps un bug d'UTF8 (dans le sens latin1 interprété comme de l'UTF8) entraîne l'affichage d'une page vide ou blanche, ce qui est beaucoup plus douloureux que dans l'autre sens (UTF8 interprété comme du latin1).
+
+Le passage en UTF8 s'accompagne d'un passage de MySQL 4.0 à MySQL 5... a priori la plupart des incompatibilités SQL sont corrigées mais on ne sait jamais. Pour l'instant nous n'utilisons pas vraiment les nouveautés de MySQL 5 (en fait un MySQL 4.1 aurait suffi pour l'usage qu'on en fait). Mais ce changement permet de prévoir à l'avenir un changement de la structure de la base SQL que nous utilisons, ce qui sera sans doute nécessaire lors de la [fusion des annuaires](http://trackers.polytechnique.org/task/547).
+
+Syntaxe Wiki généralisée
+===========================
+
+Autre nouveauté majeure, mais cette fois dont l'utilisateur bénéficiera directement : une syntaxe wiki généralisée est désormais mise en place sur la grande majorité des textes que l'utilisateur peut entrer sur le site. La syntaxe utilisée est celle de [PmWiki](http://www.pmwiki.org/), le moteur wiki que nous utilisons déjà pour les pages de documentation du site. Malheureusement la structure de PmWiki interdisant son utilisation comme une bibliothèque (en gros il ne fournit pas de fonction wikiToHtml, comme le fait par exemple [Dotclear](http://www.dotclear.net)), il a fallu réimplémenter un nouveau moteur wiki léger.
+
+Cette [syntaxe wiki](http://dev.m4x.org/wiki_help) permet la plupart des formatages attendus : gras, italique, couleur, soulignement, listes, titres et tailles, liens hypertextes. On conserve également un url-catcher qui permet à l'utilisateur qui n'a pas envie de prendre le temps de formater son annonce d'avoir tout de même les URL transformées en lien.
+
+La syntaxe wiki est utilisable :
+
+*   pour le formulaire d'envoi de mail
+*   pour les champs "freetext" de la fiche (CV et Commentaires)
+*   pour l'édition d'annonces (pour la page d'accueil et pour la lettre mensuelle)
+*   ...
+
+Amélioration des annonces
+==========================
+
+Comme indiqué dans le paragraphe précédent, les annonces bénéficieront d'une syntaxe wiki qui permet de formater l'annonce (ce qui n'était jusqu'à présent faisable que par les administrateurs du site, en éditant directement le code HTML de l'annonce). Mais ce n'est pas la seule amélioration. L'amélioration du système d'annonce de Polytechnique.org était un des points les plus importants que j'avais annoncés dans un [précédent billet](/mind/post/2007/03/01/Polytechniqueorg-en-retard).
+
+![Système d'annonces de plat/al 0.9.14]({{ site.url }}/assets/screenshots/annonce-0.9.14.png)
+
+Classement des annonces
+-----------------------
+
+Au lieu d'avoir toutes les annonces dans un ordre incompréhensible qui ne permet pas de distinguer les nouvelles des anciennes, les annonces seront désormais classées selon leur date d'arrivée, leur date de péremption et leur importance. Ce classement est _'très_' fortement inspiré du classement utilisé sur [Frankiz (le portail des élèves de l'X)](http://www.frankiz.net). L'ordre de traitement (en first-match) est le suivant :
+
+*   si une annonce est marquée comme importante, elle va dans la catégorie du même nom.
+*   si une annonce a été validée (et non postée) il y a moins de 48 heures, elle est dans "Nouvelles annonces"
+*   si une annonce périme dans moins de 48 heures, elle est dans "Bientôt fini"
+*   toutes les autres annonces sont dans "Mais encore..."
+
+Une image par annonce...
+------------------------
+
+Les annonces autorisent désormais l'ajout d'une image qui illustre l'annonce ou le groupe qui a posté l'annonce. Pour le design, nous sommes cette fois plus proche de ce qui est fait sur le [site de l'AX](http://www.polytechnicien.com) : l'image est placée sur le côté de l'annonce, ce qui permet de limiter l'espace inutilisé. Moins il y a de vide, plus on a de chance que les utilisateurs aillent lire le contenu sans trop "scroller", ce qui est à mon avis mieux pour la lisibilité des annonces.
+
+Discussion
+----------
+
+Enfin la dernière grande nouveauté est l'ajout de la notion de discussion. Lorsqu'une annonce est validée, elle est automatiquement postée sur un newsgroup (grâce à [banana](http://opensource.polytechnique.org/banana) et l'annonce elle-même contient un lien vers ce post. Je suis curieux de voir à quel point cela va fonctionner (j'ai tendance à penser que ce sera encore une fonctionnalité inutilisée... en tout cas pendant les premiers mois) mais en tout cas c'est avant tout un début vers une meilleure interactivité entre les utilisateurs.
+
+Recherche par proximité sonore généralisée
+==============================================
+
+Une autre nouveauté dont j'ai déjà parlé dans [un billet précédent](/mind/post/2007/03/15/Soundex-Francais). Alors qu'auparant la recherche par proximité sonore était limitée à la recherche avancée et n'était pas toujours correcte, la nouvelle étant la possibilité à la recherche rapide (selon le choix de l'utilisateur évidemment) et devrait être (je l'espère) plus efficace qu'auparavant grâce au nouvel algorithme de soundex conçu pour mieux s'adapter à la langue française.
+
+Le seul moyen de se faire une idée est de [tester sur le site](http://dev.m4x.org/search) ou de [tester l'algorithme](/mind/post/2007/03/15/Soundex-Francais#test).
+
+Les forums et les Mailing-Lists en RSS
+======================================
+
+La prochaine version de plat/al intégrera Banana 1.6 dont l'innovation majeure est l'ajout de flux RSS pour les forums. Je ne m'étendrais pas sur le sujet étant donné qu'il y a déjà un [billet à ce sujet](/mind/post/2007/02/25/Un-client-RSS-pour-lire-les-Forums-NNTP-et-les-Mailing-Lists). Mais les forums ne sont pas les seuls à se doter d'un flux RSS avec cette nouvelle version, c'est également le cas des pages de documentation. Ainsi il sera possible de suivre les modifications de la documentation (ce qui sera principalement utile pour les administrateurs du site).
+
+Mais aussi... en vrac
+=====================
+
+Les versions précédentes du site offraient la possibilité d'ajouter l'annuaire de Polytechnique.org aux moteurs de recherche de Firefox. Désormais ce sera aussi possible de le faire dans Internet Explorer 7 et dans tous les navigateurs qui supportent le format [OpenSearch](http://www.opensearch.org).
+
+L'ajout d'un nouveau module pour faire des sondages. Ce module est encore en développement et n'est pas actuellement accessible sur le site de développement, mais il devrait être intégré à la prochaine version du site. Les sondages étaient la seule fonctionnalité du site perdue en octobre 2004 lorsque la première version de plat/al avait replacé l'ancienne version du site. C'est un outil très attendu que nous sommes heureux de retrouver grâce au travail de [pika](https://www.polytechnique.org/profile/fabien.laborde.2004).
+
+Et il y a encore d'autres nouveautés, ainsi qu'un grand nombre de corrections de bugs.
+
+Venez tester !
+==============
+
+N'hésitez donc pas à venir nous aider à tester toutes ces nouvelles fonctionnalités. Pour ceci il suffit d'avoir un compte sur Polytechnique.org (donc d'être un X) et d'aller sur :
+
+*   [Le site de test de Polytechnique.org](http://dev.m4x.org) pour tester le site principal
+*   [le site de test de Polytechnique.net](http://dev.polytechnique.net) pour tester le site des groupes
+
+La [liste de diffusion des testeurs](http://www.polytechnique.net/Polytechnique.org/lists/members/testeurs) est également ouverte à toutes les bonnes volontés et permet de discuter simplement les bugs et de l'avancement des corrections.
