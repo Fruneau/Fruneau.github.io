@@ -7,6 +7,6 @@ categories: Polytechnique.org
 ---
 Ca y est... 15 000 inscrits à [Polytechnique.org](https://www.polytechnique.org).
 
-[((/public/screenshots/15.000.png](15.000 inscrits))|/public/screenshots/15.000.png)
+![15.000 inscrits]({{ site.url }}/assets/screenshots/15.000.png)
 
 Si l'ascension continue, nous devrions atteindre les 16 000 l'année prochaine.

@@ -36,7 +36,7 @@ J'ai demandé à NC s'il pouvait me donner les sources d'un mail signé qui a le
  Content-Disposition: inline
  ///
 
-Le contenu de la partie signée n'est pas identique dans les deux mails. Pour ceux qui ne connaissent pas la structure d'un mail signé, je les invite à jeter un coup d'oeil à la [RFC1847](http://www.faqs.org/rfcs/rfc1847.html) qui se résume au schéma suivant :
+Le contenu de la partie signée n'est pas identique dans les deux mails. Pour ceux qui ne connaissent pas la structure d'un mail signé, je les invite à jeter un coup d'oeil à la [RFC1847|http://www.faqs.org/rfcs/rfc1847.html] qui se résume au schéma suivant :
 
 {% endhighlight %}
 Content-Type: multipart/signed; protocol="TYPE/STYPE";

@@ -18,7 +18,7 @@ Et là... tout va bien. Pomme+N pour relancer une nouvelle fenêtre du Terminal 
 
 Par contre, il m'a fallu redémarrer ma machine... et là au démarrage j'ai la fenêtre suivante :
 
-((/public/screenshots/error-terminal.png|Erreur du Terminal avec le ZSH de port))
+![Erreur du Terminal avec le ZSH de port]({{ site.url }}/assets/screenshots/error-terminal.png)
 
 Sans réfléchir, je décide de changer de shell depuis mon autre machine... en `ssh`. Et j'ai réalisé après coup que le shell s'est correctement lancé dans mon `ssh`... il s'agit donc d'une restriction imposée par Terminal !
 

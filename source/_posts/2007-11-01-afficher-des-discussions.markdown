@@ -16,7 +16,7 @@ L'affichage de l'arborescence dans [Banana](http://opensource.polytechnique.org/
 
 La solution habituelle pour afficher l'arborescence est d'utiliser un message par ligne de telle, des + ou - pour ouvrir ou fermer les noeuds. C'est la solution actuelle de banana.
 
-((/public/screenshots/old-thread.png|Banana Thread up to 1.7))
+![Banana Thread up to 1.7]({{ site.url }}/assets/screenshots/old-thread.png)
 
 Avec cette solution, on perd très rapidement en lisibilité : dès que la discussion dépasse une vingtaine de messages, l'arborescence devient très haute et plus ça va, plus le titre dérive vers la droite rendant parfois le lien inaccessible. Lorsqu'il y a un troll, il est de fait très courant que certains nouveaux messages se trouvent perdus plusieurs pages en arrière dans l'arborescence, ou que sur certains navigateurs, il soit difficile d'y accéder. De plus l'interface se trouve souvent surchargée, à la limite de la lisibilité : c'est dur de faire tenir un maximum d'informations en un minimum de place en gardant la lisibilité de l'ensemble.
 
@@ -30,12 +30,12 @@ Je ne sais pas combien de personnes connaissent [MacSoup](http://home.snafu.de/s
 
 Cette interface est compacte, visuelle et permet d'accéder rapidement à n'importe quel message du thread. Pour la prochaine version de Banana, je me suis fortement inspiré de cette interface pour réécrire de 0 l'affichage de l'arborescence. Ceci donne :
 
-((/public/screenshots/new-thread.png|Thread view in Banana))
+![Thread view in Banana]({{ site.url }}/assets/screenshots/new-thread.png)
 
 Il s'agit de la même discussion que précédemment. On voit donc ici facilement l'arborescence. Lorsqu'un message est non lu, la branche à laquelle il est attaché est noire au lieu de grise ce qui permet de l'identifier du premier coup d'oeil. Les couleurs de fond des noeuds (une idée de [Falco](http://www.falco.bz)) sont obtenue à partir d'un hash quelconque sur l'émetteur et permettent donc d'identifier les messages envoyés par la même personne. Lorsqu'on laisse la souris sur un noeud, le nom de l'expéditeur et l'heure du post s'affichent (malheureusement le pointeur de la souris n'apparaît pas sur la capture d'écran)... et bien sûr quand on clique sur un noeud, on va sur le message correspondant.
 
 Lorsqu'on est sur un message, on garde également la vue du thread ce qui permet de toujours savoir où on est dans la discussion :
 
-((/public/screenshots/new-thread-nav.png|Thread view with selected message))
+![Thread view with selected message]({{ site.url }}/assets/screenshots/new-thread-nav.png)
 
 Il y a encore un peu de travail à faire pour améliorer les performances de la génération des arbres et pour augmenter sa compacité (éviter les branches qui descendent très bas alors qu'elles auraient pu trouver leur place dans le l'espace vide disponible).

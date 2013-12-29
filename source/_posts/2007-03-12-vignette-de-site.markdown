@@ -13,6 +13,7 @@ Technique
 ---------
 
 Pour faire une vignette d'un site web la solution est simple :
+
 1   on lance un navigateur (c'est à dire un moteur de rendu) et on ouvre la page dont on eut le screenshot
 1   on fait un screenshot, c'est à dire qu'on copie la fenêtre d'affichage dans une image
 1   on fait du post-traitement sur l'image obtenue pour l'adapter à nos besoins
@@ -54,6 +55,6 @@ Les différentes options données sont :
 
 La ligne précédente donne le résultat suivant :
 
-[((/public/khtml2png/.test-fru_m.jpg](Test de screenshots avec KHTML2PNG|C))|/public/khtml2png/test-fru.png)
+![Test de screenshots avec KHTML2PNG]({{ site.url }}/assets/khtml2png/test-fru.png)
 
 Attention tout de même, la version 2.5.0 (et sans doute les précédentes) de `khtml2png` est bloquante dans le cas où elle rencontre un type mime non supporté par l'installation actuelle de KDE. Il vaut mieux utiliser [ma dernière version](/public/khtml2png/khtml2png-fru-last.tar.bz2) qui corrige ce bug. Dans tous les cas, en installant les modules adaptés (comme flash), on obtient un meilleur rendu.

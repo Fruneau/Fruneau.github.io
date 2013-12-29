@@ -16,13 +16,13 @@ Recherche interactive
 
 Caribou a réalisé un énorme travail sur la mise en place d'un remplissage automatique (auto-completion pour les geeks) sur la recherche avancée. Ainsi, lorsqu'on tape quelques caractères dans un champ, une liste de propositions apparaît avec pour chaque proposition le nombre de camarades correspondant à la requête. Ce qui donne par exemple :
 
-((/mind/public/screenshots/select-ville.png|Auto-Completion sur les villes))
+![Auto-Completion sur les villes]({{ site.url }}/assets/screenshots/select-ville.png)
 
-((/mind/public/screenshots/select-pays.png|Auto-Completion sur les pays))
+![Auto-Completion sur les pays]({{ site.url }}/assets/screenshots/select-pays.png)
 
 Par contre, là où cela devient très intéressant, c'est que l'interface reste flexible : si vous préférez choisir dans une liste des valeurs possibles plutôt que d'utiliser l'auto-completion, ce qui est envisageable, il suffit, si c'est disponible pour le champ correspondant, de cliquer sur la petite icône représentant une liste en fin de ligne... Ainsi, pour les pays, cela donne :
 
-((/mind/public/screenshots/select-pays-dropdown.png|Choix sur les pays))
+![Choix sur les pays]({{ site.url }}/assets/screenshots/select-pays-dropdown.png)
 
 Il s'agit du même champ dont le <input type="text"> a été remplacé par une <select>.
 

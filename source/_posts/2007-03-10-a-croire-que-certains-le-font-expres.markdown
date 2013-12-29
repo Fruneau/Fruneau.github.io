@@ -88,6 +88,7 @@ Pourquoi faire si compliqué ?
 *   khtml2png dépend d'un programme extérieur qu'il n'est pas certain de trouver sur les machines des utilisateurs...
 
 Ma technique est beaucoup plus simple, ne nécessite de lancer __aucun__ programme externe... et en plus se révèle plus légère en quantité de mémoire (parce que j'utilise des pointeurs au lieu de recopier les images dans tous les sens en en créant plusieurs instances à chaque fois)
+
 1   tout d'abord je crée une image vierge de la taille voulue par l'utilisateur
 1   je fais les captures du site et au lieu de les stockers dans un fichier, je les colle au bon endroit dans mon image
 1   j'utilise Qt pour enregistrer l'image au format désiré par l'utilisateur (en fonction de l'extension)...

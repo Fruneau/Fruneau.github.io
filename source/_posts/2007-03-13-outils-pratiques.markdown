@@ -14,9 +14,9 @@ Pour pouvoir améliorer la sortie des commandes SVN dans mes consoles, j'ai fait
 
 {% highlight bash %}
 function svn() {
-    if [[ $1 == "ci" ](| $1 == "commit" || $1 == "propedit" || $1 == "propset" || $1 == "help" )]; then
+    if [[ $1 == "ci" || $1 == "commit" || $1 == "propedit" || $1 == "propset" || $1 == "help" ]]; then
         /usr/local/bin/svn $*
-    elif [[ $1 == "preci" ](| $1 == "precommit" )]; then
+    elif [[ $1 == "preci" || $1 == "precommit" ]]; then
         /usr/local/bin/svn status | grep -v '?' | ~/.zsh/zshcolorsvn
     else
         /usr/local/bin/svn $* | ~/.zsh/zshcolorsvn
@@ -31,28 +31,28 @@ Cette fonction est donc très simple :
 
 Ceci donne un résultat de la forme suivante :
 
-[((/public/screenshots/.svn-diff_m.jpg](Exemple de svn diff))|/public/screenshots/svn-diff.jpg)
+![Exemple de svn diff]({{ site.url }}/assets/screenshots/svn-diff.jpg)
 
-[((/public/screenshots/.svn-update_s.jpg](Exemple de svn update))|/public/screenshots/svn-update.jpg) [((/public/screenshots/.svn-status_s.jpg](Exemple de svn status))|/public/screenshots/svn-status.jpg)
+![Exemple de svn update))]({{ site.url }}/assets/screenshots/svn-status.jpg)
 
 C'est donc extrêmement pratique ; ça permet de distinguer facilement les modifications, ça permet aussi de voir d'un seul coup d'oeil les conflits et la liste des fichiers modifiés. En plus ça fonctionne également avec des commandes comme `cvs` ou `diff` :
 
 
 {% highlight bash %}
-1   SVN
+# SVN
 function svn() {
-    if [[ $1 == "ci" ](| $1 == "commit" || $1 == "propedit" || $1 == "propset" || $1 == "help" )]; then
+    if [[ $1 == "ci" || $1 == "commit" || $1 == "propedit" || $1 == "propset" || $1 == "help" ]]; then
         /usr/local/bin/svn $*
-    elif [[ $1 == "preci" ](| $1 == "precommit" )]; then
+    elif [[ $1 == "preci" || $1 == "precommit" ]]; then
         /usr/local/bin/svn status | grep -v '?' | ~/.zsh/zshcolorsvn
     else
         /usr/local/bin/svn $* | ~/.zsh/zshcolorsvn
     fi; fi
 }
 
-1   SVN avec conversion de la sortie en latin1
+# SVN avec conversion de la sortie en latin1
 function svn_utf8() {
-    if [[ $1 == "ci" ](| $1 == "commit" )]; then
+    if [[ $1 == "ci" || $1 == "commit" ]]; then
         svn $*
     else
         svn $* | iconv -f utf8 -t iso-8859-1
@@ -63,7 +63,7 @@ function cvs() {
     if [[ $1 == "diff" ]]; then
         shift 1
         /usr/bin/cvs diff -ubN $* 2> /dev/null | ~/.zsh/zshcolorsvn
-    elif [[ $1 == "ci" ](| $1 == "commit" || $1 == "propedit" || $1 == "propset" || $1 == "help" )]; then
+    elif [[ $1 == "ci" || $1 == "commit" || $1 == "propedit" || $1 == "propset" || $1 == "help" ]]; then
         /usr/bin/cvs $*
     else
         /usr/bin/cvs $* 2> /dev/null | ~/.zsh/zshcolorsvn

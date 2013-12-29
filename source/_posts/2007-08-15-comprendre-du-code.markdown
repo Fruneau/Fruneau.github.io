@@ -20,7 +20,6 @@ do {
 
 Vous pouvez remarquer dès à présent que ce code n'est pas volontairement rendu illisible (il serait facile de supprimer des parenthèses et de changer le test de nullité en une négation. Le but est donc de comprendre la suite d'instruction, de dire ce qu'elle fait et ensuite de comprendre dans quel contexte elle est utilisable. La question est aussi de savoir en combien de temps vous allez trouver la solution.
 
-{% highlight html %}
 <script type="text/javascript" src="/jquery.js"></script>
 <script type="text/javascript">//<![CDATA[
 function show_answer() {
@@ -33,11 +32,11 @@ function show_answer() {
 <a href="" onclick="return show_answer()" id="show_answer">Cliquer ici pour afficher la répondre</a>
 </p>
 <div id="answer" style="display: none">
-{% endhighlight %}
  Fonctionnement
 ---------------
 
 Si on lit le code, on voit qu'il fait la suite d'opération suivante :
+
 1   on incrémente la valeur pointée par pos
 1   on regarde si la valeur obtenue est nulle
 1   on incrémente le pointeur pos
@@ -81,6 +80,4 @@ for(++*pos;!*pos++;++*pos);
 
 Tout ceci n'était bien sûr qu'un exemple. Il est toujours très dur de comprendre du code, alors pour éviter de passer dix minutes sur 3 lignes lors de la prochaine relecture il suffit de documenter ce qu'on écrit.
 
-{% highlight html %}
 </div>
-{% endhighlight %}

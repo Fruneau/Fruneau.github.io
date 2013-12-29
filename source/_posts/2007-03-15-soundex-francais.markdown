@@ -23,6 +23,7 @@ Algorithme
 ==========
 
 Mon algorithme, comme je l'ai déjà dit, est une adaptation de celui de [Frédéric Brouard](http://sqlpro.developpez.com/cours/soundex/). Il se compose de 2 étapes principales :
+
 1   le préformatage, qui consiste à transformer le chaîne de caractère brute, en une chaîne analysable.
 1   l'analyse de la chaîne, et la recherche de entités phoniques élémentaires qui la composent
 
@@ -30,6 +31,7 @@ Préformatage
 -------------
 
 Le préformatage est extrêmement simple :
+
 1   On converti la chaîne en majuscule
 1   On converti chaque caractère accentué vers son caractère non-accentué correspondant
 1   On filtre pour ne conserver que les lettres (de A à Z)
@@ -41,7 +43,6 @@ Traitement des données
 
 Le traitement des données consiste à reconnaître les sonorités. Pour ceci on utilise la table de conversion suivante qui associe à chaque sonorité complexe un caractère :
 
-{% highlight html %}
 <table>
   <tr><th>Combinaison</th><th>Caractère</th></tr>
   <tr><td>G (prononcé GUE), C (prononcé Q), CK, K, QU, Q</td><td>K</td></tr>
@@ -61,13 +62,11 @@ Le traitement des données consiste à reconnaître les sonorités. Pour ceci on
   <tr><td>ON, OM</td><td>O</td></tr>
   <tr><td>KN (en début de mot)</td><td>N</td></tr>
 </table>
-{% endhighlight %}
 
 Une fois qu'on a cette table de correspondances (elle n'est peut-être pas exhaustive... je n'hésiterais pas à l'améliorer), on applique toutes les modifications, on supprime les lettres qui sont présentes en doublon et finalement on supprime les H restants. Il faut également supprimer les caractères muets en fin de mot. En français, ce seront les X, T, D, S (et le L qui les précède si il existe) ou les E.
 
 Ensuite, il faut faire un nettoyage sur la chaîne de caractère. Ce nettoyage consiste à rechercher les phonèmes importants et à supprimer les caractères muets ou peu audibles : on veut identifier ce qui fait la particularité d'une syllabe. Frédéric Brouard considère que toutes les voyelles (exceptés les Y précédés d'une voyelle) placées autre part qu'en début de mot sont insignifiantes... ça me paraît le gros point faible de sa méthode. Personnellement j'ai essayé d'identifier une liste de sonorité dominantes. Voici celles que j'ai actuellement :
 
-{% highlight html %}
 <table>
   <tr><th>Sonorité</th><th>Informations</th></tr>
   <tr>
@@ -80,20 +79,19 @@ Ensuite, il faut faire un nettoyage sur la chaîne de caractère. Ce nettoyage c
   </tr>
   <tr>
     <td>Y</td>
-    <td>Y n'est marquant que lorsqu'il a un rôle de consonne : quand il permet de lier deux parties du mot, comme dans _voyelle_, où il lie le _vo_ et le _elle_. Il est donc important lorsqu'il est encadré par une ou des voyelles. Dans les autres cas, c'est une voyelle faible</td>
+    <td>Y n'est marquant que lorsqu'il a un rôle de consonne : quand il permet de lier deux parties du mot, comme dans ''voyelle'', où il lie le ''vo'' et le ''elle''. Il est donc important lorsqu'il est encadré par une ou des voyelles. Dans les autres cas, c'est une voyelle faible</td>
   </tr>
   <tr>
     <td>L</td>
     <td>Contrairement aux K, T et P, le L permet d'adoucir le mot, en particulier lorsqu'il sert de liaison entre une consonne et une voyelle. Il est donc important de le conserver</tr>
   </tr>
 </table>
-{% endhighlight %}
 
 Ces choix sont relativement arbitraires. Le comportement de l'algorithme est alors simple :
 
 *   Si une voyelle est liée à une consonne de liaison (qui fait le lien entre la voyelle et une autre consonne, c'est souvent le cas du L ou du R, on exclut de ce cas les consommes fortes)
 *   Si en plus il s'agit d'une voyelle forte
-  *   alors, on supprime la consonne de liaison et on garde la voyelle
+    *   alors, on supprime la consonne de liaison et on garde la voyelle
 
 Ensuite, on supprime les voyelles faibles (sauf si elles commencent le mot). Pour cette suppression, on considère le A comme une voyelle faible.
 
@@ -137,16 +135,16 @@ function soundex_fr($sIn)
                             'Y', 'U', 'O\\\\1', '9',- 
                             '\\\\1\\\\2\\\\3', '\\\\1\\\\2\\\\3', 'N', 
                             'F', 'K\\\\1', 'E', 
-                            'S', 'SE', 'S', _, 'V'); 
+                            'S', 'SE', 'S', '', 'V'); 
     } 
     // Si il n'y a pas de mot, on sort immédiatement
-    if ( $sIn === _ ) return '    '; 
+    if ( $sIn === '' ) return '    '; 
     // On supprime les accents- 
     $sIn = strtr( $sIn, $accents); 
     // On met tout en minuscule- 
     $sIn = strtoupper( $sIn ); 
     // On supprime tout ce qui n'est pas une lettre
-    $sIn = preg_replace( '`[^A-Z]`', _, $sIn ); 
+    $sIn = preg_replace( '`[^A-Z]`', '', $sIn ); 
     // Si la chaîne ne fait qu'un seul caractère, on sort avec.
     if ( strlen( $sIn ) === 1 ) return $sIn . '   '; 
     // on remplace les consonnances primaires
@@ -157,10 +155,10 @@ function soundex_fr($sIn)
     $sIn = preg_replace( $convVIn, $convVOut, $sIn); 
  
     // on supprime les terminaisons T, D, S, X (et le L qui précède si existe)
-    $sIn = preg_replace( '`L?[TDX]?S?$`', _, $sIn ); 
+    $sIn = preg_replace( '`L?[TDX]?S?$`', '', $sIn ); 
     // on supprime les E, A et Y qui ne sont pas en première position 
     $sIn = preg_replace( '`(?!^)Y([^AEOU]|$)`', '\\\\1', $sIn); 
-    $sIn = preg_replace( '`(?!^)[EA]`', _, $sIn); 
+    $sIn = preg_replace( '`(?!^)[EA]`', '', $sIn); 
     return substr( $sIn . '    ', 0, 4); 
 } 
 {% endhighlight %}
@@ -170,7 +168,6 @@ Tests
 
 Avec cette implémentation, on a par exemple :
 
-{% highlight html %}
 <table>
   <tr><th>Mot</th><th>Soundex</th><th>Mot</th><th>Soundex</th></tr>
   <tr><td>Aymeric</td><td>EMRK</td><td>Emeric</td><td>EMRK</td></tr>
@@ -179,12 +176,10 @@ Avec cette implémentation, on a par exemple :
   <tr><td>Palpa</td><td>PLP</td><td>Poulpe</td><td>PULP</td></tr>
   <tr><td>Mario</td><td>MRYO</td><td>Marion</td><td>MRYO</td></tr>
 </table>
-{% endhighlight %}
 
 On a par contre des résultats moyens lorsque des H séparent des voyelles faibles : par exemple _Mouahaha_ donne MU (contre M avec la version précédente).
 
 ~test~
-{% highlight html %}
 <script type="text/javascript" src="/ajax.js"></script>
 <script type="text/javascript">
 function get_soundex()
@@ -203,7 +198,6 @@ function get_soundex()
    </p>
 </form>
 </div>
-{% endhighlight %}
 
 _N'hésitez pas à faire des tests et à me faire part des résultats qui semblent anormaux._
 

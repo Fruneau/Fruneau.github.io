@@ -1,10 +1,9 @@
 ---
 layout: post
 title: "Un client RSS pour lire les Forums NNTP et les Mailing-Lists..."
-date: 2007-02-25 19:05:42 +0100
+date: 2007-02-25 19:05:00
 comments: true
 categories: Polytechnique.org
-tags: [Banana, Devel, Mailing-Lists, NNTP, PHP, RSS]
 ---
 Si il y a un bout de code dont je suis content au sein de [Polytechnique.org](https://www.polytechnique.org), c'est [Banana](http://opensource.polytechnique.org/banana/). Banana est à l'origine un client Web pour le protocole NNTP (c'est à dire le protocole utilisé par Usenet). Depuis sa dernière version (la 1.5), Banana est capable d'utiliser n'importe quel protocole comme source (les protocoles actuellement implémentés étant le NNTP et la lecture de MBox, mais on pourrait envisager d'ajouter le support des Maildir ou d'IMAP sans problème), ainsi, à Polytechnique.org, nous utilisons Banana pour offrir une plateforme Web vers [nos forums](https://www.polytechnique.org/banana) et pour mettre en ligne les archives des Mailing-Lists que nous hébergeons.
 

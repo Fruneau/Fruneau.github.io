@@ -1,17 +1,16 @@
 ---
 layout: post
 title: "Un premier bilan sur la sécurité..."
-date: 2007-02-27 16:47:51 +0100
+date: 2007-02-27 16:47:00
 comments: true
 categories: Polytechnique.org
-tags: [platal, Sécurité, Usurpation]
 ---
 Sans entrer dans les détails du fonctionnement des filtres de protection de [Polytechnique.org](https://www.polytechnique.org) (je laisse ce plaisir à ceux qui auront le courage de lire le code de [plat/al](http://opensource.polytechnique.org/platal/)), nous avons ces derniers mois fortement amélioré les outils de surveillance. Alors qu'il y a encore un an, nous ne détections que quelques usurpations par an, nous sommes actuellement à environ une usurpation détectée par semaine.
 
 <!-- more -->
 
 De quoi s'inquiéter ?
-=====================
+----------------------
 
 Certes la fréquence des usurpations est plus importante que nous pensions mais plus on a d'outils de protection, plus on a d'usurpations... non seulement parce qu'on en détecte plus, mais aussi parce que d'une certaine manière, on provoque les usurpations. En effet, lorsque nous détectons une usurpation, nous fermons le compte. Lorsque l'usurpateur se rend compte qu'il a perdu l'accès, il usurpe (ou tout au moins tente d'usurper) un autre compte.
 
@@ -24,21 +23,21 @@ De plus, la plus grande majorité des comptes usurpés sont abandonnés par leur
 Donc, je ne pense pas qu'il y ait de quoi s'inquiéter de la fréquence des usurpations et la proportion de comptes usurpés de notre base.
 
 Sécuriser une inscription peu sélective
-=======================================
+-----------------------------------------
 
 La faille de Polytechnique.org est la faible sélectivité de son système d'inscription. Le problème est que nous avons une base des alumnis et qu'il faut faire correspondre chaque entrée à la bonne personne physique. Il est quasiment trivial pour n'importe qui de trouver les informations nécessaire pour remplir le formulaire d'inscription... comment s'assurer que finalement il s'agit bien de la bonne personne ?
 
 Nous avons donc plusieurs niveaux de filtrages :
 
-1  Le premier consiste à vérifier autant que possible la crédibilité des informations données dans le formulaire d'inscription
-1  Le deuxième consiste à réaliser un filtrage "humain"... il suffit de vérifier pour chaque inscription les informations de chaque inscription
-1  Traitement comportemental. C'est le filtrage qu'il nous faut améliorer actuellement
-1  La vérification de cohérence de la base de donnée (à partir d'idées données de temps en temps, on défini un critère d'usurpation _probable_, et on check)
+1   Le premier consiste à vérifier autant que possible la crédibilité des informations données dans le formulaire d'inscription
+1   Le deuxième consiste à réaliser un filtrage "humain"... il suffit de vérifier pour chaque inscription les informations de chaque inscription
+1   Traitement comportemental. C'est le filtrage qu'il nous faut améliorer actuellement
+1   La vérification de cohérence de la base de donnée (à partir d'idées données de temps en temps, on défini un critère d'usurpation _probable_, et on check)
 
 Là où nous avons fait beaucoup de progrès, c'est sur le points 1 et 2 : nous sommes désormais en mesure de contrer la plupart des usurpations dès l'inscription alors qu'il y a quelques mois, nous n'avions que le point 4... c'est à dire des vérifications éparses.
 
 Nos points faibles... et nos évolutions
-=======================================
+----------------------------------------
 
 Tout d'abord, si je me permets d'écire ce billet, c'est que je pense que nous sommes suffisamment sécurisés pour contrer les petits plaisantins qui en lisant ce texte voudraient tenter une usurpation... ce n'est pas de la provocation, mais un bilan.
 

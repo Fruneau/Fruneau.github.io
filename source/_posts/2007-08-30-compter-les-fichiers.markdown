@@ -22,7 +22,7 @@ Et ainsi, le fichier `/quelque/part` contient la liste complète des appels à `
 
 
 {% highlight perl %}
-1  !/usr/bin/perl 
+#!/usr/bin/perl 
  
 my %files; 
 my %modes; 
@@ -44,8 +44,8 @@ for $line (<STDIN>) {
       $maxOpened = $currentOpened; 
     } 
   } 
-  if ($line =~ /close\\\\((\\\\d+)\\\\)/ && $files{$1} ne _) { 
-    $files{$1} = _; 
+  if ($line =~ /close\\\\((\\\\d+)\\\\)/ && $files{$1} ne '') { 
+    $files{$1} = ''; 
     $currentOpened--; 
   } 
   $lineNb++; 
@@ -60,7 +60,7 @@ for $id (keys %files) {
   local $mode = $modes{$id}; 
   local $line = $lines{$id}; 
  
-  if ($file ne _) { 
+  if ($file ne '') { 
     print "[line $line] id=$id, open $file with mode $mode
 "; 
   } 
@@ -90,7 +90,7 @@ Si maintenant, je fais un programme minimaliste qui oublie de fermer un fichier 
 
 
 {% highlight c %}
-1  include <stdio.h> 
+#include <stdio.h> 
  
 int main() { 
   FILE* file = fopen("test", "r"); 

@@ -18,9 +18,9 @@ C'est intéressant... jusqu'à maintenant Virtue suppose que le gid du groupe pr
 
 
 {% highlight c %}
-1  define NI_DOMAIN	"."
-1  define NI_PATH		"/name=groups/name=procmod"
-1  define NI_KEY		"gid"
+#define NI_DOMAIN	"."
+#define NI_PATH		"/name=groups/name=procmod"
+#define NI_KEY		"gid"
 
 // Sucked from netinfo-369.5/tools/niutil/niutil.c
 ni_status ni_read_single_prop(char **property)
@@ -86,7 +86,7 @@ Voici donc une solution qui fait la même chose que la fonction ci-dessus, en mi
 
 
 {% highlight c %}
-1  include <grp.h>
+#include <grp.h>
 
 static int getProcmodGid()
 {

@@ -14,11 +14,11 @@ Accueil réussi
 
 Les problèmes commencent dès l'arrivée sous Vista. Déjà un premier coup d'oeil : c'est loin d'être laid à regarder... même si les ombres sont moins agréables que celles de MacOS X et que les effets de flouté sous les fenêtres me fatiguent un peu. Quand on arrive sous Vista, on tombe sur la fenêtre _Accueil de Windows_ ci-dessous :
 
-[((/public/screenshots/Vista/.Vista-accueil1_m.jpg](Fenêtre d'accueil de Windows Vista|C))|/public/screenshots/Vista/Vista-accueil1.PNG)
+![Fenêtre d'accueil de Windows Vista]({{ site.url }}/assets/screenshots/Vista/Vista-accueil1.PNG)
 
 Cet écran est sympathique : un navigateur pratique pour circuler entre les fonctionnalités de Windows... le problème provient lorsque justement je clique sur une de ces fonctionnalités, par exemple "Transfert de fichiers"... rien ne se passe. Enfin, je m'attendais à voir surgir un assistant, mais rien n'apparaît. Après quelques secondes, je me rends compte qu'en fait l'en-tête de la fenêtre à changé :
 
-[((/public/screenshots/Vista/.Vista-accueil2_m.jpg](Fenêtre accueil après sélection|C))|/public/screenshots/Vista/Vista-accueil2.PNG)
+![Fenêtre accueil après sélection]({{ site.url }}/assets/screenshots/Vista/Vista-accueil2.PNG)
 
 Il faut cliquer sur le texte en bas de l'en-tête pour enfin avoir le logiciel de Transfert de fichier... qui se lance dans un environnement bizarre en plein écran avec une petite fenêtre au milieu.
 
@@ -28,7 +28,7 @@ Personnalisation
 
 Le premier réflexe après avoir installé un nouveau système, c'est de le personnaliser. Ceci passe donc par le changement du fond d'écran, de l'écran de veille, etc... Sous Vista, ceci se fait via une page du panneau de configuration :
 
-[((/public/screenshots/Vista/.Vista-apparence_m.jpg](Réglages de l'apparence de Windows|C))|/public/screenshots/Vista/Vista-apparence.PNG)
+![Réglages de l'apparence de Windows]({{ site.url }}/assets/screenshots/Vista/Vista-apparence.PNG)
 
 C'est très bien, ça marche... sauf que lorsqu'on arrive à la catégorie _Thèmes_, changer le thème change __tous__ les réglages qu'on avait faits précédemment pour les remplacer par ceux du thème sélectionné... L'art et la manière de perdre 10 minutes à faire 2 fois la même configuration, et à refaire tout ce que j'avais déjà fait alors que si _Thèmes_ se trouvait en première place de cette liste, j'aurais d'abord choisi un thème avant de le personnaliser.
 
@@ -41,7 +41,7 @@ Un autre problème se manifeste sous Windows Vista : les ventilateurs de mon Mac
 *   la première lorsque je capture par sélection (une fois la sélection terminée, il est monté aussi à 30% CPU pendant quelques secondes)
 *   la deuxième lorsque je capture par fenêtre (dans ce cas, il prend du processeur pour faire de joli effets graphiques pour mettre en valeur la fenêtre sélectionnée)
 
-((/public/screenshots/Vista/Vista-performances.PNG|Occupation du processeur à vide)) ((/public/screenshots/Vista/Vista-performances2.PNG|Occupation du processeur changement de fenêtre))
+![Occupation du processeur à vide)) ((/public/screenshots/Vista/Vista-performances2.PNG]({{ site.url }}/assets/screenshots/Vista/Vista-performances.PNG)
 
 C'est donc mon processeur qui gère les effets graphiques ??? Pourtant j'ai une bonne carte graphique (ATI X1600) et d'après les benchmarks effectués par Vista, j'ai même une bonne machine, bien adaptée à Vista... je n'ose pas imaginer ce que ça donnerait sur une machine un peu moins puissante.
 

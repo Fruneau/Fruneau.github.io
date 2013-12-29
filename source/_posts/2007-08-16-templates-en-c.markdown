@@ -51,7 +51,7 @@ Le préprocesseur en C possède des outils sympathique... Nous nous attarderons 
 
 
 {% highlight c %}
-1  define Truc(Machin) Truc ## Machin
+#define Truc(Machin) Truc ## Machin
 
 Truc(Bidule) /* génère TrucBidule */
 {% endhighlight %}
@@ -60,7 +60,7 @@ C'est donc très pratique. On peut facilement par exemple, imaginer une petite m
 
 
 {% highlight c %}
-1  define maFonction(Type) maFonction_ ## Type
+#define maFonction(Type) maFonction_ ## Type
 {% endhighlight %}
 
 Si dans ce cas, on défini par exemple maFonction_int, maFonction_double, maFonction_MaStruct (oui, les classes n'existent pas en C), on pourra faire
@@ -76,7 +76,7 @@ Maintenant, il ne reste plus qu'à générer les fonctions... sans avoir à tout
 
 
 {% highlight c %}
-1  define maFonctionBuild(Type) \\\\
+#define maFonctionBuild(Type) \\\\
   Type maFonction_ ## Type(const char* buffer) { \\\\
     Type val; \\\\
     memcpy(&val, buffer, sizeof(Type)); \\\\

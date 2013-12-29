@@ -17,6 +17,7 @@ La réponse n'est pas très dure à trouver... il suffit de se munir de différe
 *   d'un outil comme le programme `leaks` qui détecte les zone de mémoire perdues (les memory-leaks)
 
 Et là, c'est assez surprenant. Commençons par trier les programmes par mémoire occupée dans le moniteur :
+
 1   Le noyau arrive en premier... bon, je ne sais pas ce qui est compté comme mémoire utilisée par le noyau, on va dire que c'est normal
 1   Le serveur graphique en deuxième...
 1   Colloquy (client IRC) avec 47Mo de mémoire _réelle_ (284Mo de mémoire virtuelle)

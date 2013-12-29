@@ -1,16 +1,15 @@
 ---
 layout: post
 title: "Polytechnique.org en retard ?"
-date: 2007-03-01 16:28:37 +0100
+date: 2007-03-01 16:28:00
 comments: true
 categories: Polytechnique.org
-tags: [Devel, Ergonomie, platal]
 ---
 [Polytechnique.org](https://www.polytechnique.org) est, comme l'indique le nom du logiciel OpenSource sur lequel le site repose ([plat/al](http://opensource.polytechnique.org/platal/)), une plateforme pour les anciens élèves de l'[École](http://www.polytechnique.fr)... c'est à dire que Polytechnique.org devrait :
 
-* apporter de la vie dans la communauté
-* faciliter les mises en relation entre les membres
-* offrir des services à la communauté
+*   apporter de la vie dans la communauté
+*   faciliter les mises en relation entre les membres
+*   offrir des services à la communauté
 
 Polytechnique.org offre ces trois services... mais pourtant moins d'un utilisateur sur 5 se connecte régulièrement au site (une fois par semaine - et le plus souvent c'est pour accéder à des sites qui utilisent l'authentification de Polytechnique.org), environ un sur 3 se connecte une fois par mois, et un sur 3 ne se connecte tout bonnement jamais. Face à cela, on dénombre un grand nombre d'utilisateurs qui sont intéressés par un groupe Polytechnique sur des outils comme Linked-In... pourquoi ? parce que le rôle de Polytechnique.org n'est rempli qu'à moitié et ce pour plusieurs raisons :
 
@@ -30,28 +29,27 @@ Le menu de Polytechnique.org témoigne de la richesse du site : il est long. Com
 
 Peut-être devrions-nous revoir tout bonnement l'organisation du menu, par exemple avec des catégories plus parlantes, par exemple un premier jet pourrait donner (mais ça mérite d'être travaillé) :
 
-* Mes emails
-  * Mes redirections
-  * Mes abonnements
-  * Antispam
-* Annuaire
-  * Rechercher
-  * Mon profil
-* Communauté
-  * Annonces
-  * Lettre mensuelle
-  * Discussions
-* Emploi
+*   Mes emails
+    *   Mes redirections
+    *   Mes abonnements
+    *   Antispam
+*   Annuaire
+    *   Rechercher
+    *   Mon profil
+*   Communauté
+    *   Annonces
+    *   Lettre mensuelle
+    *   Discussions
+*   Emploi
 
 Deux sites séparés
-------------------
+--------------------
 
 Polytechnique.org c'est aussi Polytechnique.net : le site des groupes. Le fait d'avoir 2 sites totalement séparés pose un grand nombre de problème, depuis le partage de l'authentification, jusqu'à la cohérence des données.
 
 Il faut clairement envisager de fusionner les deux sites dans un avenir plus ou moins proche si on veut que les utilisateurs s'y retrouvent. De la même manière qu'on peut réorganiser le menu, on peut réorganiser l'accès général au site... Par exemple, on pourrait envisager de créer un menu tabulé : dans chaque tab, on retrouve un menu spécifique. Par exemple, on pourrait, au lieu d'avoir un menu à deux niveaux, des tabs (Mes emails, Annuaire, Annonces...) et dans chaque tabs un menu spécifique donnant accès aux fonctionnalités correspondantes.
 
-__Avantages :__ On aurait ainsi un proprement rangé... le site étant modulaire, chaque module pourrait lui même générer ses entrées dans les menus/tabs, l'intégration des Polytechnique.net à Polytechnique.org ne serait que l'ajout d'un tab "Mes groupes X"
-
+__Avantages :__ On aurait ainsi un proprement rangé... le site étant modulaire, chaque module pourrait lui même générer ses entrées dans les menus/tabs, l'intégration des Polytechnique.net à Polytechnique.org ne serait que l'ajout d'un tab "Mes groupes X"  
 __Défauts :__ On a pas d'accès facile à l'ensemble des fonctionnalités... c'est le seul défaut (pas des moindres) que je vois.
 
 C'est une solution qui mérite qu'on s'y intéresse... le choix de la meilleur ergonomie possible nécessitera de toute façon des tests.
