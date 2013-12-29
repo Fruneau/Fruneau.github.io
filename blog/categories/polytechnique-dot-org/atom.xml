@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Polytechnique.org | Mind...]]></title>
   <link href="http://Fruneau.github.io/blog/categories/polytechnique-dot-org/atom.xml" rel="self"/>
   <link href="http://Fruneau.github.io/"/>
-  <updated>2013-12-29T15:30:51+01:00</updated>
+  <updated>2013-12-29T15:35:41+01:00</updated>
   <id>http://Fruneau.github.io/</id>
   <author>
     <name><![CDATA[Florent Bruneau]]></name>
@@ -22,11 +22,15 @@
 que IE6 fasse un rendu correct de son site web perso&hellip; c'est à dire que le site (XHTML avec une CSS non triviale)
 ressemble à quelque chose sur IE6.</p>
 
-<p>Il m'explique alors que IE6 a 2 modes de fonctionnement pour le rendu :
-* Le premier, qu'il appelle &ldquo;mode normal&rdquo; fait un rendu correct (pas parfait, mais correct)
-* Le second, (dont je ne me souviens plus le nom à dormir debout), a quant à lui un rendu &ldquo;tout pourri&rdquo;&hellip; par
-  exemple, le margin: auto; de CSS ne fonctionne pas, le margin est à l'intérieur des boîtes et une partie de la CSS
-  n'est tout bonnement pas pris en compte.</p>
+<p>Il m'explique alors que IE6 a 2 modes de fonctionnement pour le rendu :</p>
+
+<ul>
+<li>Le premier, qu'il appelle &ldquo;mode normal&rdquo; fait un rendu correct (pas parfait, mais correct)</li>
+<li>Le second, (dont je ne me souviens plus le nom à dormir debout), a quant à lui un rendu &ldquo;tout pourri&rdquo;&hellip; par
+exemple, le margin: auto; de CSS ne fonctionne pas, le margin est à l'intérieur des boîtes et une partie de la CSS
+n'est tout bonnement pas pris en compte.</li>
+</ul>
+
 
 <!-- more -->
 
