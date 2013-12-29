@@ -1,0 +1,408 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: GeekTime | Mind...]]></title>
+  <link href="http://Fruneau.github.io/blog/categories/geektime/atom.xml" rel="self"/>
+  <link href="http://Fruneau.github.io/"/>
+  <updated>2013-12-29T18:34:12+01:00</updated>
+  <id>http://Fruneau.github.io/</id>
+  <author>
+    <name><![CDATA[Florent Bruneau]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Yet Another Policy Daemon for Postfix]]></title>
+    <link href="http://Fruneau.github.io/blog/2009/04/07/yet-another-policy-daemon-for-postfix2/"/>
+    <updated>2009-04-07T00:04:00+02:00</updated>
+    <id>http://Fruneau.github.io/blog/2009/04/07/yet-another-policy-daemon-for-postfix2</id>
+    <content type="html"><![CDATA[<p><a href="http://blog.madism.org/index.php/2007/08/29/136-postfix-and-srs">MadCoder announced it months ago</a>, he has been working on the pfixtools. The second tool of the <a href="http://www.postfix.com">postfix</a>-related toolsuite is named <strong>postlicyd</strong>.</p>
+
+<p>postlicyd is a versatile <a href="http://www.postfix.org/SMTPD_POLICY_README.html">policy daemon</a> written in C. It does greylisting (far faster than postgrey), it performs R(H)BL access (both locally directly from rbldns zone files and remotely by using DNS), &hellip; So, it can be used as a replacement for <a href="http://packages.qa.debian.org/w/whitelister.html">whitelister</a> and <a href="http://postgrey.schweikert.ch/">postgrey</a> with a significant improvement of the performances.</p>
+
+<p>On the same server (with the same email trafic), postlicyd is more than 20 times faster than postgrey:</p>
+
+<ul>
+<li>Process load: postgrey ~20% CPU, postlicyd less than 1% CPU</li>
+<li>Data base cleanup for 1M entries: postgrey 20 minutes, postlicyd 40 seconds</li>
+</ul>
+
+
+<p>Moreover, it is aware of the &lsquo;session&rsquo; feature of the POLICY protocol. Thus, you can write complex configurations and define policies that do not depend on a single SMTP command (like RCPT) but on the whole SMTP transaction&hellip;</p>
+
+<p>More informations: [<a href="http://pfixtools.mymind.fr">http://pfixtools.mymind.fr</a>]</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Compter Les Fichiers]]></title>
+    <link href="http://Fruneau.github.io/blog/2007/08/31/compter-les-fichiers/"/>
+    <updated>2007-08-31T01:12:00+02:00</updated>
+    <id>http://Fruneau.github.io/blog/2007/08/31/compter-les-fichiers</id>
+    <content type="html"><![CDATA[<p>C'est un peu la suite de mon post &ldquo;Outils pratiques&rdquo; où je donnais deux scripts permettant de rendre les commandes SVN plus conviviales. Encore une fois, je réinvente sans doute la roue (des outils équivalents doivent déjà exister&hellip; sans doute en mieux), mais je pense que chercher ce genre d'outils sur internet m'aurait pris plus de temps que ce qu'il m'a fallu pour le développer.</p>
+
+<p>En ce moment je manipule des fichiers, beaucoup de fichiers (et même, beaucoup de gros fichiers), que j'ouvre, rouvre, et ferme et puis referme. Et à force d'ouvrir, on oublie parfois de refermer, et là, c'est comme une fuite de mémoire, sauf que le nombre limite de fichiers ouverts est beaucoup plus rapidement atteinte que la limite de mémoire&hellip; dans la configuration de base sur un linux, un programme n'a le droit qu'à 1024 descripteurs de fichiers. D'où mon problème : comment traquer les &ldquo;file-handle leaks&rdquo; ?</p>
+
+<!-- more -->
+
+
+<p>Pour le faire, je me suis fait rapidement un petit script qui permet d'analyser les données issues d'un <code>strace</code>. <code>strace</code> est, pour ceux qui ne le savent pas, un programme très pratique qui permet de lister les appels systèmes. Dans mon cas présents, surveiller les ouvertures fermetures de fichiers revient à traquer les commandes <code>open</code> (ouverture d'un fichier), et les commandes <code>close</code>. Donc, je récupère simplement la liste des appels à <code>open</code> et <code>close</code> :</p>
+
+<p><div>
+  <pre><code class='bash'>strace -f -e trace=open,close mon programme 2&gt; /quelque/part</code></pre>
+</div>
+</p>
+
+<p>Et ainsi, le fichier <code>/quelque/part</code> contient la liste complète des appels à <code>open</code> et <code>close</code> effectués par mon programme (et ses processus fils). Il ne reste plus alors qu'à analyser le contenu de <code>/quelque/part</code>. Pour ceci, il suffit de peu de lignes de code (en perl pour ma part, mais d'autres auraient fait la même chose en shell, python&hellip; ou n'importe quel langage de scripting) :</p>
+
+<p><div>
+  <pre><code class='perl'>1  !/usr/bin/perl&lt;/p&gt;
+
+&lt;p&gt;my %files;
+my %modes;
+my %lines;&lt;/p&gt;
+
+&lt;p&gt;my $lineNb = 0;
+my $maxOpened = 0;
+my $currentOpened = 0;
+my $totalOpened = 0;&lt;/p&gt;
+
+&lt;p&gt;for $line (&lt;STDIN&gt;) {
+  if ($line =~ /open\\(&amp;ldquo;([^&amp;rdquo;&amp;ldquo;]+)&amp;rdquo;, ([^\\)]+)\\)\\s&lt;em&gt;=\\s&lt;/em&gt;(\\d+)/) {&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$files{$3} = $1; 
+$modes{$3} = $2; 
+$lines{$3} = $lineNb; 
+$totalOpened++; 
+$currentOpened++; 
+if ($currentOpened &amp;gt; $maxOpened) { 
+  $maxOpened = $currentOpened; 
+} 
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;  }
+  if ($line =~ /close\\((\\d+)\\)/ &amp;amp;&amp;amp; $files{$1} ne _) {&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$files{$1} = _; 
+$currentOpened--; 
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;  }
+  $lineNb++;
+}&lt;/p&gt;
+
+&lt;p&gt;print &amp;ldquo;$totalOpened files opened, max. $maxOpened at the same time
+&amp;rdquo;;
+print &amp;ldquo;$currentOpened files not closed
+&amp;rdquo;;
+for $id (keys %files) {
+  local $file = $files{$id};
+  local $mode = $modes{$id};
+  local $line = $lines{$id};&lt;/p&gt;
+
+&lt;p&gt;  if ($file ne _) {&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;print &quot;[line $line] id=$id, open $file with mode $mode
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&amp;ldquo;;
+  }
+}</code></pre>
+</div>
+</p>
+
+<p>Pour simplifier le tout, on rajoute une fonction dans le <code>zshrc</code> pour wrapper tout ça, et ça donne (attention, ceci ne fonctionne que sous linux, <code>mktemp</code> n'a pas la même syntaxe sur MacOS, et surtout, <code>strace</code> n'est pas disponible sur Mac</p>
+
+<p><div>
+  <pre><code class='bash'>function checkFiles() {
+  TEMPFILE=&lt;code&gt;mktemp&lt;/code&gt;
+  strace -f -e trace=open,close $* 2&gt; $TEMPFILE
+  cat $TEMPFILE | ~/.zsh/trackFiles.pl
+  rm $TEMPFILE
+}</code></pre>
+</div>
+</p>
+
+<p>Avec, ça, il ne me répond :</p>
+
+<pre><code>% checkFiles cp test test2
+12 files opened, max. 2 at the same time
+0 files not closed
+</code></pre>
+
+<p>Si maintenant, je fais un programme minimaliste qui oublie de fermer un fichier :</p>
+
+<p><div>
+  <pre><code class='c'>1  include &amp;lt;stdio.h&gt;&lt;/p&gt;
+
+&lt;p&gt;int main() {
+  FILE* file = fopen(&amp;ldquo;test&amp;rdquo;, &amp;ldquo;r&amp;rdquo;);
+  return file != NULL ? 0 : 1;
+}</code></pre>
+</div>
+</p>
+
+<pre><code>% gcc test.c -o tester
+% checkFiles ./tester
+3 files opened, max. 1 at the same time
+1 files not closed
+[line 4] id=3, open test with mode O_RDONLY
+</code></pre>
+
+<p>Voilà, maintenant je sais que mon programme oublie de fermer un fichier, que ce fichier s'appelle &ldquo;test&rdquo;, et qu'il est ouvert en read-only. La ligne &ldquo;4&rdquo; est la ligne dans la sortie de <code>strace</code>, et n'a aucun rapport avec la ligne 4 du fichier source (contrairement aux apparences).</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Templates en C]]></title>
+    <link href="http://Fruneau.github.io/blog/2007/08/17/templates-en-c/"/>
+    <updated>2007-08-17T00:53:00+02:00</updated>
+    <id>http://Fruneau.github.io/blog/2007/08/17/templates-en-c</id>
+    <content type="html"><![CDATA[<p>En C++, il existe un mécanisme extrêmement pratique pour généré du code générique : les templates. Une fonction templatée est une fonction dont le code comporte un trou qui sera remplacé à la compilation par le nom d'un type, ou une valeur&hellip; Par exemple :</p>
+
+<pre><code>template &lt;class T&gt; 
+T read(const char *buffer) 
+{
+    T val;
+    memcpy(&amp;val, buffer, sizeof(T));
+    return val;
+} 
+</code></pre>
+
+<p>Cette fonction lit un objet de type T sur un buffer. L'intérêt de cette fonction est très compréhensible : quel que soit le type qu'on fournit à la fonction, elle va fonctionner, en adaptant la taille à lire au type. C'est donc beaucoup plus rapide que d'écrire une fonction pour chaque type&hellip; et l'utilisation est également très simple :</p>
+
+<pre><code>read&lt;int&gt;(const char* buffer) // lit un entier sur le buffer
+read&lt;double&gt;(const char* buffer) // lit un double sur le buffer
+read&lt;MaClass&gt;(const char* buffer) // lit un objet de type "MaClass"
+</code></pre>
+
+<p>Mais cette syntaxe n'est qu'un sucre syntaxique, car en fait, on peut également faire des templates en C&hellip;</p>
+
+<!-- more -->
+
+
+<h2> Comment fonctionne les templates ?</h2>
+
+<p>En fait un template est, comme son nom l'indique, qu'un modèle de fonction. Lors de la compilation d'un programme qui utilise des templates, le compilateur regarde la liste des instances de cette fonction qui sont utilisées et les génère. Plus explicitement, si j'appelle read<double>(), le compilateur va générer cette fonction :</p>
+
+<p><div>
+  <pre><code class='cpp'>double read&lt;double&gt;(const char *buffer)
+{&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;double val;
+memcpy(&amp;amp;val, buffer, sizeof(double));
+return val;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;}</code></pre>
+</div>
+</p>
+
+<p>Ainsi, l'appel à read<double> devient un appel de fonction classique.</p>
+
+<h2> Jeu de préprocesseur</h2>
+
+<p>Le préprocesseur en C possède des outils sympathique&hellip; Nous nous attarderons particulièrement sur le ##. Il s'agit tout simplement d'un opérateur de concaténation. Donc :</p>
+
+<p><div>
+  <pre><code class='c'>1  define Truc(Machin) Truc ## Machin&lt;/p&gt;
+
+&lt;p&gt;Truc(Bidule) /&lt;em&gt; génère TrucBidule &lt;/em&gt;/</code></pre>
+</div>
+</p>
+
+<p>C'est donc très pratique. On peut facilement par exemple, imaginer une petite macro du genre :</p>
+
+<p><div>
+  <pre><code class='c'>1  define maFonction(Type) maFonction_ ## Type</code></pre>
+</div>
+</p>
+
+<p>Si dans ce cas, on défini par exemple maFonction_int, maFonction_double, maFonction_MaStruct (oui, les classes n'existent pas en C), on pourra faire</p>
+
+<p><div>
+  <pre><code class='c'>maFonction(int)(args); /&lt;em&gt; appelle maFonction_int &lt;/em&gt;/
+maFonction(double)(args); /&lt;em&gt; appelle maFonction_double &lt;/em&gt;/
+maFonction(MaStruct)(args); /&lt;em&gt; appelle maFonction_MaStruct &lt;/em&gt;/</code></pre>
+</div>
+</p>
+
+<p>Maintenant, il ne reste plus qu'à générer les fonctions&hellip; sans avoir à toutes les écrire une à une. Pour ceci, nous allons encore une fois profiter de la présence du préprocesseur.</p>
+
+<p><div>
+  <pre><code class='c'>1  define maFonctionBuild(Type) \\
+  Type maFonction_ ## Type(const char* buffer) { \\&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;Type val; \\\\
+memcpy(&amp;amp;val, buffer, sizeof(Type)); \\\\
+return val; \\\\
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;  }&lt;/p&gt;
+
+&lt;p&gt;maFonctionBuild(int) /&lt;em&gt; génère maFonction_int &lt;/em&gt;/
+maFonctionBuild(double) /&lt;em&gt; génère maFonction_double &lt;/em&gt;/
+maFonctionBuild(MaStruct) /&lt;em&gt; génère maFonction_MaStruct &lt;/em&gt;/</code></pre>
+</div>
+</p>
+
+<p>Il ne reste donc qu'à appeler maFonctionBuild(Type) sur chacun des types pour lesquels nous avons besoin d'instancier la fonction, et d'appeler maFonction(Type) chaque fois qu'on veut appeler maFonction pour le type en question. D'une certaine manière on peut dès lors dire que les fonctions sont :</p>
+
+<p><div>
+  <pre><code class='c'>Type maFonction(Type)(const char* buffer);</code></pre>
+</div>
+</p>
+
+<h2> Et voilà !</h2>
+
+<p>Nous avons donc une implémentation générique grâce au préprocesseur associé à un appel typé. Ce n'est évidemment qu'une astuce de préprocesseur, mais cela donne une souplesse syntaxique agréalble : &ldquo;J'appelle maFonction appliquée sur les entiers avec les arguments args&rdquo;.</p>
+
+<p>Tout ceci est certes, moins souple que les templates C++ :</p>
+
+<ul>
+<li>il n'y a pas d'auto-instanciation par le compilateur : il faut &ldquo;manuellement&rdquo; instancier la fonction pour tous les types pour lesquels ont l'appelle</li>
+<li>il n'y a pas de &ldquo;type check&rdquo; : les seules limites sont celle de la compilation</li>
+<li>le correction des erreurs de compilation est fastidieuse car toutes les erreurs apparaissent comme étant à la ligne d'appel à maFonctionBuild</li>
+<li>il est rapidement fastidieux de rajouter l'antislash à la fin de chaque ligne de la définition de la fonction</li>
+</ul>
+
+
+<p>Comme on le voit dans les choix de l'exemple, pour les entrées/sorties, ça permet d'avoir une seule fonction à écrire tout en gardant la flexibilité d'une fonction par type de données.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Comprendre Du Code]]></title>
+    <link href="http://Fruneau.github.io/blog/2007/08/15/comprendre-du-code/"/>
+    <updated>2007-08-15T03:28:00+02:00</updated>
+    <id>http://Fruneau.github.io/blog/2007/08/15/comprendre-du-code</id>
+    <content type="html"><![CDATA[<p>J'ai tenté cet après-midi une petite expérience sur IRC. J'ai posté 3 lignes de code en demandant &ldquo;que font ces trois lignes&rdquo;. Après quelques minutes (sans doute trop peu), j'ai donné la solution car personne n'avait vraiment trouvé. En effet, même si on réussi facilement à lire le code et à reconstituer la suite d'opération qu'il génère, il est très difficile de vraiment comprendre ce qu'il fait, d'imaginer son application dans un contexte et d'en déduire son usage.</p>
+
+<p>Juste pour continuer à m'amuser, et pour amuser ceux qui se perdraient ici, voici le code en question.</p>
+
+<!-- more -->
+
+
+<p><div>
+  <pre><code class='c'>do {
+  ++(&lt;em&gt;pos);
+} while (&lt;/em&gt;(pos++) == 0);</code></pre>
+</div>
+</p>
+
+<p>Vous pouvez remarquer dès à présent que ce code n'est pas volontairement rendu illisible (il serait facile de supprimer des parenthèses et de changer le test de nullité en une négation. Le but est donc de comprendre la suite d'instruction, de dire ce qu'elle fait et ensuite de comprendre dans quel contexte elle est utilisable. La question est aussi de savoir en combien de temps vous allez trouver la solution.</p>
+
+<p><div>
+  <pre><code class='html'>&lt;/p&gt;
+
+&lt;script type=&quot;text/javascript&quot; src=&quot;http://Fruneau.github.io/jquery.js&quot;&gt;&lt;/script&gt;
+
+
+&lt;script type=&quot;text/javascript&quot;&gt;//&amp;lt;![CDATA[
+function show_answer() {
+  $(&quot;#show_answer&quot;).hide();
+  $(&quot;#answer&quot;).show(&quot;slow&quot;);
+  return false;
+}
+//]]&amp;gt;&lt;/script&gt;
+
+
+&lt;p&gt;
+&lt;a href=&quot;&quot; onclick=&quot;return show_answer()&quot; id=&quot;show_answer&quot;&gt;Cliquer ici pour afficher la répondre&lt;/a&gt;
+&lt;/p&gt;
+
+
+&lt;div id=&quot;answer&quot; style=&quot;display: none&quot;&gt;</code></pre>
+</div>
+
+ Fonctionnement
+---------------
+
+Si on lit le code, on voit qu'il fait la suite d'opération suivante :
+1   on incrémente la valeur pointée par pos
+1   on regarde si la valeur obtenue est nulle
+1   on incrémente le pointeur pos
+1   si le test 2 est vrai, on retourne en 1, sinon, on quitte la boucle
+
+Il s'agit donc d'une petite boucle qui incrémente des objets successifs jusqu'à ce qu'elle en trouve un qui, une fois incrémenté, n'est pas nul.
+
+Voilà donc la solution du pauvre au problème, celle qu'on peut trouver en lisant le code, sans chercher à le comprendre.
+
+ Interprétation
+----------------
+
+Mais en fait, ce code va plus loin. Imaginons maintenant la zone mémoire sur laquelle pos pointe initialement :
+
+     oct1 oct2 oct3 oct4
+      ^
+     pos
+
+L'octet 1 à une certaine valeur. Je l'incrémente et je m'aperçois que sa nouvelle valeur est 0. Quand un octet incrémenté peut-il retomber à 0 ? Quand il fait un overflow. On a donc fait déborder le premier octet... et quand cet octet déborde on incrémente le suivant :
+
+        _+1__
+       |     |
+     oct1 oct2 oct3 oct4
+           ^
+          pos
+
+Il s'agit donc ni plus ni moins que d'une retenue (comme quand on apprend à faire les additions ou les multiplications) : quand je fais déborder un octet, je déplace le surplus vers le suivant. Finalement, ces 3 lignes de code ne sont que l'implémentation d'une incrémentation, mais sur plusieurs octets... et même sur un nombre non défini d'octets (puisqu'il n'y a pas de limite explicitée sur le nombre d'étapes autorisées).
+
+Pour être plus précis, il s'agit d'un incrémenteur d'entier stocké en Little Endian sur un nombre illimité d'octets.
+
+ Encore ?
+---------
+
+Bon, pour ceux qui tiennent vraiment à s'assurer que ce n'est pas du code illisible, voici une version vraiment illisible de la même machine :
+
+<div>
+  <pre><code class='c'>for(++*pos;!*pos++;++*pos);</code></pre>
+</div>
+
+
+(Merci Falco)
+
+Tout ceci n'était bien sûr qu'un exemple. Il est toujours très dur de comprendre du code, alors pour éviter de passer dix minutes sur 3 lignes lors de la prochaine relecture il suffit de documenter ce qu'on écrit.
+
+<div>
+  <pre><code class='html'>&lt;/div&gt;
+
+
+&lt;p&gt;</code></pre>
+</div>
+</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Khtml2png 2.6.5 Est Sorti]]></title>
+    <link href="http://Fruneau.github.io/blog/2007/06/06/khtml2png-265-est-sorti/"/>
+    <updated>2007-06-06T00:31:00+02:00</updated>
+    <id>http://Fruneau.github.io/blog/2007/06/06/khtml2png-265-est-sorti</id>
+    <content type="html"><![CDATA[<p>Après 3 mois d'un travail pas très intensif, une nouvelle version de <a href="http://khtml2png.sf.net">khtml2png</a> est disponible. Cette version est partie du fait que les versions précédentes du programme ont parfois du mal à gérer les grandes captures d'écran (en fait, des bugs peuvent apparaître dès que la taille de la zone à capturer est plus grande que la taille affichable).</p>
+
+<p>Donc, rapidement après la sortie de la 2.6.0, j'avais envoyé un correctif (en fait une réécriture du moteur de rendu) au développeur de <code>khtml2png</code>. Malheureusement, ce correctif ne fonctionnait pas correctement chez lui. Donc, pendant 3 mois, j'ai fait du débuggage à distance : j'envoie une version modifiée (1 ou 2 lignes à chaque fois), j'attends 2 ou 3 semaine une réponse, etc&hellip; Du développement efficace !</p>
+
+<p>Bon, toujours est-il que maintenant, la version 2.6.5 fonctionne à la fois chez moi (à la fois Debian + xvnc et sur MacOS X), et chez Hauke (sur Debian également, mais avec des réglages différents).</p>
+
+<p>Le Changelog annonce :</p>
+
+<blockquote><p> fix: Now produces screenshots on my Debian Etch system under KDE 3.5.5 without glitches. %%%
+ fix: Maybe better working on other systems too. Please test.</p></blockquote>
+
+<p>J'aimerais y rajouter quelques points :</p>
+
+<ul>
+<li>meilleur moteur de rendu (qui ne scroll plus, mais déplace la fenêtre pour s'affranchir de certains bugs de KDE et/ou Qt)</li>
+<li>meilleure détection de la taille de la capture à réaliser</li>
+<li>possibilité de choisir le comportement de <code>khtml2png</code> face aux redirections, au javascript, au java, au flash&hellip; via la ligne de commande</li>
+<li>la détection automatique de la dimension par un <code>id</code> devient compatible avec le format utilisé dans les version &lt;= 2.5</li>
+</ul>
+
+
+<p>Comme d'habitude, vous pouvez télécharger <a href="/mind/public/khtml2png/khtml2png-fru-last.tar.bz2">ma dernière version du programme</a>.</p>
+]]></content>
+  </entry>
+  
+</feed>

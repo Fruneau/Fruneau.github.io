@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Polytechnique.org | Mind...]]></title>
   <link href="http://Fruneau.github.io/blog/categories/polytechnique-dot-org/atom.xml" rel="self"/>
   <link href="http://Fruneau.github.io/"/>
-  <updated>2013-12-29T16:10:43+01:00</updated>
+  <updated>2013-12-29T18:34:12+01:00</updated>
   <id>http://Fruneau.github.io/</id>
   <author>
     <name><![CDATA[Florent Bruneau]]></name>
@@ -14,213 +14,216 @@
 
   
   <entry>
-    <title type="html"><![CDATA[Polytechnique.org en Retard ?]]></title>
-    <link href="http://Fruneau.github.io/blog/2007/03/01/polytechnique-dot-org-en-retard/"/>
-    <updated>2007-03-01T16:28:37+01:00</updated>
-    <id>http://Fruneau.github.io/blog/2007/03/01/polytechnique-dot-org-en-retard</id>
-    <content type="html"><![CDATA[<p><a href="https://www.polytechnique.org">Polytechnique.org</a> est, comme l'indique le nom du logiciel OpenSource sur lequel le site repose (<a href="http://opensource.polytechnique.org/platal/">plat/al</a>), une plateforme pour les anciens élèves de l'<a href="http://www.polytechnique.fr">École</a>&hellip; c'est à dire que Polytechnique.org devrait :</p>
+    <title type="html"><![CDATA[Polytechnique.org Lance Son Blog]]></title>
+    <link href="http://Fruneau.github.io/blog/2008/06/04/polytechniqueorg-lance-son-blog/"/>
+    <updated>2008-06-04T01:33:00+02:00</updated>
+    <id>http://Fruneau.github.io/blog/2008/06/04/polytechniqueorg-lance-son-blog</id>
+    <content type="html"><![CDATA[<p>Voilà&hellip; cela fait assez longtemps que nous recevons des demandes d'utilisateurs pour la mise en place de blog via Polytechnique.org. Afin de préparer la mise en place de ce service, Polytechnique.org lance son blog. Cela permettra à la fois :</p>
 
 <ul>
-<li>apporter de la vie dans la communauté</li>
-<li>faciliter les mises en relation entre les membres</li>
-<li>offrir des services à la communauté</li>
+<li>de tester l'outil d'intégration de l'authentification de Polytechnique.org dans Dotclear.</li>
+<li>d'offrir une nouvelle plateforme souple et conviviale pour informer nos utilisateurs.</li>
 </ul>
 
 
-<p>Polytechnique.org offre ces trois services&hellip; mais pourtant moins d'un utilisateur sur 5 se connecte régulièrement au site (une fois par semaine &ndash; et le plus souvent c'est pour accéder à des sites qui utilisent l'authentification de Polytechnique.org), environ un sur 3 se connecte une fois par mois, et un sur 3 ne se connecte tout bonnement jamais. Face à cela, on dénombre un grand nombre d'utilisateurs qui sont intéressés par un groupe Polytechnique sur des outils comme Linked-In&hellip; pourquoi ? parce que le rôle de Polytechnique.org n'est rempli qu'à moitié et ce pour plusieurs raisons :</p>
-
-<!-- more -->
-
-
-<h1>Ergonomie</h1>
-
-<p>La catastrophe sur Polytechnique.org c'est l'ergonomie&hellip; ce n'est certes pas la fin du monde (on peut encore s'y retrouver), mais le site ne donne pas envie de s'y arrêter. Je vais essayer de détailler les divers problèmes :</p>
-
-<h2>Le menu</h2>
-
-<p><img src="/assets/screenshots/menu.jpg" alt="Menu du site" /></p>
-
-<p>Le menu de Polytechnique.org témoigne de la richesse du site : il est long. Comme tout menu, il a fallu choisir l'ordre des entrées. Le choix de cet ordonnancement laisse clairement à désirer. Par exemple : où chercher un lien vers l'annuaire ? Dans <em>Services</em> ou <em>Communauté X</em> ? Etant un utilisateur du site depuis longtemps, je mets toujours autant de temps avant de trouver ce que je cherche dans le menu.</p>
-
-<p>Peut-être devrions-nous revoir tout bonnement l'organisation du menu, par exemple avec des catégories plus parlantes, par exemple un premier jet pourrait donner (mais ça mérite d'être travaillé) :</p>
-
-<ul>
-<li>Mes emails
-
-<ul>
-<li>Mes redirections</li>
-<li>Mes abonnements</li>
-<li>Antispam</li>
-</ul>
-</li>
-<li>Annuaire
-
-<ul>
-<li>Rechercher</li>
-<li>Mon profil</li>
-</ul>
-</li>
-<li>Communauté
-
-<ul>
-<li>Annonces</li>
-<li>Lettre mensuelle</li>
-<li>Discussions</li>
-</ul>
-</li>
-<li>Emploi</li>
-</ul>
-
-
-<h2>Deux sites séparés</h2>
-
-<p>Polytechnique.org c'est aussi Polytechnique.net : le site des groupes. Le fait d'avoir 2 sites totalement séparés pose un grand nombre de problème, depuis le partage de l'authentification, jusqu'à la cohérence des données.</p>
-
-<p>Il faut clairement envisager de fusionner les deux sites dans un avenir plus ou moins proche si on veut que les utilisateurs s'y retrouvent. De la même manière qu'on peut réorganiser le menu, on peut réorganiser l'accès général au site&hellip; Par exemple, on pourrait envisager de créer un menu tabulé : dans chaque tab, on retrouve un menu spécifique. Par exemple, on pourrait, au lieu d'avoir un menu à deux niveaux, des tabs (Mes emails, Annuaire, Annonces&hellip;) et dans chaque tabs un menu spécifique donnant accès aux fonctionnalités correspondantes.</p>
-
-<p><strong>Avantages :</strong> On aurait ainsi un proprement rangé&hellip; le site étant modulaire, chaque module pourrait lui même générer ses entrées dans les menus/tabs, l'intégration des Polytechnique.net à Polytechnique.org ne serait que l'ajout d'un tab &ldquo;Mes groupes X&rdquo;</p>
-
-<p><strong>Défauts :</strong> On a pas d'accès facile à l'ensemble des fonctionnalités&hellip; c'est le seul défaut (pas des moindres) que je vois.</p>
-
-<p>C'est une solution qui mérite qu'on s'y intéresse&hellip; le choix de la meilleur ergonomie possible nécessitera de toute façon des tests.</p>
-
-<h2>Dinosaure</h2>
-
-<p><strong>Toutes</strong> les skins de Polytechnique.org sont carrées&hellip; En particulier la skin par défaut a très mal vieilli. Les polices y sont énormes, toutes les informations sont dans des boîtes carrées. Le site à sérieusement besoin d'une petite cure de jouvence pour retrouver un design aguichant.</p>
-
-<h1><a href="http://en.wikipedia.org/wiki/Web_2.0">Web 2.0</a></h1>
-
-<p>Dire que son site est Web 2.0 est à la mode&hellip; Polytechnique.org ne l'est pas vraiment, et ceci pour diverses raisons.</p>
-
-<h2>La pointe de la technologie</h2>
-
-<p>Tout d'abord le site est trop statique. Quand la page d'accueil est chargée, elle est chargée&hellip; à la rigueur on peut fermer quelques boites mais c'est tout. Le site est statique&hellip; Le Web actuel s'ouvre vers des pages vivantes avec lesquels l'utilisateur peut interagir&hellip; Le plus souvent cela repose sur des technologies du type Ajax. Polytechnique.org utilise un peu Ajax, mais on va dire que c'est <em>artisanal</em>&hellip; il y a un gros boulot à faire de ce côté si on veut que le site devienne un outil convivial pour l'utilisateur.</p>
-
-<p>Une autre technologie qui fait le succès du web est l'édition dynamique de contenu. Polytechnique.org utilise du wiki pour l'édition de sa documentation&hellip; mais, en grande majorité, ceci se limite à la simplification du travail d'administration du site. Par contre pour tous les contenus dynamiques, nous n'offrons que du texte brut à nos utilisateurs. Là où se trouve le vrai problème, c'est sur l'outil d'hébergement que nous offrons aux groupes : <a href="http://opensource.polytechnique.org/diogenes">Diogenes</a>.</p>
-
-<p>Diogenes a mal vieilli parce que sont apparus face à lui des outils plus simples à utiliser. Aujourd'hui Diogenes mérite un gros décrassage si on veut pouvoir continuer à l'utiliser.</p>
-
-<h2>Vie sociale</h2>
-
-<p>Là où Polytechnique.org est le plus en retard, c'est sur les outils qui permettent de donner vie à la communauté. Certes nous avons nos forums, mais ils ne sont pas vraiment mis en avant sur le site&hellip; Nous n'avons en effet nulle part des liens qui permettent aux utilisateurs de commenter l'actualité de la communauté. Pour améliorer ça, nous pourrions par exemple associer à chaque annonce une discussion sur un forum dédié (discussion qui serait initiée par la publication de l'annonce en question sur le forum en plus de la page d'accueil).</p>
-
-<h1>Conclusion</h1>
-
-<p>Voilà, tout ceci un peu en vrac pour dire que nous avons des outils, de très bons outils même, largement en avance sur l'utilisation qu'en font les utilisateurs. Malheureusement nous souffrons d'un manque d'adaptation à l'utilisateur : l'utilisateur recherche avant tout un site facile à utiliser sur lequel il puisse faire ce qu'il cherche le plus rapidement possible.</p>
-
-<p>Il est nécessaire de réorienter fortement le développement vers l'ergonomie dans les mois qui viennent : à terme il faudrait que les utilisateurs puissent utiliser Polytechnique.org comme une page d'accueil conviviale offrant des services tels qu'on en trouve couramment sur les principaux portails (recherche Internet, outils de gestion <a href="http://en.wikipedia.org/wiki/Personal_information_manager">PIM</a>&hellip;) tout en offrant les services de base d'une plateforme pour alumnis.</p>
+<p>Je ne vais pas m'étendre davantage vu que ce ne serait que recopier <a href="http://blog.polytechnique.org/post/2008/06/01/Creation-du-blog-de-lequipe-Polytechniqueorg">le post d'Aymeric</a></p>
 ]]></content>
   </entry>
   
   <entry>
-    <title type="html"><![CDATA[Un Premier Bilan Sur La Sécurité...]]></title>
-    <link href="http://Fruneau.github.io/blog/2007/02/27/un-premier-bilan-sur-la-securite-dot-dot-dot/"/>
-    <updated>2007-02-27T16:47:51+01:00</updated>
-    <id>http://Fruneau.github.io/blog/2007/02/27/un-premier-bilan-sur-la-securite-dot-dot-dot</id>
-    <content type="html"><![CDATA[<p>Sans entrer dans les détails du fonctionnement des filtres de protection de <a href="https://www.polytechnique.org">Polytechnique.org</a> (je laisse ce plaisir à ceux qui auront le courage de lire le code de <a href="http://opensource.polytechnique.org/platal/">plat/al</a>), nous avons ces derniers mois fortement amélioré les outils de surveillance. Alors qu'il y a encore un an, nous ne détections que quelques usurpations par an, nous sommes actuellement à environ une usurpation détectée par semaine.</p>
+    <title type="html"><![CDATA[Afficher Des Discussions]]></title>
+    <link href="http://Fruneau.github.io/blog/2007/11/01/afficher-des-discussions/"/>
+    <updated>2007-11-01T18:24:00+01:00</updated>
+    <id>http://Fruneau.github.io/blog/2007/11/01/afficher-des-discussions</id>
+    <content type="html"><![CDATA[<p>Lorsqu'un logiciel a pour vocation d'afficher des discussions, on attend de sa part qu'il nous permette de voir simplement qui répond à qui, dans quel contexte&hellip; Ce n'est pas toujours ce qui est le mieux fait. Par exemple, les programmes de fora en ligne à la mode (phpBB par exemple) affiche les discussion comme une succession de rectangles juxtaposés et seul le contenu du message permet de voir qu'il en cite un autre. D'autres logiciels comme Mail.app ont ce défaut et parfois la fâcheuse manie de ne pas vouloir corriger ce problème.</p>
+
+<p>L'affichage de l'arborescence dans <a href="http://opensource.polytechnique.org/banana">Banana</a> est une des fonctionnalités clés&hellip; et elle va beaucoup changer dans la prochaine version.</p>
 
 <!-- more -->
 
 
-<h1>De quoi s'inquiéter ?</h1>
+<h1> Une ligne par entrée</h1>
 
-<p>Certes la fréquence des usurpations est plus importante que nous pensions mais plus on a d'outils de protection, plus on a d'usurpations&hellip; non seulement parce qu'on en détecte plus, mais aussi parce que d'une certaine manière, on provoque les usurpations. En effet, lorsque nous détectons une usurpation, nous fermons le compte. Lorsque l'usurpateur se rend compte qu'il a perdu l'accès, il usurpe (ou tout au moins tente d'usurper) un autre compte.</p>
+<p>La solution habituelle pour afficher l'arborescence est d'utiliser un message par ligne de telle, des + ou &ndash; pour ouvrir ou fermer les noeuds. C'est la solution actuelle de banana.</p>
 
-<p>Ainsi, nous avions détecté un usurpateur mi-janvier. Suite à celà il s'est réinscrit une fois. Nous l'avons trouvé et nous avons redésactivé le compte&hellip; il s'est de nouveau réinscrit, mais pour une raison que je ne comprends pas, nous avons manqué cette inscription&hellip; mais finalement, il a oublié son compte, et hier il a retenté de se connecter. Mais cette fois-ci son IP était bannie, et c'est donc 2 comptes qu'il a tenté d'usurper tour à tour.</p>
+<p>((/public/screenshots/old-thread.png|Banana Thread up to 1.7))</p>
 
-<p>C'est donc <strong>5</strong> comptes pour une personne&hellip; pas mal non ? Nous n'aurions pas détecté la première de ces usurpations, il en serait resté à une seule.</p>
+<p>Avec cette solution, on perd très rapidement en lisibilité : dès que la discussion dépasse une vingtaine de messages, l'arborescence devient très haute et plus ça va, plus le titre dérive vers la droite rendant parfois le lien inaccessible. Lorsqu'il y a un troll, il est de fait très courant que certains nouveaux messages se trouvent perdus plusieurs pages en arrière dans l'arborescence, ou que sur certains navigateurs, il soit difficile d'y accéder. De plus l'interface se trouve souvent surchargée, à la limite de la lisibilité : c'est dur de faire tenir un maximum d'informations en un minimum de place en gardant la lisibilité de l'ensemble.</p>
 
-<p>De plus, la plus grande majorité des comptes usurpés sont abandonnés par leur usurpateur dans le mois qui suit l'inscription. Nous détectons donc majoritairement des comptes abandonnés. Les usurpations sont donc gênantes, mais certainement pas inquiétantes. A force de tests, nous épurons petit-à-petit la base.</p>
+<h1> Une solution plus visuelle</h1>
 
-<p>Donc, je ne pense pas qu'il y ait de quoi s'inquiéter de la fréquence des usurpations et la proportion de comptes usurpés de notre base.</p>
+<p>Je ne sais pas combien de personnes connaissent <a href="http://home.snafu.de/stk/macsoup/">MacSoup</a>. Il s'agit d'un petit client NNTP pour MacOS, qui en soit n'a pas beaucoup d'intérêt (il est payant et est relativement limité). Le principal atout de MacSoup est son interface de visualisation des threads (les utilisateurs diront qu'il y a bien plus que l'interface graphique, mais également l'interface clavier etc&hellip;). On trouve sur internet quelques captures d'écran en cherchant dans les <a href="http://www.exalead.com/image/results?q=macsoup%20screenshot">moteurs de recherche d'image</a> :</p>
 
-<h1>Sécuriser une inscription peu sélective</h1>
+<p>((<a href="http://www.fen-net.de/~xx511/bilder/macsoup/Thread.gif">http://www.fen-net.de/~xx511/bilder/macsoup/Thread.gif</a>))</p>
 
-<p>La faille de Polytechnique.org est la faible sélectivité de son système d'inscription. Le problème est que nous avons une base des alumnis et qu'il faut faire correspondre chaque entrée à la bonne personne physique. Il est quasiment trivial pour n'importe qui de trouver les informations nécessaire pour remplir le formulaire d'inscription&hellip; comment s'assurer que finalement il s'agit bien de la bonne personne ?</p>
+<p>Cette interface est compacte, visuelle et permet d'accéder rapidement à n'importe quel message du thread. Pour la prochaine version de Banana, je me suis fortement inspiré de cette interface pour réécrire de 0 l'affichage de l'arborescence. Ceci donne :</p>
 
-<p>Nous avons donc plusieurs niveaux de filtrages :</p>
+<p>((/public/screenshots/new-thread.png|Thread view in Banana))</p>
 
-<p>1  Le premier consiste à vérifier autant que possible la crédibilité des informations données dans le formulaire d'inscription
-1  Le deuxième consiste à réaliser un filtrage &ldquo;humain&rdquo;&hellip; il suffit de vérifier pour chaque inscription les informations de chaque inscription
-1  Traitement comportemental. C'est le filtrage qu'il nous faut améliorer actuellement
-1  La vérification de cohérence de la base de donnée (à partir d'idées données de temps en temps, on défini un critère d'usurpation <em>probable</em>, et on check)</p>
+<p>Il s'agit de la même discussion que précédemment. On voit donc ici facilement l'arborescence. Lorsqu'un message est non lu, la branche à laquelle il est attaché est noire au lieu de grise ce qui permet de l'identifier du premier coup d'oeil. Les couleurs de fond des noeuds (une idée de <a href="http://www.falco.bz">Falco</a>) sont obtenue à partir d'un hash quelconque sur l'émetteur et permettent donc d'identifier les messages envoyés par la même personne. Lorsqu'on laisse la souris sur un noeud, le nom de l'expéditeur et l'heure du post s'affichent (malheureusement le pointeur de la souris n'apparaît pas sur la capture d'écran)&hellip; et bien sûr quand on clique sur un noeud, on va sur le message correspondant.</p>
 
-<p>Là où nous avons fait beaucoup de progrès, c'est sur le points 1 et 2 : nous sommes désormais en mesure de contrer la plupart des usurpations dès l'inscription alors qu'il y a quelques mois, nous n'avions que le point 4&hellip; c'est à dire des vérifications éparses.</p>
+<p>Lorsqu'on est sur un message, on garde également la vue du thread ce qui permet de toujours savoir où on est dans la discussion :</p>
 
-<h1>Nos points faibles&hellip; et nos évolutions</h1>
+<p>((/public/screenshots/new-thread-nav.png|Thread view with selected message))</p>
 
-<p>Tout d'abord, si je me permets d'écire ce billet, c'est que je pense que nous sommes suffisamment sécurisés pour contrer les petits plaisantins qui en lisant ce texte voudraient tenter une usurpation&hellip; ce n'est pas de la provocation, mais un bilan.</p>
-
-<p>Nos points faibles sont actuellement dans l'analyse de la base établie avant la mise en place de nos filtres. Il s'agit donc d'améliorer les points 3 et 4 indiqués précédemment. Le 3 repose principalement sur un facteur humain : non seulement personne n'est parfait, et l'usurpateur fera quasiment toujours une erreur, mais en plus il sera en contact avec d'autres utilisateurs et c'est au travers de ses échanges (que ce soit via une fiche de l'annuaire ou via des discussions par mail ou sur un forum) que nous pourrons envisager de le cerner.</p>
-
-<p>La vérification de la base de données nécessite des idées&hellip; mais également des informations : nous pouvons vérifier la cohérence de notre base sur le fondement de quelques idées, mais rien ne vaut la comparaison avec des informations que nous savons exactes. Obtenir ces informations est le point bloquant&hellip; et là encore il y a un facteur humain.</p>
-
-<p>Nous ne pouvons donc qu'espérer que la prochaine fusion de notre annuaire avec celui de l'<a href="http://www.polytechnicien.com">AX</a>, qui est vérifié par des secrétaires qui ont les moyens matériels et temporels de le faire, sera le meilleur moyen de nettoyer notre annuaire.</p>
+<p>Il y a encore un peu de travail à faire pour améliorer les performances de la génération des arbres et pour augmenter sa compacité (éviter les branches qui descendent très bas alors qu'elles auraient pu trouver leur place dans le l'espace vide disponible).</p>
 ]]></content>
   </entry>
   
   <entry>
-    <title type="html"><![CDATA[Un Client RSS Pour Lire Les Forums NNTP Et Les Mailing-Lists...]]></title>
-    <link href="http://Fruneau.github.io/blog/2007/02/25/un-client-rss-pour-lire-les-forums-nntp-et-les-mailing-lists-dot-dot-dot/"/>
-    <updated>2007-02-25T19:05:42+01:00</updated>
-    <id>http://Fruneau.github.io/blog/2007/02/25/un-client-rss-pour-lire-les-forums-nntp-et-les-mailing-lists-dot-dot-dot</id>
-    <content type="html"><![CDATA[<p>Si il y a un bout de code dont je suis content au sein de <a href="https://www.polytechnique.org">Polytechnique.org</a>, c'est <a href="http://opensource.polytechnique.org/banana/">Banana</a>. Banana est à l'origine un client Web pour le protocole NNTP (c'est à dire le protocole utilisé par Usenet). Depuis sa dernière version (la 1.5), Banana est capable d'utiliser n'importe quel protocole comme source (les protocoles actuellement implémentés étant le NNTP et la lecture de MBox, mais on pourrait envisager d'ajouter le support des Maildir ou d'IMAP sans problème), ainsi, à Polytechnique.org, nous utilisons Banana pour offrir une plateforme Web vers <a href="https://www.polytechnique.org/banana">nos forums</a> et pour mettre en ligne les archives des Mailing-Lists que nous hébergeons.</p>
+    <title type="html"><![CDATA[15 000]]></title>
+    <link href="http://Fruneau.github.io/blog/2007/10/08/15-000/"/>
+    <updated>2007-10-08T00:32:00+02:00</updated>
+    <id>http://Fruneau.github.io/blog/2007/10/08/15-000</id>
+    <content type="html"><![CDATA[<p>Ca y est&hellip; 15 000 inscrits à <a href="https://www.polytechnique.org">Polytechnique.org</a>.</p>
 
-<p>Banana est à mon avis un bon outils : il permet un rendu plus que correct de la plupart des mails HTML (même ceux dont le formatage est défini dans une feuille de style), il affiche les discussions proprement et rapidement (grâce à un système de cache du côté serveur). C'est donc un gros plus en comparaison des interfaces habituelles de consultation d'archives de Mailing-List qu'on peut trouver sur Internet&hellip; et puis, ce n'est pas un forum php, pas de fioritures à la phpbb : Banana est clair, lisible et rapide&hellip; et facile à installer. Pour s'en convaincre, il suffit de regarder la <a href="http://opensource.polytechnique.org/viewsvn/filedetails.php?repname=Banana&amp;path=/trunk/examples/index.php&amp;rev=0&amp;sc=1">fichier d'exemple</a> qui fournit un banana totalement fonctionnel (à chacun ensuite d'y ajouter sa couche d'authentification si nécessaire).</p>
+<p><a href="15.000%20inscrits">((/public/screenshots/15.000.png</a>)|/public/screenshots/15.000.png)</p>
 
-<p>La grande nouveauté de la prochaine version de Banana est l'intégration de flux RSS&hellip; ainsi il sera possible de lire les forums sans se connecter au site et sans client news, ou de suivre les discussions des mailing-lists sans relever son courrier (le premier des 2 cas étant certainement le plus intéressant). Pour les utilisateurs de Polytechnique.org, la fonctionnalité est d'ores et déjà disponible sur <a href="http://dev.m4x.org/~x2003bruneau/banana">ma version de développement</a>. Deux types de flux son disponibles : soit un flux par groupe, soit un flux regroupant tous les groupes auxquels on est abonné.</p>
+<p>Si l'ascension continue, nous devrions atteindre les 16 000 l'année prochaine.</p>
 ]]></content>
   </entry>
   
   <entry>
-    <title type="html"><![CDATA[Pourquoi Faire Propre Quand on Peut Faire Sale ?]]></title>
-    <link href="http://Fruneau.github.io/blog/2007/02/23/pourquoi-faire-propre-quand-on-peut-faire-sale/"/>
-    <updated>2007-02-23T23:08:36+01:00</updated>
-    <id>http://Fruneau.github.io/blog/2007/02/23/pourquoi-faire-propre-quand-on-peut-faire-sale</id>
-    <content type="html"><![CDATA[<p>Il y a quelques jours, <a href="http://myks.org">mYk</a> est venu me voir pour me dire qu'il avait réussi à se débrouiller pour
-que IE6 fasse un rendu correct de son site web perso&hellip; c'est à dire que le site (XHTML avec une CSS non triviale)
-ressemble à quelque chose sur IE6.</p>
-
-<p>Il m'explique alors que IE6 a 2 modes de fonctionnement pour le rendu :</p>
+    <title type="html"><![CDATA[La Banane Et L'escargot]]></title>
+    <link href="http://Fruneau.github.io/blog/2007/05/07/la-banane-et-lescargot/"/>
+    <updated>2007-05-07T19:44:00+02:00</updated>
+    <id>http://Fruneau.github.io/blog/2007/05/07/la-banane-et-lescargot</id>
+    <content type="html"><![CDATA[<p>La release de <a href="http://opensource.polytechnique.org/banana/">Banana</a> 1.6 en même temps que celle de plat/al 0.9.14 a mis en évidence un certain nombre de faiblesses dans Banana. En particuliers la génération du spool (mise en cache de l'arborescence des messages) et des flux RSS s'est révélé extrêmement lourde pour plusieurs raisons :</p>
 
 <ul>
-<li>Le premier, qu'il appelle &ldquo;mode normal&rdquo; fait un rendu correct (pas parfait, mais correct)</li>
-<li>Le second, (dont je ne me souviens plus le nom à dormir debout), a quant à lui un rendu &ldquo;tout pourri&rdquo;&hellip; par
-exemple, le margin: auto; de CSS ne fonctionne pas, le margin est à l'intérieur des boîtes et une partie de la CSS
-n'est tout bonnement pas pris en compte.</li>
+<li>l'accès aux mbox des Mailing-Lists nécessite d'appel du <code>mbox-helper</code>, et donc un <code>fork</code>&hellip; opération lourde, qui répétée plusieurs fois par mbox devient rapidement très lourde lorsqu'on a plusieurs dizaines de Mailing-Lists.</li>
+<li>le traitement des données par PHP est loin d'être immédiats&hellip; et il y a clairement des goulots d'étranglement dans le code.</li>
 </ul>
 
 
+<p>C'est pour ces raisons que j'ai passé Banana au <code>profiler</code>, c'est à dire que j'ai analysé l'exécution de Banana à l'aide d'un outil qui permet de tracer l'exécution du programme et mettant un accent particuliers sur le temps d'exécution de chaque fonction. L'outil que j'ai trouvé pour faire ça est <a href="http://www.xdebug.org">xdebug</a>, utilisé conjointement à <a href="http://kcachegrind.sourceforge.net/">KCacheGrind</a>.</p>
+
 <!-- more -->
 
 
-<p>Mais alors, comment passer d'un mode à l'autre ? Un des facteur, toujours d'après mYk est la présence d'un tag <code>&lt;?xml ...&gt;</code> en en-tête du fichier, comme par exemple :</p>
+<h1>Forks</h1>
+
+<p>Je dois avouer que lorsque j'avais fait mes tests, je n'avais pas plusieurs centaines de Mailing-Lists à traiter&hellip; et je ne m'attendais pas à ce qu'une fois passée en production le script de mise à jour des flux RSS puisse prendre toutes les ressources de la machine pendant plusieurs minutes. Il a donc fallu sérieusement restructurer la gestion des accès aux Mailing-Lists pour restreindre au maximum le nombre d'accès au <code>mbox-helper</code> (un petit programme écrit en C qui se charge de tous les accès aux mbox), et, en cas d'accès, limiter au maximum le temps passer sur le <code>mbox-helper</code>.</p>
+
+<p>Donc désormais le <code>mbox-helper</code> n'est plus appelé que si la mbox a changé depuis le dernier passage (le changement étant détecté par la taille du fichier). Ce qui permet donc de supprimer le lancement d'environ 500 <code>mbox-helper</code> lors des rafraîchissements des spools (en effet, un nombre négligeable de Mailing-List aura des nouveaux messages lors du passage du script toutes les 5, 10 ou 20 minutes). Ajouté à cela la correction d'un bug qui faisait que l'appel au <code>mbox-helper</code> oubliait de spécifier l'offset où chercher le message à traiter et qui forçait donc le <code>mbox-helper</code> à relire la totalité de la mbox, on peut se permettre de supposer que la prochaine version de Banana sera plus efficace pour la gestion des mbox.</p>
+
+<h1>Array_shift</h1>
+
+<h2>Piles</h2>
+
+<p>Il est souvent extrêment pratique d'utiliser une pile de données. Cela permet de traiter les informations dans l'ordre de la pile sans excès de mémoire puisque chaque élément est dépilé avant d'être traité. C'est une technique que j'aime particulièrement lorsque j'ai une suite de lignes à traiter : je prend un tableau contenant une ligne par entrée et je le parcours avec <code>array_shift</code> qui permet de dépiler le premier élément du tableau. On obtient ainsi un code de la forme</p>
 
 <p><div>
-  <pre><code class='HTML'>&amp;lt;?xml version=&amp;ldquo;1.0&amp;rdquo; encoding=&amp;ldquo;iso-8859-15&amp;rdquo;?&gt;
-&amp;lt;!DOCTYPE html PUBLIC &amp;ldquo;&amp;ndash;//W3C//DTD XHTML 1.1//EN&amp;rdquo; &amp;ldquo;&lt;a href=&quot;http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd&quot;&gt;http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd&lt;/a&gt;&amp;rdquo;&gt;
-&lt;html xmlns=&quot;http://www.w3.org/1999/xhtml&quot;&gt;
-  &lt;head&gt;
-  &lt;/head&gt;
-&amp;hellip;</code></pre>
+  <pre><code class='php'>while (!is_null($line = array_shift($lines))) {&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;do_something($line);
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;}
+do_something($lines);</code></pre>
 </div>
 </p>
 
-<p>Donc, j'ai testé sur <a href="http://opensource.polytechnique.org/platal/">plat/al</a>, le site web de Polytechnique.org : le résultat est impressionnant !</p>
+<p>Un <code>foreach</code> peut très bien faire la même chose, mais on perd les avantages de la piles. Avec cette structure, pour avoir le même comportement que la boucle précédente, il faut ajouter un <code>unset()</code> :</p>
 
-<p>Tout d'abord, voici l'état actuel de le prod de Polytechnique.org sous IE6 :</p>
+<p><div>
+  <pre><code class='php'>foreach ($lines as $key=&gt;&amp;amp;$value) {&lt;/p&gt;
 
-<p><img src="/assets/screenshots/ie6-prod.jpg" alt="Polytechnique.org sous IE6 avec `&lt;?xml&gt;`" /></p>
+&lt;pre&gt;&lt;code&gt;do_something($line);
+unset($lines[$key]);
+&lt;/code&gt;&lt;/pre&gt;
 
-<p>Le corps du site n'est pas centré, le menu est mal formaté, les polices sont énormes, les backgrounds ne sont pas tous respectés&hellip; donc clairement c'est IE6 dans toute sa grandeur. Maintenant, en supprimant le <code>&lt;?xml version="1.0" encoding="iso-8859-15"?&gt;</code> du code (il faut faire abstraction du bandeau de développement) :</p>
+&lt;p&gt;}
+do_something($lines);</code></pre>
+</div>
+</p>
 
-<p><img src="/assets/screenshots/ie6-dev.jpg" alt="Version de développement de Polytechnique.org sous IE6, sans le `&lt;?xml ...&gt;`" /></p>
+<p>Certes le <code>foreach</code> sera sensiblement plus rapide que le <code>while</code>/<code>array_shift()</code> car il comprend un appel de fonction à chaque itération, mais on peut s'attendre raisonnablement à ce que cet appel soit en O(1), et ait donc un coût négligeable.</p>
 
-<p>Cette fois-ci la mise en page est correcte, le menu qui est dans un tableau bicolore est <strong>vraiment</strong> bicolore&hellip; on a là un site rendu quasiment aussi bien que sur les navigateurs récents, et en particuliers, le rendu d'IE6 dans ces conditions est quasiment celui d'IE7 (en tout cas, ils ont les mêmes bugs sur les fieldset/legend en particuliers).</p>
+<h2>Profiler</h2>
 
-<p>Donc, il semblerait qu'IE7 n'a pas un moteur de rendu si <em>révolutionnaire</em>&hellip; au moins, les utilisateurs d'IE6 retrouveront enfin un site agréable à utiliser lors de la prochaine release de plat/al&hellip; d'ici un gros mois sans doute.</p>
+<p>Là où il y a un problème c'est que le profiler m'indique que <code>array_shift</code> prend 57% du temps d'exécution de Banana. Ces 57% sont partagés entre 80000 appels à la fonction, mais le plus marquant c'est que parmi ces 80000 appels, ce ne sont que 24000 d'entre eux qui prennent la quasi-totalité du temps. Pourquoi ces appels particuliers sont-ils si lourd alors que les 60000 autres ont un coût parfaitement négligeable.</p>
 
-<p>Edit du 21 mars 2007 : pour plus de détail sur les modes de fonctionnement des navigateurs, vous pouvez regarder sur <a href="http://hsivonen.iki.fi/doctype/">cette page</a>.</p>
+<p>La seule différence entre ces deux cas d'appels c'est que les <em>lourds</em> traitent un énorme tableau de 24000 lignes, alors que les <em>légers</em> traitent un grand nombre de petits tableaux de quelques dizaines de lignes chacun. Il est donc extrêmement clair que <code>array_shift</code> <strong>n'est pas</strong> une fonction en O(1)&hellip; J'ai donc changé la structure de code qui reflétait la structure de données par une simple boucle qui perd en lisibilité dans <a href="http://opensource.polytechnique.org/viewsvn/diff.php?path=/trunk/banana/mbox.inc.php&amp;rev=248&amp;repname=Banana">ce patch</a>. Après ce changement, les 60000 <code>array_shift</code> restant ne prennent que 0.16% du temps d'exécution de Banana&hellip;</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[0.9.14 en Ligne !]]></title>
+    <link href="http://Fruneau.github.io/blog/2007/04/29/0914-en-ligne/"/>
+    <updated>2007-04-29T21:09:00+02:00</updated>
+    <id>http://Fruneau.github.io/blog/2007/04/29/0914-en-ligne</id>
+    <content type="html"><![CDATA[<p>Ca y est, comme annoncé dans <a href="/mind/post/2007/03/30/Un-apercu-de-la-version-0914-de-plat/al">mon billet de fin mars</a>, la version 0.9.14 de <a href="http://opensource.polytechnique.org/platal">plat/al</a> est en ligne depuis vendredi soir. Comme expliqué précédemment, cette version apporte un grand nombre d'innovations comme <a href="/mind/post/2007/02/25/Un-client-RSS-pour-lire-les-Forums-NNTP-et-les-Mailing-Lists">le flux RSS pour les Mailing-Lists et les Fora</a>, la <a href="/mind/post/2007/03/15/Soundex-Francais">recherche par proximité sonore améliorée</a> et généralisée, un système d'annonces retravaillé pour offrir un approche plus conviviale, et bien sûr, le passage en UTF-8.</p>
+
+<p>Mais de tout cela, j'en ai déjà parlé&hellip; je tiens par contre à m'étendre sur les quelques fonctionnalités qui ont été développées durant le dernier mois (en fait, durant les dernières deux semaines de développement, le reste du temps ayant été consacré aux tests).</p>
+
+<!-- more -->
+
+
+<h1>Recherche interactive</h1>
+
+<p>Caribou a réalisé un énorme travail sur la mise en place d'un remplissage automatique (auto-completion pour les geeks) sur la recherche avancée. Ainsi, lorsqu'on tape quelques caractères dans un champ, une liste de propositions apparaît avec pour chaque proposition le nombre de camarades correspondant à la requête. Ce qui donne par exemple :</p>
+
+<p>((/mind/public/screenshots/select-ville.png|Auto-Completion sur les villes))</p>
+
+<p>((/mind/public/screenshots/select-pays.png|Auto-Completion sur les pays))</p>
+
+<p>Par contre, là où cela devient très intéressant, c'est que l'interface reste flexible : si vous préférez choisir dans une liste des valeurs possibles plutôt que d'utiliser l'auto-completion, ce qui est envisageable, il suffit, si c'est disponible pour le champ correspondant, de cliquer sur la petite icône représentant une liste en fin de ligne&hellip; Ainsi, pour les pays, cela donne :</p>
+
+<p>((/mind/public/screenshots/select-pays-dropdown.png|Choix sur les pays))</p>
+
+<p>Il s'agit du même champ dont le <input type="text"> a été remplacé par une <select>.</p>
+
+<h1>Sondages</h1>
+
+<p>Les sondages étaient la seule fonctionnalité du site qui avait été perdue lors du passage à plat/al il y a maintenant 2 ans et demi. C'est maintenant réparé grâce au travail de pika. Cette fonctionnalité étant de fait encore jeune, on peut s'attendre à ce que l'interface soit retravaillée fortement dans les prochaines versions du site pour s'adapter aux attentes des utilisateurs. Néanmoins, il est à noter que l'édition des sondages a été travaillée de telle sorte qu'un sondage soit facilement éditable : l'utilisateur qui crée un sondage peut aisément ajouter, supprimer ou modifier des questions, et les administrateurs ont accès exactement aux mêmes fonctionnalités pour la maintenance des sondages.</p>
+
+<p>Nous attendons maintenant l'utilisation de cette fonctionnalité pour avoir des retours de la part de nos utilisateurs. Si l'expérience se révèle concluante, les sondages seront intégrés à Polytechnique.net pour que les animateurs les aient à leur disposition directement depuis l'interface de gestion des groupes.</p>
+
+<h1>Ensemble d'utilisateurs</h1>
+
+<p>Il s'agit de la partie sur laquelle j'ai travaillé, et donc celle que je connais le mieux, mais c'est aussi la partie la plus abstraite. Pour l'utilisateur, ça ne change quasiment rien, par contre au niveau du moteur du site, c'est à mon sens un pas en avant important vers des interfaces plus adaptées aux besoins des utilisateurs. C'est pour cette raison que cette partie risque d'être un poil technique.</p>
+
+<p>Ce dont je parlais au paragraphe précédent est la gestion des ensembles d'utilisateurs&hellip; mais qu'est-ce donc ? un ensemble d'utilisateur est tout simplement une sélection d'utilisateurs dans l'annuaire, ça peut être les membres d'une Mailing-List, les contacts d'un utilisateur, les membres d'un groupe, les camarades correspondant à une recherche&hellip;</p>
+
+<p>Le problème est que je voudrais que dès que sélectionne un ensemble d'utilisateur, je puisse séparer totalement la représentation de ces utilisateurs de la sélection qui est faite : ainsi si je choisi mes contacts, je veux pouvoir afficher mes contacts sur un planisphère, voir le trombinoscope de mes contacts, mais aussi voir leurs fiches&hellip; mais je voudrais avoir les mêmes outils pour toute autre sélection d'utilisateur.</p>
+
+<p>La résolution propre de ce problème (c'est-à-dire, sans tout recoder à chaque cas possible d'utilisation) est l'utilisation d'un outil orienté Model/View :</p>
+
+<ul>
+<li>le modèle gère la parti sélection des utilisateurs en fonction de la page</li>
+<li>l'afficheur sélectionne les données à afficher pour les utilisateurs et génère ce que l'utilisateur verra</li>
+</ul>
+
+
+<p>Dans plat/al, le Model s'appelle PlSet (duquel hérite un UserSet spécialisé dans les ensembles d'utilisateurs), et le View s'appelle PlView. De cette manière, l'affichage des contacts se fait en 5 lignes de code :</p>
+
+<p><div>
+  <pre><code class='php'>$view = new UserSet(&amp;ldquo;INNER JOIN contacts AS c2 ON (u.user_id = c2.contact)&amp;rdquo;, &amp;ldquo; c2.uid = $uid &amp;rdquo;);
+$view-&gt;addMod(&amp;lsquo;minifiche&amp;rsquo;, &amp;lsquo;Mini-Fiches&amp;rsquo;, true);
+$view-&gt;addMod(&amp;lsquo;trombi&amp;rsquo;, &amp;lsquo;Trombinoscope&amp;rsquo;, false, array(&amp;lsquo;with_admin&amp;rsquo; =&gt; false, &amp;lsquo;with_promo&amp;rsquo; =&gt; true));
+$view-&gt;addMod(&amp;lsquo;geoloc&amp;rsquo;, &amp;lsquo;Planisphère&amp;rsquo;);
+$view-&gt;apply(&amp;lsquo;carnet/contacts&amp;rsquo;, $page, $action, $subaction);</code></pre>
+</div>
+</p>
+
+<p>On crée le UserSet en lui donnant les critères de sélection des utilisateurs à afficher, puis on ajoute les Views à utiliser, enfin on gère l'affichage (en fonction des arguments passés à l'affichage de la page). C'est le type d'abstraction qui font vraiment plaisir car finalement on se rapproche du slogan de Qt : .</p>
+
+<p>Bien sûr, il faut développer tout le background, mais le temps de développement est négligeable comparé à celui qu'on aurait passé à dupliquer ce code, voire justement à ne pas le dupliquer en raison de la complexité de certains cas. Un autre exemple d'utilisation est sur l'annuaire des groupes sur Polytechnique.net :</p>
+
+<p><div>
+  <pre><code class='php'>$view = new UserSet();
+$view-&gt;addMod(&amp;lsquo;trombi&amp;rsquo;, &amp;lsquo;Trombinoscope&amp;rsquo;);
+$view-&gt;addMod(&amp;lsquo;geoloc&amp;rsquo;, &amp;lsquo;Planisphère&amp;rsquo;);
+$view-&gt;apply(&amp;lsquo;annuaire&amp;rsquo;, $page, $action, $subaction);</code></pre>
+</div>
+</p>
+
+<p>Dans ce cas, comme UserSet sait que s'il est appelé dans le cadre d'un groupe-X sur Polytechnique.net, il ne doit pas sélectionner d'utilisateurs hors de l'annuaire de ce groupe, il n'y a aucune restriction à lui indiquer : tout l'annuaire du groupe est sélectionné. On ajoute les deux modules de représentation qu'on désire utiliser : trombinoscope et Planispère, et applique à la page&hellip; en 4 lignes c'est fait.</p>
+
+<p>Je m'extasie devant ce travail parce que je suis content du résultat, mais il n'est pas pour autant parfait. Son problème actuel est dû au background basé sur SQL : chaque élément (PlSet ou PlView) apporte des bribes d'une requête SQL permettant de finalement obtenir toutes les informations à afficher (PlView) pour les utilisateurs sélectionnés (PlSet), mais il peut arriver qu'une même donnée soit utilisée pour la sélection et pour l'affichage. Dans ce cas, la solution la plus simple est de dupliquer les jointures dans la requête, mais c'est une solution qui peut sérieusement alourdir et ralentir la requête.</p>
+
+<p>L'implémentation actuelle gère la duplication au cas par cas : les PlView peuvent contenir tester s'il faut sélectionner un champ ou non en testant la classe du PlSet utilisé. Cette solution n'est pas particulièrement propre. La meilleure solution envisageable est d'utiliser une abstraction des champs SQL : chaque élément ne donnerait plus une bribe de requête SQL mais des informations sur &ldquo;comment sélectionner la donnée&rdquo;&hellip; ensuite la génération de la requête consiste à comparer toutes ces informations et à les assembler. Plat/al possède déjà les outils nécessaires pour réaliser ce jeu d'assemblage&hellip; ce sera très probablement pour la prochaine release.</p>
 ]]></content>
   </entry>
   

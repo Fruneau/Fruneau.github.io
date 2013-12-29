@@ -1,0 +1,633 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Mind...</title>
+  <meta name="author" content="Florent Bruneau">
+
+  
+  <meta name="description" content="Les temps sont durs pour les utilisateurs de IMAP&hellip; jusqu&#8217;à présent je n&#8217;ai pas trouvé de client idéal pour travailler avec ce &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://Fruneau.github.io/blog/page/2">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="Mind..." type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/libs/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Mind...</a></h1>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:Fruneau.github.io" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div class="blog-index">
+  
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2007/06/12/mailapp-imap-et-signatures/">Mail.app, IMAP Et Signatures&#8230;</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2007-06-12T01:24:00+02:00" pubdate data-updated="true">Jun 12<span>th</span>, 2007</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Les temps sont durs pour les utilisateurs de IMAP&hellip; jusqu&#8217;à présent je n&#8217;ai pas trouvé de client idéal pour travailler avec ce protocole :</p>
+
+<ul>
+<li>Kmail plante lamentablement</li>
+<li>Mail.app se synchronise mal</li>
+<li>Outlook Express (et le tout nouveau Windows Mail) n&#8217;arrive pas à lister tous mes répertoires</li>
+<li>Thunderbird rame comme un malheureux et me crée des répertoires que je ne veux pas avant de m&#8217;avoir demandé quoi que ce soit</li>
+<li>mutt est trop casse-pied à configurer à mon goût (même si pratique parfois)</li>
+</ul>
+
+
+<p>De fait, j&#8217;utilise le moins pire que j&#8217;ai trouvé, et qui en plus a le mérite de ne pas être trop lourd, bien intégré avec MacOS X, et qui, jusqu&#8217;à présent, n&#8217;a pas trop fait de bêtises sur mon IMAP. Ce client, pourtant pas réputé pour sa qualité, c&#8217;est évidemment Mail.app.</p>
+
+</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/2007/06/12/mailapp-imap-et-signatures/">Read on &rarr;</a>
+    </footer>
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2007/06/06/khtml2png-265-est-sorti/">Khtml2png 2.6.5 Est Sorti</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2007-06-06T00:31:00+02:00" pubdate data-updated="true">Jun 6<span>th</span>, 2007</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Après 3 mois d&#8217;un travail pas très intensif, une nouvelle version de <a href="http://khtml2png.sf.net">khtml2png</a> est disponible. Cette version est partie du fait que les versions précédentes du programme ont parfois du mal à gérer les grandes captures d&#8217;écran (en fait, des bugs peuvent apparaître dès que la taille de la zone à capturer est plus grande que la taille affichable).</p>
+
+<p>Donc, rapidement après la sortie de la 2.6.0, j&#8217;avais envoyé un correctif (en fait une réécriture du moteur de rendu) au développeur de <code>khtml2png</code>. Malheureusement, ce correctif ne fonctionnait pas correctement chez lui. Donc, pendant 3 mois, j&#8217;ai fait du débuggage à distance : j&#8217;envoie une version modifiée (1 ou 2 lignes à chaque fois), j&#8217;attends 2 ou 3 semaine une réponse, etc&hellip; Du développement efficace !</p>
+
+<p>Bon, toujours est-il que maintenant, la version 2.6.5 fonctionne à la fois chez moi (à la fois Debian + xvnc et sur MacOS X), et chez Hauke (sur Debian également, mais avec des réglages différents).</p>
+
+<p>Le Changelog annonce :</p>
+
+<blockquote><p> fix: Now produces screenshots on my Debian Etch system under KDE 3.5.5 without glitches. %%%
+ fix: Maybe better working on other systems too. Please test.</p></blockquote>
+
+<p>J&#8217;aimerais y rajouter quelques points :</p>
+
+<ul>
+<li>meilleur moteur de rendu (qui ne scroll plus, mais déplace la fenêtre pour s&#8217;affranchir de certains bugs de KDE et/ou Qt)</li>
+<li>meilleure détection de la taille de la capture à réaliser</li>
+<li>possibilité de choisir le comportement de <code>khtml2png</code> face aux redirections, au javascript, au java, au flash&hellip; via la ligne de commande</li>
+<li>la détection automatique de la dimension par un <code>id</code> devient compatible avec le format utilisé dans les version &lt;= 2.5</li>
+</ul>
+
+
+<p>Comme d&#8217;habitude, vous pouvez télécharger <a href="/mind/public/khtml2png/khtml2png-fru-last.tar.bz2">ma dernière version du programme</a>.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2007/06/02/spaces/">Spaces</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2007-06-02T16:44:00+02:00" pubdate data-updated="true">Jun 2<span>nd</span>, 2007</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Comme un certain nombre de personnes le sait déjà, j&#8217;ai repris le développement de <a href="http://virtuedesktops.info">VirtueDesktops</a> depuis quelques semaines. Dans un premier temps je n&#8217;avais pas regardé le fonctionnement bas niveau du programme, mais la semaine dernière j&#8217;ai commencé à rechercher dans les sources &ldquo;Comment Virtue fait-il pour cacher les fenêtres, faire les transitions etc&hellip; ?&rdquo;.</p>
+
+</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/2007/06/02/spaces/">Read on &rarr;</a>
+    </footer>
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2007/05/26/et-si-on-oubliait-les-bases/">Et Si on Oubliait Les Bases ?</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2007-05-26T13:40:00+02:00" pubdate data-updated="true">May 26<span>th</span>, 2007</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>MacOS X est un Unix&hellip; compatible POSIX. Voilà ce qu&#8217;un certain nombre de personnes semblent oublier assez fréquemment. C&#8217;est assez dommage quand ces personnes programment pour MacOS, on se retrouve parfois avec du code complexe pour réécrire des fonctions POSIX (en moins bien ?).</p>
+
+</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/2007/05/26/et-si-on-oubliait-les-bases/">Read on &rarr;</a>
+    </footer>
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2007/05/22/mac-cest-bien-mais-pas-top/">Mac C&#8217;est Bien&#8230; Mais Pas Top</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2007-05-22T23:44:00+02:00" pubdate data-updated="true">May 22<span>nd</span>, 2007</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Bon, la suite des mes problèmes avec les machines Apple !</p>
+
+<p>Alors que la carte mère de mon portable a été changée il y a un peu plus d&#8217;un mois, mon portable a décidé aujourd&#8217;hui d&#8217;arrêter de vouloir fonctionner. Symptômes ? Il s&#8217;allume (des fois), fonctionne (rarement) quelques secondes puis s&#8217;éteint brutalement&hellip; et ce qu&#8217;il démarre sur secteur, sur batterie ou les deux ensemble, que ce soit sur le disque dur, sur le DVD d&#8217;installation ou encore en mode <em>target</em> (en tant que disque dur externe).</p>
+
+<p>En plus ça lui arrive de s&#8217;allumer tout seul alors que ça fait plusieurs minutes que je ne l&#8217;ai plus touché. Un autre symptôme étrange, la diode de la prise magsafe clignote bizarrement lorsque la machine n&#8217;est pas sous-tension (pas un clignotement vert/rouge, mais une lumière verte continue qui scintille un peu). Tout ça me laisse penser que c&#8217;est l&#8217;alimentation qui est en cause.</p>
+
+<p>Voilà&hellip; les joies des machines de qualité, d&#8217;autant plus que la garantie de la machine a expirée il y a <strong>2</strong> jours (le 19 mai).</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2007/05/18/virtuedesktops-revient/">VirtueDesktops Revient&#8230;</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2007-05-18T14:25:00+02:00" pubdate data-updated="true">May 18<span>th</span>, 2007</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Voici plus ou moins trois mois que j&#8217;ai découvert <a href="http://synergy2.sf.net">synergy</a>, c&#8217;est vraiment très agréable de pouvoir contrôler les deux ordinateurs sans changer de clavier/souris continuellement. Seul problème, c&#8217;est que sur la machine qui héberge le serveur <code>synergy</code>, <a href="http://virtuedesktops.info">VirtueDesktops</a>, un <em>excellent</em> gestionnaire de bureaux virtuels pour MacOS, n&#8217;arrête pas de crasher. J&#8217;avais donc posté un bugreport sur le trac de Virtue&hellip; malheureusement pour diverses raisons, Tony Arnold a décidé peu après de stopper le développement de Virtue.</p>
+
+</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/2007/05/18/virtuedesktops-revient/">Read on &rarr;</a>
+    </footer>
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2007/05/07/la-banane-et-lescargot/">La Banane Et L&#8217;escargot</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2007-05-07T19:44:00+02:00" pubdate data-updated="true">May 7<span>th</span>, 2007</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>La release de <a href="http://opensource.polytechnique.org/banana/">Banana</a> 1.6 en même temps que celle de plat/al 0.9.14 a mis en évidence un certain nombre de faiblesses dans Banana. En particuliers la génération du spool (mise en cache de l&#8217;arborescence des messages) et des flux RSS s&#8217;est révélé extrêmement lourde pour plusieurs raisons :</p>
+
+<ul>
+<li>l&#8217;accès aux mbox des Mailing-Lists nécessite d&#8217;appel du <code>mbox-helper</code>, et donc un <code>fork</code>&hellip; opération lourde, qui répétée plusieurs fois par mbox devient rapidement très lourde lorsqu&#8217;on a plusieurs dizaines de Mailing-Lists.</li>
+<li>le traitement des données par PHP est loin d&#8217;être immédiats&hellip; et il y a clairement des goulots d&#8217;étranglement dans le code.</li>
+</ul>
+
+
+<p>C&#8217;est pour ces raisons que j&#8217;ai passé Banana au <code>profiler</code>, c&#8217;est à dire que j&#8217;ai analysé l&#8217;exécution de Banana à l&#8217;aide d&#8217;un outil qui permet de tracer l&#8217;exécution du programme et mettant un accent particuliers sur le temps d&#8217;exécution de chaque fonction. L&#8217;outil que j&#8217;ai trouvé pour faire ça est <a href="http://www.xdebug.org">xdebug</a>, utilisé conjointement à <a href="http://kcachegrind.sourceforge.net/">KCacheGrind</a>.</p>
+
+</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/2007/05/07/la-banane-et-lescargot/">Read on &rarr;</a>
+    </footer>
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2007/05/03/vista/">Vista ?</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2007-05-03T18:07:00+02:00" pubdate data-updated="true">May 3<span>rd</span>, 2007</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Étant curieux, en tout cas pour ce qui est informatique, je n&#8217;ai pas pu m&#8217;empêcher de mettre un Windows Vista en double boot sur mon MacBook Pro&hellip; Grâce à BootCamp, l&#8217;installation ne pose pas de problème. Par contre une fois l&#8217;OS installé, je n&#8217;ai pas arrêtez d&#8217;enchaîner les petits problèmes qui ont été plus une perte de temps qu&#8217;autre chose&hellip;</p>
+
+</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/2007/05/03/vista/">Read on &rarr;</a>
+    </footer>
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2007/04/29/0914-en-ligne/">0.9.14 en Ligne !</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2007-04-29T21:09:00+02:00" pubdate data-updated="true">Apr 29<span>th</span>, 2007</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Ca y est, comme annoncé dans <a href="/mind/post/2007/03/30/Un-apercu-de-la-version-0914-de-plat/al">mon billet de fin mars</a>, la version 0.9.14 de <a href="http://opensource.polytechnique.org/platal">plat/al</a> est en ligne depuis vendredi soir. Comme expliqué précédemment, cette version apporte un grand nombre d&#8217;innovations comme <a href="/mind/post/2007/02/25/Un-client-RSS-pour-lire-les-Forums-NNTP-et-les-Mailing-Lists">le flux RSS pour les Mailing-Lists et les Fora</a>, la <a href="/mind/post/2007/03/15/Soundex-Francais">recherche par proximité sonore améliorée</a> et généralisée, un système d&#8217;annonces retravaillé pour offrir un approche plus conviviale, et bien sûr, le passage en UTF-8.</p>
+
+<p>Mais de tout cela, j&#8217;en ai déjà parlé&hellip; je tiens par contre à m&#8217;étendre sur les quelques fonctionnalités qui ont été développées durant le dernier mois (en fait, durant les dernières deux semaines de développement, le reste du temps ayant été consacré aux tests).</p>
+
+</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/2007/04/29/0914-en-ligne/">Read on &rarr;</a>
+    </footer>
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2007/04/21/stats/">Stats</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2007-04-21T02:59:00+02:00" pubdate data-updated="true">Apr 21<span>st</span>, 2007</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Depuis le début, j&#8217;ai installé <a href="http://awstats.sf.net">awstats</a> pour avoir des statistiques sur l&#8217;utilisation de mon serveur web.</p>
+
+<p>J&#8217;ai choisi awstats un peu par hasard :</p>
+
+<ul>
+<li>on avait utilisé <a href="http://www.mrunix.net/webalizer/">webalizer</a> au <a href="http://www.frankiz.net/binets/reseau">BR</a> et je n&#8217;étais pas spécialement convaincu par le résultat obtenu : beaucoup de chiffres, graphiquement peu attirant et d&#8217;ergonomie d&#8217;utilisation assez mauvaise.</li>
+<li>à <a href="https://www.polytechnique.org">Polytechnique.org</a> par contre, on utilise awstats, même si je n&#8217;ai pas fait le bilant complet des fonctionnalités, il a au moins l&#8217;avantage d&#8217;être lisible et agréable à l&#8217;oeil.</li>
+</ul>
+
+
+<p>Donc <a href="http://stat.mymind.fr/blog">je l&#8217;ai installé</a>, personnalisé&hellip; en particuliers j&#8217;ai ajouté des browsers (principalement des syndicateurs) et robots, amélioré les spécifications de certains OS, et j&#8217;avais également ajouté à l&#8217;outil de configuration le support de <a href="http://www.mamp.info/en/home/">MAMP</a>. J&#8217;ai envoyé le patch au mainteneur du projet. Aujourd&#8217;hui je fais un <code>cvs up</code> sur mon installation du projet et je vois :</p>
+
+<pre><code>P docs/awstats_faq.html
+RCS file: /cvsroot/awstats/awstats/tools/awstats_configure.pl,v
+retrieving revision 1.6
+retrieving revision 1.7
+Merging differences between 1.6 and 1.7 into awstats_configure.pl
+M tools/awstats_configure.pl
+M wwwroot/cgi-bin/awstats.model.conf
+RCS file: /cvsroot/awstats/awstats/wwwroot/cgi-bin/lib/browsers.pm,v
+retrieving revision 1.54
+retrieving revision 1.55
+Merging differences between 1.54 and 1.55 into browsers.pm
+M wwwroot/cgi-bin/lib/browsers.pm
+RCS file: /cvsroot/awstats/awstats/wwwroot/cgi-bin/lib/operating_systems.pm,v
+retrieving revision 1.20
+retrieving revision 1.21
+Merging differences between 1.20 and 1.21 into operating_systems.pm
+M wwwroot/cgi-bin/lib/operating_systems.pm
+RCS file: /cvsroot/awstats/awstats/wwwroot/cgi-bin/lib/robots.pm,v
+retrieving revision 1.44
+retrieving revision 1.45
+Merging differences between 1.44 and 1.45 into robots.pm
+M wwwroot/cgi-bin/lib/robots.pm
+</code></pre>
+
+<p>Bizarrement, tous les fichiers que j&#8217;ai modifié ont été modifié également sur la CVS&hellip; donc je suis allé faire un tour sur le <a href="http://awstats.cvs.sourceforge.net/awstats/awstats/">webvc du projet</a>, et sur les fichiers correspondants, il y a le commentaire <em>Patch florent bruneau</em>.</p>
+
+<p>Voilà, une bonne surprise ! Je suis juste un peu déçu de l&#8217;avoir vu uniquement sur un update de cvs.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  <div class="pagination">
+    
+      <a class="prev" href="/blog/page/3/">&larr; Older</a>
+    
+    <a href="/blog/archives">Blog Archives</a>
+    
+    <a class="next" href="/">Newer &rarr;</a>
+    
+  </div>
+</div>
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2009/04/07/yet-another-policy-daemon-for-postfix2/">Yet Another Policy Daemon for Postfix</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2008/06/04/polytechniqueorg-lance-son-blog/">Polytechnique.org Lance Son Blog</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2008/05/19/vieux-trucs/">Vieux Trucs</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2008/03/02/encodage-et-terminal/">Encodage Et Terminal</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2007/11/01/afficher-des-discussions/">Afficher Des Discussions</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+
+
+
+  
+</aside>
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2013 - Florent Bruneau -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
+      script.src = 'https://apis.google.com/js/plusone.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(script, s);
+    })();
+  </script>
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = '//platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

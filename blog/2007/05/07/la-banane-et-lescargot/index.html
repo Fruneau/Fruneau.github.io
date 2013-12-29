@@ -1,0 +1,277 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>La Banane Et L'escargot - Mind...</title>
+  <meta name="author" content="Florent Bruneau">
+
+  
+  <meta name="description" content="La release de Banana 1.6 en même temps que celle de plat/al 0.9.14 a mis en évidence un certain nombre de faiblesses dans Banana. En particuliers la &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://Fruneau.github.io/blog/2007/05/07/la-banane-et-lescargot">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="Mind..." type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/libs/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Mind...</a></h1>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:Fruneau.github.io" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">La Banane Et L'escargot</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2007-05-07T19:44:00+02:00" pubdate data-updated="true">May 7<span>th</span>, 2007</time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>La release de <a href="http://opensource.polytechnique.org/banana/">Banana</a> 1.6 en même temps que celle de plat/al 0.9.14 a mis en évidence un certain nombre de faiblesses dans Banana. En particuliers la génération du spool (mise en cache de l&#8217;arborescence des messages) et des flux RSS s&#8217;est révélé extrêmement lourde pour plusieurs raisons :</p>
+
+<ul>
+<li>l&#8217;accès aux mbox des Mailing-Lists nécessite d&#8217;appel du <code>mbox-helper</code>, et donc un <code>fork</code>&hellip; opération lourde, qui répétée plusieurs fois par mbox devient rapidement très lourde lorsqu&#8217;on a plusieurs dizaines de Mailing-Lists.</li>
+<li>le traitement des données par PHP est loin d&#8217;être immédiats&hellip; et il y a clairement des goulots d&#8217;étranglement dans le code.</li>
+</ul>
+
+
+<p>C&#8217;est pour ces raisons que j&#8217;ai passé Banana au <code>profiler</code>, c&#8217;est à dire que j&#8217;ai analysé l&#8217;exécution de Banana à l&#8217;aide d&#8217;un outil qui permet de tracer l&#8217;exécution du programme et mettant un accent particuliers sur le temps d&#8217;exécution de chaque fonction. L&#8217;outil que j&#8217;ai trouvé pour faire ça est <a href="http://www.xdebug.org">xdebug</a>, utilisé conjointement à <a href="http://kcachegrind.sourceforge.net/">KCacheGrind</a>.</p>
+
+<!-- more -->
+
+
+<h1>Forks</h1>
+
+<p>Je dois avouer que lorsque j&#8217;avais fait mes tests, je n&#8217;avais pas plusieurs centaines de Mailing-Lists à traiter&hellip; et je ne m&#8217;attendais pas à ce qu&#8217;une fois passée en production le script de mise à jour des flux RSS puisse prendre toutes les ressources de la machine pendant plusieurs minutes. Il a donc fallu sérieusement restructurer la gestion des accès aux Mailing-Lists pour restreindre au maximum le nombre d&#8217;accès au <code>mbox-helper</code> (un petit programme écrit en C qui se charge de tous les accès aux mbox), et, en cas d&#8217;accès, limiter au maximum le temps passer sur le <code>mbox-helper</code>.</p>
+
+<p>Donc désormais le <code>mbox-helper</code> n&#8217;est plus appelé que si la mbox a changé depuis le dernier passage (le changement étant détecté par la taille du fichier). Ce qui permet donc de supprimer le lancement d&#8217;environ 500 <code>mbox-helper</code> lors des rafraîchissements des spools (en effet, un nombre négligeable de Mailing-List aura des nouveaux messages lors du passage du script toutes les 5, 10 ou 20 minutes). Ajouté à cela la correction d&#8217;un bug qui faisait que l&#8217;appel au <code>mbox-helper</code> oubliait de spécifier l&#8217;offset où chercher le message à traiter et qui forçait donc le <code>mbox-helper</code> à relire la totalité de la mbox, on peut se permettre de supposer que la prochaine version de Banana sera plus efficace pour la gestion des mbox.</p>
+
+<h1>Array_shift</h1>
+
+<h2>Piles</h2>
+
+<p>Il est souvent extrêment pratique d&#8217;utiliser une pile de données. Cela permet de traiter les informations dans l&#8217;ordre de la pile sans excès de mémoire puisque chaque élément est dépilé avant d&#8217;être traité. C&#8217;est une technique que j&#8217;aime particulièrement lorsque j&#8217;ai une suite de lignes à traiter : je prend un tableau contenant une ligne par entrée et je le parcours avec <code>array_shift</code> qui permet de dépiler le premier élément du tableau. On obtient ainsi un code de la forme</p>
+
+<div>
+  <pre><code class='php'>while (!is_null($line = array_shift($lines))) {
+    do_something($line);
+}
+do_something($lines);</code></pre>
+</div>
+
+
+<p>Un <code>foreach</code> peut très bien faire la même chose, mais on perd les avantages de la piles. Avec cette structure, pour avoir le même comportement que la boucle précédente, il faut ajouter un <code>unset()</code> :</p>
+
+<div>
+  <pre><code class='php'>foreach ($lines as $key=&gt;&amp;$value) {
+    do_something($line);
+    unset($lines[$key]);
+}
+do_something($lines);</code></pre>
+</div>
+
+
+<p>Certes le <code>foreach</code> sera sensiblement plus rapide que le <code>while</code>/<code>array_shift()</code> car il comprend un appel de fonction à chaque itération, mais on peut s&#8217;attendre raisonnablement à ce que cet appel soit en O(1), et ait donc un coût négligeable.</p>
+
+<h2>Profiler</h2>
+
+<p>Là où il y a un problème c&#8217;est que le profiler m&#8217;indique que <code>array_shift</code> prend 57% du temps d&#8217;exécution de Banana. Ces 57% sont partagés entre 80000 appels à la fonction, mais le plus marquant c&#8217;est que parmi ces 80000 appels, ce ne sont que 24000 d&#8217;entre eux qui prennent la quasi-totalité du temps. Pourquoi ces appels particuliers sont-ils si lourd alors que les 60000 autres ont un coût parfaitement négligeable.</p>
+
+<p>La seule différence entre ces deux cas d&#8217;appels c&#8217;est que les <em>lourds</em> traitent un énorme tableau de 24000 lignes, alors que les <em>légers</em> traitent un grand nombre de petits tableaux de quelques dizaines de lignes chacun. Il est donc extrêmement clair que <code>array_shift</code> <strong>n&#8217;est pas</strong> une fonction en O(1)&hellip; J&#8217;ai donc changé la structure de code qui reflétait la structure de données par une simple boucle qui perd en lisibilité dans <a href="http://opensource.polytechnique.org/viewsvn/diff.php?path=/trunk/banana/mbox.inc.php&amp;rev=248&amp;repname=Banana">ce patch</a>. Après ce changement, les 60000 <code>array_shift</code> restant ne prennent que 0.16% du temps d&#8217;exécution de Banana&hellip;</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Florent Bruneau</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2007-05-07T19:44:00+02:00" pubdate data-updated="true">May 7<span>th</span>, 2007</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/polytechnique-dot-org/'>Polytechnique.org</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://Fruneau.github.io/blog/2007/05/07/la-banane-et-lescargot/" data-via="FlorentBruneau" data-counturl="http://Fruneau.github.io/blog/2007/05/07/la-banane-et-lescargot/" >Tweet</a>
+  
+  
+  <div class="g-plusone" data-size="medium"></div>
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2007/05/03/vista/" title="Previous Post: Vista ?">&laquo; Vista ?</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/2007/05/18/virtuedesktops-revient/" title="Next Post: VirtueDesktops revient...">VirtueDesktops revient... &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2009/04/07/yet-another-policy-daemon-for-postfix2/">Yet Another Policy Daemon for Postfix</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2008/06/04/polytechniqueorg-lance-son-blog/">Polytechnique.org Lance Son Blog</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2008/05/19/vieux-trucs/">Vieux Trucs</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2008/03/02/encodage-et-terminal/">Encodage Et Terminal</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2007/11/01/afficher-des-discussions/">Afficher Des Discussions</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2013 - Florent Bruneau -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
+      script.src = 'https://apis.google.com/js/plusone.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(script, s);
+    })();
+  </script>
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = '//platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

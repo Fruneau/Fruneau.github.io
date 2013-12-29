@@ -1,0 +1,248 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Khtml2png 2.6.5 Est Sorti - Mind...</title>
+  <meta name="author" content="Florent Bruneau">
+
+  
+  <meta name="description" content="Après 3 mois d&#8217;un travail pas très intensif, une nouvelle version de khtml2png est disponible. Cette version est partie du fait que les &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://Fruneau.github.io/blog/2007/06/06/khtml2png-265-est-sorti">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="Mind..." type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/libs/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Mind...</a></h1>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:Fruneau.github.io" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Khtml2png 2.6.5 Est Sorti</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2007-06-06T00:31:00+02:00" pubdate data-updated="true">Jun 6<span>th</span>, 2007</time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>Après 3 mois d&#8217;un travail pas très intensif, une nouvelle version de <a href="http://khtml2png.sf.net">khtml2png</a> est disponible. Cette version est partie du fait que les versions précédentes du programme ont parfois du mal à gérer les grandes captures d&#8217;écran (en fait, des bugs peuvent apparaître dès que la taille de la zone à capturer est plus grande que la taille affichable).</p>
+
+<p>Donc, rapidement après la sortie de la 2.6.0, j&#8217;avais envoyé un correctif (en fait une réécriture du moteur de rendu) au développeur de <code>khtml2png</code>. Malheureusement, ce correctif ne fonctionnait pas correctement chez lui. Donc, pendant 3 mois, j&#8217;ai fait du débuggage à distance : j&#8217;envoie une version modifiée (1 ou 2 lignes à chaque fois), j&#8217;attends 2 ou 3 semaine une réponse, etc&hellip; Du développement efficace !</p>
+
+<p>Bon, toujours est-il que maintenant, la version 2.6.5 fonctionne à la fois chez moi (à la fois Debian + xvnc et sur MacOS X), et chez Hauke (sur Debian également, mais avec des réglages différents).</p>
+
+<p>Le Changelog annonce :</p>
+
+<blockquote><p> fix: Now produces screenshots on my Debian Etch system under KDE 3.5.5 without glitches. %%%
+ fix: Maybe better working on other systems too. Please test.</p></blockquote>
+
+<p>J&#8217;aimerais y rajouter quelques points :</p>
+
+<ul>
+<li>meilleur moteur de rendu (qui ne scroll plus, mais déplace la fenêtre pour s&#8217;affranchir de certains bugs de KDE et/ou Qt)</li>
+<li>meilleure détection de la taille de la capture à réaliser</li>
+<li>possibilité de choisir le comportement de <code>khtml2png</code> face aux redirections, au javascript, au java, au flash&hellip; via la ligne de commande</li>
+<li>la détection automatique de la dimension par un <code>id</code> devient compatible avec le format utilisé dans les version &lt;= 2.5</li>
+</ul>
+
+
+<p>Comme d&#8217;habitude, vous pouvez télécharger <a href="/mind/public/khtml2png/khtml2png-fru-last.tar.bz2">ma dernière version du programme</a>.</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Florent Bruneau</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2007-06-06T00:31:00+02:00" pubdate data-updated="true">Jun 6<span>th</span>, 2007</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/geektime/'>GeekTime</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://Fruneau.github.io/blog/2007/06/06/khtml2png-265-est-sorti/" data-via="FlorentBruneau" data-counturl="http://Fruneau.github.io/blog/2007/06/06/khtml2png-265-est-sorti/" >Tweet</a>
+  
+  
+  <div class="g-plusone" data-size="medium"></div>
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2007/06/02/spaces/" title="Previous Post: Spaces">&laquo; Spaces</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/2007/06/12/mailapp-imap-et-signatures/" title="Next Post: Mail.app, IMAP et signatures...">Mail.app, IMAP et signatures... &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2009/04/07/yet-another-policy-daemon-for-postfix2/">Yet Another Policy Daemon for Postfix</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2008/06/04/polytechniqueorg-lance-son-blog/">Polytechnique.org Lance Son Blog</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2008/05/19/vieux-trucs/">Vieux Trucs</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2008/03/02/encodage-et-terminal/">Encodage Et Terminal</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2007/11/01/afficher-des-discussions/">Afficher Des Discussions</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2013 - Florent Bruneau -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
+      script.src = 'https://apis.google.com/js/plusone.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(script, s);
+    })();
+  </script>
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = '//platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

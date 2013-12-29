@@ -1,0 +1,67 @@
+#!/usr/bin/perl
+# Ce script a pour but d'assure la coloration des sorties de svn
+# Actuellement il permet de colorer correctement :
+# - svn diff
+# - svn status
+# et toutes les dérivées de status avec :
+# - svn up
+# - svn co
+#
+# !!! Attention à ne pas utiliser ce script avec svn ci !!!
+
+my %hash_diff;
+
+# Correspondance symbole de diff -> couleur
+$hash_diff{'(@@|---|\d)'} = "\e[01;36m";
+$hash_diff{'(-|<)'} = "\e[01;31m";
+$hash_diff{'(\+|>)'} = "\e[01;32m";
+$hash_diff{' '} = "\e[00;37m";
+
+# Affiche un texte avec un préfixe
+# et s'assure que la chaîne retrouve bien la couleur
+# par défaut de la console
+sub print_colored($$)
+{
+  my ($color, $text) = @_;
+  chomp $text;
+  print $color.$text."\e[00m\n";
+}
+
+# Parcours stdin en analysant ligne par ligne...
+while($line =<STDIN>)
+{
+  if (!(-t STDOUT)) {
+    print $line;
+  } else {
+    # Pour le flush
+    local $oldbar = $|;
+    $| = 1;
+    $cfg = select STDOUT;
+
+    my $ok = 0;
+    # On entre dans un diff en commençant par le nom du fichier
+    if($line =~ /^Index: (.*)$/)
+    {
+      print_colored("\e[00mIndex: \e[01;33m", " $1");
+      $ok = 1;
+    }
+    # On est dans un diff -> on applique les couleurs de diff (hash_diff)
+    {
+      foreach (keys(%hash_diff))
+      {
+        if(!$ok && $line =~ /^$_/)
+        {
+          print_colored($hash_diff{$_}, $line);
+          $ok = 1;
+        }
+      }
+    }
+
+    # Sinon... on affiche à la couleur par défaut
+    print_colored("\e[00m", $line) if(!$ok);
+
+    $| = $oldbar;
+    select $cfg;
+  }
+}
+

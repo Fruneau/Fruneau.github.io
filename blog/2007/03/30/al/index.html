@@ -1,0 +1,312 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Un Aperçu De La Version 0.9.14 De Plat/al - Mind...</title>
+  <meta name="author" content="Florent Bruneau">
+
+  
+  <meta name="description" content="Le site de Polytechnique.org est prévu pour être mis à jour régulièrement, de l&#8217;ordre d&#8217;une fois tous les deux mois. Ainsi, les mises à &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://Fruneau.github.io/blog/2007/03/30/al">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="Mind..." type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/libs/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Mind...</a></h1>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:Fruneau.github.io" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Un Aperçu De La Version 0.9.14 De Plat/al</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2007-03-30T13:39:00+02:00" pubdate data-updated="true">Mar 30<span>th</span>, 2007</time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>Le site de <a href="https://www.polytechnique.org">Polytechnique.org</a> est prévu pour être mis à jour régulièrement, de l&#8217;ordre d&#8217;une fois tous les deux mois. Ainsi, les mises à jours sont suffisamment substantielles pour créer un effet d&#8217;annonce autour des améliorations apportées au site, sans pour autant laisser traîner les correctifs de bugs trop longtemps dans la branche de développement sans en faire profiter les utilisateurs.</p>
+
+<p>La version 0.9.13 est sortie fin janvier, un peu plus d&#8217;un mois après la 0.9.12. La 0.9.14 sortira probablement fin avril (en tout cas, ce sera après le passage de <a href="http://www.debian.org/releases/etch/">etch</a> en stable chez debian). Néanmoins, vue la masse de changement de cette nouvelle version, nous avons décidé de lancer les tests plus tôt qu&#8217;à l&#8217;accoutumée. Voici donc un aperçu des nouveautés (seulement un aperçu car le développement de cette version n&#8217;est pas freezé).</p>
+
+<p>Comme à l&#8217;accoutumée, la liste exhaustive des changements se trouve dans le <a href="http://dev.m4x.org/changelog">ChangeLog</a>.</p>
+
+<!-- more -->
+
+
+<h1>Passage en UTF8</h1>
+
+<p>C&#8217;est le changement le moins visible&hellip; mais le plus douloureux. En fait pour l&#8217;utilisateur a priori, rien ne change&hellip; mais en background <strong>toutes</strong> les pages, sans exception, sont affectées et donc potentiellement buggées. La plupart du temps un bug d&#8217;UTF8 (dans le sens latin1 interprété comme de l&#8217;UTF8) entraîne l&#8217;affichage d&#8217;une page vide ou blanche, ce qui est beaucoup plus douloureux que dans l&#8217;autre sens (UTF8 interprété comme du latin1).</p>
+
+<p>Le passage en UTF8 s&#8217;accompagne d&#8217;un passage de MySQL 4.0 à MySQL 5&hellip; a priori la plupart des incompatibilités SQL sont corrigées mais on ne sait jamais. Pour l&#8217;instant nous n&#8217;utilisons pas vraiment les nouveautés de MySQL 5 (en fait un MySQL 4.1 aurait suffi pour l&#8217;usage qu&#8217;on en fait). Mais ce changement permet de prévoir à l&#8217;avenir un changement de la structure de la base SQL que nous utilisons, ce qui sera sans doute nécessaire lors de la <a href="http://trackers.polytechnique.org/task/547">fusion des annuaires</a>.</p>
+
+<h1>Syntaxe Wiki généralisée</h1>
+
+<p>Autre nouveauté majeure, mais cette fois dont l&#8217;utilisateur bénéficiera directement : une syntaxe wiki généralisée est désormais mise en place sur la grande majorité des textes que l&#8217;utilisateur peut entrer sur le site. La syntaxe utilisée est celle de <a href="http://www.pmwiki.org/">PmWiki</a>, le moteur wiki que nous utilisons déjà pour les pages de documentation du site. Malheureusement la structure de PmWiki interdisant son utilisation comme une bibliothèque (en gros il ne fournit pas de fonction wikiToHtml, comme le fait par exemple <a href="http://www.dotclear.net">Dotclear</a>), il a fallu réimplémenter un nouveau moteur wiki léger.</p>
+
+<p>Cette <a href="http://dev.m4x.org/wiki_help">syntaxe wiki</a> permet la plupart des formatages attendus : gras, italique, couleur, soulignement, listes, titres et tailles, liens hypertextes. On conserve également un url-catcher qui permet à l&#8217;utilisateur qui n&#8217;a pas envie de prendre le temps de formater son annonce d&#8217;avoir tout de même les URL transformées en lien.</p>
+
+<p>La syntaxe wiki est utilisable :</p>
+
+<ul>
+<li>pour le formulaire d&#8217;envoi de mail</li>
+<li>pour les champs &ldquo;freetext&rdquo; de la fiche (CV et Commentaires)</li>
+<li>pour l&#8217;édition d&#8217;annonces (pour la page d&#8217;accueil et pour la lettre mensuelle)</li>
+<li>&hellip;</li>
+</ul>
+
+
+<h1>Amélioration des annonces</h1>
+
+<p>Comme indiqué dans le paragraphe précédent, les annonces bénéficieront d&#8217;une syntaxe wiki qui permet de formater l&#8217;annonce (ce qui n&#8217;était jusqu&#8217;à présent faisable que par les administrateurs du site, en éditant directement le code HTML de l&#8217;annonce). Mais ce n&#8217;est pas la seule amélioration. L&#8217;amélioration du système d&#8217;annonce de Polytechnique.org était un des points les plus importants que j&#8217;avais annoncés dans un <a href="/mind/post/2007/03/01/Polytechniqueorg-en-retard">précédent billet</a>.</p>
+
+<p><img src="http://Fruneau.github.io/assets/screenshots/annonce-0.9.14.png" alt="Système d'annonces de plat/al 0.9.14" /></p>
+
+<h2>Classement des annonces</h2>
+
+<p>Au lieu d&#8217;avoir toutes les annonces dans un ordre incompréhensible qui ne permet pas de distinguer les nouvelles des anciennes, les annonces seront désormais classées selon leur date d&#8217;arrivée, leur date de péremption et leur importance. Ce classement est <em>&lsquo;très</em>&rsquo; fortement inspiré du classement utilisé sur <a href="http://www.frankiz.net">Frankiz (le portail des élèves de l&#8217;X)</a>. L&#8217;ordre de traitement (en first-match) est le suivant :</p>
+
+<ul>
+<li>si une annonce est marquée comme importante, elle va dans la catégorie du même nom.</li>
+<li>si une annonce a été validée (et non postée) il y a moins de 48 heures, elle est dans &ldquo;Nouvelles annonces&rdquo;</li>
+<li>si une annonce périme dans moins de 48 heures, elle est dans &ldquo;Bientôt fini&rdquo;</li>
+<li>toutes les autres annonces sont dans &ldquo;Mais encore&hellip;&rdquo;</li>
+</ul>
+
+
+<h2>Une image par annonce&hellip;</h2>
+
+<p>Les annonces autorisent désormais l&#8217;ajout d&#8217;une image qui illustre l&#8217;annonce ou le groupe qui a posté l&#8217;annonce. Pour le design, nous sommes cette fois plus proche de ce qui est fait sur le <a href="http://www.polytechnicien.com">site de l&#8217;AX</a> : l&#8217;image est placée sur le côté de l&#8217;annonce, ce qui permet de limiter l&#8217;espace inutilisé. Moins il y a de vide, plus on a de chance que les utilisateurs aillent lire le contenu sans trop &ldquo;scroller&rdquo;, ce qui est à mon avis mieux pour la lisibilité des annonces.</p>
+
+<h2>Discussion</h2>
+
+<p>Enfin la dernière grande nouveauté est l&#8217;ajout de la notion de discussion. Lorsqu&#8217;une annonce est validée, elle est automatiquement postée sur un newsgroup (grâce à <a href="http://opensource.polytechnique.org/banana">banana</a> et l&#8217;annonce elle-même contient un lien vers ce post. Je suis curieux de voir à quel point cela va fonctionner (j&#8217;ai tendance à penser que ce sera encore une fonctionnalité inutilisée&hellip; en tout cas pendant les premiers mois) mais en tout cas c&#8217;est avant tout un début vers une meilleure interactivité entre les utilisateurs.</p>
+
+<h1>Recherche par proximité sonore généralisée</h1>
+
+<p>Une autre nouveauté dont j&#8217;ai déjà parlé dans <a href="/mind/post/2007/03/15/Soundex-Francais">un billet précédent</a>. Alors qu&#8217;auparant la recherche par proximité sonore était limitée à la recherche avancée et n&#8217;était pas toujours correcte, la nouvelle étant la possibilité à la recherche rapide (selon le choix de l&#8217;utilisateur évidemment) et devrait être (je l&#8217;espère) plus efficace qu&#8217;auparavant grâce au nouvel algorithme de soundex conçu pour mieux s&#8217;adapter à la langue française.</p>
+
+<p>Le seul moyen de se faire une idée est de <a href="http://dev.m4x.org/search">tester sur le site</a> ou de <a href="/mind/post/2007/03/15/Soundex-Francais#test">tester l&#8217;algorithme</a>.</p>
+
+<h1>Les forums et les Mailing-Lists en RSS</h1>
+
+<p>La prochaine version de plat/al intégrera Banana 1.6 dont l&#8217;innovation majeure est l&#8217;ajout de flux RSS pour les forums. Je ne m&#8217;étendrais pas sur le sujet étant donné qu&#8217;il y a déjà un <a href="/mind/post/2007/02/25/Un-client-RSS-pour-lire-les-Forums-NNTP-et-les-Mailing-Lists">billet à ce sujet</a>. Mais les forums ne sont pas les seuls à se doter d&#8217;un flux RSS avec cette nouvelle version, c&#8217;est également le cas des pages de documentation. Ainsi il sera possible de suivre les modifications de la documentation (ce qui sera principalement utile pour les administrateurs du site).</p>
+
+<h1>Mais aussi&hellip; en vrac</h1>
+
+<p>Les versions précédentes du site offraient la possibilité d&#8217;ajouter l&#8217;annuaire de Polytechnique.org aux moteurs de recherche de Firefox. Désormais ce sera aussi possible de le faire dans Internet Explorer 7 et dans tous les navigateurs qui supportent le format <a href="http://www.opensearch.org">OpenSearch</a>.</p>
+
+<p>L&#8217;ajout d&#8217;un nouveau module pour faire des sondages. Ce module est encore en développement et n&#8217;est pas actuellement accessible sur le site de développement, mais il devrait être intégré à la prochaine version du site. Les sondages étaient la seule fonctionnalité du site perdue en octobre 2004 lorsque la première version de plat/al avait replacé l&#8217;ancienne version du site. C&#8217;est un outil très attendu que nous sommes heureux de retrouver grâce au travail de <a href="https://www.polytechnique.org/profile/fabien.laborde.2004">pika</a>.</p>
+
+<p>Et il y a encore d&#8217;autres nouveautés, ainsi qu&#8217;un grand nombre de corrections de bugs.</p>
+
+<h1>Venez tester !</h1>
+
+<p>N&#8217;hésitez donc pas à venir nous aider à tester toutes ces nouvelles fonctionnalités. Pour ceci il suffit d&#8217;avoir un compte sur Polytechnique.org (donc d&#8217;être un X) et d&#8217;aller sur :</p>
+
+<ul>
+<li><a href="http://dev.m4x.org">Le site de test de Polytechnique.org</a> pour tester le site principal</li>
+<li><a href="http://dev.polytechnique.net">le site de test de Polytechnique.net</a> pour tester le site des groupes</li>
+</ul>
+
+
+<p>La <a href="http://www.polytechnique.net/Polytechnique.org/lists/members/testeurs">liste de diffusion des testeurs</a> est également ouverte à toutes les bonnes volontés et permet de discuter simplement les bugs et de l&#8217;avancement des corrections.</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Florent Bruneau</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2007-03-30T13:39:00+02:00" pubdate data-updated="true">Mar 30<span>th</span>, 2007</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/polytechnique-dot-org/'>Polytechnique.org</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://Fruneau.github.io/blog/2007/03/30/al/" data-via="FlorentBruneau" data-counturl="http://Fruneau.github.io/blog/2007/03/30/al/" >Tweet</a>
+  
+  
+  <div class="g-plusone" data-size="medium"></div>
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2007/03/28/deux-approches/" title="Previous Post: Deux approches...">&laquo; Deux approches...</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/2007/04/04/trous-de-memoire/" title="Next Post: Trous de mémoire">Trous de mémoire &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2009/04/07/yet-another-policy-daemon-for-postfix2/">Yet Another Policy Daemon for Postfix</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2008/06/04/polytechniqueorg-lance-son-blog/">Polytechnique.org Lance Son Blog</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2008/05/19/vieux-trucs/">Vieux Trucs</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2008/03/02/encodage-et-terminal/">Encodage Et Terminal</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2007/11/01/afficher-des-discussions/">Afficher Des Discussions</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2013 - Florent Bruneau -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
+      script.src = 'https://apis.google.com/js/plusone.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(script, s);
+    })();
+  </script>
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = '//platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

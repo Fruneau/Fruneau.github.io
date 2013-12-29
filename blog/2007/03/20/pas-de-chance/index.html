@@ -1,0 +1,245 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Pas De Chance - Mind...</title>
+  <meta name="author" content="Florent Bruneau">
+
+  
+  <meta name="description" content="J&#8217;en ai marre des Macs qui plantent à longueur de temps&hellip; Pourquoi est-ce que toutes les autres personnes qui ont des machines Apple s&# &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://Fruneau.github.io/blog/2007/03/20/pas-de-chance">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="Mind..." type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/libs/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Mind...</a></h1>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:Fruneau.github.io" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Pas De Chance</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2007-03-20T19:59:00+01:00" pubdate data-updated="true">Mar 20<span>th</span>, 2007</time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>J&#8217;en ai marre des Macs qui plantent à longueur de temps&hellip; Pourquoi est-ce que toutes les autres personnes qui ont des machines Apple s&#8217;en sortent sans problème alors que moi j&#8217;enchaîne les crashs inexplicables, bug matériels, etc&hellip;</p>
+
+<!-- more -->
+
+
+<p>Déjà mon PowerMac&hellip; impossible d&#8217;utiliser les fonctionnalités réseau avancées, ça fait freezer la machine. Pourtant je l&#8217;ai pris exprès avec 2 cartes réseau <strong>justement</strong> pour pouvoir m&#8217;en servir comme routeur. Finalement, il me fait serveur (IMAP, WEB, FTP, AFP, IRC&hellip;), mais depuis le passage à Mac OS 10.4.9$$<strong>Edit du 5 avril 2007 :</strong> en fait après quelques investigations, il est apparu que c&#8217;est <code>stunnel</code> que j&#8217;utilisais assez abondamment qui générait un zombie à chaque connexion. Malheureusement, comme je ne pouvais pas lancer <code>ps</code> pour voir la liste des process au moment où la machine avait planté, je ne pouvais pas voir les zombies (le moniteur d&#8217;activité de Mac OS ne les fait pas apparaître). J&#8217;ai réduit mon usage de <code>stunnel</code> au strict nécessaire et j&#8217;ai mis un cron qui relance le service toutes les heures et bizarrement, je n&#8217;ai plus de problèmes$$, j&#8217;ai régulièrement des messages <code>fork failed: resource temporarily unavailable</code> et un flood de <code>proc: table is full</code> dans les logs. Au lieu d&#8217;avoir une machine stable comme elle l&#8217;était avant cette mise à jour, je me retrouve avec un serveur qu&#8217;il me faut rebooter une fois par jour.</p>
+
+<p>A chaque reboot, je modifie plus d&#8217;options en espérant que <em>cette</em> fois, ce sera la bonne :</p>
+
+<ul>
+<li>mettre <code>launchctl limit maxproc 512 2048</code></li>
+<li>mettre <code>ulimit -a 512</code> (au lancement des scripts d&#8217;init et de mon shell)</li>
+<li>mettre <code>kern.maxproc=2048</code> et <code>kern.maxprocperuid=512</code> dans mon /etc/sysctl.conf</li>
+</ul>
+
+
+<p>De son côté mon portable (un MacBook Pro rev 1.1 &ndash; Core Duo) a la carte graphique grillée&hellip; super ! j&#8217;ai des <a href="/mind/public/screenshots/bugs.png">points partout dans l&#8217;affichage</a>. Pourtant je ne me suis pas amusé à l&#8217;overclockée&hellip; c&#8217;est juste que les ventilateurs semblent oublier de tourner quand la machine chauffe. Pour parachever le tout, depuis quelques jours il ne fonctionne plus correctement sur batterie&hellip; à 60% ou 80% de batterie (selon les fois), il s&#8217;éteint brutalement&hellip; &ldquo;Ghostage&rdquo; de batterie paraît-il.</p>
+
+<p>Tout ça m&#8217;énerve&hellip; c&#8217;est dommage, parce que j&#8217;aime bien Mac OS, c&#8217;est un système confortable à utiliser (même si certaines fonctionnalités de KDE me manquent).</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Florent Bruneau</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2007-03-20T19:59:00+01:00" pubdate data-updated="true">Mar 20<span>th</span>, 2007</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/general/'>Général</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://Fruneau.github.io/blog/2007/03/20/pas-de-chance/" data-via="FlorentBruneau" data-counturl="http://Fruneau.github.io/blog/2007/03/20/pas-de-chance/" >Tweet</a>
+  
+  
+  <div class="g-plusone" data-size="medium"></div>
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2007/03/15/soundex-francais/" title="Previous Post: Soundex Français">&laquo; Soundex Français</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/2007/03/21/joie-bis/" title="Next Post: Joie ! (bis)">Joie ! (bis) &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2009/04/07/yet-another-policy-daemon-for-postfix2/">Yet Another Policy Daemon for Postfix</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2008/06/04/polytechniqueorg-lance-son-blog/">Polytechnique.org Lance Son Blog</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2008/05/19/vieux-trucs/">Vieux Trucs</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2008/03/02/encodage-et-terminal/">Encodage Et Terminal</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2007/11/01/afficher-des-discussions/">Afficher Des Discussions</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2013 - Florent Bruneau -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
+      script.src = 'https://apis.google.com/js/plusone.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(script, s);
+    })();
+  </script>
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = '//platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

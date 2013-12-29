@@ -1,0 +1,265 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Stats - Mind...</title>
+  <meta name="author" content="Florent Bruneau">
+
+  
+  <meta name="description" content="Depuis le début, j&#8217;ai installé awstats pour avoir des statistiques sur l&#8217;utilisation de mon serveur web. J&#8217;ai choisi awstats un peu &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://Fruneau.github.io/blog/2007/04/21/stats">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="Mind..." type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/libs/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Mind...</a></h1>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:Fruneau.github.io" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Stats</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2007-04-21T02:59:00+02:00" pubdate data-updated="true">Apr 21<span>st</span>, 2007</time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>Depuis le début, j&#8217;ai installé <a href="http://awstats.sf.net">awstats</a> pour avoir des statistiques sur l&#8217;utilisation de mon serveur web.</p>
+
+<p>J&#8217;ai choisi awstats un peu par hasard :</p>
+
+<ul>
+<li>on avait utilisé <a href="http://www.mrunix.net/webalizer/">webalizer</a> au <a href="http://www.frankiz.net/binets/reseau">BR</a> et je n&#8217;étais pas spécialement convaincu par le résultat obtenu : beaucoup de chiffres, graphiquement peu attirant et d&#8217;ergonomie d&#8217;utilisation assez mauvaise.</li>
+<li>à <a href="https://www.polytechnique.org">Polytechnique.org</a> par contre, on utilise awstats, même si je n&#8217;ai pas fait le bilant complet des fonctionnalités, il a au moins l&#8217;avantage d&#8217;être lisible et agréable à l&#8217;oeil.</li>
+</ul>
+
+
+<p>Donc <a href="http://stat.mymind.fr/blog">je l&#8217;ai installé</a>, personnalisé&hellip; en particuliers j&#8217;ai ajouté des browsers (principalement des syndicateurs) et robots, amélioré les spécifications de certains OS, et j&#8217;avais également ajouté à l&#8217;outil de configuration le support de <a href="http://www.mamp.info/en/home/">MAMP</a>. J&#8217;ai envoyé le patch au mainteneur du projet. Aujourd&#8217;hui je fais un <code>cvs up</code> sur mon installation du projet et je vois :</p>
+
+<pre><code>P docs/awstats_faq.html
+RCS file: /cvsroot/awstats/awstats/tools/awstats_configure.pl,v
+retrieving revision 1.6
+retrieving revision 1.7
+Merging differences between 1.6 and 1.7 into awstats_configure.pl
+M tools/awstats_configure.pl
+M wwwroot/cgi-bin/awstats.model.conf
+RCS file: /cvsroot/awstats/awstats/wwwroot/cgi-bin/lib/browsers.pm,v
+retrieving revision 1.54
+retrieving revision 1.55
+Merging differences between 1.54 and 1.55 into browsers.pm
+M wwwroot/cgi-bin/lib/browsers.pm
+RCS file: /cvsroot/awstats/awstats/wwwroot/cgi-bin/lib/operating_systems.pm,v
+retrieving revision 1.20
+retrieving revision 1.21
+Merging differences between 1.20 and 1.21 into operating_systems.pm
+M wwwroot/cgi-bin/lib/operating_systems.pm
+RCS file: /cvsroot/awstats/awstats/wwwroot/cgi-bin/lib/robots.pm,v
+retrieving revision 1.44
+retrieving revision 1.45
+Merging differences between 1.44 and 1.45 into robots.pm
+M wwwroot/cgi-bin/lib/robots.pm
+</code></pre>
+
+<p>Bizarrement, tous les fichiers que j&#8217;ai modifié ont été modifié également sur la CVS&hellip; donc je suis allé faire un tour sur le <a href="http://awstats.cvs.sourceforge.net/awstats/awstats/">webvc du projet</a>, et sur les fichiers correspondants, il y a le commentaire <em>Patch florent bruneau</em>.</p>
+
+<p>Voilà, une bonne surprise ! Je suis juste un peu déçu de l&#8217;avoir vu uniquement sur un update de cvs.</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Florent Bruneau</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2007-04-21T02:59:00+02:00" pubdate data-updated="true">Apr 21<span>st</span>, 2007</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/geektime/'>GeekTime</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://Fruneau.github.io/blog/2007/04/21/stats/" data-via="FlorentBruneau" data-counturl="http://Fruneau.github.io/blog/2007/04/21/stats/" >Tweet</a>
+  
+  
+  <div class="g-plusone" data-size="medium"></div>
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2007/04/13/shell-interdit/" title="Previous Post: Shell interdit">&laquo; Shell interdit</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/2007/04/29/0914-en-ligne/" title="Next Post: 0.9.14 en ligne !">0.9.14 en ligne ! &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2009/04/07/yet-another-policy-daemon-for-postfix2/">Yet Another Policy Daemon for Postfix</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2008/06/04/polytechniqueorg-lance-son-blog/">Polytechnique.org Lance Son Blog</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2008/05/19/vieux-trucs/">Vieux Trucs</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2008/03/02/encodage-et-terminal/">Encodage Et Terminal</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2007/11/01/afficher-des-discussions/">Afficher Des Discussions</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2013 - Florent Bruneau -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
+      script.src = 'https://apis.google.com/js/plusone.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(script, s);
+    })();
+  </script>
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = '//platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,258 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Deux Approches... - Mind...</title>
+  <meta name="author" content="Florent Bruneau">
+
+  
+  <meta name="description" content="Les deux APIs avec lesquelles j&#8217;ai eu le plus la chance de travailler sont celle de Qt et celle de PHP&hellip; il n&#8217;y a pas à dire, entre &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://Fruneau.github.io/blog/2007/03/28/deux-approches">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="Mind..." type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/libs/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Mind...</a></h1>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:Fruneau.github.io" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Deux Approches...</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2007-03-28T02:52:00+02:00" pubdate data-updated="true">Mar 28<span>th</span>, 2007</time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>Les deux APIs avec lesquelles j&#8217;ai eu le plus la chance de travailler sont celle de <a href="http://doc.trolltech.com/">Qt</a> et celle de <a href="http://www.php.net">PHP</a>&hellip; il n&#8217;y a pas à dire, entre ces deux bibliothèques, c&#8217;est comme le jour et la nuit.</p>
+
+<!-- more -->
+
+
+<p>L&#8217;API de Qt est intuitive et est conçue pour l&#8217;être. Si je veux avoir l&#8217;âge du capitaine, je ferais toujours <code>capitaine-&gt;age()</code>, et si je veux définir son âge, ce sera <code>capitaine-&gt;setAge(42)</code>. Cette API est tellement prévisible qu&#8217;au bout de quelques jours d&#8217;utilisation, on n&#8217;utilise la documentation que pour chercher de nouvelles fonctionnalités, mais très rarement pour chercher des fonctions courantes. En plus, ce qui est remarquable, c&#8217;est qu&#8217;au fur et à mesure des versions de Qt, l&#8217;accent est mis sur la simplification de l&#8217;API&hellip; Qt 4 est bien plus intuitive que Qt 3 qui est pourtant déjà très facile à utiliser.</p>
+
+<p>La qualité de la documentation de Qt y est également pour quelque chose : toutes les méthodes sont documentées, avec la plupart du temps un exemple. Le tout étant très facilement accessible grâce à l&#8217;assistant, un petit programme qui permet de consulter la documentation en intégrant des outils pour naviguer simplement entre les pages.</p>
+
+<p>Par contre, je ne sais pas pourquoi, mais en PHP, l&#8217;API est incohérente&hellip; l&#8217;exemple le plus simple est sans doute celui du remplacement et de la recherche dans une variable. Si, par exemple, je veux rechercher un élément :</p>
+
+<div>
+  <pre><code class='php'>//Dans une chaîne de caractères :
+strpos($string, $findme);
+//Dans un tableau, c&#39;est l&#39;inverse :
+in_array($findme, $array);
+array_search($findme, $array);</code></pre>
+</div>
+
+
+<p>Si je veux faire un remplacement dans une chaîne de caractères :</p>
+
+<div>
+  <pre><code class='php'>strtr($string, $search, $replace);
+str_replace($search, $replace, $string);
+preg_replace($search, $replace, $string);</code></pre>
+</div>
+
+
+<p>Chic ! Grâce à ça, même si je connais le nom de la fonction à utiliser, je suis quasiment forcé à chaque fois d&#8217;aller regarder dans la documentation de PHP (ce que j&#8217;ai fait pour écrire ce paragraphe, sinon j&#8217;aurais <em>&lsquo;forcément</em>&rsquo; inversé les arguments)&hellip; heureusement que celle-ci est bien faite et permet de trouver rapidement les fonctions dont on connaît le nom.</p>
+
+<p>Quand est-ce que PHP se décidera à revoir son API pour qu&#8217;elle soit aussi intuitive que celle de Qt ? Malheureusement, sans doute jamais : il faut garder (autant que possible) la compatibilité avec les versions précédentes de PHP. Dommage, parce qu&#8217;à mon avis, si PHP continue à étoffer son API sans la rendre cohérente, sa popularité va diminuer progressivement dans les années qui viennent.</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Florent Bruneau</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2007-03-28T02:52:00+02:00" pubdate data-updated="true">Mar 28<span>th</span>, 2007</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/geektime/'>GeekTime</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://Fruneau.github.io/blog/2007/03/28/deux-approches/" data-via="FlorentBruneau" data-counturl="http://Fruneau.github.io/blog/2007/03/28/deux-approches/" >Tweet</a>
+  
+  
+  <div class="g-plusone" data-size="medium"></div>
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2007/03/21/joie-bis/" title="Previous Post: Joie ! (bis)">&laquo; Joie ! (bis)</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/2007/03/30/al/" title="Next Post: Un aperçu de la version 0.9.14 de plat/al">Un aperçu de la version 0.9.14 de plat/al &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2009/04/07/yet-another-policy-daemon-for-postfix2/">Yet Another Policy Daemon for Postfix</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2008/06/04/polytechniqueorg-lance-son-blog/">Polytechnique.org Lance Son Blog</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2008/05/19/vieux-trucs/">Vieux Trucs</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2008/03/02/encodage-et-terminal/">Encodage Et Terminal</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2007/11/01/afficher-des-discussions/">Afficher Des Discussions</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2013 - Florent Bruneau -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
+      script.src = 'https://apis.google.com/js/plusone.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(script, s);
+    })();
+  </script>
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = '//platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

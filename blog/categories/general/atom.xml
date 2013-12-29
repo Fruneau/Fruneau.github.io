@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Général | Mind...]]></title>
   <link href="http://Fruneau.github.io/blog/categories/general/atom.xml" rel="self"/>
   <link href="http://Fruneau.github.io/"/>
-  <updated>2013-12-29T16:10:43+01:00</updated>
+  <updated>2013-12-29T18:34:12+01:00</updated>
   <id>http://Fruneau.github.io/</id>
   <author>
     <name><![CDATA[Florent Bruneau]]></name>
@@ -14,49 +14,210 @@
 
   
   <entry>
-    <title type="html"><![CDATA[Se Découvrir Sur Internet...]]></title>
-    <link href="http://Fruneau.github.io/blog/2007/02/24/se-decouvrir-sur-internet-dot-dot-dot/"/>
-    <updated>2007-02-24T15:48:49+01:00</updated>
-    <id>http://Fruneau.github.io/blog/2007/02/24/se-decouvrir-sur-internet-dot-dot-dot</id>
-    <content type="html"><![CDATA[<p>C'est assez marrant de rechercher son nom sur Internet&hellip; pour ma part j'ai l'habitude de trouver pas mal de page me concernant (c'est l'avantage d'avoir une identité pas trop courante, et d'avoir au passage intégré une grande Ecole). Là où il y a un problème, c'est lorsqu'on découvre de cette manière qu'on a une double vie !</p>
+    <title type="html"><![CDATA[Vieux Trucs]]></title>
+    <link href="http://Fruneau.github.io/blog/2008/05/19/vieux-trucs/"/>
+    <updated>2008-05-19T00:50:00+02:00</updated>
+    <id>http://Fruneau.github.io/blog/2008/05/19/vieux-trucs</id>
+    <content type="html"><![CDATA[<p>Un peu de nostalgie. Je suis retombé sur de vieux programmes que j'avais fait pour ma calculatrice (TI-92) quand j'étais en 1^^ère^^/Terminale. A mon époque (pas si lointaine&hellip; j'ai passé mon bac en 2001), ces outils couvraient le programme de Terminal S (spécialité maths) avec :</p>
 
 <!-- more -->
 
 
-<p>Non, plus sérieusement, je n'apprécie pas de tromber sur <a href="http://ouziel.blogs.com/pierre/2005/03/un_nouveau_foru.html">un blog</a> sur lequel se trouve un commentaire signé de mes nom, prénom <strong>et adresse mail</strong> ! Surtout qu'en en plus ce post a plusieurs mois, qu'il est suivi d'un commentaire m'appelant (enfin appelant la personne qui a mes identifiants) <em>ce con</em>. Je sais bien qu'il y a des personnes (trop) qui ne m'apprécient pas, mais se moquer de moi avec cette forme de lâcheté, je trouve ça intolérable&hellip; sans compter de plus que c'est parfaitement illégal d'usurper l'identité d'une autre personne.</p>
+<ul>
+<li>En analyse et algèbre :</li>
+<li>  tableaux de signe et de variation (avec détection de la périodicité des fonctions en cas de besoin)</li>
+<li>  équation différentielles (de Terminal, donc <code>y' = a.y + w</code> ou <code>y" + w^^2^^.y = 0</code>)</li>
+<li>  division polynomiale</li>
+<li>  linéarisation trigonométrique</li>
+<li>  équations du 1^^er^^ et 2^^nd^^ degré</li>
+<li>  résolution de systèmes d'équations</li>
+<li>  <a href="http://fr.wikipedia.org/wiki/Triangle_de_Pascal|fr">triangle de Pascal</a></li>
+<li>En géométrie :</li>
+<li>  barycentres</li>
+<li>  produits scalaires</li>
+<li>  produits vectoriels</li>
+<li>  calcul d'équations de droites, plans ou sphères&hellip;</li>
+<li>  mesure principale</li>
+<li>En arithmétique :</li>
+<li>  division euclidienne</li>
+<li>  <a href="http://fr.wikipedia.org/wiki/%C3%89quation_diophantienne|fr">équation diophantienne</a>, algorithme d'Euclide et coefficient de Bezout&hellip;</li>
+<li>  factorisation et diviseurs des entiers</li>
+<li>&hellip;</li>
+</ul>
 
-<p>En plus, poster ce genre de débilité avec une adresse <a href="http://www.polytechnique.org">Polytechnique.org</a>, qui met donc en avant l'Ecole, est non seulement une insulte envers ma personne, mais également envers l'Ecole&hellip; et j'espère que même si certains ne m'apprécient pas, qu'au moins ils aient de l'égard pour l'Ecole qui les a formés. Je suis certes geek, mais je ne suis pas un petit con !</p>
 
-<p>Je n'étais pas encore assez dégoûté des <em>autres</em>&hellip; maintenant c'est fait. Mes soupçons se portent forcément sur certains de mes camarades de promotion, et en particuliers sur ceux avec qui j'ai eu quelques différends.</p>
+<p>Le tout avec une interface permettant de passer d'un programme à l'autre simplement. Histoire que tout ceci ne se perde pas, je les met à disposition (ils sont également trouvables sur diverses banques de programmes pour TI) :</p>
 
-<p>Donc, je certifie que je ne suis pas l'auteur du commentaire :</p>
+<p><a href="/public/misc/maths3.zip|fr">Télécharger le programme de maths niveau Terminal pour TI-92</a></p>
 
-<blockquote><p>Et ca sent le geek ! Alors ca encode dur les gars ? Vous pensez quoi du chat de NeoDIvx, il pue un peu non ? Vous auriez pas un truc de geek pour faire marcher ce putain de truc ?</p>
-
-<p>Au fait mec tu sais que t'es le premier site qui apparait quand on tape geek dans google ? Tu dois avoir un page rank de malade, moi a vue de nez je l'evalue a 6500.</p>
-
-<p>Bon allez, je te lazisse, j'ai mon kernel Linux qui overclock, et la ca pue dasn l'appart. En plus j'ai retouche les chipsets et j'ai mon watercooling qui fuit&hellip;</p>
-
-<p>Allez, salut les mecs et tunez bien vos Debian !!!</p></blockquote>
-
-<p>et tout ceux qui me connaissent bien savent bien que je n'aurais jamais écrit ce genre de chose.</p>
-
-<p>Notes : Le 25 février : Le commentaire a été supprimé. Merci à Pierre Ouziel.</p>
+<p>Evidemment, ces programmes ne dispensent pas d'apprendre le cours pour passer le Bac.</p>
 ]]></content>
   </entry>
   
   <entry>
-    <title type="html"><![CDATA[Il Faut Bien Commencer Par Quelque Part...]]></title>
-    <link href="http://Fruneau.github.io/blog/2007/02/23/il-faut-bien-commencer-par-quelque-part-dot-dot-dot/"/>
-    <updated>2007-02-23T21:12:00+01:00</updated>
-    <id>http://Fruneau.github.io/blog/2007/02/23/il-faut-bien-commencer-par-quelque-part-dot-dot-dot</id>
-    <content type="html"><![CDATA[<p>Et comme, pour l'instant je suis encore en train de configurer mon
-<a href="http://www.dotclear.net">dotclear</a>, ce post est plus un test qu'autre
-chose.</p>
+    <title type="html"><![CDATA[Encodage Et Terminal]]></title>
+    <link href="http://Fruneau.github.io/blog/2008/03/02/encodage-et-terminal/"/>
+    <updated>2008-03-02T12:57:00+01:00</updated>
+    <id>http://Fruneau.github.io/blog/2008/03/02/encodage-et-terminal</id>
+    <content type="html"><![CDATA[<p>Beaucoup de personnes avec qui je discute sur IRC ont des problèmes avec l'encodage de leur terminal, de leur shell, de leur irssi, ou de tout autre logiciel en &ldquo;ligne de commande&rdquo;. Comme j'en ai un peu marre d'expliquer la même chose toutes les semaines, voici une petite mise au point sur les réglages à faire pour travailler efficacement en ligne de commande.</p>
 
-<p>D'ailleurs, j'en profite pour féliciter l'équipe de dotclear&hellip; c'est clairement un excellent logiciel, tant pour ses fonctionnalités que pour sa réalisation (j'ai déjà eu l'occasion de travailler sur du code récupéré de dotclear pour réaliser <a href="http://2003.polytechnique.org">le site de ma promo</a>, le code est lisible et facile à adapter aux besoins de chacun).</p>
+<!-- more -->
 
-<p>Voilà, en plus ce message me permettra de paufiner le skinnage de mon blog&hellip; ce que je ne pouvais évidemment pas faire sans !</p>
+
+<h2>Introduction</h2>
+
+<p>Le point le plus important à mémoriser est que pour avoir une console avec un encodage spécifique il faut que plusieurs couches de logiciels utilisent le même encodage. Prenons le cas simple où nous avons un shell dans un terminal.</p>
+
+<p>Le terminal est un logiciel qui ne fait que convertir les entrées de l'utilisateur vers des entrées compréhensibles par le logiciel qu'il fait tourner, et qui interprète la sortie de ce logiciel pour qu'elle soit lisible par l'utilisateur. Donc pour que le terminal affiche correctement ce qu'indique le shell, il faut qu'il utilise le même encodage que celui-ci. Si par exemple mon shell écrit de l'UTF-8 alors que mon terminal attend du latin1, les caractères multi-octets de l'UTF-8 seront mal interprétés et afficheront un caractère par octet. Ainsi un &ldquo;é&rdquo; en utf8 s'affiche comme un &ldquo;Ã©&rdquo; en latin1.</p>
+
+<p>Pour l'entrée de l'utilisateur, c'est la même chose. Si mon terminal est en latin1 et mon shell en utf8, si j'entre un &ldquo;é&rdquo; dans mon terminal, celui-ci sera passé à mon terminal comme un seul octet (de valeur 0xE9). Or mon shell attend de l'utf8 et lorsqu'il reçoit un 0xE9, il considère que je viens d'entrer un octet d'un caractère multi-octets&hellip; les prochains caractères que j'entrerais seront donc ajoutés à mon 0xE9 jusqu'à ce que mon shell considère que j'ai entré un caractère&hellip; assez embêtant.</p>
+
+<p>Il faut donc faire extrêmement attention à choisir un encodage unique compatible avec son shell et son terminal (et les logiciels qu'on compte utiliser).</p>
+
+<h2>Terminal</h2>
+
+<p>Le réglage du terminal dépend exclusivement du logiciel en question. Certains terminaux permettent de choisir son encodage, d'autres non. Cela peut donc être un bon critère pour choisir son logiciel. Pour utiliser l'UTF-8, vous pouvez prendre Konsole, urxvt, le Terminal de Mac OS X&hellip;</p>
+
+<h2>Shell</h2>
+
+<p>Le réglage du shell se fait par des variables d'environnement qu'on appelle couramment les &ldquo;locales&rdquo;. Le réglage courant est accessible en tapant &ldquo;locale&rdquo; dans le shell. Un certain nombre de variables sont concernées :</p>
+
+<ul>
+<li>gestion de la langue du shell (et des programmes liés)</li>
+<li>gestion des formats (dates, monnaies, virgules&hellip;)</li>
+<li>LC_ALL est un &ldquo;fallback&rdquo; (l'encodage par défaut si aucun autre n'a été défini pour une variable donnée).</li>
+</ul>
+
+
+<p>Chaque variable est de la forme xx_YY.ZZ. xx_YY défini la zone géographique et la langue (fr_FR pour le français, en_US pour l'anglais-US). ZZ défini l'encodage. Il est important que toutes les variables utilisent le même encodage (mais elles peuvent avoir des langues différentes). Pour faire de l'UTF-8 pur, un bon choix est d'exporter LC_ALL=&ldquo;en_US.UTF-8&rdquo; dans la configuration du shell (ou fr_FR.UTF-8 pour ceux qui veulent un shell en français).</p>
+
+<p>Il faut par contre faire attention, l'UTF-8 n'est pas supporté par tous les shells (à partir de 4.3 pour zsh par exemple).</p>
+
+<h2>Irssi</h2>
+
+<p>Pour irssi, il y a un point supplémentaire à prendre en compte : l'encodage du réseau. Ainsi si j'ai un channel en latin1 à afficher en utf8 (et sur lequel je veux poster). Il faut donc que irssi fasse de transcodage à la volée&hellip; et bien sûr il faut lui dire ce qu'il faut faire.</p>
+
+<p>Tout d'abord il faut lui indiquer l'encodage du terminal. Pour ceci il y a la variable term_charset :</p>
+
+<pre><code>settings = {
+  "fe-common/core" = {
+    term_charset = "UTF-8";
+  };
+};
+</code></pre>
+
+<p>Ensuite, il faut indiquer pour chaque réseau (ou channel) l'encodage du réseau. Ce n'est en fait nécessaire que si l'encodage est différent de celui du terminal, mais ça ne coûte rien de le spécifier pour chaque réseau. Ainsi je suis sur RezoSup (qui est en latin1) et sur FreeNode (qui est en utf8), il me suffit d'ajouter :</p>
+
+<pre><code>settings = {
+  core = {
+    recode = "yes";
+  };
+};
+conversions = { 
+  FreeNode = "UTF-8";
+  Rezosup = "ISO-8859-1";
+};
+</code></pre>
+
+<p>Les entrées &ldquo;FreeNode&rdquo; et &ldquo;Rezosup&rdquo; doivent reprendre le nom du chatnet donné dans la section &ldquo;servers&rdquo; de la configuration. Pour spécifier l'encodage spécifique à un channel, il suffit de mettre <code>"Chatnet/#channel" = "encoding";</code></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[BlueScreen]]></title>
+    <link href="http://Fruneau.github.io/blog/2007/07/28/bluescreen/"/>
+    <updated>2007-07-28T23:15:00+02:00</updated>
+    <id>http://Fruneau.github.io/blog/2007/07/28/bluescreen</id>
+    <content type="html"><![CDATA[<p>Juste parce que je trouve ça amusant : lorsque Vista plante en raison d'une erreur sérieuse, il fait un écran bleu (exactement le même que sous Windows XP). Ce qui est amusant, c'est le message affiché lors du démarrage suivant de Windows.</p>
+
+<p>((/public/screenshots/BlueScreen.png|Vista-bluescreen))</p>
+
+<p>Windows récupère donc d'une erreur de type &ldquo;BlueScreen&rdquo;&hellip; cela a l'intérêt d'être précis. En temps normal, on identifie une erreur à sa cause, et non à sa conséquence.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Mail.app, IMAP Et Signatures...]]></title>
+    <link href="http://Fruneau.github.io/blog/2007/06/12/mailapp-imap-et-signatures/"/>
+    <updated>2007-06-12T01:24:00+02:00</updated>
+    <id>http://Fruneau.github.io/blog/2007/06/12/mailapp-imap-et-signatures</id>
+    <content type="html"><![CDATA[<p>Les temps sont durs pour les utilisateurs de IMAP&hellip; jusqu'à présent je n'ai pas trouvé de client idéal pour travailler avec ce protocole :</p>
+
+<ul>
+<li>Kmail plante lamentablement</li>
+<li>Mail.app se synchronise mal</li>
+<li>Outlook Express (et le tout nouveau Windows Mail) n'arrive pas à lister tous mes répertoires</li>
+<li>Thunderbird rame comme un malheureux et me crée des répertoires que je ne veux pas avant de m'avoir demandé quoi que ce soit</li>
+<li>mutt est trop casse-pied à configurer à mon goût (même si pratique parfois)</li>
+</ul>
+
+
+<p>De fait, j'utilise le moins pire que j'ai trouvé, et qui en plus a le mérite de ne pas être trop lourd, bien intégré avec MacOS X, et qui, jusqu'à présent, n'a pas trop fait de bêtises sur mon IMAP. Ce client, pourtant pas réputé pour sa qualité, c'est évidemment Mail.app.</p>
+
+<!-- more -->
+
+
+<p>Un gros défauts de Mail.app (une fois configuré pour éviter toutes les fonctions décoratives qui ne servent à rien), est qu'il ne gère pas nativement PGP. Il faut donc, pour profiter de la vérification des mails mais également pour signer ses mails, installer GPGMail, un petit plug-in qui fonctionne, on va dire, pas trop mal.</p>
+
+<p>En tout cas, GPGMail a toujours fonctionné correctement sur mon portable, mais depuis que celui-ci est en réparation (hum, d'ailleurs, j'aimerais bien savoir ce qu'il devient !), je suis obligé de travailler sur le fixe, et donc d'utiliser entre autre mon client mail sur le fixe. Malheureusement, sur mon fixe, GPGMail n'a <strong>jamais</strong> réussi à vérifier une signature. Bizarre&hellip; les mêmes messages étaient pourtant correctement vérifiés par mon portable.</p>
+
+<p>Comme, ça fait quelques temps que j'envisage d'ajouter le support de PGP (via GPG) à <a href="http://opensource.polytechnique.org/banana">Banana</a>, j'ai voulu regarder plus en détail comment fonctionne la signature d'un message. J'ai donc commencé à prendre des mails signés dans Mail.app, à en enregistrer les sources sur mon disque dur et à essayer de vérifier les signatures à la main, puis avec une version légèrement hackée de Banana. Malheureusement, ça n'a jamais fonctionner.</p>
+
+<p>J'ai demandé à NC s'il pouvait me donner les sources d'un mail signé qui a le mérite d'apparaître comme correctement signé chez lui, et mal signé chez moi. J'ai comparé les 2 versions du mail&hellip; et le <code>diff</code> a été on ne peut plus troublant :</p>
+
+<p><div>
+  <pre><code class='diff'>&amp;mdash;nextPart1631992.9B81mC3O8N
+-Content-Type: text/plain;
+&amp;ndash;  charset=&amp;ldquo;iso-8859-1&amp;rdquo;
+ Content-Transfer-Encoding: quoted-printable
++Content-Type: text/plain;
++       charset=iso-8859-1
+ Content-Disposition: inline
+ ///&lt;/p&gt;
+
+&lt;p&gt;Le contenu de la partie signée n&#39;est pas identique dans les deux mails. Pour ceux qui ne connaissent pas la structure d&#39;un mail signé, je les invite à jeter un coup d&#39;oeil à la &lt;a href=&quot;http://www.faqs.org/rfcs/rfc1847.html&quot;&gt;RFC1847&lt;/a&gt; qui se résume au schéma suivant :&lt;/p&gt;
+
+&lt;p&gt;</code></pre>
+</div>
+
+Content-Type: multipart/signed; protocol=&ldquo;TYPE/STYPE&rdquo;;</p>
+
+<pre><code>     micalg="MICALG"; boundary="Signed Boundary"
+</code></pre>
+
+<p>&mdash;Signed Boundary
+Stuff to sign</p>
+
+<p>&mdash;Signed Boundary
+Signature</p>
+
+<p>&mdash;Signed Boundary&mdash;</p>
+
+<pre><code>La partie différente entre chez NC et chez moi est la partie @@stuff to sign@@ (en fait ce sont les en-têtes de la partie signée du message).
+
+Donc, je me suis replongé dans les options de Mail.app : pourquoi modifie-t-il les sources de mon mail ? quelle est l'option qui est différente entre mon portable et mon fixe ? J'ai recherché dans les paramètres d'affichage et d'édition sans succès... et puis je me suis dit que j'allais regarder la configuration de mon compte IMAP.
+
+Une différence majeure entre mon fixe et mon portable est que mon portable est susceptible de ne pas être constamment connecté au serveur IMAP, donc il est configuré pour conserver une copie de tous les mails alors que sur mon fixe, Mail.app est sur la même machine que le serveur IMAP, pourquoi irais-je faire une copie supplémentaire des mails (ce qui se concrétiserait par des accès disques concurrents et quelques centaines de méga-octets de données dupliquées) ?
+
+Pourquoi ? et bien maintenant j'ai ma réponse... en demandant à Mail.app de garder une copie des mails, GPGMail arrive à vérifier les signatures, donc, dans ces conditions, il a accès aux sources non modifiées. Il y a donc quelque part dans Mail.app un outil qui transforme les sources des mails... assez hallucinant ! Il faut donc que je considère que si je demande à Mail.app de m'afficher les sources d'un message qui se trouve sur un serveur IMAP sans faire de copie locale, il est possible (probable ?) que les sources en question ne soient pas les vraies sources du message mais une version ''remasterisée'' par Apple.
+
+Même si je ne me fais pas trop d'illusion sur le sujet, j'espère que ce genre de détails (tout comme également la gestion des URLs dans le @@format=flowed@@, ou encore l'affichage de l'arborescence des message...) sera corrigé dans Leopard.
+</code></pre>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Mac C'est Bien... Mais Pas Top]]></title>
+    <link href="http://Fruneau.github.io/blog/2007/05/22/mac-cest-bien-mais-pas-top/"/>
+    <updated>2007-05-22T23:44:00+02:00</updated>
+    <id>http://Fruneau.github.io/blog/2007/05/22/mac-cest-bien-mais-pas-top</id>
+    <content type="html"><![CDATA[<p>Bon, la suite des mes problèmes avec les machines Apple !</p>
+
+<p>Alors que la carte mère de mon portable a été changée il y a un peu plus d'un mois, mon portable a décidé aujourd'hui d'arrêter de vouloir fonctionner. Symptômes ? Il s'allume (des fois), fonctionne (rarement) quelques secondes puis s'éteint brutalement&hellip; et ce qu'il démarre sur secteur, sur batterie ou les deux ensemble, que ce soit sur le disque dur, sur le DVD d'installation ou encore en mode <em>target</em> (en tant que disque dur externe).</p>
+
+<p>En plus ça lui arrive de s'allumer tout seul alors que ça fait plusieurs minutes que je ne l'ai plus touché. Un autre symptôme étrange, la diode de la prise magsafe clignote bizarrement lorsque la machine n'est pas sous-tension (pas un clignotement vert/rouge, mais une lumière verte continue qui scintille un peu). Tout ça me laisse penser que c'est l'alimentation qui est en cause.</p>
+
+<p>Voilà&hellip; les joies des machines de qualité, d'autant plus que la garantie de la machine a expirée il y a <strong>2</strong> jours (le 19 mai).</p>
 ]]></content>
   </entry>
   

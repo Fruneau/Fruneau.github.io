@@ -1,0 +1,313 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Comprendre Du Code - Mind...</title>
+  <meta name="author" content="Florent Bruneau">
+
+  
+  <meta name="description" content="J&#8217;ai tenté cet après-midi une petite expérience sur IRC. J&#8217;ai posté 3 lignes de code en demandant &ldquo;que font ces trois lignes&rdquo &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://Fruneau.github.io/blog/2007/08/15/comprendre-du-code">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="Mind..." type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/libs/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Mind...</a></h1>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:Fruneau.github.io" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Comprendre Du Code</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2007-08-15T03:28:00+02:00" pubdate data-updated="true">Aug 15<span>th</span>, 2007</time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>J&#8217;ai tenté cet après-midi une petite expérience sur IRC. J&#8217;ai posté 3 lignes de code en demandant &ldquo;que font ces trois lignes&rdquo;. Après quelques minutes (sans doute trop peu), j&#8217;ai donné la solution car personne n&#8217;avait vraiment trouvé. En effet, même si on réussi facilement à lire le code et à reconstituer la suite d&#8217;opération qu&#8217;il génère, il est très difficile de vraiment comprendre ce qu&#8217;il fait, d&#8217;imaginer son application dans un contexte et d&#8217;en déduire son usage.</p>
+
+<p>Juste pour continuer à m&#8217;amuser, et pour amuser ceux qui se perdraient ici, voici le code en question.</p>
+
+<!-- more -->
+
+
+
+
+<div>
+  <pre><code class='c'>do {
+  ++(*pos);
+} while (*(pos++) == 0);</code></pre>
+</div>
+
+
+<p>Vous pouvez remarquer dès à présent que ce code n&#8217;est pas volontairement rendu illisible (il serait facile de supprimer des parenthèses et de changer le test de nullité en une négation. Le but est donc de comprendre la suite d&#8217;instruction, de dire ce qu&#8217;elle fait et ensuite de comprendre dans quel contexte elle est utilisable. La question est aussi de savoir en combien de temps vous allez trouver la solution.</p>
+
+<div>
+  <pre><code class='html'>&lt;script type=&quot;text/javascript&quot; src=&quot;/jquery.js&quot;&gt;&lt;/script&gt;
+&lt;script type=&quot;text/javascript&quot;&gt;//&lt;![CDATA[
+function show_answer() {
+  $(&quot;#show_answer&quot;).hide();
+  $(&quot;#answer&quot;).show(&quot;slow&quot;);
+  return false;
+}
+//]]&gt;&lt;/script&gt;
+&lt;p&gt;
+&lt;a href=&quot;&quot; onclick=&quot;return show_answer()&quot; id=&quot;show_answer&quot;&gt;Cliquer ici pour afficher la répondre&lt;/a&gt;
+&lt;/p&gt;
+&lt;div id=&quot;answer&quot; style=&quot;display: none&quot;&gt;</code></pre>
+</div>
+
+
+<h2> Fonctionnement</h2>
+
+<p>Si on lit le code, on voit qu&#8217;il fait la suite d&#8217;opération suivante :
+1   on incrémente la valeur pointée par pos
+1   on regarde si la valeur obtenue est nulle
+1   on incrémente le pointeur pos
+1   si le test 2 est vrai, on retourne en 1, sinon, on quitte la boucle</p>
+
+<p>Il s&#8217;agit donc d&#8217;une petite boucle qui incrémente des objets successifs jusqu&#8217;à ce qu&#8217;elle en trouve un qui, une fois incrémenté, n&#8217;est pas nul.</p>
+
+<p>Voilà donc la solution du pauvre au problème, celle qu&#8217;on peut trouver en lisant le code, sans chercher à le comprendre.</p>
+
+<h2> Interprétation</h2>
+
+<p>Mais en fait, ce code va plus loin. Imaginons maintenant la zone mémoire sur laquelle pos pointe initialement :</p>
+
+<pre><code> oct1 oct2 oct3 oct4
+  ^
+ pos
+</code></pre>
+
+<p>L&#8217;octet 1 à une certaine valeur. Je l&#8217;incrémente et je m&#8217;aperçois que sa nouvelle valeur est 0. Quand un octet incrémenté peut-il retomber à 0 ? Quand il fait un overflow. On a donc fait déborder le premier octet&hellip; et quand cet octet déborde on incrémente le suivant :</p>
+
+<pre><code>    _+1__
+   |     |
+ oct1 oct2 oct3 oct4
+       ^
+      pos
+</code></pre>
+
+<p>Il s&#8217;agit donc ni plus ni moins que d&#8217;une retenue (comme quand on apprend à faire les additions ou les multiplications) : quand je fais déborder un octet, je déplace le surplus vers le suivant. Finalement, ces 3 lignes de code ne sont que l&#8217;implémentation d&#8217;une incrémentation, mais sur plusieurs octets&hellip; et même sur un nombre non défini d&#8217;octets (puisqu&#8217;il n&#8217;y a pas de limite explicitée sur le nombre d&#8217;étapes autorisées).</p>
+
+<p>Pour être plus précis, il s&#8217;agit d&#8217;un incrémenteur d&#8217;entier stocké en Little Endian sur un nombre illimité d&#8217;octets.</p>
+
+<h2> Encore ?</h2>
+
+<p>Bon, pour ceux qui tiennent vraiment à s&#8217;assurer que ce n&#8217;est pas du code illisible, voici une version vraiment illisible de la même machine :</p>
+
+<div>
+  <pre><code class='c'>for(++*pos;!*pos++;++*pos);</code></pre>
+</div>
+
+
+<p>(Merci Falco)</p>
+
+<p>Tout ceci n&#8217;était bien sûr qu&#8217;un exemple. Il est toujours très dur de comprendre du code, alors pour éviter de passer dix minutes sur 3 lignes lors de la prochaine relecture il suffit de documenter ce qu&#8217;on écrit.</p>
+
+<div>
+  <pre><code class='html'>&lt;/div&gt;</code></pre>
+</div>
+
+
+
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Florent Bruneau</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2007-08-15T03:28:00+02:00" pubdate data-updated="true">Aug 15<span>th</span>, 2007</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/geektime/'>GeekTime</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://Fruneau.github.io/blog/2007/08/15/comprendre-du-code/" data-via="FlorentBruneau" data-counturl="http://Fruneau.github.io/blog/2007/08/15/comprendre-du-code/" >Tweet</a>
+  
+  
+  <div class="g-plusone" data-size="medium"></div>
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2007/07/28/bluescreen/" title="Previous Post: BlueScreen">&laquo; BlueScreen</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/2007/08/17/templates-en-c/" title="Next Post: Templates en C">Templates en C &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2009/04/07/yet-another-policy-daemon-for-postfix2/">Yet Another Policy Daemon for Postfix</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2008/06/04/polytechniqueorg-lance-son-blog/">Polytechnique.org Lance Son Blog</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2008/05/19/vieux-trucs/">Vieux Trucs</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2008/03/02/encodage-et-terminal/">Encodage Et Terminal</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2007/11/01/afficher-des-discussions/">Afficher Des Discussions</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2013 - Florent Bruneau -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
+      script.src = 'https://apis.google.com/js/plusone.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(script, s);
+    })();
+  </script>
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = '//platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

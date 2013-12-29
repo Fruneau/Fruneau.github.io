@@ -1,0 +1,348 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>A Croire Que Certains Le Font Exprès ! - Mind...</title>
+  <meta name="author" content="Florent Bruneau">
+
+  
+  <meta name="description" content="Depuis trois jours, je travaille sur la mise ne place d&#8217;un outil permettant de faire des aperçus graphiques de site web (des vignettes façon &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://Fruneau.github.io/blog/2007/03/10/a-croire-que-certains-le-font-expres">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="Mind..." type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/libs/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Mind...</a></h1>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:Fruneau.github.io" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">A Croire Que Certains Le Font Exprès !</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2007-03-10T20:57:00+01:00" pubdate data-updated="true">Mar 10<span>th</span>, 2007</time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>Depuis trois jours, je travaille sur la mise ne place d&#8217;un outil permettant de faire des aperçus graphiques de site web (des vignettes façon <a href="http://www.exalead.fr">Exalead</a> par exemple). C&#8217;est une fonctionnalité très à la mode&hellip; et c&#8217;est aussi un bon moyen d&#8217;avoir un aperçu d&#8217;un site. Donc dans ce cadre, j&#8217;ai commencé à travailler sur <a href="http://khtml2png.sourceforge.net">khtml2png</a>. Malheureusement, comme il ne correspondait pas exactement à mes besoins, j&#8217;ai commencé à en modifier le code source&hellip; et j&#8217;ai eu quelques surprises !</p>
+
+<!-- more -->
+
+
+<h2>Strings</h2>
+
+<p>Ma première (mauvaise) surprise a été de constater que le code était loin d&#8217;être propre. Il s&#8217;agit d&#8217;un programme écrit avec la bibliothèque <a href="http://www.trolltech.com/qt">Qt</a> (KHTML oblige), et pourtant la gestion des chaînes de caractère est faite pour moitié avec QString, pour moitié avec l&#8217;API C&hellip; sans vérification de la taille des buffers.</p>
+
+<p>Par exemple :</p>
+
+<div>
+  <pre><code class='cpp'>QString filename = &quot;/tmp/khtml2png.png&quot;;
+int g = sprintf(nrStr,&quot;_x%iy%i&quot;,xNr,yNr);
+nrStr[g]=&#39;\\\\0&#39;;
+filename+=QString(nrStr);</code></pre>
+</div>
+
+
+<p>Quitte à utiliser l&#8217;API C autant le faire proprement, en vérifiant la taille du buffer (dans le cas présent, le buffer nrStr avait une taille de 10)&hellip; mais en plus pourquoi faire ça de cette manière alors que Qt fournit l&#8217;API suffisant pour coder ces 4 lignes sans le moindre risque de buffer overflow ?</p>
+
+<p>//
+[cpp]
+QString filename = QString( &ldquo;/tmp/khtml2png.png_x%1y%2&rdquo;).arg(xNr).arg(yNr);
+//</p>
+
+<p>Ensuite (toujours dans la gestion des chaînes de caractères), la méthode pour éviter le buffer overflow était le &ldquo;Je fais un gros buffer, au moins je suis sûr que ça ne débordera pas&rdquo;&hellip; mais le problème, c&#8217;est que ça peut déborder !</p>
+
+<div>
+  <pre><code class='cpp'>char   [5000], //command line string
+
+memset(cmd,0,sizeof(cmd));
+
+//append the row images from top to bottom to one image
+strcpy(cmd,&quot;convert &quot;);
+
+for (int y=0; y &lt; yNr; y++)
+    sprintf(cmd,&quot;%s /tmp/khtml2png.png_r%i&quot;,cmd,y);
+        
+sprintf(cmd,&quot;%s -append %s&quot;,cmd,args-&gt;arg(1));
+system(cmd);</code></pre>
+</div>
+
+
+<p>Dans ce cas précis, <code>args-&gt;arg(1)</code> est contrôlé par l&#8217;utilisateur (c&#8217;est en fait le fichier destination de la capture demandée&hellip; le <code>sprintf</code> est donc une <strong>erreur impardonnable</strong>&hellip; sans compter qu&#8217;en plus cet argument qui est passé à un exécutable externe sans le moindre check sur le contenu de la chaîne. On risque non seulement le buffer overflow, mais également l&#8217;injection de code dans le <code>system</code> (par exemple, je peux appeler mon fichier <code>fichier;sh</code>, ça me lancera un shell avec les droits de l&#8217;utilisateur qui a lancé le programme.</p>
+
+<p>Une solution (non testée) pourrait être :</p>
+
+<div>
+  <pre><code class='cpp'>QProcess process(&quot;convert&quot;);
+for (int y=0 ; y &lt; yNr ; y++) {
+    process.addArgument(QString(&quot;/tmp/khtml2png.png_r%i&quot;).arg(y);
+}
+process.addArgument(&quot;-append&quot;);
+process.addArgument(args-&gt;arg(1));
+process.start();
+while (process.isRunning()) {
+    wait(10); // nombre choisi aléatoirement
+}</code></pre>
+</div>
+
+
+<p>Cette solution a le mérite :</p>
+
+<ul>
+<li>d&#8217;être safe car elle ne permet pas d&#8217;injecter des commandes dans notre code</li>
+<li>d&#8217;être safe car elle ne permet pas de buffer overflow</li>
+</ul>
+
+
+<p>Bien sûr ceci repose sur la confiance qu&#8217;on peut avoir en Qt&hellip;</p>
+
+<h2>Images</h2>
+
+<p>Pour générer le screenshot, khtml2png fait plusieurs captures dans une fenêtre en scrollant à l&#8217;intérieur de manière à recouvrir une zone aillant la taille demandée par l&#8217;utilisateur. C&#8217;est très bien&hellip; malheureusement, encore une fois je me demande quel est l&#8217;intérêt d&#8217;utiliser Qt dans le cas présent. La technique de khtml2png (version 2.5.0) est de faire une capture d&#8217;écran à chaque fois&hellip; puis de la stocker dans un fichier temporaire indexé avec le numéro du morceau en X et en Y.</p>
+
+<p>Une fois tous les morceaux obtenus, le programme utilise <code>convert</code> de ImageMagick pour coller les morceaux de chaque ligne, puis une deuxième fois (enfin, ce n&#8217;est pas la deuxième fois, mais la deuxième boucle) pour coller les différentes lignes et convertir dans le format voulu (c&#8217;est en fait le dernier morceau de code que j&#8217;ai collé ci-dessus).</p>
+
+<p>Pourquoi faire si compliqué ?</p>
+
+<ul>
+<li>On ne peut pas lancer deux fois khtml2png en même temps (le programme utilisant toujours le même nom pour les fichiers temporaires)</li>
+<li>Qt aussi est capable d&#8217;enregistrer les fichiers dans différents formats&hellip; pas besoin de ImageMagick pour ça</li>
+<li>khtml2png dépend d&#8217;un programme extérieur qu&#8217;il n&#8217;est pas certain de trouver sur les machines des utilisateurs&hellip;</li>
+</ul>
+
+
+<p>Ma technique est beaucoup plus simple, ne nécessite de lancer <strong>aucun</strong> programme externe&hellip; et en plus se révèle plus légère en quantité de mémoire (parce que j&#8217;utilise des pointeurs au lieu de recopier les images dans tous les sens en en créant plusieurs instances à chaque fois)
+1   tout d&#8217;abord je crée une image vierge de la taille voulue par l&#8217;utilisateur
+1   je fais les captures du site et au lieu de les stockers dans un fichier, je les colle au bon endroit dans mon image
+1   j&#8217;utilise Qt pour enregistrer l&#8217;image au format désiré par l&#8217;utilisateur (en fonction de l&#8217;extension)&hellip;</p>
+
+<p>Ainsi, j&#8217;ai supprimé la <em>totalité</em> du code qui utilisait des traitements de chaînes de caractères (qui n&#8217;étaient autres que les appels à <code>convert</code>), ce qui supprime toutes les failles dont j&#8217;ai parlé ci-dessus&hellip; en gardant les mêmes fonctionnalités que la version publique du programme.</p>
+
+<h2>Besoins particuliers</h2>
+
+<p>J&#8217;ai également rencontré un besoin qui a mon avis n&#8217;était pas prévu par les développeurs du programme : étant donné que je le fais tourner dans un environnement graphique inaccessible (en fait dans un <code>vncserver</code>), je ne vois pas ce qu&#8217;il se passe. Or, KHTML déclenche automatiquement une boîte de dialogue modale dès qu&#8217;il rencontre un objet d&#8217;un type mime inconnu&hellip; dans mon cas il s&#8217;agissait d&#8217;un applet active-x qui traîne sur le <a href="http://www.polytechnique.fr">site de l&#8217;Ecole Polytechnique</a>.</p>
+
+<p>J&#8217;ai donc cherché pendant 2 jours comment contourner le programme : il me faut pouvoir avoir accès à la boîte de dialogue créée, et la supprimer puisque l&#8217;API de <a href="http://api.kde.org/3.1-api/khtml/html/classKHTMLPart.html">KHML</a> ne permet pas de désactiver ces intrusions directement depuis le programme.</p>
+
+<p>Tout d&#8217;abord j&#8217;ai cru qu&#8217;en réimplémentant la méthode <code>showError</code> ça marcherait&hellip; mais en fait non, elle n&#8217;est pas appelée dans le cas présent, c&#8217;est uniquement généré à l&#8217;intérieur du moteur KHTML&hellip; la classe <code>KHTMLPart</code> n&#8217;est jamais notifiée de l&#8217;apparition de cette boîte de dialogue.</p>
+
+<p>J&#8217;ai donc cherché qui pouvait bien être le père de ce <code>QMessageBox</code>&hellip; et en fait, c&#8217;est le <code>KHTMLPart::view()</code>. N&#8217;ayant pas vraiment la possibilité de substituer à cet objet, un objet de mon choix, j&#8217;ai ajouté un <code>eventFilter</code> qui filtre les messages reçus par la fenêtre de rendu&hellip; et lorsque apparaît un <code>QDialog</code> (classe mère de <code>QMessageBox</code>), je me charge directement de le rendre non modal, de le découpler du view et de le détruire)&hellip; et là, victoire !!!</p>
+
+<p>Je comprends parfaitement que les développeurs n&#8217;aient pas pensé que ces boîtes de dialogues puissent être gênantes car ils doivent travailler dans un environnement graphique et les voir&hellip; moi non ! Mais en fait, ce que je comprends moins bien c&#8217;est qu&#8217;ils ont clairement déjà rencontré le problème dans le cadre de la réalisation du screenshot. En effet, on y trouve le code (pour sélectionner les fenêtres-filles qui méritent d&#8217;apparaître dans le screenshot) :</p>
+
+<div>
+  <pre><code class='cpp'>if ( child-&gt;isWidgetType() &amp;&amp;
+    ((QWidget *)child)-&gt;geometry().intersects( w-&gt;rect() ) &amp;&amp;
+    ! child-&gt;inherits( &quot;QDialog&quot; ) ) {</code></pre>
+</div>
+
+
+<p>Les développeurs ont donc déjà rencontré des QDialog&hellip; pourquoi ne pas déjà les avoir désactivés ?</p>
+
+<h2>Conclusion</h2>
+
+<p>J&#8217;ai donc maintenant un khtml2png adapté à mes besoins. Je vais soumettre mon code aux développeurs du projet.</p>
+
+<p>À savoir qu&#8217;à l&#8217;heure actuelle (et je n&#8217;ai pas fini le nettoyage), mon code fait 80 lignes de moins que le code dont je suis parti&hellip; et ce malgré l&#8217;ajout de fonctionnalités.</p>
+
+<p><a href="/mind/public/khtml2png/khtml2png-fru-last.tar.bz2">Télécharger la dernière version</a></p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Florent Bruneau</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2007-03-10T20:57:00+01:00" pubdate data-updated="true">Mar 10<span>th</span>, 2007</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/polytechnique-dot-org/'>Polytechnique.org</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://Fruneau.github.io/blog/2007/03/10/a-croire-que-certains-le-font-expres/" data-via="FlorentBruneau" data-counturl="http://Fruneau.github.io/blog/2007/03/10/a-croire-que-certains-le-font-expres/" >Tweet</a>
+  
+  
+  <div class="g-plusone" data-size="medium"></div>
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2007/03/07/pourquoi/" title="Previous Post: Pourquoi ?">&laquo; Pourquoi ?</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/2007/03/12/vignette-de-site/" title="Next Post: Vignette de site">Vignette de site &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2009/04/07/yet-another-policy-daemon-for-postfix2/">Yet Another Policy Daemon for Postfix</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2008/06/04/polytechniqueorg-lance-son-blog/">Polytechnique.org Lance Son Blog</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2008/05/19/vieux-trucs/">Vieux Trucs</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2008/03/02/encodage-et-terminal/">Encodage Et Terminal</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2007/11/01/afficher-des-discussions/">Afficher Des Discussions</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2013 - Florent Bruneau -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
+      script.src = 'https://apis.google.com/js/plusone.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(script, s);
+    })();
+  </script>
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = '//platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

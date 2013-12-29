@@ -1,0 +1,262 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Pourquoi ? - Mind...</title>
+  <meta name="author" content="Florent Bruneau">
+
+  
+  <meta name="description" content="Pourquoi est-ce que les utilisateurs se sentent obligés de laisser des commentaires sur les articles qu&#8217;ils lisent dès que c&#8217;est possible &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://Fruneau.github.io/blog/2007/03/07/pourquoi">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="Mind..." type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/libs/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Mind...</a></h1>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:Fruneau.github.io" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Pourquoi ?</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2007-03-07T15:05:00+01:00" pubdate data-updated="true">Mar 7<span>th</span>, 2007</time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>Pourquoi est-ce que les utilisateurs se sentent obligés de laisser des commentaires sur les articles qu&#8217;ils lisent dès que c&#8217;est possible ? Dans certains cas, ces commentaires sont intéressants, mais dans 95% des cas, c&#8217;est uniquement du &ldquo;Kikoo lol asv mdr :) :) :) ;) ;)&rdquo;&hellip; <strong>insupportable !</strong></p>
+
+<!-- more -->
+
+
+<p>Le problème c&#8217;est que ça ne concerne pas uniquement les Skyblog&hellip; mais également les sites d&#8217;informations (même les sites plutôt sérieux), les sites de documentation (comme celui de PHP par exemple)&hellip;</p>
+
+<p>Par exemple, pourquoi un gars poste-t-il un algorithme pour remplacer <code>str_repeat</code> sur php.net :</p>
+
+<div>
+  <pre><code class='php'>&lt;?php
+if(!function_exists(&quot;str_repeat&quot;)) {
+    function str_repeat($word, $length) {
+        $repeated = &quot;&quot;;
+        for($i=0; $i &lt; $length; $i++) {
+            $repeated .= $word;
+        }
+        return $repeated;
+    }
+}
+?&gt;</code></pre>
+</div>
+
+
+<p>Non seulement, j&#8217;espère que les utilisateurs qui n&#8217;ont pas la fonction en question (PHP &lt; 4) sauront d&#8217;eux-même reproduire cette algorithme sans avoir à le recopier (sans quoi on peut se demander pourquoi ils utilisent PHP vu qu&#8217;ils ne savent tout bonnement pas programmer un algorithme trivial)&hellip; mais en plus cet algorithme est absolument sous-optimal (à chaque tour de boucle il faut réallouer le buffer stockant <code>$repeated</code> et le recopier&hellip;) et il n&#8217;y a donc pas de quoi être fier d&#8217;avoir écrit cette fonction.</p>
+
+<p>Pourquoi à la suite d&#8217;un article indiquant de l&#8217;arrivée prochaine du SATA 2.6, quelqu&#8217;un vient poster (et uniquement ce texte) :</p>
+
+<blockquote><p>Vite vite dépecher vous</p></blockquote>
+
+<p>Quel est l&#8217;intérêt de ce commentaire ?<br/>
+Le pire est que pour trouver cet exemple j&#8217;ai choisi au hasard un article sur <a href="http://www.clubic.com">Clublic</a> et que le commentaire que j&#8217;ai pris était le premier sur cet article&hellip; Bon effectivement vu qu&#8217;il ne doit pas y avoir plus d&#8217;un commentaire intéressant par jour sur Clubic, c&#8217;était facile d&#8217;en trouver un inintéressant.</p>
+
+<p>Et je ne parle pas des commentaires sur les articles d&#8217;actualité en référence avec la campagne électorale en cours&hellip;</p>
+
+<p>Donc, si c&#8217;est possible : avant d&#8217;ajouter un commentaire sur Internet, réfléchissez pour savoir si ça vaut <em>vraiment</em> le coup, ça permettrait au moins à ceux qui cherchent vraiment des informations de ne pas avoir à lire 90% de texte inintéressant avant de trouver <strong>le</strong> commentaire intéressant de la page de doc de php.net (par exemple).</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Florent Bruneau</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2007-03-07T15:05:00+01:00" pubdate data-updated="true">Mar 7<span>th</span>, 2007</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/geektime/'>GeekTime</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://Fruneau.github.io/blog/2007/03/07/pourquoi/" data-via="FlorentBruneau" data-counturl="http://Fruneau.github.io/blog/2007/03/07/pourquoi/" >Tweet</a>
+  
+  
+  <div class="g-plusone" data-size="medium"></div>
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2007/03/01/polytechnique-dot-org-en-retard/" title="Previous Post: Polytechnique.org en retard ?">&laquo; Polytechnique.org en retard ?</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/2007/03/10/a-croire-que-certains-le-font-expres/" title="Next Post: A croire que certains le font exprès !">A croire que certains le font exprès ! &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2009/04/07/yet-another-policy-daemon-for-postfix2/">Yet Another Policy Daemon for Postfix</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2008/06/04/polytechniqueorg-lance-son-blog/">Polytechnique.org Lance Son Blog</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2008/05/19/vieux-trucs/">Vieux Trucs</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2008/03/02/encodage-et-terminal/">Encodage Et Terminal</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2007/11/01/afficher-des-discussions/">Afficher Des Discussions</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2013 - Florent Bruneau -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
+      script.src = 'https://apis.google.com/js/plusone.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(script, s);
+    })();
+  </script>
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = '//platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

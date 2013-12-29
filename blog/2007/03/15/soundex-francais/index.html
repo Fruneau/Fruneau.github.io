@@ -1,0 +1,438 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Soundex Français - Mind...</title>
+  <meta name="author" content="Florent Bruneau">
+
+  
+  <meta name="description" content="Pour faire une recherche phonétique, on utilise souvent ce qu&#8217;on appelle une transcription soundex des mots. C&#8217;est une réécriture du mot &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://Fruneau.github.io/blog/2007/03/15/soundex-francais">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="Mind..." type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/libs/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Mind...</a></h1>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:Fruneau.github.io" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Soundex Français</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2007-03-15T19:06:00+01:00" pubdate data-updated="true">Mar 15<span>th</span>, 2007</time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>Pour faire une recherche phonétique, on utilise souvent ce qu&#8217;on appelle une transcription <strong>soundex</strong> des mots. C&#8217;est une réécriture du mot, dans un alphabet restreint et sur un nombre de caractères restreint également. La plupart des algorithmes qu&#8217;on peut trouver sur internet sont conçus uniquement à la langue anglaise. Pour utiliser la recherche phonétique en français, il faut donc adapter cet algorithme.</p>
+
+<p>L&#8217;implémentation française la plus courante utilise l&#8217;<a href="http://sqlpro.developpez.com/cours/soundex/">algorithme décrit par Frédéric Brouard</a>. Malheureusement cet algorithme ne me satisfait pas vraiment, car il n&#8217;est finalement pas très adapté à langue française.</p>
+
+<!-- more -->
+
+
+<p>En effet cet algorithme a pas mal de défauts :</p>
+
+<ul>
+<li>il est très aléatoire dans le cas de dédoublement de consonnes. Par exemple, il ne permet de trouver que <em>bananne</em> (soundex <code>BNN</code>) est une approximation de <em>banane</em> (soundex <code>BN</code>)</li>
+<li>il est très peu sélectif sur les voyelles. Par exemple <em>poulpe</em> et <em>palpa</em> ont le même soundex (<code>PLP</code>) alors que pour moi, poulpe et palpa sont deux mots éloignés, malgré leur consonnes communes. Par contre, il ne reconnaîtra pas Aymeric (soundex <code>AYMR</code>) comme étant un homophone de Emeric (soundex <code>EMRC</code>)&hellip;</li>
+<li>il n&#8217;est pas vraiment capable de distinguer les conjugaisons. Par exemple <em>palper</em> (soundex <code>PLPR</code>) et <em>palpé</em> (soundex <code>PLP</code>) sont éloignés l&#8217;un de l&#8217;autre.</li>
+</ul>
+
+
+<p>J&#8217;ai donc réalisé une nouvelle implémentation de <code>soundex</code> qui est plus adaptée (à mon sens) à la langue française. Je n&#8217;ai évidemment pas pour ambition de réaliser une solution parfaite (ce qui est impossible à faire à partir d&#8217;un système automatisé sans dictionnaire).</p>
+
+<h1>Algorithme</h1>
+
+<p>Mon algorithme, comme je l&#8217;ai déjà dit, est une adaptation de celui de <a href="http://sqlpro.developpez.com/cours/soundex/">Frédéric Brouard</a>. Il se compose de 2 étapes principales :
+1   le préformatage, qui consiste à transformer le chaîne de caractère brute, en une chaîne analysable.
+1   l&#8217;analyse de la chaîne, et la recherche de entités phoniques élémentaires qui la composent</p>
+
+<h2>Préformatage</h2>
+
+<p>Le préformatage est extrêmement simple :
+1   On converti la chaîne en majuscule
+1   On converti chaque caractère accentué vers son caractère non-accentué correspondant
+1   On filtre pour ne conserver que les lettres (de A à Z)</p>
+
+<p>Ainsi après ce premier filtrage, <em>Mac-Cartney</em> devient <em>MACCARTNEY</em> et <em>palpé</em> sera <em>PALPE</em></p>
+
+<h2>Traitement des données</h2>
+
+<p>Le traitement des données consiste à reconnaître les sonorités. Pour ceci on utilise la table de conversion suivante qui associe à chaque sonorité complexe un caractère :</p>
+
+<div>
+  <pre><code class='html'>&lt;table&gt;
+  &lt;tr&gt;&lt;th&gt;Combinaison&lt;/th&gt;&lt;th&gt;Caractère&lt;/th&gt;&lt;/tr&gt;
+  &lt;tr&gt;&lt;td&gt;G (prononcé GUE), C (prononcé Q), CK, K, QU, Q&lt;/td&gt;&lt;td&gt;K&lt;/td&gt;&lt;/tr&gt;
+  &lt;tr&gt;&lt;td&gt;CH, SH, SCH&lt;/td&gt;&lt;td&gt;9&lt;/td&gt;&lt;/tr&gt;
+  &lt;tr&gt;&lt;td&gt;ST&lt;/td&gt;&lt;td&gt;T&lt;/td&gt;&lt;/tr&gt;
+  &lt;tr&gt;&lt;td&gt;PF (en début de mot), PH&lt;/td&gt;&lt;td&gt;F&lt;/td&gt;&lt;/tr&gt;
+  &lt;tr&gt;&lt;td&gt;Z (en fin de mot)&lt;/td&gt;&lt;td&gt;ZE&lt;/td&gt;&lt;/tr&gt;
+  &lt;tr&gt;&lt;td&gt;Z, ZZ, C (prononcé SE)&lt;/td&gt;&lt;td&gt;S&lt;/td&gt;&lt;/tr&gt;
+  &lt;tr&gt;&lt;td&gt;G (prononcé JE)&lt;/td&gt;&lt;td&gt;J&lt;/td&gt;&lt;/tr&gt;
+  &lt;tr&gt;&lt;td&gt;EAU, AU&lt;/td&gt;&lt;td&gt;O&lt;/td&gt;&lt;/tr&gt;
+  &lt;tr&gt;&lt;td&gt;IN, UN, AIN, EIN (proncés UN)&lt;/td&gt;&lt;td&gt;1&lt;/td&gt;&lt;/tr&gt;
+  &lt;tr&gt;&lt;td&gt;AON, AOM, EN, AN (prononcés EN)&lt;/td&gt;&lt;td&gt;A&lt;/td&gt;&lt;/tr&gt;
+  &lt;tr&gt;&lt;td&gt;EY, EI, AY, AI, OE, OEU, EU, ER&lt;/td&gt;&lt;td&gt;E&lt;/td&gt;&lt;/tr&gt;
+  &lt;tr&gt;&lt;td&gt;OI&lt;/td&gt;&lt;td&gt;O&lt;/td&gt;&lt;/tr&gt;
+  &lt;tr&gt;&lt;td&gt;ILLE, I&lt;/td&gt;&lt;td&gt;Y&lt;/td&gt;&lt;/tr&gt;
+  &lt;tr&gt;&lt;td&gt;OU, OW&lt;/td&gt;&lt;td&gt;U&lt;/td&gt;&lt;/tr&gt;
+  &lt;tr&gt;&lt;td&gt;ON, OM&lt;/td&gt;&lt;td&gt;O&lt;/td&gt;&lt;/tr&gt;
+  &lt;tr&gt;&lt;td&gt;KN (en début de mot)&lt;/td&gt;&lt;td&gt;N&lt;/td&gt;&lt;/tr&gt;
+&lt;/table&gt;</code></pre>
+</div>
+
+
+<p>Une fois qu&#8217;on a cette table de correspondances (elle n&#8217;est peut-être pas exhaustive&hellip; je n&#8217;hésiterais pas à l&#8217;améliorer), on applique toutes les modifications, on supprime les lettres qui sont présentes en doublon et finalement on supprime les H restants. Il faut également supprimer les caractères muets en fin de mot. En français, ce seront les X, T, D, S (et le L qui les précède si il existe) ou les E.</p>
+
+<p>Ensuite, il faut faire un nettoyage sur la chaîne de caractère. Ce nettoyage consiste à rechercher les phonèmes importants et à supprimer les caractères muets ou peu audibles : on veut identifier ce qui fait la particularité d&#8217;une syllabe. Frédéric Brouard considère que toutes les voyelles (exceptés les Y précédés d&#8217;une voyelle) placées autre part qu&#8217;en début de mot sont insignifiantes&hellip; ça me paraît le gros point faible de sa méthode. Personnellement j&#8217;ai essayé d&#8217;identifier une liste de sonorité dominantes. Voici celles que j&#8217;ai actuellement :</p>
+
+<div>
+  <pre><code class='html'>&lt;table&gt;
+  &lt;tr&gt;&lt;th&gt;Sonorité&lt;/th&gt;&lt;th&gt;Informations&lt;/th&gt;&lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td&gt;K, T, P&lt;/td&gt;
+    &lt;td&gt;Ce sont les consonnes qui sont très marquées, qui rythment le mot&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td&gt;A, U, O, 1&lt;/td&gt;
+    &lt;td&gt;Ce sont les son qu&#39;on entend le mieux, contrairement aux I ou aux E qui mettent plus en avant les consonnes. Le A est à mon avis particulier, car il est faible mais suffisamment marquant pour effacer des consonnes comme le R&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td&gt;Y&lt;/td&gt;
+    &lt;td&gt;Y n&#39;est marquant que lorsqu&#39;il a un rôle de consonne : quand il permet de lier deux parties du mot, comme dans _voyelle_, où il lie le _vo_ et le _elle_. Il est donc important lorsqu&#39;il est encadré par une ou des voyelles. Dans les autres cas, c&#39;est une voyelle faible&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td&gt;L&lt;/td&gt;
+    &lt;td&gt;Contrairement aux K, T et P, le L permet d&#39;adoucir le mot, en particulier lorsqu&#39;il sert de liaison entre une consonne et une voyelle. Il est donc important de le conserver&lt;/tr&gt;
+  &lt;/tr&gt;
+&lt;/table&gt;</code></pre>
+</div>
+
+
+<p>Ces choix sont relativement arbitraires. Le comportement de l&#8217;algorithme est alors simple :</p>
+
+<ul>
+<li>Si une voyelle est liée à une consonne de liaison (qui fait le lien entre la voyelle et une autre consonne, c&#8217;est souvent le cas du L ou du R, on exclut de ce cas les consommes fortes)</li>
+<li>Si en plus il s&#8217;agit d&#8217;une voyelle forte</li>
+<li>  alors, on supprime la consonne de liaison et on garde la voyelle</li>
+</ul>
+
+
+<p>Ensuite, on supprime les voyelles faibles (sauf si elles commencent le mot). Pour cette suppression, on considère le A comme une voyelle faible.</p>
+
+<p>Pour terminer on coupe la chaîne obtenue à 4 caractères (mais il est parfaitement envisageable de prendre un soundex sur plus (ou moins) de caractères. Simplement, dans la plupart des cas, 4 caractères suffisent amplement à avoir un mot significatif.</p>
+
+<h1>Implémentation</h1>
+
+<p>Mon implémentation en PHP est téléchargeable <a href="/soundex_fr.php?action=download">ici</a>. Elle est testable <a href="/mind/post/2007/03/15/Soundex-Francais#test">plus bas dans cette même page</a>. Voici le code de la fonction soundex_fr (je ne garantis pas que le code disponible sur cette page reste constamment à jour, contrairement au lien de téléchargement) :$$L&#8217;algorithme prend en compte les modifications fournies par les lecteurs et dont vous retrouverez le détail dans les commentaires. Merci donc aux commentateurs, et particulièrement à <a href="http://azur.ironie.org/">David</a>$$</p>
+
+<div>
+  <pre><code class='php'>function soundex_fr($sIn) 
+{ 
+    static $convVIn, $convVOut, $convGuIn, $convGuOut, $accents; 
+    if (!isset($convGuIn)) { 
+        $accents = array(&#39;É&#39; =&gt; &#39;E&#39;, &#39;È&#39; =&gt; &#39;E&#39;, &#39;Ë&#39; =&gt; &#39;E&#39;, &#39;Ê&#39; =&gt; &#39;E&#39;, 
+                    &#39;Á&#39; =&gt; &#39;A&#39;, &#39;À&#39; =&gt; &#39;A&#39;, &#39;Ä&#39; =&gt; &#39;A&#39;, &#39;Â&#39; =&gt; &#39;A&#39;, &#39;Å&#39; =&gt; &#39;A&#39;, &#39;Ã&#39; =&gt; &#39;A&#39;, 
+                    &#39;Ï&#39; =&gt; &#39;I&#39;, &#39;Î&#39; =&gt; &#39;I&#39;, &#39;Ì&#39; =&gt; &#39;I&#39;, &#39;Í&#39; =&gt; &#39;I&#39;, 
+                    &#39;Ô&#39; =&gt; &#39;O&#39;, &#39;Ö&#39; =&gt; &#39;O&#39;, &#39;Ò&#39; =&gt; &#39;O&#39;, &#39;Ó&#39; =&gt; &#39;O&#39;, &#39;Õ&#39; =&gt; &#39;O&#39;, &#39;Ø&#39; =&gt; &#39;O&#39;, 
+                    &#39;Ú&#39; =&gt; &#39;U&#39;, &#39;Ù&#39; =&gt; &#39;U&#39;, &#39;Û&#39; =&gt; &#39;U&#39;, &#39;Ü&#39; =&gt; &#39;U&#39;, 
+                    &#39;Ç&#39; =&gt; &#39;C&#39;, &#39;Ñ&#39; =&gt; &#39;N&#39;, &#39;Ç&#39; =&gt; &#39;S&#39;, &#39;¿&#39; =&gt; &#39;E&#39;, 
+                    &#39;é&#39; =&gt; &#39;e&#39;, &#39;è&#39; =&gt; &#39;e&#39;, &#39;ë&#39; =&gt; &#39;e&#39;, &#39;ê&#39; =&gt; &#39;e&#39;, 
+                    &#39;á&#39; =&gt; &#39;a&#39;, &#39;à&#39; =&gt; &#39;a&#39;, &#39;ä&#39; =&gt; &#39;a&#39;, &#39;â&#39; =&gt; &#39;a&#39;, &#39;å&#39; =&gt; &#39;a&#39;, &#39;ã&#39; =&gt; &#39;a&#39;, 
+                    &#39;ï&#39; =&gt; &#39;i&#39;, &#39;î&#39; =&gt; &#39;i&#39;, &#39;ì&#39; =&gt; &#39;i&#39;, &#39;í&#39; =&gt; &#39;i&#39;, 
+                    &#39;ô&#39; =&gt; &#39;o&#39;, &#39;ö&#39; =&gt; &#39;o&#39;, &#39;ò&#39; =&gt; &#39;o&#39;, &#39;ó&#39; =&gt; &#39;o&#39;, &#39;õ&#39; =&gt; &#39;o&#39;, &#39;ø&#39; =&gt; &#39;o&#39;, 
+                    &#39;ú&#39; =&gt; &#39;u&#39;, &#39;ù&#39; =&gt; &#39;u&#39;, &#39;û&#39; =&gt; &#39;u&#39;, &#39;ü&#39; =&gt; &#39;u&#39;, 
+                    &#39;ç&#39; =&gt; &#39;c&#39;, &#39;ñ&#39; =&gt; &#39;n&#39;); 
+        $convGuIn  = array( &#39;GUI&#39;, &#39;GUE&#39;, &#39;GA&#39;, &#39;GO&#39;, &#39;GU&#39;, &#39;SCI&#39;, &#39;SCE&#39;, &#39;SC&#39;, &#39;CA&#39;, &#39;CO&#39;, 
+                            &#39;CU&#39;, &#39;QU&#39;, &#39;Q&#39;, &#39;CC&#39;, &#39;CK&#39;, &#39;G&#39;, &#39;ST&#39;, &#39;PH&#39;); 
+        $convGuOut = array( &#39;KI&#39;, &#39;KE&#39;, &#39;KA&#39;, &#39;KO&#39;, &#39;K&#39;, &#39;SI&#39;, &#39;SE&#39;, &#39;SK&#39;, &#39;KA&#39;, &#39;KO&#39;, 
+                            &#39;KU&#39;, &#39;K&#39;, &#39;K&#39;, &#39;K&#39;, &#39;K&#39;, &#39;J&#39;, &#39;T&#39;, &#39;F&#39;); 
+        $convVIn   = array( &#39;/E?(AU)/&#39;, &#39;/([EA])?[UI]([NM])([^EAIOUY]|$)/&#39;, &#39;/[AE]O?[NM]([^AEIOUY]|$)/&#39;, 
+                            &#39;/[EA][IY]([NM]?[^NM]|$)/&#39;, &#39;/(^|[^OEUIA])(OEU|OE|EU)([^OEUIA]|$)/&#39;, &#39;/OI/&#39;, 
+                            &#39;/(ILLE?|I)/&#39;, &#39;/O(U|W)/&#39;, &#39;/O[NM]($|[^EAOUIY])/&#39;, &#39;/(SC|S|C)H/&#39;, 
+                            &#39;/([^AEIOUY1])[^AEIOUYLKTPNR]([UAO])([^AEIOUY])/&#39;, &#39;/([^AEIOUY]|^)([AUO])[^AEIOUYLKTP]([^AEIOUY1])/&#39;, &#39;/^KN/&#39;, 
+                            &#39;/^PF/&#39;, &#39;/C([^AEIOUY]|$)/&#39;,  &#39;/E(Z|R)$/&#39;, 
+                            &#39;/C/&#39;, &#39;/Z$/&#39;, &#39;/(?&lt;!^)Z+/&#39;, &#39;/H/&#39;, &#39;/W/&#39;); 
+        $convVOut  = array( &#39;O&#39;, &#39;1\\\\3&#39;, &#39;A\\\\1&#39;, 
+                            &#39;E\\\\1&#39;, &#39;\\\\1E\\\\3&#39;, &#39;O&#39;, 
+                            &#39;Y&#39;, &#39;U&#39;, &#39;O\\\\1&#39;, &#39;9&#39;,- 
+                            &#39;\\\\1\\\\2\\\\3&#39;, &#39;\\\\1\\\\2\\\\3&#39;, &#39;N&#39;, 
+                            &#39;F&#39;, &#39;K\\\\1&#39;, &#39;E&#39;, 
+                            &#39;S&#39;, &#39;SE&#39;, &#39;S&#39;, _, &#39;V&#39;); 
+    } 
+    // Si il n&#39;y a pas de mot, on sort immédiatement
+    if ( $sIn === _ ) return &#39;    &#39;; 
+    // On supprime les accents- 
+    $sIn = strtr( $sIn, $accents); 
+    // On met tout en minuscule- 
+    $sIn = strtoupper( $sIn ); 
+    // On supprime tout ce qui n&#39;est pas une lettre
+    $sIn = preg_replace( &#39;`[^A-Z]`&#39;, _, $sIn ); 
+    // Si la chaîne ne fait qu&#39;un seul caractère, on sort avec.
+    if ( strlen( $sIn ) === 1 ) return $sIn . &#39;   &#39;; 
+    // on remplace les consonnances primaires
+    $sIn = str_replace( $convGuIn, $convGuOut, $sIn ); 
+    // on supprime les lettres répétitives 
+    $sIn = preg_replace( &#39;`(.)\\\\1`&#39;, &#39;$1&#39;, $sIn ); 
+    // on réinterprète les voyelles 
+    $sIn = preg_replace( $convVIn, $convVOut, $sIn); 
+ 
+    // on supprime les terminaisons T, D, S, X (et le L qui précède si existe)
+    $sIn = preg_replace( &#39;`L?[TDX]?S?$`&#39;, _, $sIn ); 
+    // on supprime les E, A et Y qui ne sont pas en première position 
+    $sIn = preg_replace( &#39;`(?!^)Y([^AEOU]|$)`&#39;, &#39;\\\\1&#39;, $sIn); 
+    $sIn = preg_replace( &#39;`(?!^)[EA]`&#39;, _, $sIn); 
+    return substr( $sIn . &#39;    &#39;, 0, 4); 
+}</code></pre>
+</div>
+
+
+<h1>Tests</h1>
+
+<p>Avec cette implémentation, on a par exemple :</p>
+
+<div>
+  <pre><code class='html'>&lt;table&gt;
+  &lt;tr&gt;&lt;th&gt;Mot&lt;/th&gt;&lt;th&gt;Soundex&lt;/th&gt;&lt;th&gt;Mot&lt;/th&gt;&lt;th&gt;Soundex&lt;/th&gt;&lt;/tr&gt;
+  &lt;tr&gt;&lt;td&gt;Aymeric&lt;/td&gt;&lt;td&gt;EMRK&lt;/td&gt;&lt;td&gt;Emeric&lt;/td&gt;&lt;td&gt;EMRK&lt;/td&gt;&lt;/tr&gt;
+  &lt;tr&gt;&lt;td&gt;Banane&lt;/td&gt;&lt;td&gt;BNN&lt;/td&gt;&lt;td&gt;Bananne&lt;/td&gt;&lt;td&gt;BNN&lt;/td&gt;&lt;/tr&gt;
+  &lt;tr&gt;&lt;td&gt;Palper&lt;/td&gt;&lt;td&gt;PLP&lt;/td&gt;&lt;td&gt;Palpé&lt;/td&gt;&lt;td&gt;PLP&lt;/td&gt;&lt;/tr&gt;
+  &lt;tr&gt;&lt;td&gt;Palpa&lt;/td&gt;&lt;td&gt;PLP&lt;/td&gt;&lt;td&gt;Poulpe&lt;/td&gt;&lt;td&gt;PULP&lt;/td&gt;&lt;/tr&gt;
+  &lt;tr&gt;&lt;td&gt;Mario&lt;/td&gt;&lt;td&gt;MRYO&lt;/td&gt;&lt;td&gt;Marion&lt;/td&gt;&lt;td&gt;MRYO&lt;/td&gt;&lt;/tr&gt;
+&lt;/table&gt;</code></pre>
+</div>
+
+
+<p>On a par contre des résultats moyens lorsque des H séparent des voyelles faibles : par exemple <em>Mouahaha</em> donne MU (contre M avec la version précédente).</p>
+
+<p>~test~</p>
+
+<div>
+  <pre><code class='html'>&lt;script type=&quot;text/javascript&quot; src=&quot;/ajax.js&quot;&gt;&lt;/script&gt;
+&lt;script type=&quot;text/javascript&quot;&gt;
+function get_soundex()
+{
+    Ajax.update_html(&quot;sdx_result&quot;, &quot;/soundex_fr.php?text=&quot; + encodeURIComponent(document.getElementById(&quot;sdx_form&quot;).value));
+    return false;
+}
+&lt;/script&gt;
+&lt;div&gt;
+&lt;form action=&quot;&quot; method=&quot;get&quot; onsubmit=&quot;return false;&quot;&gt;
+   &lt;p&gt;
+      &lt;strong&gt;Entrer un texte à convertir : &lt;/strong&gt;
+      &lt;input type=&quot;text&quot; id=&quot;sdx_form&quot; name=&quot;sdx_form&quot; value=&quot;&quot; /&gt;
+      &lt;input type=&quot;submit&quot; name=&quot;submit&quot; value=&quot;Obtenir le Soundex&quot;  onclick=&quot;get_soundex(); return false;&quot;/&gt;&lt;br /&gt;
+      &lt;strong&gt;Résultat : &lt;span id=&quot;sdx_result&quot; style=&quot;color: red&quot;&gt; &lt;/span&gt;&lt;/strong&gt;
+   &lt;/p&gt;
+&lt;/form&gt;
+&lt;/div&gt;</code></pre>
+</div>
+
+
+<p><em>N&#8217;hésitez pas à faire des tests et à me faire part des résultats qui semblent anormaux.</em></p>
+
+<h1>Conclusion</h1>
+
+<p>Cette version est loin d&#8217;être parfaite, mais elle est plus adaptée au français que celle de Frédéric Brouard. Elle n&#8217;est d&#8217;ailleurs pas terminée et risque d&#8217;évoluer dans un futur proche, en particuliers pour ce qui est des tables de transcriptions et de prédominances.</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Florent Bruneau</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2007-03-15T19:06:00+01:00" pubdate data-updated="true">Mar 15<span>th</span>, 2007</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/polytechnique-dot-org/'>Polytechnique.org</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://Fruneau.github.io/blog/2007/03/15/soundex-francais/" data-via="FlorentBruneau" data-counturl="http://Fruneau.github.io/blog/2007/03/15/soundex-francais/" >Tweet</a>
+  
+  
+  <div class="g-plusone" data-size="medium"></div>
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2007/03/14/demon-pour-khtml2png/" title="Previous Post: Démon pour khtml2png">&laquo; Démon pour khtml2png</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/2007/03/20/pas-de-chance/" title="Next Post: Pas de chance">Pas de chance &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2009/04/07/yet-another-policy-daemon-for-postfix2/">Yet Another Policy Daemon for Postfix</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2008/06/04/polytechniqueorg-lance-son-blog/">Polytechnique.org Lance Son Blog</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2008/05/19/vieux-trucs/">Vieux Trucs</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2008/03/02/encodage-et-terminal/">Encodage Et Terminal</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2007/11/01/afficher-des-discussions/">Afficher Des Discussions</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2013 - Florent Bruneau -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
+      script.src = 'https://apis.google.com/js/plusone.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(script, s);
+    })();
+  </script>
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = '//platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

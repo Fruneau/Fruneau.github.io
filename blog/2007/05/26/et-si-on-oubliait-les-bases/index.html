@@ -1,0 +1,332 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Et Si on Oubliait Les Bases ? - Mind...</title>
+  <meta name="author" content="Florent Bruneau">
+
+  
+  <meta name="description" content="MacOS X est un Unix&hellip; compatible POSIX. Voilà ce qu&#8217;un certain nombre de personnes semblent oublier assez fréquemment. C&#8217;est assez &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://Fruneau.github.io/blog/2007/05/26/et-si-on-oubliait-les-bases">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="Mind..." type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/libs/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Mind...</a></h1>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:Fruneau.github.io" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Et Si on Oubliait Les Bases ?</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2007-05-26T13:40:00+02:00" pubdate data-updated="true">May 26<span>th</span>, 2007</time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>MacOS X est un Unix&hellip; compatible POSIX. Voilà ce qu&#8217;un certain nombre de personnes semblent oublier assez fréquemment. C&#8217;est assez dommage quand ces personnes programment pour MacOS, on se retrouve parfois avec du code complexe pour réécrire des fonctions POSIX (en moins bien ?).</p>
+
+<!-- more -->
+
+
+<p>En fait si je parle de ça, c&#8217;est parce que je viens de rencontrer le problème dans le cadre du développement de <a href="http://blog.mymind.fr/post/2007/05/18/VirtueDesktops-revient">VirtueDesktops</a>. Il se trouve qu&#8217;en parcourant le tracker du projet je suis tombé sur le <a href="http://trac.virtuedesktops.info/ticket/115">ticket 115</a> qui s&#8217;intitule :</p>
+
+<blockquote><p> Patch to check group id of &lsquo;procmod&rsquo; group</p></blockquote>
+
+<p>C&#8217;est intéressant&hellip; jusqu&#8217;à maintenant Virtue suppose que le gid du groupe procmod est celui par défaut de MacOS (c&#8217;est à dire qu&#8217;il vaut 9)&hellip; et le problème est donc que si un utilisateur a un procmod différent (ou si Apple décide un jour de changer le gid du groupe), le code actuel peut avoir des résultats inattendus, il faut donc faire un code plus portable qui recherche le gid de procmod au lieu de le stocker en dur. Ce n&#8217;est clairement pas une mauvaise idée ! Seul problème, le patch soumis est le suivant (au cas où certain voudrait réutiliser ce code, je tiens à signaler que c&#8217;est une mauvaise idée !) :</p>
+
+<div>
+  <pre><code class='c'>1  define NI_DOMAIN  &quot;.&quot;
+1  define NI_PATH       &quot;/name=groups/name=procmod&quot;
+1  define NI_KEY        &quot;gid&quot;
+
+// Sucked from netinfo-369.5/tools/niutil/niutil.c
+ni_status ni_read_single_prop(char **property)
+{
+    const char *args[] = {NI_DOMAIN, NI_PATH, NI_KEY};
+    
+    char myname[] = &quot;ni_read_single_prop&quot;;
+    const bool opt_tag = false;
+    const int timeout = 30;
+    
+    ni_namelist nl;
+    void *domain;
+    ni_id dir;  
+    ni_status ret;
+
+    if ((ret = do_open(myname, args[0], &amp;domain, opt_tag, timeout, NULL, NULL)) != 0) return ret;
+
+    /* args[1] should be a directory specification */
+    ret = ni2_pathsearch(domain, &amp;dir, args[1]);
+    if (ret != NI_OK) {
+        fprintf(stderr, &quot;%s: can&#39;t open directory %s: %s
+&quot;, myname, args[1], ni_error(ret));
+        ni_free(domain);
+        return ret;
+    }
+
+    /* get the property values for args[2] */
+    NI_INIT(&amp;nl);
+    ret = ni_lookupprop(domain, &amp;dir, args[2], &amp;nl);
+    if (ret != NI_OK) {
+        fprintf(stderr, &quot;%s: can&#39;t get property %s in directory %s: %s
+&quot;, myname, args[2], args[1], ni_error(ret));
+        ni_free(domain);
+        return ret;
+    }
+    
+    
+    if (nl.ni_namelist_len != 1) {
+        fprintf(stderr, &quot;%s: expected length = 1, found length = %d
+&quot;, myname, nl.ni_namelist_len);
+        return NI_FAILED;
+    }
+    
+    *property = (char*)calloc(strlen(nl.ni_namelist_val[0]) + 1, sizeof(char));
+    strcpy(*property, nl.ni_namelist_val[0]);
+    
+    ni_namelist_free(&amp;nl);
+    ni_free(domain);
+    
+    return NI_OK;
+}</code></pre>
+</div>
+
+
+<p>Donc que fait cette fonction ? C&#8217;est assez simple : elle utilise l&#8217;utilitaire NetInfo d&#8217;Apple pour lire les informations relatives au chemin <code>/groups/procmod</code>. Une fois là dedans elle copie la valeur stockée à la clé <code>gid</code> et renvoie cette chaîne dans le pointeur passé en argument.</p>
+
+<p>Il n&#8217;y a pas à dire&hellip; c&#8217;est une solution qui devrait fonctionner (enfin j&#8217;ai même un doute, car je ne vois pas le groupe procmod apparaître quand je regarde dans NetInfo). Seulement cette solution montre clairement que la personne qui l&#8217;a écrite savait que MacOS utilise un système de groupes, mais avait oublié qu&#8217;en fait c&#8217;est avant tout un système POSIX. Et là, ce qui est intéressant c&#8217;est que sous MacOS X on a accès à l&#8217;API POSIX&hellip; en particulier à la fonction <code>getgrnam</code> qui retourne les informations sur un groupe à partir de son nom.</p>
+
+<p>Donc, pas besoin de dépendance vers NetInfo, pas besoin d&#8217;une recherche dans une arborescence abstraite : NetInfo n&#8217;est qu&#8217;une abstraction de la couche Unix pour simplifier l&#8217;accès aux données par les utilisateurs&hellip; mais ça ne doit pas être un framework d&#8217;abstraction de l&#8217;API POSIX ce qui entraîne nécessairement du code moins portable (et surtout, moins lisible dans le cas présent), moins rapide et plus lourd.</p>
+
+<p>Ici, le code est utilisé dans un programme en C qui est chargé de mettre un objet dans le groupe procmod pour autoriser Virtue à effectuer certaines actions qui nécessitent un accès privilégié au serveur graphique&hellip; ce programme ne fait <em>que</em> changer les permissions. Pourquoi utiliser une API lourde et spécifique à MacOS alors que ce type de programme pourrait clairement être utilisé sur n&#8217;importe quel Unix ?</p>
+
+<p>Voici donc une solution qui fait la même chose que la fonction ci-dessus, en mieux et surtout en beaucoup moins de lignes :</p>
+
+<div>
+  <pre><code class='c'>1  include &lt;grp.h&gt;
+
+static int getProcmodGid()
+{
+    struct group* groupDesc; 
+    int gid = -1; 
+    groupDesc = getgrnam(&quot;procmod&quot;); 
+    if (groupDesc) {
+        gid = groupDesc-&gt;gr_gid; 
+        free(groupDesc); 
+    } 
+    return gid; 
+}</code></pre>
+</div>
+
+
+<p>Pourquoi cette solution est-elle meilleure ?</p>
+
+<ul>
+<li>elle retourne un entier&hellip; on a donc pas besoin de faire une conversion a posteriori</li>
+<li>elle utilise l&#8217;API POSIX et est donc utilisable sur n&#8217;importe quel OS POSIX (donc quasiment tous&hellip; à l&#8217;exception de Windows)</li>
+<li>elle évite toute manipulation inutile de chaîne de caractères</li>
+<li>elle est ne nécessite pas de charger une bibliothèque supplémentaire : <code>getgrnam</code> est dans la <code>libc</code></li>
+<li>elle est drôlement plus courte non ?</li>
+</ul>
+
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Florent Bruneau</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2007-05-26T13:40:00+02:00" pubdate data-updated="true">May 26<span>th</span>, 2007</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/geektime/'>GeekTime</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://Fruneau.github.io/blog/2007/05/26/et-si-on-oubliait-les-bases/" data-via="FlorentBruneau" data-counturl="http://Fruneau.github.io/blog/2007/05/26/et-si-on-oubliait-les-bases/" >Tweet</a>
+  
+  
+  <div class="g-plusone" data-size="medium"></div>
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2007/05/22/mac-cest-bien-mais-pas-top/" title="Previous Post: Mac c'est bien... mais pas top">&laquo; Mac c'est bien... mais pas top</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/2007/06/02/spaces/" title="Next Post: Spaces">Spaces &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2009/04/07/yet-another-policy-daemon-for-postfix2/">Yet Another Policy Daemon for Postfix</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2008/06/04/polytechniqueorg-lance-son-blog/">Polytechnique.org Lance Son Blog</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2008/05/19/vieux-trucs/">Vieux Trucs</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2008/03/02/encodage-et-terminal/">Encodage Et Terminal</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2007/11/01/afficher-des-discussions/">Afficher Des Discussions</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2013 - Florent Bruneau -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
+      script.src = 'https://apis.google.com/js/plusone.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(script, s);
+    })();
+  </script>
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = '//platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,328 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Compter Les Fichiers - Mind...</title>
+  <meta name="author" content="Florent Bruneau">
+
+  
+  <meta name="description" content="C&#8217;est un peu la suite de mon post &ldquo;Outils pratiques&rdquo; où je donnais deux scripts permettant de rendre les commandes SVN plus &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://Fruneau.github.io/blog/2007/08/31/compter-les-fichiers">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="Mind..." type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/libs/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Mind...</a></h1>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:Fruneau.github.io" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Compter Les Fichiers</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2007-08-31T01:12:00+02:00" pubdate data-updated="true">Aug 31<span>st</span>, 2007</time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>C&#8217;est un peu la suite de mon post &ldquo;Outils pratiques&rdquo; où je donnais deux scripts permettant de rendre les commandes SVN plus conviviales. Encore une fois, je réinvente sans doute la roue (des outils équivalents doivent déjà exister&hellip; sans doute en mieux), mais je pense que chercher ce genre d&#8217;outils sur internet m&#8217;aurait pris plus de temps que ce qu&#8217;il m&#8217;a fallu pour le développer.</p>
+
+<p>En ce moment je manipule des fichiers, beaucoup de fichiers (et même, beaucoup de gros fichiers), que j&#8217;ouvre, rouvre, et ferme et puis referme. Et à force d&#8217;ouvrir, on oublie parfois de refermer, et là, c&#8217;est comme une fuite de mémoire, sauf que le nombre limite de fichiers ouverts est beaucoup plus rapidement atteinte que la limite de mémoire&hellip; dans la configuration de base sur un linux, un programme n&#8217;a le droit qu&#8217;à 1024 descripteurs de fichiers. D&#8217;où mon problème : comment traquer les &ldquo;file-handle leaks&rdquo; ?</p>
+
+<!-- more -->
+
+
+<p>Pour le faire, je me suis fait rapidement un petit script qui permet d&#8217;analyser les données issues d&#8217;un <code>strace</code>. <code>strace</code> est, pour ceux qui ne le savent pas, un programme très pratique qui permet de lister les appels systèmes. Dans mon cas présents, surveiller les ouvertures fermetures de fichiers revient à traquer les commandes <code>open</code> (ouverture d&#8217;un fichier), et les commandes <code>close</code>. Donc, je récupère simplement la liste des appels à <code>open</code> et <code>close</code> :</p>
+
+<div>
+  <pre><code class='bash'>strace -f -e trace=open,close mon programme 2&gt; /quelque/part</code></pre>
+</div>
+
+
+<p>Et ainsi, le fichier <code>/quelque/part</code> contient la liste complète des appels à <code>open</code> et <code>close</code> effectués par mon programme (et ses processus fils). Il ne reste plus alors qu&#8217;à analyser le contenu de <code>/quelque/part</code>. Pour ceci, il suffit de peu de lignes de code (en perl pour ma part, mais d&#8217;autres auraient fait la même chose en shell, python&hellip; ou n&#8217;importe quel langage de scripting) :</p>
+
+<div>
+  <pre><code class='perl'>1  !/usr/bin/perl 
+ 
+my %files; 
+my %modes; 
+my %lines; 
+ 
+my $lineNb = 0; 
+my $maxOpened = 0; 
+my $currentOpened = 0; 
+my $totalOpened = 0; 
+ 
+for $line (&lt;STDIN&gt;) { 
+  if ($line =~ /open\\\\(&quot;([^&quot;&quot;]+)&quot;, ([^\\\\)]+)\\\\)\\\\s*=\\\\s*(\\\\d+)/) { 
+    $files{$3} = $1; 
+    $modes{$3} = $2; 
+    $lines{$3} = $lineNb; 
+    $totalOpened++; 
+    $currentOpened++; 
+    if ($currentOpened &gt; $maxOpened) { 
+      $maxOpened = $currentOpened; 
+    } 
+  } 
+  if ($line =~ /close\\\\((\\\\d+)\\\\)/ &amp;&amp; $files{$1} ne _) { 
+    $files{$1} = _; 
+    $currentOpened--; 
+  } 
+  $lineNb++; 
+} 
+ 
+print &quot;$totalOpened files opened, max. $maxOpened at the same time
+&quot;; 
+print &quot;$currentOpened files not closed
+&quot;; 
+for $id (keys %files) { 
+  local $file = $files{$id}; 
+  local $mode = $modes{$id}; 
+  local $line = $lines{$id}; 
+ 
+  if ($file ne _) { 
+    print &quot;[line $line] id=$id, open $file with mode $mode
+&quot;; 
+  } 
+}</code></pre>
+</div>
+
+
+<p>Pour simplifier le tout, on rajoute une fonction dans le <code>zshrc</code> pour wrapper tout ça, et ça donne (attention, ceci ne fonctionne que sous linux, <code>mktemp</code> n&#8217;a pas la même syntaxe sur MacOS, et surtout, <code>strace</code> n&#8217;est pas disponible sur Mac</p>
+
+<div>
+  <pre><code class='bash'>function checkFiles() { 
+  TEMPFILE=`mktemp` 
+  strace -f -e trace=open,close $* 2&gt; $TEMPFILE 
+  cat $TEMPFILE | ~/.zsh/trackFiles.pl 
+  rm $TEMPFILE 
+}</code></pre>
+</div>
+
+
+<p>Avec, ça, il ne me répond :</p>
+
+<pre><code>% checkFiles cp test test2
+12 files opened, max. 2 at the same time
+0 files not closed
+</code></pre>
+
+<p>Si maintenant, je fais un programme minimaliste qui oublie de fermer un fichier :</p>
+
+<div>
+  <pre><code class='c'>1  include &lt;stdio.h&gt; 
+ 
+int main() { 
+  FILE* file = fopen(&quot;test&quot;, &quot;r&quot;); 
+  return file != NULL ? 0 : 1; 
+}</code></pre>
+</div>
+
+
+<pre><code>% gcc test.c -o tester
+% checkFiles ./tester
+3 files opened, max. 1 at the same time
+1 files not closed
+[line 4] id=3, open test with mode O_RDONLY
+</code></pre>
+
+<p>Voilà, maintenant je sais que mon programme oublie de fermer un fichier, que ce fichier s&#8217;appelle &ldquo;test&rdquo;, et qu&#8217;il est ouvert en read-only. La ligne &ldquo;4&rdquo; est la ligne dans la sortie de <code>strace</code>, et n&#8217;a aucun rapport avec la ligne 4 du fichier source (contrairement aux apparences).</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Florent Bruneau</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2007-08-31T01:12:00+02:00" pubdate data-updated="true">Aug 31<span>st</span>, 2007</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/geektime/'>GeekTime</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://Fruneau.github.io/blog/2007/08/31/compter-les-fichiers/" data-via="FlorentBruneau" data-counturl="http://Fruneau.github.io/blog/2007/08/31/compter-les-fichiers/" >Tweet</a>
+  
+  
+  <div class="g-plusone" data-size="medium"></div>
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2007/08/17/templates-en-c/" title="Previous Post: Templates en C">&laquo; Templates en C</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/2007/10/08/15-000/" title="Next Post: 15 000">15 000 &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2009/04/07/yet-another-policy-daemon-for-postfix2/">Yet Another Policy Daemon for Postfix</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2008/06/04/polytechniqueorg-lance-son-blog/">Polytechnique.org Lance Son Blog</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2008/05/19/vieux-trucs/">Vieux Trucs</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2008/03/02/encodage-et-terminal/">Encodage Et Terminal</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2007/11/01/afficher-des-discussions/">Afficher Des Discussions</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2013 - Florent Bruneau -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
+      script.src = 'https://apis.google.com/js/plusone.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(script, s);
+    })();
+  </script>
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = '//platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

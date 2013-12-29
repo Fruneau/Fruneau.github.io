@@ -1,0 +1,287 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Encodage Et Terminal - Mind...</title>
+  <meta name="author" content="Florent Bruneau">
+
+  
+  <meta name="description" content="Beaucoup de personnes avec qui je discute sur IRC ont des problèmes avec l&#8217;encodage de leur terminal, de leur shell, de leur irssi, ou de tout &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://Fruneau.github.io/blog/2008/03/02/encodage-et-terminal">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="Mind..." type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/libs/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Mind...</a></h1>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:Fruneau.github.io" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Encodage Et Terminal</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2008-03-02T12:57:00+01:00" pubdate data-updated="true">Mar 2<span>nd</span>, 2008</time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>Beaucoup de personnes avec qui je discute sur IRC ont des problèmes avec l&#8217;encodage de leur terminal, de leur shell, de leur irssi, ou de tout autre logiciel en &ldquo;ligne de commande&rdquo;. Comme j&#8217;en ai un peu marre d&#8217;expliquer la même chose toutes les semaines, voici une petite mise au point sur les réglages à faire pour travailler efficacement en ligne de commande.</p>
+
+<!-- more -->
+
+
+<h2>Introduction</h2>
+
+<p>Le point le plus important à mémoriser est que pour avoir une console avec un encodage spécifique il faut que plusieurs couches de logiciels utilisent le même encodage. Prenons le cas simple où nous avons un shell dans un terminal.</p>
+
+<p>Le terminal est un logiciel qui ne fait que convertir les entrées de l&#8217;utilisateur vers des entrées compréhensibles par le logiciel qu&#8217;il fait tourner, et qui interprète la sortie de ce logiciel pour qu&#8217;elle soit lisible par l&#8217;utilisateur. Donc pour que le terminal affiche correctement ce qu&#8217;indique le shell, il faut qu&#8217;il utilise le même encodage que celui-ci. Si par exemple mon shell écrit de l&#8217;UTF-8 alors que mon terminal attend du latin1, les caractères multi-octets de l&#8217;UTF-8 seront mal interprétés et afficheront un caractère par octet. Ainsi un &ldquo;é&rdquo; en utf8 s&#8217;affiche comme un &ldquo;Ã©&rdquo; en latin1.</p>
+
+<p>Pour l&#8217;entrée de l&#8217;utilisateur, c&#8217;est la même chose. Si mon terminal est en latin1 et mon shell en utf8, si j&#8217;entre un &ldquo;é&rdquo; dans mon terminal, celui-ci sera passé à mon terminal comme un seul octet (de valeur 0xE9). Or mon shell attend de l&#8217;utf8 et lorsqu&#8217;il reçoit un 0xE9, il considère que je viens d&#8217;entrer un octet d&#8217;un caractère multi-octets&hellip; les prochains caractères que j&#8217;entrerais seront donc ajoutés à mon 0xE9 jusqu&#8217;à ce que mon shell considère que j&#8217;ai entré un caractère&hellip; assez embêtant.</p>
+
+<p>Il faut donc faire extrêmement attention à choisir un encodage unique compatible avec son shell et son terminal (et les logiciels qu&#8217;on compte utiliser).</p>
+
+<h2>Terminal</h2>
+
+<p>Le réglage du terminal dépend exclusivement du logiciel en question. Certains terminaux permettent de choisir son encodage, d&#8217;autres non. Cela peut donc être un bon critère pour choisir son logiciel. Pour utiliser l&#8217;UTF-8, vous pouvez prendre Konsole, urxvt, le Terminal de Mac OS X&hellip;</p>
+
+<h2>Shell</h2>
+
+<p>Le réglage du shell se fait par des variables d&#8217;environnement qu&#8217;on appelle couramment les &ldquo;locales&rdquo;. Le réglage courant est accessible en tapant &ldquo;locale&rdquo; dans le shell. Un certain nombre de variables sont concernées :</p>
+
+<ul>
+<li>gestion de la langue du shell (et des programmes liés)</li>
+<li>gestion des formats (dates, monnaies, virgules&hellip;)</li>
+<li>LC_ALL est un &ldquo;fallback&rdquo; (l&#8217;encodage par défaut si aucun autre n&#8217;a été défini pour une variable donnée).</li>
+</ul>
+
+
+<p>Chaque variable est de la forme xx_YY.ZZ. xx_YY défini la zone géographique et la langue (fr_FR pour le français, en_US pour l&#8217;anglais-US). ZZ défini l&#8217;encodage. Il est important que toutes les variables utilisent le même encodage (mais elles peuvent avoir des langues différentes). Pour faire de l&#8217;UTF-8 pur, un bon choix est d&#8217;exporter LC_ALL=&ldquo;en_US.UTF-8&rdquo; dans la configuration du shell (ou fr_FR.UTF-8 pour ceux qui veulent un shell en français).</p>
+
+<p>Il faut par contre faire attention, l&#8217;UTF-8 n&#8217;est pas supporté par tous les shells (à partir de 4.3 pour zsh par exemple).</p>
+
+<h2>Irssi</h2>
+
+<p>Pour irssi, il y a un point supplémentaire à prendre en compte : l&#8217;encodage du réseau. Ainsi si j&#8217;ai un channel en latin1 à afficher en utf8 (et sur lequel je veux poster). Il faut donc que irssi fasse de transcodage à la volée&hellip; et bien sûr il faut lui dire ce qu&#8217;il faut faire.</p>
+
+<p>Tout d&#8217;abord il faut lui indiquer l&#8217;encodage du terminal. Pour ceci il y a la variable term_charset :</p>
+
+<pre><code>settings = {
+  "fe-common/core" = {
+    term_charset = "UTF-8";
+  };
+};
+</code></pre>
+
+<p>Ensuite, il faut indiquer pour chaque réseau (ou channel) l&#8217;encodage du réseau. Ce n&#8217;est en fait nécessaire que si l&#8217;encodage est différent de celui du terminal, mais ça ne coûte rien de le spécifier pour chaque réseau. Ainsi je suis sur RezoSup (qui est en latin1) et sur FreeNode (qui est en utf8), il me suffit d&#8217;ajouter :</p>
+
+<pre><code>settings = {
+  core = {
+    recode = "yes";
+  };
+};
+conversions = { 
+  FreeNode = "UTF-8";
+  Rezosup = "ISO-8859-1";
+};
+</code></pre>
+
+<p>Les entrées &ldquo;FreeNode&rdquo; et &ldquo;Rezosup&rdquo; doivent reprendre le nom du chatnet donné dans la section &ldquo;servers&rdquo; de la configuration. Pour spécifier l&#8217;encodage spécifique à un channel, il suffit de mettre <code>"Chatnet/#channel" = "encoding";</code></p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Florent Bruneau</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2008-03-02T12:57:00+01:00" pubdate data-updated="true">Mar 2<span>nd</span>, 2008</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/general/'>Général</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://Fruneau.github.io/blog/2008/03/02/encodage-et-terminal/" data-via="FlorentBruneau" data-counturl="http://Fruneau.github.io/blog/2008/03/02/encodage-et-terminal/" >Tweet</a>
+  
+  
+  <div class="g-plusone" data-size="medium"></div>
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2007/11/01/afficher-des-discussions/" title="Previous Post: Afficher des discussions">&laquo; Afficher des discussions</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/2008/05/19/vieux-trucs/" title="Next Post: Vieux trucs">Vieux trucs &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2009/04/07/yet-another-policy-daemon-for-postfix2/">Yet Another Policy Daemon for Postfix</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2008/06/04/polytechniqueorg-lance-son-blog/">Polytechnique.org Lance Son Blog</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2008/05/19/vieux-trucs/">Vieux Trucs</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2008/03/02/encodage-et-terminal/">Encodage Et Terminal</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2007/11/01/afficher-des-discussions/">Afficher Des Discussions</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2013 - Florent Bruneau -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
+      script.src = 'https://apis.google.com/js/plusone.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(script, s);
+    })();
+  </script>
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = '//platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

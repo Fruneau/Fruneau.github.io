@@ -1,0 +1,302 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Trous De Mémoire - Mind...</title>
+  <meta name="author" content="Florent Bruneau">
+
+  
+  <meta name="description" content="Quand j&#8217;utilise mon ordinateur, j&#8217;aime bien que son fonctionnement soit fluide. C&#8217;est à dire que lorsque je passe d&#8217;une &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://Fruneau.github.io/blog/2007/04/04/trous-de-memoire">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="Mind..." type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/libs/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Mind...</a></h1>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:Fruneau.github.io" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Trous De Mémoire</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2007-04-04T02:01:00+02:00" pubdate data-updated="true">Apr 4<span>th</span>, 2007</time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>Quand j&#8217;utilise mon ordinateur, j&#8217;aime bien que son fonctionnement soit fluide. C&#8217;est à dire que lorsque je passe d&#8217;une application à l&#8217;autre (ce qui arrive régulièrement), je ne veux pas qu&#8217;il y ait 10 secondes de latence parce que ma machine &ldquo;swap&rdquo;. Malheureusement, je ne connais aucun OS sur lequel ça ne swap pas. Par exemple, sur mon portable à l&#8217;instant même j&#8217;ai 2Go de swap (donc 700Mo utilisés) sachant qu&#8217;à côté j&#8217;ai 600Mo de RAM utilisés (et les quelques 400Mo de RAM qui restent servent de cache disque&hellip;).</p>
+
+<p>Comment un ordinateur sur lequel tourne un navigateur web, un client IRC et un client mail peut avoir autant de RAM occupée ???</p>
+
+<!-- more -->
+
+
+<p>La réponse n&#8217;est pas très dure à trouver&hellip; il suffit de se munir de différents petits outils :</p>
+
+<ul>
+<li>un logiciel de monitoring (par exemple le <em>Moniteur d&#8217;activité</em> de Mac OS)</li>
+<li>d&#8217;un outil comme le programme <code>leaks</code> qui détecte les zone de mémoire perdues (les memory-leaks)</li>
+</ul>
+
+
+<p>Et là, c&#8217;est assez surprenant. Commençons par trier les programmes par mémoire occupée dans le moniteur :
+1   Le noyau arrive en premier&hellip; bon, je ne sais pas ce qui est compté comme mémoire utilisée par le noyau, on va dire que c&#8217;est normal
+1   Le serveur graphique en deuxième&hellip;
+1   Colloquy (client IRC) avec 47Mo de mémoire <em>réelle</em> (284Mo de mémoire virtuelle)
+1   Mail avec 39Mo/270Mo
+1   Vienna (syndicateur RSS) 34Mo/286Mo
+1   Safari (browser) 31Mo/240Mo&hellip; mais je viens juste de le relancer et je n&#8217;ai que 2 onglets ouverts dessus
+1   VirtueDesktop (gestionnaire de bureaux virtuels) 27Mo/247Mo
+1   GeekTool (un petit outil qui permet de plaquer des logs/images&hellip; sur le bureau) 26Mo/230Mo</p>
+
+<p>Bon, là où ce n&#8217;est pas drôle je viens de relancer Safari et GeekTool. A la rigueur, à part GeekTool qui n&#8217;a absolument rien à faire dans le top8, le classement n&#8217;est pas très surprenant. Là où il y a un problème c&#8217;est quand on regarde la sortie de <code>leaks</code>. Pour ceux qui ne peuvent pas tester, ça ressemble à ça :</p>
+
+<pre><code>Leak: 0x0066abd0  size=16       string ''
+Leak: 0x006e1680  size=16       string ''
+Leak: 0x0d5f8cf0  size=16       instance of 'NSCFString'
+        0xa080c260 0x0001078c 0x74737504 0x4346006c     `........ustl.FC
+Leak: 0x0d590470  size=16
+        0x00000000 0x00000000 0x00000000 0x00010001     ................
+...
+</code></pre>
+
+<p>Donc, comme je ne vais pas lire toute la sortie, je vais faire <code>leaks [programme] | grep Leak | wc -l</code> sur les programmes qui tournent sur mon Mac ce qui donnera le nombre de trous de mémoire. Tout d&#8217;abord commençons par ceux que je viens de relancer (GeekTool et Safari) :</p>
+
+<ul>
+<li>GeekTool : 1632 leaks dont la taille varie de 16 à 1024 octets</li>
+<li>Safari : 6 leaks dont la taille varie également de 16 à 1024 octets</li>
+</ul>
+
+
+<p>Puisque Colloquy est en tête du top des programmes qui utilisent le plus de mémoire&hellip; un petit test s&#8217;impose : 15212 leaks (je l&#8217;ai relancé il y a 24 heures). Le temps de faire ce test je revérifie GeekTool qui lui même est passé à 1747 leaks (juste pendant le temps que j&#8217;ai pris pour écrire ces quelques lignes).</p>
+
+<p>Pour me rassuré je décide de tester sur différents autres programmes :</p>
+
+<ul>
+<li>WindowServer (le serveur graphique de Mac OS) : 360 leaks</li>
+<li>Address Book : 1460 leaks (bon, il a 11 jours d&#8217;uptime aussi, c&#8217;est pas rien)</li>
+<li>Terminal : 0 (mais je viens de le relancer&hellip; il a planté alors que je lançais <code>leaks</code> sur <code>Terminal</code>)</li>
+<li>Finder : 334</li>
+<li>Mail : 321</li>
+<li>Dock : 15</li>
+<li>GeekTool : 1995 (et oui, ça a encore augmenté)</li>
+<li>ssh : 6 !</li>
+<li>Vienna : 10824 (il a 24 heures d&#8217;uptime)</li>
+</ul>
+
+
+<p>Je me décide à lancer Firefox, juste pour voir&hellip; juste après le lancement, Firefox est déjà à 1580 memory leaks&hellip; bon, peut-être que Camino est plus léger, c&#8217;est vrai qu&#8217;avec ses 236 leaks, il fait bonne figure.</p>
+
+<p>Pour résumer :</p>
+
+<ul>
+<li>Les programmes Apple sont peut troués (la plupart de ceux que j&#8217;ai cité ci-dessus ont un uptime comparable à celui de ma machine, c&#8217;est à dire 11 jours&hellip; 300 trous de mémoire en 11 jours, ce n&#8217;est pas miraculeux, mais c&#8217;est <em>tolérable</em>).</li>
+<li>Les programmes de tierce partie sont des monstres. Comment un navigateur comme Firefox qui cherche à s&#8217;imposer comme une référence peut-il se permettre d&#8217;avoir déjà perdu 1580 zones mémoires en 5 secondes de fonctionnement ? Comment un outil qui ne fait rien comme GeekTool peut-il prendre plus de mémoire que Safari (il vient juste de le dépasser dans mon moniteur d&#8217;activité) et perdre plusieurs centaines de zones mémoire par minute ?</li>
+</ul>
+
+
+<p>Quand on développe un programme, la gestion de la mémoire est une priorité&hellip; et ce, quel que soit le langage qu&#8217;on utilise. Je n&#8217;ai pas envie d&#8217;acheter 1Go de RAM supplémentaire alors que tous les programmes que j&#8217;utilise devrait rentrer dans 512Mo de RAM, mais malheureusement, comme les programmeurs semblent avoir oublié qu&#8217;un programme ce n&#8217;est pas que un tas de fonctionnalités mises bout à bout, ma machine rame de telle sorte que parfois il faut plusieurs secondes pour passer d&#8217;un programme à l&#8217;autre.</p>
+
+<p>Je me demandais pourquoi Apple avait mis en place un GC pour l&#8217;objective-C dans le prochain MacOS, au moins maintenant je suis fixé : ça permettra aux programmes faits par des personnes qui ne savent pas coder de ne pas pourrir ma machine. Heureusement que les gens qui savent programmer se mettent au service de ceux qui ne le savent pas pour faire des outils qui transforment les mauvais programme en programme correct.</p>
+
+<p>Désolé d&#8217;être aussi méchant, mais ça m&#8217;énerve (tiens GeekTool prend encore 2Mo de RAM supplémentaires$$Le temps de relire, GeekTool et Safari ont supplanté Vienna au top8, GeekTool est passé à 7135 leaks !!!, Colloquy est passé à 15318 et Safari reste à 6$$$$Après une bonne nuit de sommeil le classement a changé : GeekTool est désormais entre le noyau et le serveur graphique avec plus de 36222 leaks et 106Mo de mémoire utilisés, Vienna est passé à 11400 leaks, Colloquy à 16300 et Safari à 111$$$$Avec 24h d&#8217;uptime, Safari et GeekTool tiennent la tête du classement avec respectivement 117 et 114Mo de RAM utilisée. 683 leaks pour Safari et 43479 leaks pour GeekTool. Colloquy est monté à 18110 leaks et Vienna à 14902$$).</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Florent Bruneau</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2007-04-04T02:01:00+02:00" pubdate data-updated="true">Apr 4<span>th</span>, 2007</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/geektime/'>GeekTime</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://Fruneau.github.io/blog/2007/04/04/trous-de-memoire/" data-via="FlorentBruneau" data-counturl="http://Fruneau.github.io/blog/2007/04/04/trous-de-memoire/" >Tweet</a>
+  
+  
+  <div class="g-plusone" data-size="medium"></div>
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2007/03/30/al/" title="Previous Post: Un aperçu de la version 0.9.14 de plat/al">&laquo; Un aperçu de la version 0.9.14 de plat/al</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/2007/04/06/spam-nigerian/" title="Next Post: Spam nigerian">Spam nigerian &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2009/04/07/yet-another-policy-daemon-for-postfix2/">Yet Another Policy Daemon for Postfix</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2008/06/04/polytechniqueorg-lance-son-blog/">Polytechnique.org Lance Son Blog</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2008/05/19/vieux-trucs/">Vieux Trucs</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2008/03/02/encodage-et-terminal/">Encodage Et Terminal</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2007/11/01/afficher-des-discussions/">Afficher Des Discussions</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2013 - Florent Bruneau -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
+      script.src = 'https://apis.google.com/js/plusone.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(script, s);
+    })();
+  </script>
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = '//platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

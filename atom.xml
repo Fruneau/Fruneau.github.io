@@ -4,7 +4,7 @@
   <title><![CDATA[Mind...]]></title>
   <link href="http://Fruneau.github.io/atom.xml" rel="self"/>
   <link href="http://Fruneau.github.io/"/>
-  <updated>2013-12-29T16:10:43+01:00</updated>
+  <updated>2013-12-29T18:34:12+01:00</updated>
   <id>http://Fruneau.github.io/</id>
   <author>
     <name><![CDATA[Florent Bruneau]]></name>
@@ -14,260 +14,1064 @@
 
   
   <entry>
-    <title type="html"><![CDATA[Polytechnique.org en Retard ?]]></title>
-    <link href="http://Fruneau.github.io/blog/2007/03/01/polytechnique-dot-org-en-retard/"/>
-    <updated>2007-03-01T16:28:37+01:00</updated>
-    <id>http://Fruneau.github.io/blog/2007/03/01/polytechnique-dot-org-en-retard</id>
-    <content type="html"><![CDATA[<p><a href="https://www.polytechnique.org">Polytechnique.org</a> est, comme l&#8217;indique le nom du logiciel OpenSource sur lequel le site repose (<a href="http://opensource.polytechnique.org/platal/">plat/al</a>), une plateforme pour les anciens élèves de l&#8217;<a href="http://www.polytechnique.fr">École</a>&hellip; c&#8217;est à dire que Polytechnique.org devrait :</p>
+    <title type="html"><![CDATA[Yet Another Policy Daemon for Postfix]]></title>
+    <link href="http://Fruneau.github.io/blog/2009/04/07/yet-another-policy-daemon-for-postfix2/"/>
+    <updated>2009-04-07T00:04:00+02:00</updated>
+    <id>http://Fruneau.github.io/blog/2009/04/07/yet-another-policy-daemon-for-postfix2</id>
+    <content type="html"><![CDATA[<p><a href="http://blog.madism.org/index.php/2007/08/29/136-postfix-and-srs">MadCoder announced it months ago</a>, he has been working on the pfixtools. The second tool of the <a href="http://www.postfix.com">postfix</a>-related toolsuite is named <strong>postlicyd</strong>.</p>
+
+<p>postlicyd is a versatile <a href="http://www.postfix.org/SMTPD_POLICY_README.html">policy daemon</a> written in C. It does greylisting (far faster than postgrey), it performs R(H)BL access (both locally directly from rbldns zone files and remotely by using DNS), &hellip; So, it can be used as a replacement for <a href="http://packages.qa.debian.org/w/whitelister.html">whitelister</a> and <a href="http://postgrey.schweikert.ch/">postgrey</a> with a significant improvement of the performances.</p>
+
+<p>On the same server (with the same email trafic), postlicyd is more than 20 times faster than postgrey:</p>
 
 <ul>
-<li>apporter de la vie dans la communauté</li>
-<li>faciliter les mises en relation entre les membres</li>
-<li>offrir des services à la communauté</li>
+<li>Process load: postgrey ~20% CPU, postlicyd less than 1% CPU</li>
+<li>Data base cleanup for 1M entries: postgrey 20 minutes, postlicyd 40 seconds</li>
 </ul>
 
 
-<p>Polytechnique.org offre ces trois services&hellip; mais pourtant moins d&#8217;un utilisateur sur 5 se connecte régulièrement au site (une fois par semaine &ndash; et le plus souvent c&#8217;est pour accéder à des sites qui utilisent l&#8217;authentification de Polytechnique.org), environ un sur 3 se connecte une fois par mois, et un sur 3 ne se connecte tout bonnement jamais. Face à cela, on dénombre un grand nombre d&#8217;utilisateurs qui sont intéressés par un groupe Polytechnique sur des outils comme Linked-In&hellip; pourquoi ? parce que le rôle de Polytechnique.org n&#8217;est rempli qu&#8217;à moitié et ce pour plusieurs raisons :</p>
+<p>Moreover, it is aware of the &lsquo;session&rsquo; feature of the POLICY protocol. Thus, you can write complex configurations and define policies that do not depend on a single SMTP command (like RCPT) but on the whole SMTP transaction&hellip;</p>
 
-<!-- more -->
-
-
-<h1>Ergonomie</h1>
-
-<p>La catastrophe sur Polytechnique.org c&#8217;est l&#8217;ergonomie&hellip; ce n&#8217;est certes pas la fin du monde (on peut encore s&#8217;y retrouver), mais le site ne donne pas envie de s&#8217;y arrêter. Je vais essayer de détailler les divers problèmes :</p>
-
-<h2>Le menu</h2>
-
-<p><img src="http://Fruneau.github.io/assets/screenshots/menu.jpg" alt="Menu du site" /></p>
-
-<p>Le menu de Polytechnique.org témoigne de la richesse du site : il est long. Comme tout menu, il a fallu choisir l&#8217;ordre des entrées. Le choix de cet ordonnancement laisse clairement à désirer. Par exemple : où chercher un lien vers l&#8217;annuaire ? Dans <em>Services</em> ou <em>Communauté X</em> ? Etant un utilisateur du site depuis longtemps, je mets toujours autant de temps avant de trouver ce que je cherche dans le menu.</p>
-
-<p>Peut-être devrions-nous revoir tout bonnement l&#8217;organisation du menu, par exemple avec des catégories plus parlantes, par exemple un premier jet pourrait donner (mais ça mérite d&#8217;être travaillé) :</p>
-
-<ul>
-<li>Mes emails
-
-<ul>
-<li>Mes redirections</li>
-<li>Mes abonnements</li>
-<li>Antispam</li>
-</ul>
-</li>
-<li>Annuaire
-
-<ul>
-<li>Rechercher</li>
-<li>Mon profil</li>
-</ul>
-</li>
-<li>Communauté
-
-<ul>
-<li>Annonces</li>
-<li>Lettre mensuelle</li>
-<li>Discussions</li>
-</ul>
-</li>
-<li>Emploi</li>
-</ul>
-
-
-<h2>Deux sites séparés</h2>
-
-<p>Polytechnique.org c&#8217;est aussi Polytechnique.net : le site des groupes. Le fait d&#8217;avoir 2 sites totalement séparés pose un grand nombre de problème, depuis le partage de l&#8217;authentification, jusqu&#8217;à la cohérence des données.</p>
-
-<p>Il faut clairement envisager de fusionner les deux sites dans un avenir plus ou moins proche si on veut que les utilisateurs s&#8217;y retrouvent. De la même manière qu&#8217;on peut réorganiser le menu, on peut réorganiser l&#8217;accès général au site&hellip; Par exemple, on pourrait envisager de créer un menu tabulé : dans chaque tab, on retrouve un menu spécifique. Par exemple, on pourrait, au lieu d&#8217;avoir un menu à deux niveaux, des tabs (Mes emails, Annuaire, Annonces&hellip;) et dans chaque tabs un menu spécifique donnant accès aux fonctionnalités correspondantes.</p>
-
-<p><strong>Avantages :</strong> On aurait ainsi un proprement rangé&hellip; le site étant modulaire, chaque module pourrait lui même générer ses entrées dans les menus/tabs, l&#8217;intégration des Polytechnique.net à Polytechnique.org ne serait que l&#8217;ajout d&#8217;un tab &ldquo;Mes groupes X&rdquo;</p>
-
-<p><strong>Défauts :</strong> On a pas d&#8217;accès facile à l&#8217;ensemble des fonctionnalités&hellip; c&#8217;est le seul défaut (pas des moindres) que je vois.</p>
-
-<p>C&#8217;est une solution qui mérite qu&#8217;on s&#8217;y intéresse&hellip; le choix de la meilleur ergonomie possible nécessitera de toute façon des tests.</p>
-
-<h2>Dinosaure</h2>
-
-<p><strong>Toutes</strong> les skins de Polytechnique.org sont carrées&hellip; En particulier la skin par défaut a très mal vieilli. Les polices y sont énormes, toutes les informations sont dans des boîtes carrées. Le site à sérieusement besoin d&#8217;une petite cure de jouvence pour retrouver un design aguichant.</p>
-
-<h1><a href="http://en.wikipedia.org/wiki/Web_2.0">Web 2.0</a></h1>
-
-<p>Dire que son site est Web 2.0 est à la mode&hellip; Polytechnique.org ne l&#8217;est pas vraiment, et ceci pour diverses raisons.</p>
-
-<h2>La pointe de la technologie</h2>
-
-<p>Tout d&#8217;abord le site est trop statique. Quand la page d&#8217;accueil est chargée, elle est chargée&hellip; à la rigueur on peut fermer quelques boites mais c&#8217;est tout. Le site est statique&hellip; Le Web actuel s&#8217;ouvre vers des pages vivantes avec lesquels l&#8217;utilisateur peut interagir&hellip; Le plus souvent cela repose sur des technologies du type Ajax. Polytechnique.org utilise un peu Ajax, mais on va dire que c&#8217;est <em>artisanal</em>&hellip; il y a un gros boulot à faire de ce côté si on veut que le site devienne un outil convivial pour l&#8217;utilisateur.</p>
-
-<p>Une autre technologie qui fait le succès du web est l&#8217;édition dynamique de contenu. Polytechnique.org utilise du wiki pour l&#8217;édition de sa documentation&hellip; mais, en grande majorité, ceci se limite à la simplification du travail d&#8217;administration du site. Par contre pour tous les contenus dynamiques, nous n&#8217;offrons que du texte brut à nos utilisateurs. Là où se trouve le vrai problème, c&#8217;est sur l&#8217;outil d&#8217;hébergement que nous offrons aux groupes : <a href="http://opensource.polytechnique.org/diogenes">Diogenes</a>.</p>
-
-<p>Diogenes a mal vieilli parce que sont apparus face à lui des outils plus simples à utiliser. Aujourd&#8217;hui Diogenes mérite un gros décrassage si on veut pouvoir continuer à l&#8217;utiliser.</p>
-
-<h2>Vie sociale</h2>
-
-<p>Là où Polytechnique.org est le plus en retard, c&#8217;est sur les outils qui permettent de donner vie à la communauté. Certes nous avons nos forums, mais ils ne sont pas vraiment mis en avant sur le site&hellip; Nous n&#8217;avons en effet nulle part des liens qui permettent aux utilisateurs de commenter l&#8217;actualité de la communauté. Pour améliorer ça, nous pourrions par exemple associer à chaque annonce une discussion sur un forum dédié (discussion qui serait initiée par la publication de l&#8217;annonce en question sur le forum en plus de la page d&#8217;accueil).</p>
-
-<h1>Conclusion</h1>
-
-<p>Voilà, tout ceci un peu en vrac pour dire que nous avons des outils, de très bons outils même, largement en avance sur l&#8217;utilisation qu&#8217;en font les utilisateurs. Malheureusement nous souffrons d&#8217;un manque d&#8217;adaptation à l&#8217;utilisateur : l&#8217;utilisateur recherche avant tout un site facile à utiliser sur lequel il puisse faire ce qu&#8217;il cherche le plus rapidement possible.</p>
-
-<p>Il est nécessaire de réorienter fortement le développement vers l&#8217;ergonomie dans les mois qui viennent : à terme il faudrait que les utilisateurs puissent utiliser Polytechnique.org comme une page d&#8217;accueil conviviale offrant des services tels qu&#8217;on en trouve couramment sur les principaux portails (recherche Internet, outils de gestion <a href="http://en.wikipedia.org/wiki/Personal_information_manager">PIM</a>&hellip;) tout en offrant les services de base d&#8217;une plateforme pour alumnis.</p>
+<p>More informations: [<a href="http://pfixtools.mymind.fr">http://pfixtools.mymind.fr</a>]</p>
 ]]></content>
   </entry>
   
   <entry>
-    <title type="html"><![CDATA[Un Premier Bilan Sur La Sécurité...]]></title>
-    <link href="http://Fruneau.github.io/blog/2007/02/27/un-premier-bilan-sur-la-securite-dot-dot-dot/"/>
-    <updated>2007-02-27T16:47:51+01:00</updated>
-    <id>http://Fruneau.github.io/blog/2007/02/27/un-premier-bilan-sur-la-securite-dot-dot-dot</id>
-    <content type="html"><![CDATA[<p>Sans entrer dans les détails du fonctionnement des filtres de protection de <a href="https://www.polytechnique.org">Polytechnique.org</a> (je laisse ce plaisir à ceux qui auront le courage de lire le code de <a href="http://opensource.polytechnique.org/platal/">plat/al</a>), nous avons ces derniers mois fortement amélioré les outils de surveillance. Alors qu&#8217;il y a encore un an, nous ne détections que quelques usurpations par an, nous sommes actuellement à environ une usurpation détectée par semaine.</p>
-
-<!-- more -->
-
-
-<h1>De quoi s&#8217;inquiéter ?</h1>
-
-<p>Certes la fréquence des usurpations est plus importante que nous pensions mais plus on a d&#8217;outils de protection, plus on a d&#8217;usurpations&hellip; non seulement parce qu&#8217;on en détecte plus, mais aussi parce que d&#8217;une certaine manière, on provoque les usurpations. En effet, lorsque nous détectons une usurpation, nous fermons le compte. Lorsque l&#8217;usurpateur se rend compte qu&#8217;il a perdu l&#8217;accès, il usurpe (ou tout au moins tente d&#8217;usurper) un autre compte.</p>
-
-<p>Ainsi, nous avions détecté un usurpateur mi-janvier. Suite à celà il s&#8217;est réinscrit une fois. Nous l&#8217;avons trouvé et nous avons redésactivé le compte&hellip; il s&#8217;est de nouveau réinscrit, mais pour une raison que je ne comprends pas, nous avons manqué cette inscription&hellip; mais finalement, il a oublié son compte, et hier il a retenté de se connecter. Mais cette fois-ci son IP était bannie, et c&#8217;est donc 2 comptes qu&#8217;il a tenté d&#8217;usurper tour à tour.</p>
-
-<p>C&#8217;est donc <strong>5</strong> comptes pour une personne&hellip; pas mal non ? Nous n&#8217;aurions pas détecté la première de ces usurpations, il en serait resté à une seule.</p>
-
-<p>De plus, la plus grande majorité des comptes usurpés sont abandonnés par leur usurpateur dans le mois qui suit l&#8217;inscription. Nous détectons donc majoritairement des comptes abandonnés. Les usurpations sont donc gênantes, mais certainement pas inquiétantes. A force de tests, nous épurons petit-à-petit la base.</p>
-
-<p>Donc, je ne pense pas qu&#8217;il y ait de quoi s&#8217;inquiéter de la fréquence des usurpations et la proportion de comptes usurpés de notre base.</p>
-
-<h1>Sécuriser une inscription peu sélective</h1>
-
-<p>La faille de Polytechnique.org est la faible sélectivité de son système d&#8217;inscription. Le problème est que nous avons une base des alumnis et qu&#8217;il faut faire correspondre chaque entrée à la bonne personne physique. Il est quasiment trivial pour n&#8217;importe qui de trouver les informations nécessaire pour remplir le formulaire d&#8217;inscription&hellip; comment s&#8217;assurer que finalement il s&#8217;agit bien de la bonne personne ?</p>
-
-<p>Nous avons donc plusieurs niveaux de filtrages :</p>
-
-<p>1  Le premier consiste à vérifier autant que possible la crédibilité des informations données dans le formulaire d&#8217;inscription
-1  Le deuxième consiste à réaliser un filtrage &ldquo;humain&rdquo;&hellip; il suffit de vérifier pour chaque inscription les informations de chaque inscription
-1  Traitement comportemental. C&#8217;est le filtrage qu&#8217;il nous faut améliorer actuellement
-1  La vérification de cohérence de la base de donnée (à partir d&#8217;idées données de temps en temps, on défini un critère d&#8217;usurpation <em>probable</em>, et on check)</p>
-
-<p>Là où nous avons fait beaucoup de progrès, c&#8217;est sur le points 1 et 2 : nous sommes désormais en mesure de contrer la plupart des usurpations dès l&#8217;inscription alors qu&#8217;il y a quelques mois, nous n&#8217;avions que le point 4&hellip; c&#8217;est à dire des vérifications éparses.</p>
-
-<h1>Nos points faibles&hellip; et nos évolutions</h1>
-
-<p>Tout d&#8217;abord, si je me permets d&#8217;écire ce billet, c&#8217;est que je pense que nous sommes suffisamment sécurisés pour contrer les petits plaisantins qui en lisant ce texte voudraient tenter une usurpation&hellip; ce n&#8217;est pas de la provocation, mais un bilan.</p>
-
-<p>Nos points faibles sont actuellement dans l&#8217;analyse de la base établie avant la mise en place de nos filtres. Il s&#8217;agit donc d&#8217;améliorer les points 3 et 4 indiqués précédemment. Le 3 repose principalement sur un facteur humain : non seulement personne n&#8217;est parfait, et l&#8217;usurpateur fera quasiment toujours une erreur, mais en plus il sera en contact avec d&#8217;autres utilisateurs et c&#8217;est au travers de ses échanges (que ce soit via une fiche de l&#8217;annuaire ou via des discussions par mail ou sur un forum) que nous pourrons envisager de le cerner.</p>
-
-<p>La vérification de la base de données nécessite des idées&hellip; mais également des informations : nous pouvons vérifier la cohérence de notre base sur le fondement de quelques idées, mais rien ne vaut la comparaison avec des informations que nous savons exactes. Obtenir ces informations est le point bloquant&hellip; et là encore il y a un facteur humain.</p>
-
-<p>Nous ne pouvons donc qu&#8217;espérer que la prochaine fusion de notre annuaire avec celui de l&#8217;<a href="http://www.polytechnicien.com">AX</a>, qui est vérifié par des secrétaires qui ont les moyens matériels et temporels de le faire, sera le meilleur moyen de nettoyer notre annuaire.</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Un Client RSS Pour Lire Les Forums NNTP Et Les Mailing-Lists...]]></title>
-    <link href="http://Fruneau.github.io/blog/2007/02/25/un-client-rss-pour-lire-les-forums-nntp-et-les-mailing-lists-dot-dot-dot/"/>
-    <updated>2007-02-25T19:05:42+01:00</updated>
-    <id>http://Fruneau.github.io/blog/2007/02/25/un-client-rss-pour-lire-les-forums-nntp-et-les-mailing-lists-dot-dot-dot</id>
-    <content type="html"><![CDATA[<p>Si il y a un bout de code dont je suis content au sein de <a href="https://www.polytechnique.org">Polytechnique.org</a>, c&#8217;est <a href="http://opensource.polytechnique.org/banana/">Banana</a>. Banana est à l&#8217;origine un client Web pour le protocole NNTP (c&#8217;est à dire le protocole utilisé par Usenet). Depuis sa dernière version (la 1.5), Banana est capable d&#8217;utiliser n&#8217;importe quel protocole comme source (les protocoles actuellement implémentés étant le NNTP et la lecture de MBox, mais on pourrait envisager d&#8217;ajouter le support des Maildir ou d&#8217;IMAP sans problème), ainsi, à Polytechnique.org, nous utilisons Banana pour offrir une plateforme Web vers <a href="https://www.polytechnique.org/banana">nos forums</a> et pour mettre en ligne les archives des Mailing-Lists que nous hébergeons.</p>
-
-<p>Banana est à mon avis un bon outils : il permet un rendu plus que correct de la plupart des mails HTML (même ceux dont le formatage est défini dans une feuille de style), il affiche les discussions proprement et rapidement (grâce à un système de cache du côté serveur). C&#8217;est donc un gros plus en comparaison des interfaces habituelles de consultation d&#8217;archives de Mailing-List qu&#8217;on peut trouver sur Internet&hellip; et puis, ce n&#8217;est pas un forum php, pas de fioritures à la phpbb : Banana est clair, lisible et rapide&hellip; et facile à installer. Pour s&#8217;en convaincre, il suffit de regarder la <a href="http://opensource.polytechnique.org/viewsvn/filedetails.php?repname=Banana&amp;path=/trunk/examples/index.php&amp;rev=0&amp;sc=1">fichier d&#8217;exemple</a> qui fournit un banana totalement fonctionnel (à chacun ensuite d&#8217;y ajouter sa couche d&#8217;authentification si nécessaire).</p>
-
-<p>La grande nouveauté de la prochaine version de Banana est l&#8217;intégration de flux RSS&hellip; ainsi il sera possible de lire les forums sans se connecter au site et sans client news, ou de suivre les discussions des mailing-lists sans relever son courrier (le premier des 2 cas étant certainement le plus intéressant). Pour les utilisateurs de Polytechnique.org, la fonctionnalité est d&#8217;ores et déjà disponible sur <a href="http://dev.m4x.org/~x2003bruneau/banana">ma version de développement</a>. Deux types de flux son disponibles : soit un flux par groupe, soit un flux regroupant tous les groupes auxquels on est abonné.</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Se Découvrir Sur Internet...]]></title>
-    <link href="http://Fruneau.github.io/blog/2007/02/24/se-decouvrir-sur-internet-dot-dot-dot/"/>
-    <updated>2007-02-24T15:48:49+01:00</updated>
-    <id>http://Fruneau.github.io/blog/2007/02/24/se-decouvrir-sur-internet-dot-dot-dot</id>
-    <content type="html"><![CDATA[<p>C&#8217;est assez marrant de rechercher son nom sur Internet&hellip; pour ma part j&#8217;ai l&#8217;habitude de trouver pas mal de page me concernant (c&#8217;est l&#8217;avantage d&#8217;avoir une identité pas trop courante, et d&#8217;avoir au passage intégré une grande Ecole). Là où il y a un problème, c&#8217;est lorsqu&#8217;on découvre de cette manière qu&#8217;on a une double vie !</p>
-
-<!-- more -->
-
-
-<p>Non, plus sérieusement, je n&#8217;apprécie pas de tromber sur <a href="http://ouziel.blogs.com/pierre/2005/03/un_nouveau_foru.html">un blog</a> sur lequel se trouve un commentaire signé de mes nom, prénom <strong>et adresse mail</strong> ! Surtout qu&#8217;en en plus ce post a plusieurs mois, qu&#8217;il est suivi d&#8217;un commentaire m&#8217;appelant (enfin appelant la personne qui a mes identifiants) <em>ce con</em>. Je sais bien qu&#8217;il y a des personnes (trop) qui ne m&#8217;apprécient pas, mais se moquer de moi avec cette forme de lâcheté, je trouve ça intolérable&hellip; sans compter de plus que c&#8217;est parfaitement illégal d&#8217;usurper l&#8217;identité d&#8217;une autre personne.</p>
-
-<p>En plus, poster ce genre de débilité avec une adresse <a href="http://www.polytechnique.org">Polytechnique.org</a>, qui met donc en avant l&#8217;Ecole, est non seulement une insulte envers ma personne, mais également envers l&#8217;Ecole&hellip; et j&#8217;espère que même si certains ne m&#8217;apprécient pas, qu&#8217;au moins ils aient de l&#8217;égard pour l&#8217;Ecole qui les a formés. Je suis certes geek, mais je ne suis pas un petit con !</p>
-
-<p>Je n&#8217;étais pas encore assez dégoûté des <em>autres</em>&hellip; maintenant c&#8217;est fait. Mes soupçons se portent forcément sur certains de mes camarades de promotion, et en particuliers sur ceux avec qui j&#8217;ai eu quelques différends.</p>
-
-<p>Donc, je certifie que je ne suis pas l&#8217;auteur du commentaire :</p>
-
-<blockquote><p>Et ca sent le geek ! Alors ca encode dur les gars ? Vous pensez quoi du chat de NeoDIvx, il pue un peu non ? Vous auriez pas un truc de geek pour faire marcher ce putain de truc ?</p>
-
-<p>Au fait mec tu sais que t&#8217;es le premier site qui apparait quand on tape geek dans google ? Tu dois avoir un page rank de malade, moi a vue de nez je l&#8217;evalue a 6500.</p>
-
-<p>Bon allez, je te lazisse, j&#8217;ai mon kernel Linux qui overclock, et la ca pue dasn l&#8217;appart. En plus j&#8217;ai retouche les chipsets et j&#8217;ai mon watercooling qui fuit&hellip;</p>
-
-<p>Allez, salut les mecs et tunez bien vos Debian !!!</p></blockquote>
-
-<p>et tout ceux qui me connaissent bien savent bien que je n&#8217;aurais jamais écrit ce genre de chose.</p>
-
-<p>Notes : Le 25 février : Le commentaire a été supprimé. Merci à Pierre Ouziel.</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Pourquoi Faire Propre Quand on Peut Faire Sale ?]]></title>
-    <link href="http://Fruneau.github.io/blog/2007/02/23/pourquoi-faire-propre-quand-on-peut-faire-sale/"/>
-    <updated>2007-02-23T23:08:36+01:00</updated>
-    <id>http://Fruneau.github.io/blog/2007/02/23/pourquoi-faire-propre-quand-on-peut-faire-sale</id>
-    <content type="html"><![CDATA[<p>Il y a quelques jours, <a href="http://myks.org">mYk</a> est venu me voir pour me dire qu&#8217;il avait réussi à se débrouiller pour
-que IE6 fasse un rendu correct de son site web perso&hellip; c&#8217;est à dire que le site (XHTML avec une CSS non triviale)
-ressemble à quelque chose sur IE6.</p>
-
-<p>Il m&#8217;explique alors que IE6 a 2 modes de fonctionnement pour le rendu :</p>
+    <title type="html"><![CDATA[Polytechnique.org Lance Son Blog]]></title>
+    <link href="http://Fruneau.github.io/blog/2008/06/04/polytechniqueorg-lance-son-blog/"/>
+    <updated>2008-06-04T01:33:00+02:00</updated>
+    <id>http://Fruneau.github.io/blog/2008/06/04/polytechniqueorg-lance-son-blog</id>
+    <content type="html"><![CDATA[<p>Voilà&hellip; cela fait assez longtemps que nous recevons des demandes d&#8217;utilisateurs pour la mise en place de blog via Polytechnique.org. Afin de préparer la mise en place de ce service, Polytechnique.org lance son blog. Cela permettra à la fois :</p>
 
 <ul>
-<li>Le premier, qu&#8217;il appelle &ldquo;mode normal&rdquo; fait un rendu correct (pas parfait, mais correct)</li>
-<li>Le second, (dont je ne me souviens plus le nom à dormir debout), a quant à lui un rendu &ldquo;tout pourri&rdquo;&hellip; par
-exemple, le margin: auto; de CSS ne fonctionne pas, le margin est à l&#8217;intérieur des boîtes et une partie de la CSS
-n&#8217;est tout bonnement pas pris en compte.</li>
+<li>de tester l&#8217;outil d&#8217;intégration de l&#8217;authentification de Polytechnique.org dans Dotclear.</li>
+<li>d&#8217;offrir une nouvelle plateforme souple et conviviale pour informer nos utilisateurs.</li>
 </ul>
 
 
+<p>Je ne vais pas m&#8217;étendre davantage vu que ce ne serait que recopier <a href="http://blog.polytechnique.org/post/2008/06/01/Creation-du-blog-de-lequipe-Polytechniqueorg">le post d&#8217;Aymeric</a></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Vieux Trucs]]></title>
+    <link href="http://Fruneau.github.io/blog/2008/05/19/vieux-trucs/"/>
+    <updated>2008-05-19T00:50:00+02:00</updated>
+    <id>http://Fruneau.github.io/blog/2008/05/19/vieux-trucs</id>
+    <content type="html"><![CDATA[<p>Un peu de nostalgie. Je suis retombé sur de vieux programmes que j&#8217;avais fait pour ma calculatrice (TI-92) quand j&#8217;étais en 1^^ère^^/Terminale. A mon époque (pas si lointaine&hellip; j&#8217;ai passé mon bac en 2001), ces outils couvraient le programme de Terminal S (spécialité maths) avec :</p>
+
 <!-- more -->
 
 
-<p>Mais alors, comment passer d&#8217;un mode à l&#8217;autre ? Un des facteur, toujours d&#8217;après mYk est la présence d&#8217;un tag <code>&lt;?xml ...&gt;</code> en en-tête du fichier, comme par exemple :</p>
+<ul>
+<li>En analyse et algèbre :</li>
+<li>  tableaux de signe et de variation (avec détection de la périodicité des fonctions en cas de besoin)</li>
+<li>  équation différentielles (de Terminal, donc <code>y' = a.y + w</code> ou <code>y" + w^^2^^.y = 0</code>)</li>
+<li>  division polynomiale</li>
+<li>  linéarisation trigonométrique</li>
+<li>  équations du 1^^er^^ et 2^^nd^^ degré</li>
+<li>  résolution de systèmes d&#8217;équations</li>
+<li>  <a href="http://fr.wikipedia.org/wiki/Triangle_de_Pascal|fr">triangle de Pascal</a></li>
+<li>En géométrie :</li>
+<li>  barycentres</li>
+<li>  produits scalaires</li>
+<li>  produits vectoriels</li>
+<li>  calcul d&#8217;équations de droites, plans ou sphères&hellip;</li>
+<li>  mesure principale</li>
+<li>En arithmétique :</li>
+<li>  division euclidienne</li>
+<li>  <a href="http://fr.wikipedia.org/wiki/%C3%89quation_diophantienne|fr">équation diophantienne</a>, algorithme d&#8217;Euclide et coefficient de Bezout&hellip;</li>
+<li>  factorisation et diviseurs des entiers</li>
+<li>&hellip;</li>
+</ul>
+
+
+<p>Le tout avec une interface permettant de passer d&#8217;un programme à l&#8217;autre simplement. Histoire que tout ceci ne se perde pas, je les met à disposition (ils sont également trouvables sur diverses banques de programmes pour TI) :</p>
+
+<p><a href="http://Fruneau.github.io/public/misc/maths3.zip|fr">Télécharger le programme de maths niveau Terminal pour TI-92</a></p>
+
+<p>Evidemment, ces programmes ne dispensent pas d&#8217;apprendre le cours pour passer le Bac.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Encodage Et Terminal]]></title>
+    <link href="http://Fruneau.github.io/blog/2008/03/02/encodage-et-terminal/"/>
+    <updated>2008-03-02T12:57:00+01:00</updated>
+    <id>http://Fruneau.github.io/blog/2008/03/02/encodage-et-terminal</id>
+    <content type="html"><![CDATA[<p>Beaucoup de personnes avec qui je discute sur IRC ont des problèmes avec l&#8217;encodage de leur terminal, de leur shell, de leur irssi, ou de tout autre logiciel en &ldquo;ligne de commande&rdquo;. Comme j&#8217;en ai un peu marre d&#8217;expliquer la même chose toutes les semaines, voici une petite mise au point sur les réglages à faire pour travailler efficacement en ligne de commande.</p>
+
+<!-- more -->
+
+
+<h2>Introduction</h2>
+
+<p>Le point le plus important à mémoriser est que pour avoir une console avec un encodage spécifique il faut que plusieurs couches de logiciels utilisent le même encodage. Prenons le cas simple où nous avons un shell dans un terminal.</p>
+
+<p>Le terminal est un logiciel qui ne fait que convertir les entrées de l&#8217;utilisateur vers des entrées compréhensibles par le logiciel qu&#8217;il fait tourner, et qui interprète la sortie de ce logiciel pour qu&#8217;elle soit lisible par l&#8217;utilisateur. Donc pour que le terminal affiche correctement ce qu&#8217;indique le shell, il faut qu&#8217;il utilise le même encodage que celui-ci. Si par exemple mon shell écrit de l&#8217;UTF-8 alors que mon terminal attend du latin1, les caractères multi-octets de l&#8217;UTF-8 seront mal interprétés et afficheront un caractère par octet. Ainsi un &ldquo;é&rdquo; en utf8 s&#8217;affiche comme un &ldquo;Ã©&rdquo; en latin1.</p>
+
+<p>Pour l&#8217;entrée de l&#8217;utilisateur, c&#8217;est la même chose. Si mon terminal est en latin1 et mon shell en utf8, si j&#8217;entre un &ldquo;é&rdquo; dans mon terminal, celui-ci sera passé à mon terminal comme un seul octet (de valeur 0xE9). Or mon shell attend de l&#8217;utf8 et lorsqu&#8217;il reçoit un 0xE9, il considère que je viens d&#8217;entrer un octet d&#8217;un caractère multi-octets&hellip; les prochains caractères que j&#8217;entrerais seront donc ajoutés à mon 0xE9 jusqu&#8217;à ce que mon shell considère que j&#8217;ai entré un caractère&hellip; assez embêtant.</p>
+
+<p>Il faut donc faire extrêmement attention à choisir un encodage unique compatible avec son shell et son terminal (et les logiciels qu&#8217;on compte utiliser).</p>
+
+<h2>Terminal</h2>
+
+<p>Le réglage du terminal dépend exclusivement du logiciel en question. Certains terminaux permettent de choisir son encodage, d&#8217;autres non. Cela peut donc être un bon critère pour choisir son logiciel. Pour utiliser l&#8217;UTF-8, vous pouvez prendre Konsole, urxvt, le Terminal de Mac OS X&hellip;</p>
+
+<h2>Shell</h2>
+
+<p>Le réglage du shell se fait par des variables d&#8217;environnement qu&#8217;on appelle couramment les &ldquo;locales&rdquo;. Le réglage courant est accessible en tapant &ldquo;locale&rdquo; dans le shell. Un certain nombre de variables sont concernées :</p>
+
+<ul>
+<li>gestion de la langue du shell (et des programmes liés)</li>
+<li>gestion des formats (dates, monnaies, virgules&hellip;)</li>
+<li>LC_ALL est un &ldquo;fallback&rdquo; (l&#8217;encodage par défaut si aucun autre n&#8217;a été défini pour une variable donnée).</li>
+</ul>
+
+
+<p>Chaque variable est de la forme xx_YY.ZZ. xx_YY défini la zone géographique et la langue (fr_FR pour le français, en_US pour l&#8217;anglais-US). ZZ défini l&#8217;encodage. Il est important que toutes les variables utilisent le même encodage (mais elles peuvent avoir des langues différentes). Pour faire de l&#8217;UTF-8 pur, un bon choix est d&#8217;exporter LC_ALL=&ldquo;en_US.UTF-8&rdquo; dans la configuration du shell (ou fr_FR.UTF-8 pour ceux qui veulent un shell en français).</p>
+
+<p>Il faut par contre faire attention, l&#8217;UTF-8 n&#8217;est pas supporté par tous les shells (à partir de 4.3 pour zsh par exemple).</p>
+
+<h2>Irssi</h2>
+
+<p>Pour irssi, il y a un point supplémentaire à prendre en compte : l&#8217;encodage du réseau. Ainsi si j&#8217;ai un channel en latin1 à afficher en utf8 (et sur lequel je veux poster). Il faut donc que irssi fasse de transcodage à la volée&hellip; et bien sûr il faut lui dire ce qu&#8217;il faut faire.</p>
+
+<p>Tout d&#8217;abord il faut lui indiquer l&#8217;encodage du terminal. Pour ceci il y a la variable term_charset :</p>
+
+<pre><code>settings = {
+  "fe-common/core" = {
+    term_charset = "UTF-8";
+  };
+};
+</code></pre>
+
+<p>Ensuite, il faut indiquer pour chaque réseau (ou channel) l&#8217;encodage du réseau. Ce n&#8217;est en fait nécessaire que si l&#8217;encodage est différent de celui du terminal, mais ça ne coûte rien de le spécifier pour chaque réseau. Ainsi je suis sur RezoSup (qui est en latin1) et sur FreeNode (qui est en utf8), il me suffit d&#8217;ajouter :</p>
+
+<pre><code>settings = {
+  core = {
+    recode = "yes";
+  };
+};
+conversions = { 
+  FreeNode = "UTF-8";
+  Rezosup = "ISO-8859-1";
+};
+</code></pre>
+
+<p>Les entrées &ldquo;FreeNode&rdquo; et &ldquo;Rezosup&rdquo; doivent reprendre le nom du chatnet donné dans la section &ldquo;servers&rdquo; de la configuration. Pour spécifier l&#8217;encodage spécifique à un channel, il suffit de mettre <code>"Chatnet/#channel" = "encoding";</code></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Afficher Des Discussions]]></title>
+    <link href="http://Fruneau.github.io/blog/2007/11/01/afficher-des-discussions/"/>
+    <updated>2007-11-01T18:24:00+01:00</updated>
+    <id>http://Fruneau.github.io/blog/2007/11/01/afficher-des-discussions</id>
+    <content type="html"><![CDATA[<p>Lorsqu&#8217;un logiciel a pour vocation d&#8217;afficher des discussions, on attend de sa part qu&#8217;il nous permette de voir simplement qui répond à qui, dans quel contexte&hellip; Ce n&#8217;est pas toujours ce qui est le mieux fait. Par exemple, les programmes de fora en ligne à la mode (phpBB par exemple) affiche les discussion comme une succession de rectangles juxtaposés et seul le contenu du message permet de voir qu&#8217;il en cite un autre. D&#8217;autres logiciels comme Mail.app ont ce défaut et parfois la fâcheuse manie de ne pas vouloir corriger ce problème.</p>
+
+<p>L&#8217;affichage de l&#8217;arborescence dans <a href="http://opensource.polytechnique.org/banana">Banana</a> est une des fonctionnalités clés&hellip; et elle va beaucoup changer dans la prochaine version.</p>
+
+<!-- more -->
+
+
+<h1> Une ligne par entrée</h1>
+
+<p>La solution habituelle pour afficher l&#8217;arborescence est d&#8217;utiliser un message par ligne de telle, des + ou &ndash; pour ouvrir ou fermer les noeuds. C&#8217;est la solution actuelle de banana.</p>
+
+<p>((/public/screenshots/old-thread.png|Banana Thread up to 1.7))</p>
+
+<p>Avec cette solution, on perd très rapidement en lisibilité : dès que la discussion dépasse une vingtaine de messages, l&#8217;arborescence devient très haute et plus ça va, plus le titre dérive vers la droite rendant parfois le lien inaccessible. Lorsqu&#8217;il y a un troll, il est de fait très courant que certains nouveaux messages se trouvent perdus plusieurs pages en arrière dans l&#8217;arborescence, ou que sur certains navigateurs, il soit difficile d&#8217;y accéder. De plus l&#8217;interface se trouve souvent surchargée, à la limite de la lisibilité : c&#8217;est dur de faire tenir un maximum d&#8217;informations en un minimum de place en gardant la lisibilité de l&#8217;ensemble.</p>
+
+<h1> Une solution plus visuelle</h1>
+
+<p>Je ne sais pas combien de personnes connaissent <a href="http://home.snafu.de/stk/macsoup/">MacSoup</a>. Il s&#8217;agit d&#8217;un petit client NNTP pour MacOS, qui en soit n&#8217;a pas beaucoup d&#8217;intérêt (il est payant et est relativement limité). Le principal atout de MacSoup est son interface de visualisation des threads (les utilisateurs diront qu&#8217;il y a bien plus que l&#8217;interface graphique, mais également l&#8217;interface clavier etc&hellip;). On trouve sur internet quelques captures d&#8217;écran en cherchant dans les <a href="http://www.exalead.com/image/results?q=macsoup%20screenshot">moteurs de recherche d&#8217;image</a> :</p>
+
+<p>((<a href="http://www.fen-net.de/~xx511/bilder/macsoup/Thread.gif">http://www.fen-net.de/~xx511/bilder/macsoup/Thread.gif</a>))</p>
+
+<p>Cette interface est compacte, visuelle et permet d&#8217;accéder rapidement à n&#8217;importe quel message du thread. Pour la prochaine version de Banana, je me suis fortement inspiré de cette interface pour réécrire de 0 l&#8217;affichage de l&#8217;arborescence. Ceci donne :</p>
+
+<p>((/public/screenshots/new-thread.png|Thread view in Banana))</p>
+
+<p>Il s&#8217;agit de la même discussion que précédemment. On voit donc ici facilement l&#8217;arborescence. Lorsqu&#8217;un message est non lu, la branche à laquelle il est attaché est noire au lieu de grise ce qui permet de l&#8217;identifier du premier coup d&#8217;oeil. Les couleurs de fond des noeuds (une idée de <a href="http://www.falco.bz">Falco</a>) sont obtenue à partir d&#8217;un hash quelconque sur l&#8217;émetteur et permettent donc d&#8217;identifier les messages envoyés par la même personne. Lorsqu&#8217;on laisse la souris sur un noeud, le nom de l&#8217;expéditeur et l&#8217;heure du post s&#8217;affichent (malheureusement le pointeur de la souris n&#8217;apparaît pas sur la capture d&#8217;écran)&hellip; et bien sûr quand on clique sur un noeud, on va sur le message correspondant.</p>
+
+<p>Lorsqu&#8217;on est sur un message, on garde également la vue du thread ce qui permet de toujours savoir où on est dans la discussion :</p>
+
+<p>((/public/screenshots/new-thread-nav.png|Thread view with selected message))</p>
+
+<p>Il y a encore un peu de travail à faire pour améliorer les performances de la génération des arbres et pour augmenter sa compacité (éviter les branches qui descendent très bas alors qu&#8217;elles auraient pu trouver leur place dans le l&#8217;espace vide disponible).</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[15 000]]></title>
+    <link href="http://Fruneau.github.io/blog/2007/10/08/15-000/"/>
+    <updated>2007-10-08T00:32:00+02:00</updated>
+    <id>http://Fruneau.github.io/blog/2007/10/08/15-000</id>
+    <content type="html"><![CDATA[<p>Ca y est&hellip; 15 000 inscrits à <a href="https://www.polytechnique.org">Polytechnique.org</a>.</p>
+
+<p><a href="15.000%20inscrits">((/public/screenshots/15.000.png</a>)|/public/screenshots/15.000.png)</p>
+
+<p>Si l&#8217;ascension continue, nous devrions atteindre les 16 000 l&#8217;année prochaine.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Compter Les Fichiers]]></title>
+    <link href="http://Fruneau.github.io/blog/2007/08/31/compter-les-fichiers/"/>
+    <updated>2007-08-31T01:12:00+02:00</updated>
+    <id>http://Fruneau.github.io/blog/2007/08/31/compter-les-fichiers</id>
+    <content type="html"><![CDATA[<p>C&#8217;est un peu la suite de mon post &ldquo;Outils pratiques&rdquo; où je donnais deux scripts permettant de rendre les commandes SVN plus conviviales. Encore une fois, je réinvente sans doute la roue (des outils équivalents doivent déjà exister&hellip; sans doute en mieux), mais je pense que chercher ce genre d&#8217;outils sur internet m&#8217;aurait pris plus de temps que ce qu&#8217;il m&#8217;a fallu pour le développer.</p>
+
+<p>En ce moment je manipule des fichiers, beaucoup de fichiers (et même, beaucoup de gros fichiers), que j&#8217;ouvre, rouvre, et ferme et puis referme. Et à force d&#8217;ouvrir, on oublie parfois de refermer, et là, c&#8217;est comme une fuite de mémoire, sauf que le nombre limite de fichiers ouverts est beaucoup plus rapidement atteinte que la limite de mémoire&hellip; dans la configuration de base sur un linux, un programme n&#8217;a le droit qu&#8217;à 1024 descripteurs de fichiers. D&#8217;où mon problème : comment traquer les &ldquo;file-handle leaks&rdquo; ?</p>
+
+<!-- more -->
+
+
+<p>Pour le faire, je me suis fait rapidement un petit script qui permet d&#8217;analyser les données issues d&#8217;un <code>strace</code>. <code>strace</code> est, pour ceux qui ne le savent pas, un programme très pratique qui permet de lister les appels systèmes. Dans mon cas présents, surveiller les ouvertures fermetures de fichiers revient à traquer les commandes <code>open</code> (ouverture d&#8217;un fichier), et les commandes <code>close</code>. Donc, je récupère simplement la liste des appels à <code>open</code> et <code>close</code> :</p>
 
 <div>
-  <pre><code class='HTML'>&lt;?xml version=&quot;1.0&quot; encoding=&quot;iso-8859-15&quot;?&gt;
-&lt;!DOCTYPE html PUBLIC &quot;-//W3C//DTD XHTML 1.1//EN&quot; &quot;http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd&quot;&gt;
-&lt;html xmlns=&quot;http://www.w3.org/1999/xhtml&quot;&gt;
-  &lt;head&gt;
-  &lt;/head&gt;
-...</code></pre>
+  <pre><code class='bash'>strace -f -e trace=open,close mon programme 2&gt; /quelque/part</code></pre>
 </div>
 
 
-<p>Donc, j&#8217;ai testé sur <a href="http://opensource.polytechnique.org/platal/">plat/al</a>, le site web de Polytechnique.org : le résultat est impressionnant !</p>
+<p>Et ainsi, le fichier <code>/quelque/part</code> contient la liste complète des appels à <code>open</code> et <code>close</code> effectués par mon programme (et ses processus fils). Il ne reste plus alors qu&#8217;à analyser le contenu de <code>/quelque/part</code>. Pour ceci, il suffit de peu de lignes de code (en perl pour ma part, mais d&#8217;autres auraient fait la même chose en shell, python&hellip; ou n&#8217;importe quel langage de scripting) :</p>
 
-<p>Tout d&#8217;abord, voici l&#8217;état actuel de le prod de Polytechnique.org sous IE6 :</p>
+<div>
+  <pre><code class='perl'>1  !/usr/bin/perl 
+ 
+my %files; 
+my %modes; 
+my %lines; 
+ 
+my $lineNb = 0; 
+my $maxOpened = 0; 
+my $currentOpened = 0; 
+my $totalOpened = 0; 
+ 
+for $line (&lt;STDIN&gt;) { 
+  if ($line =~ /open\\\\(&quot;([^&quot;&quot;]+)&quot;, ([^\\\\)]+)\\\\)\\\\s*=\\\\s*(\\\\d+)/) { 
+    $files{$3} = $1; 
+    $modes{$3} = $2; 
+    $lines{$3} = $lineNb; 
+    $totalOpened++; 
+    $currentOpened++; 
+    if ($currentOpened &gt; $maxOpened) { 
+      $maxOpened = $currentOpened; 
+    } 
+  } 
+  if ($line =~ /close\\\\((\\\\d+)\\\\)/ &amp;&amp; $files{$1} ne _) { 
+    $files{$1} = _; 
+    $currentOpened--; 
+  } 
+  $lineNb++; 
+} 
+ 
+print &quot;$totalOpened files opened, max. $maxOpened at the same time
+&quot;; 
+print &quot;$currentOpened files not closed
+&quot;; 
+for $id (keys %files) { 
+  local $file = $files{$id}; 
+  local $mode = $modes{$id}; 
+  local $line = $lines{$id}; 
+ 
+  if ($file ne _) { 
+    print &quot;[line $line] id=$id, open $file with mode $mode
+&quot;; 
+  } 
+}</code></pre>
+</div>
 
-<p><img src="http://Fruneau.github.io/assets/screenshots/ie6-prod.jpg" alt="Polytechnique.org sous IE6 avec `&lt;?xml&gt;`" /></p>
 
-<p>Le corps du site n&#8217;est pas centré, le menu est mal formaté, les polices sont énormes, les backgrounds ne sont pas tous respectés&hellip; donc clairement c&#8217;est IE6 dans toute sa grandeur. Maintenant, en supprimant le <code>&lt;?xml version="1.0" encoding="iso-8859-15"?&gt;</code> du code (il faut faire abstraction du bandeau de développement) :</p>
+<p>Pour simplifier le tout, on rajoute une fonction dans le <code>zshrc</code> pour wrapper tout ça, et ça donne (attention, ceci ne fonctionne que sous linux, <code>mktemp</code> n&#8217;a pas la même syntaxe sur MacOS, et surtout, <code>strace</code> n&#8217;est pas disponible sur Mac</p>
 
-<p><img src="http://Fruneau.github.io/assets/screenshots/ie6-dev.jpg" alt="Version de développement de Polytechnique.org sous IE6, sans le `&lt;?xml ...&gt;`" /></p>
+<div>
+  <pre><code class='bash'>function checkFiles() { 
+  TEMPFILE=`mktemp` 
+  strace -f -e trace=open,close $* 2&gt; $TEMPFILE 
+  cat $TEMPFILE | ~/.zsh/trackFiles.pl 
+  rm $TEMPFILE 
+}</code></pre>
+</div>
 
-<p>Cette fois-ci la mise en page est correcte, le menu qui est dans un tableau bicolore est <strong>vraiment</strong> bicolore&hellip; on a là un site rendu quasiment aussi bien que sur les navigateurs récents, et en particuliers, le rendu d&#8217;IE6 dans ces conditions est quasiment celui d&#8217;IE7 (en tout cas, ils ont les mêmes bugs sur les fieldset/legend en particuliers).</p>
 
-<p>Donc, il semblerait qu&#8217;IE7 n&#8217;a pas un moteur de rendu si <em>révolutionnaire</em>&hellip; au moins, les utilisateurs d&#8217;IE6 retrouveront enfin un site agréable à utiliser lors de la prochaine release de plat/al&hellip; d&#8217;ici un gros mois sans doute.</p>
+<p>Avec, ça, il ne me répond :</p>
 
-<p>Edit du 21 mars 2007 : pour plus de détail sur les modes de fonctionnement des navigateurs, vous pouvez regarder sur <a href="http://hsivonen.iki.fi/doctype/">cette page</a>.</p>
+<pre><code>% checkFiles cp test test2
+12 files opened, max. 2 at the same time
+0 files not closed
+</code></pre>
+
+<p>Si maintenant, je fais un programme minimaliste qui oublie de fermer un fichier :</p>
+
+<div>
+  <pre><code class='c'>1  include &lt;stdio.h&gt; 
+ 
+int main() { 
+  FILE* file = fopen(&quot;test&quot;, &quot;r&quot;); 
+  return file != NULL ? 0 : 1; 
+}</code></pre>
+</div>
+
+
+<pre><code>% gcc test.c -o tester
+% checkFiles ./tester
+3 files opened, max. 1 at the same time
+1 files not closed
+[line 4] id=3, open test with mode O_RDONLY
+</code></pre>
+
+<p>Voilà, maintenant je sais que mon programme oublie de fermer un fichier, que ce fichier s&#8217;appelle &ldquo;test&rdquo;, et qu&#8217;il est ouvert en read-only. La ligne &ldquo;4&rdquo; est la ligne dans la sortie de <code>strace</code>, et n&#8217;a aucun rapport avec la ligne 4 du fichier source (contrairement aux apparences).</p>
 ]]></content>
   </entry>
   
   <entry>
-    <title type="html"><![CDATA[Il Faut Bien Commencer Par Quelque Part...]]></title>
-    <link href="http://Fruneau.github.io/blog/2007/02/23/il-faut-bien-commencer-par-quelque-part-dot-dot-dot/"/>
-    <updated>2007-02-23T21:12:00+01:00</updated>
-    <id>http://Fruneau.github.io/blog/2007/02/23/il-faut-bien-commencer-par-quelque-part-dot-dot-dot</id>
-    <content type="html"><![CDATA[<p>Et comme, pour l&#8217;instant je suis encore en train de configurer mon
-<a href="http://www.dotclear.net">dotclear</a>, ce post est plus un test qu&#8217;autre
-chose.</p>
+    <title type="html"><![CDATA[Templates en C]]></title>
+    <link href="http://Fruneau.github.io/blog/2007/08/17/templates-en-c/"/>
+    <updated>2007-08-17T00:53:00+02:00</updated>
+    <id>http://Fruneau.github.io/blog/2007/08/17/templates-en-c</id>
+    <content type="html"><![CDATA[<p>En C++, il existe un mécanisme extrêmement pratique pour généré du code générique : les templates. Une fonction templatée est une fonction dont le code comporte un trou qui sera remplacé à la compilation par le nom d&#8217;un type, ou une valeur&hellip; Par exemple :</p>
 
-<p>D&#8217;ailleurs, j&#8217;en profite pour féliciter l&#8217;équipe de dotclear&hellip; c&#8217;est clairement un excellent logiciel, tant pour ses fonctionnalités que pour sa réalisation (j&#8217;ai déjà eu l&#8217;occasion de travailler sur du code récupéré de dotclear pour réaliser <a href="http://2003.polytechnique.org">le site de ma promo</a>, le code est lisible et facile à adapter aux besoins de chacun).</p>
+<pre><code>template &lt;class T&gt; 
+T read(const char *buffer) 
+{
+    T val;
+    memcpy(&amp;val, buffer, sizeof(T));
+    return val;
+} 
+</code></pre>
 
-<p>Voilà, en plus ce message me permettra de paufiner le skinnage de mon blog&hellip; ce que je ne pouvais évidemment pas faire sans !</p>
+<p>Cette fonction lit un objet de type T sur un buffer. L&#8217;intérêt de cette fonction est très compréhensible : quel que soit le type qu&#8217;on fournit à la fonction, elle va fonctionner, en adaptant la taille à lire au type. C&#8217;est donc beaucoup plus rapide que d&#8217;écrire une fonction pour chaque type&hellip; et l&#8217;utilisation est également très simple :</p>
+
+<pre><code>read&lt;int&gt;(const char* buffer) // lit un entier sur le buffer
+read&lt;double&gt;(const char* buffer) // lit un double sur le buffer
+read&lt;MaClass&gt;(const char* buffer) // lit un objet de type "MaClass"
+</code></pre>
+
+<p>Mais cette syntaxe n&#8217;est qu&#8217;un sucre syntaxique, car en fait, on peut également faire des templates en C&hellip;</p>
+
+<!-- more -->
+
+
+<h2> Comment fonctionne les templates ?</h2>
+
+<p>En fait un template est, comme son nom l&#8217;indique, qu&#8217;un modèle de fonction. Lors de la compilation d&#8217;un programme qui utilise des templates, le compilateur regarde la liste des instances de cette fonction qui sont utilisées et les génère. Plus explicitement, si j&#8217;appelle read<double>(), le compilateur va générer cette fonction :</p>
+
+<div>
+  <pre><code class='cpp'>double read&lt;double&gt;(const char *buffer) 
+{
+    double val;
+    memcpy(&amp;val, buffer, sizeof(double));
+    return val;
+}</code></pre>
+</div>
+
+
+<p>Ainsi, l&#8217;appel à read<double> devient un appel de fonction classique.</p>
+
+<h2> Jeu de préprocesseur</h2>
+
+<p>Le préprocesseur en C possède des outils sympathique&hellip; Nous nous attarderons particulièrement sur le ##. Il s&#8217;agit tout simplement d&#8217;un opérateur de concaténation. Donc :</p>
+
+<div>
+  <pre><code class='c'>1  define Truc(Machin) Truc ## Machin
+
+Truc(Bidule) /* génère TrucBidule */</code></pre>
+</div>
+
+
+<p>C&#8217;est donc très pratique. On peut facilement par exemple, imaginer une petite macro du genre :</p>
+
+<div>
+  <pre><code class='c'>1  define maFonction(Type) maFonction_ ## Type</code></pre>
+</div>
+
+
+<p>Si dans ce cas, on défini par exemple maFonction_int, maFonction_double, maFonction_MaStruct (oui, les classes n&#8217;existent pas en C), on pourra faire</p>
+
+<div>
+  <pre><code class='c'>maFonction(int)(args); /* appelle maFonction_int */
+maFonction(double)(args); /* appelle maFonction_double */
+maFonction(MaStruct)(args); /* appelle maFonction_MaStruct */</code></pre>
+</div>
+
+
+<p>Maintenant, il ne reste plus qu&#8217;à générer les fonctions&hellip; sans avoir à toutes les écrire une à une. Pour ceci, nous allons encore une fois profiter de la présence du préprocesseur.</p>
+
+<div>
+  <pre><code class='c'>1  define maFonctionBuild(Type) \\\\
+  Type maFonction_ ## Type(const char* buffer) { \\\\
+    Type val; \\\\
+    memcpy(&amp;val, buffer, sizeof(Type)); \\\\
+    return val; \\\\
+  } 
+
+maFonctionBuild(int) /* génère maFonction_int */
+maFonctionBuild(double) /* génère maFonction_double */
+maFonctionBuild(MaStruct) /* génère maFonction_MaStruct */</code></pre>
+</div>
+
+
+<p>Il ne reste donc qu&#8217;à appeler maFonctionBuild(Type) sur chacun des types pour lesquels nous avons besoin d&#8217;instancier la fonction, et d&#8217;appeler maFonction(Type) chaque fois qu&#8217;on veut appeler maFonction pour le type en question. D&#8217;une certaine manière on peut dès lors dire que les fonctions sont :</p>
+
+<div>
+  <pre><code class='c'>Type maFonction(Type)(const char* buffer);</code></pre>
+</div>
+
+
+<h2> Et voilà !</h2>
+
+<p>Nous avons donc une implémentation générique grâce au préprocesseur associé à un appel typé. Ce n&#8217;est évidemment qu&#8217;une astuce de préprocesseur, mais cela donne une souplesse syntaxique agréalble : &ldquo;J&#8217;appelle maFonction appliquée sur les entiers avec les arguments args&rdquo;.</p>
+
+<p>Tout ceci est certes, moins souple que les templates C++ :</p>
+
+<ul>
+<li>il n&#8217;y a pas d&#8217;auto-instanciation par le compilateur : il faut &ldquo;manuellement&rdquo; instancier la fonction pour tous les types pour lesquels ont l&#8217;appelle</li>
+<li>il n&#8217;y a pas de &ldquo;type check&rdquo; : les seules limites sont celle de la compilation</li>
+<li>le correction des erreurs de compilation est fastidieuse car toutes les erreurs apparaissent comme étant à la ligne d&#8217;appel à maFonctionBuild</li>
+<li>il est rapidement fastidieux de rajouter l&#8217;antislash à la fin de chaque ligne de la définition de la fonction</li>
+</ul>
+
+
+<p>Comme on le voit dans les choix de l&#8217;exemple, pour les entrées/sorties, ça permet d&#8217;avoir une seule fonction à écrire tout en gardant la flexibilité d&#8217;une fonction par type de données.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Comprendre Du Code]]></title>
+    <link href="http://Fruneau.github.io/blog/2007/08/15/comprendre-du-code/"/>
+    <updated>2007-08-15T03:28:00+02:00</updated>
+    <id>http://Fruneau.github.io/blog/2007/08/15/comprendre-du-code</id>
+    <content type="html"><![CDATA[<p>J&#8217;ai tenté cet après-midi une petite expérience sur IRC. J&#8217;ai posté 3 lignes de code en demandant &ldquo;que font ces trois lignes&rdquo;. Après quelques minutes (sans doute trop peu), j&#8217;ai donné la solution car personne n&#8217;avait vraiment trouvé. En effet, même si on réussi facilement à lire le code et à reconstituer la suite d&#8217;opération qu&#8217;il génère, il est très difficile de vraiment comprendre ce qu&#8217;il fait, d&#8217;imaginer son application dans un contexte et d&#8217;en déduire son usage.</p>
+
+<p>Juste pour continuer à m&#8217;amuser, et pour amuser ceux qui se perdraient ici, voici le code en question.</p>
+
+<!-- more -->
+
+
+
+
+<div>
+  <pre><code class='c'>do {
+  ++(*pos);
+} while (*(pos++) == 0);</code></pre>
+</div>
+
+
+<p>Vous pouvez remarquer dès à présent que ce code n&#8217;est pas volontairement rendu illisible (il serait facile de supprimer des parenthèses et de changer le test de nullité en une négation. Le but est donc de comprendre la suite d&#8217;instruction, de dire ce qu&#8217;elle fait et ensuite de comprendre dans quel contexte elle est utilisable. La question est aussi de savoir en combien de temps vous allez trouver la solution.</p>
+
+<div>
+  <pre><code class='html'>&lt;script type=&quot;text/javascript&quot; src=&quot;/jquery.js&quot;&gt;&lt;/script&gt;
+&lt;script type=&quot;text/javascript&quot;&gt;//&lt;![CDATA[
+function show_answer() {
+  $(&quot;#show_answer&quot;).hide();
+  $(&quot;#answer&quot;).show(&quot;slow&quot;);
+  return false;
+}
+//]]&gt;&lt;/script&gt;
+&lt;p&gt;
+&lt;a href=&quot;&quot; onclick=&quot;return show_answer()&quot; id=&quot;show_answer&quot;&gt;Cliquer ici pour afficher la répondre&lt;/a&gt;
+&lt;/p&gt;
+&lt;div id=&quot;answer&quot; style=&quot;display: none&quot;&gt;</code></pre>
+</div>
+
+
+<h2> Fonctionnement</h2>
+
+<p>Si on lit le code, on voit qu&#8217;il fait la suite d&#8217;opération suivante :
+1   on incrémente la valeur pointée par pos
+1   on regarde si la valeur obtenue est nulle
+1   on incrémente le pointeur pos
+1   si le test 2 est vrai, on retourne en 1, sinon, on quitte la boucle</p>
+
+<p>Il s&#8217;agit donc d&#8217;une petite boucle qui incrémente des objets successifs jusqu&#8217;à ce qu&#8217;elle en trouve un qui, une fois incrémenté, n&#8217;est pas nul.</p>
+
+<p>Voilà donc la solution du pauvre au problème, celle qu&#8217;on peut trouver en lisant le code, sans chercher à le comprendre.</p>
+
+<h2> Interprétation</h2>
+
+<p>Mais en fait, ce code va plus loin. Imaginons maintenant la zone mémoire sur laquelle pos pointe initialement :</p>
+
+<pre><code> oct1 oct2 oct3 oct4
+  ^
+ pos
+</code></pre>
+
+<p>L&#8217;octet 1 à une certaine valeur. Je l&#8217;incrémente et je m&#8217;aperçois que sa nouvelle valeur est 0. Quand un octet incrémenté peut-il retomber à 0 ? Quand il fait un overflow. On a donc fait déborder le premier octet&hellip; et quand cet octet déborde on incrémente le suivant :</p>
+
+<pre><code>    _+1__
+   |     |
+ oct1 oct2 oct3 oct4
+       ^
+      pos
+</code></pre>
+
+<p>Il s&#8217;agit donc ni plus ni moins que d&#8217;une retenue (comme quand on apprend à faire les additions ou les multiplications) : quand je fais déborder un octet, je déplace le surplus vers le suivant. Finalement, ces 3 lignes de code ne sont que l&#8217;implémentation d&#8217;une incrémentation, mais sur plusieurs octets&hellip; et même sur un nombre non défini d&#8217;octets (puisqu&#8217;il n&#8217;y a pas de limite explicitée sur le nombre d&#8217;étapes autorisées).</p>
+
+<p>Pour être plus précis, il s&#8217;agit d&#8217;un incrémenteur d&#8217;entier stocké en Little Endian sur un nombre illimité d&#8217;octets.</p>
+
+<h2> Encore ?</h2>
+
+<p>Bon, pour ceux qui tiennent vraiment à s&#8217;assurer que ce n&#8217;est pas du code illisible, voici une version vraiment illisible de la même machine :</p>
+
+<div>
+  <pre><code class='c'>for(++*pos;!*pos++;++*pos);</code></pre>
+</div>
+
+
+<p>(Merci Falco)</p>
+
+<p>Tout ceci n&#8217;était bien sûr qu&#8217;un exemple. Il est toujours très dur de comprendre du code, alors pour éviter de passer dix minutes sur 3 lignes lors de la prochaine relecture il suffit de documenter ce qu&#8217;on écrit.</p>
+
+<div>
+  <pre><code class='html'>&lt;/div&gt;</code></pre>
+</div>
+
+
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[BlueScreen]]></title>
+    <link href="http://Fruneau.github.io/blog/2007/07/28/bluescreen/"/>
+    <updated>2007-07-28T23:15:00+02:00</updated>
+    <id>http://Fruneau.github.io/blog/2007/07/28/bluescreen</id>
+    <content type="html"><![CDATA[<p>Juste parce que je trouve ça amusant : lorsque Vista plante en raison d&#8217;une erreur sérieuse, il fait un écran bleu (exactement le même que sous Windows XP). Ce qui est amusant, c&#8217;est le message affiché lors du démarrage suivant de Windows.</p>
+
+<p>((/public/screenshots/BlueScreen.png|Vista-bluescreen))</p>
+
+<p>Windows récupère donc d&#8217;une erreur de type &ldquo;BlueScreen&rdquo;&hellip; cela a l&#8217;intérêt d&#8217;être précis. En temps normal, on identifie une erreur à sa cause, et non à sa conséquence.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Mail.app, IMAP Et Signatures...]]></title>
+    <link href="http://Fruneau.github.io/blog/2007/06/12/mailapp-imap-et-signatures/"/>
+    <updated>2007-06-12T01:24:00+02:00</updated>
+    <id>http://Fruneau.github.io/blog/2007/06/12/mailapp-imap-et-signatures</id>
+    <content type="html"><![CDATA[<p>Les temps sont durs pour les utilisateurs de IMAP&hellip; jusqu&#8217;à présent je n&#8217;ai pas trouvé de client idéal pour travailler avec ce protocole :</p>
+
+<ul>
+<li>Kmail plante lamentablement</li>
+<li>Mail.app se synchronise mal</li>
+<li>Outlook Express (et le tout nouveau Windows Mail) n&#8217;arrive pas à lister tous mes répertoires</li>
+<li>Thunderbird rame comme un malheureux et me crée des répertoires que je ne veux pas avant de m&#8217;avoir demandé quoi que ce soit</li>
+<li>mutt est trop casse-pied à configurer à mon goût (même si pratique parfois)</li>
+</ul>
+
+
+<p>De fait, j&#8217;utilise le moins pire que j&#8217;ai trouvé, et qui en plus a le mérite de ne pas être trop lourd, bien intégré avec MacOS X, et qui, jusqu&#8217;à présent, n&#8217;a pas trop fait de bêtises sur mon IMAP. Ce client, pourtant pas réputé pour sa qualité, c&#8217;est évidemment Mail.app.</p>
+
+<!-- more -->
+
+
+<p>Un gros défauts de Mail.app (une fois configuré pour éviter toutes les fonctions décoratives qui ne servent à rien), est qu&#8217;il ne gère pas nativement PGP. Il faut donc, pour profiter de la vérification des mails mais également pour signer ses mails, installer GPGMail, un petit plug-in qui fonctionne, on va dire, pas trop mal.</p>
+
+<p>En tout cas, GPGMail a toujours fonctionné correctement sur mon portable, mais depuis que celui-ci est en réparation (hum, d&#8217;ailleurs, j&#8217;aimerais bien savoir ce qu&#8217;il devient !), je suis obligé de travailler sur le fixe, et donc d&#8217;utiliser entre autre mon client mail sur le fixe. Malheureusement, sur mon fixe, GPGMail n&#8217;a <strong>jamais</strong> réussi à vérifier une signature. Bizarre&hellip; les mêmes messages étaient pourtant correctement vérifiés par mon portable.</p>
+
+<p>Comme, ça fait quelques temps que j&#8217;envisage d&#8217;ajouter le support de PGP (via GPG) à <a href="http://opensource.polytechnique.org/banana">Banana</a>, j&#8217;ai voulu regarder plus en détail comment fonctionne la signature d&#8217;un message. J&#8217;ai donc commencé à prendre des mails signés dans Mail.app, à en enregistrer les sources sur mon disque dur et à essayer de vérifier les signatures à la main, puis avec une version légèrement hackée de Banana. Malheureusement, ça n&#8217;a jamais fonctionner.</p>
+
+<p>J&#8217;ai demandé à NC s&#8217;il pouvait me donner les sources d&#8217;un mail signé qui a le mérite d&#8217;apparaître comme correctement signé chez lui, et mal signé chez moi. J&#8217;ai comparé les 2 versions du mail&hellip; et le <code>diff</code> a été on ne peut plus troublant :</p>
+
+<div>
+  <pre><code class='diff'>--nextPart1631992.9B81mC3O8N
+-Content-Type: text/plain;
+-  charset=&quot;iso-8859-1&quot;
+ Content-Transfer-Encoding: quoted-printable
++Content-Type: text/plain;
++       charset=iso-8859-1
+ Content-Disposition: inline
+ ///
+
+Le contenu de la partie signée n&#39;est pas identique dans les deux mails. Pour ceux qui ne connaissent pas la structure d&#39;un mail signé, je les invite à jeter un coup d&#39;oeil à la [RFC1847](http://www.faqs.org/rfcs/rfc1847.html) qui se résume au schéma suivant :</code></pre>
+</div>
+
+
+<p>Content-Type: multipart/signed; protocol=&ldquo;TYPE/STYPE&rdquo;;</p>
+
+<pre><code>     micalg="MICALG"; boundary="Signed Boundary"
+</code></pre>
+
+<p>&mdash;Signed Boundary
+Stuff to sign</p>
+
+<p>&mdash;Signed Boundary
+Signature</p>
+
+<p>&mdash;Signed Boundary&mdash;</p>
+
+<pre><code>La partie différente entre chez NC et chez moi est la partie @@stuff to sign@@ (en fait ce sont les en-têtes de la partie signée du message).
+
+Donc, je me suis replongé dans les options de Mail.app : pourquoi modifie-t-il les sources de mon mail ? quelle est l'option qui est différente entre mon portable et mon fixe ? J'ai recherché dans les paramètres d'affichage et d'édition sans succès... et puis je me suis dit que j'allais regarder la configuration de mon compte IMAP.
+
+Une différence majeure entre mon fixe et mon portable est que mon portable est susceptible de ne pas être constamment connecté au serveur IMAP, donc il est configuré pour conserver une copie de tous les mails alors que sur mon fixe, Mail.app est sur la même machine que le serveur IMAP, pourquoi irais-je faire une copie supplémentaire des mails (ce qui se concrétiserait par des accès disques concurrents et quelques centaines de méga-octets de données dupliquées) ?
+
+Pourquoi ? et bien maintenant j'ai ma réponse... en demandant à Mail.app de garder une copie des mails, GPGMail arrive à vérifier les signatures, donc, dans ces conditions, il a accès aux sources non modifiées. Il y a donc quelque part dans Mail.app un outil qui transforme les sources des mails... assez hallucinant ! Il faut donc que je considère que si je demande à Mail.app de m'afficher les sources d'un message qui se trouve sur un serveur IMAP sans faire de copie locale, il est possible (probable ?) que les sources en question ne soient pas les vraies sources du message mais une version ''remasterisée'' par Apple.
+
+Même si je ne me fais pas trop d'illusion sur le sujet, j'espère que ce genre de détails (tout comme également la gestion des URLs dans le @@format=flowed@@, ou encore l'affichage de l'arborescence des message...) sera corrigé dans Leopard.
+</code></pre>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Khtml2png 2.6.5 Est Sorti]]></title>
+    <link href="http://Fruneau.github.io/blog/2007/06/06/khtml2png-265-est-sorti/"/>
+    <updated>2007-06-06T00:31:00+02:00</updated>
+    <id>http://Fruneau.github.io/blog/2007/06/06/khtml2png-265-est-sorti</id>
+    <content type="html"><![CDATA[<p>Après 3 mois d&#8217;un travail pas très intensif, une nouvelle version de <a href="http://khtml2png.sf.net">khtml2png</a> est disponible. Cette version est partie du fait que les versions précédentes du programme ont parfois du mal à gérer les grandes captures d&#8217;écran (en fait, des bugs peuvent apparaître dès que la taille de la zone à capturer est plus grande que la taille affichable).</p>
+
+<p>Donc, rapidement après la sortie de la 2.6.0, j&#8217;avais envoyé un correctif (en fait une réécriture du moteur de rendu) au développeur de <code>khtml2png</code>. Malheureusement, ce correctif ne fonctionnait pas correctement chez lui. Donc, pendant 3 mois, j&#8217;ai fait du débuggage à distance : j&#8217;envoie une version modifiée (1 ou 2 lignes à chaque fois), j&#8217;attends 2 ou 3 semaine une réponse, etc&hellip; Du développement efficace !</p>
+
+<p>Bon, toujours est-il que maintenant, la version 2.6.5 fonctionne à la fois chez moi (à la fois Debian + xvnc et sur MacOS X), et chez Hauke (sur Debian également, mais avec des réglages différents).</p>
+
+<p>Le Changelog annonce :</p>
+
+<blockquote><p> fix: Now produces screenshots on my Debian Etch system under KDE 3.5.5 without glitches. %%%
+ fix: Maybe better working on other systems too. Please test.</p></blockquote>
+
+<p>J&#8217;aimerais y rajouter quelques points :</p>
+
+<ul>
+<li>meilleur moteur de rendu (qui ne scroll plus, mais déplace la fenêtre pour s&#8217;affranchir de certains bugs de KDE et/ou Qt)</li>
+<li>meilleure détection de la taille de la capture à réaliser</li>
+<li>possibilité de choisir le comportement de <code>khtml2png</code> face aux redirections, au javascript, au java, au flash&hellip; via la ligne de commande</li>
+<li>la détection automatique de la dimension par un <code>id</code> devient compatible avec le format utilisé dans les version &lt;= 2.5</li>
+</ul>
+
+
+<p>Comme d&#8217;habitude, vous pouvez télécharger <a href="http://Fruneau.github.io/mind/public/khtml2png/khtml2png-fru-last.tar.bz2">ma dernière version du programme</a>.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Spaces]]></title>
+    <link href="http://Fruneau.github.io/blog/2007/06/02/spaces/"/>
+    <updated>2007-06-02T16:44:00+02:00</updated>
+    <id>http://Fruneau.github.io/blog/2007/06/02/spaces</id>
+    <content type="html"><![CDATA[<p>Comme un certain nombre de personnes le sait déjà, j&#8217;ai repris le développement de <a href="http://virtuedesktops.info">VirtueDesktops</a> depuis quelques semaines. Dans un premier temps je n&#8217;avais pas regardé le fonctionnement bas niveau du programme, mais la semaine dernière j&#8217;ai commencé à rechercher dans les sources &ldquo;Comment Virtue fait-il pour cacher les fenêtres, faire les transitions etc&hellip; ?&rdquo;.</p>
+
+<!-- more -->
+
+
+<p>A ma grande surprise, tout ceci est en fait géré nativement par MacOS X&hellip; la bibliothèque CoreGraphics contient en effet quelques fonctions cachées qui gèrent l&#8217;attribution d&#8217;une fenêtre à un Workspace et les transitions entre ces Workspaces. On peut trouver la liste complète de ces fonctions sur la <a href="http://trac.virtuedesktops.info/browser/trunk/Shared/Headers/CGSPrivate.h">SVN de VirtueDesktops</a>.</p>
+
+<div>
+  <pre><code class='Objective-C'>extern OSStatus CGSMoveWorkspaceWindowList(const CGSConnection connection, CGSWindow *wids, int count, int toWorkspace);
+extern OSStatus CGSGetWorkspace(const CGSConnection cid, int *workspace);
+extern OSStatus CGSGetWindowWorkspace(const CGSConnection cid, const CGSWindow wid, int *workspace);
+extern OSStatus CGSSetWorkspace(const CGSConnection cid, int workspace);</code></pre>
+</div>
+
+
+<p>VirtueDesktops (et également DesktopsManager) n&#8217;est qu&#8217;une interface graphique qui tente d&#8217;utiliser ces fonctions. Et là <a href="http://www.apple.com/fr/macosx/leopard/spaces.html">Spaces</a> part avec une longueur d&#8217;avance car contrairement à VirtueDesktops, il sera facile pour Apple de gérer les ouvertures, fermetures et masquage d&#8217;application ce qui est à mon avis le plus gros point faible de Virtue. J&#8217;ai beaucoup travaillé là-dessus et je pense arriver actuellement aux limites de ce qu&#8217;il est possible de faire avec un gestionnaire de bureaux virtuels sur Tiger.</p>
+
+<p>Un autre problème de VirtueDesktops est l&#8217;accès à l&#8217;ordonnancement des fenêtres. Comment être sûr que lorsqu&#8217;on arrive sur un bureau les fenêtres sont dans le bon ordre ? Idéalement il faudrait enregistrer l&#8217;ordre en temps réel et le restaurer lors du retour sur le bureau. Ceci permettrait également de toujours savoir quelle application activer lorsqu&#8217;on arrive sur un bureau, simplement en utilisant la fenêtre qui se trouve au premier plan.</p>
+
+<p>Voilà, je me suis certes lancé dans une cause perdue d&#8217;avance, mais je suis tout de même content du résultat obtenu lors de ces dernières semaines. Virtue a désormais un comportement qui correspond à ce que j&#8217;attends d&#8217;un gestionnaire de bureaux virtuels : quand je change d&#8217;application il va sur le bureau adéquat, et quand je change de bureau, il active bien la dernière application que j&#8217;ai utilisée sur ce bureau.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Et Si on Oubliait Les Bases ?]]></title>
+    <link href="http://Fruneau.github.io/blog/2007/05/26/et-si-on-oubliait-les-bases/"/>
+    <updated>2007-05-26T13:40:00+02:00</updated>
+    <id>http://Fruneau.github.io/blog/2007/05/26/et-si-on-oubliait-les-bases</id>
+    <content type="html"><![CDATA[<p>MacOS X est un Unix&hellip; compatible POSIX. Voilà ce qu&#8217;un certain nombre de personnes semblent oublier assez fréquemment. C&#8217;est assez dommage quand ces personnes programment pour MacOS, on se retrouve parfois avec du code complexe pour réécrire des fonctions POSIX (en moins bien ?).</p>
+
+<!-- more -->
+
+
+<p>En fait si je parle de ça, c&#8217;est parce que je viens de rencontrer le problème dans le cadre du développement de <a href="http://blog.mymind.fr/post/2007/05/18/VirtueDesktops-revient">VirtueDesktops</a>. Il se trouve qu&#8217;en parcourant le tracker du projet je suis tombé sur le <a href="http://trac.virtuedesktops.info/ticket/115">ticket 115</a> qui s&#8217;intitule :</p>
+
+<blockquote><p> Patch to check group id of &lsquo;procmod&rsquo; group</p></blockquote>
+
+<p>C&#8217;est intéressant&hellip; jusqu&#8217;à maintenant Virtue suppose que le gid du groupe procmod est celui par défaut de MacOS (c&#8217;est à dire qu&#8217;il vaut 9)&hellip; et le problème est donc que si un utilisateur a un procmod différent (ou si Apple décide un jour de changer le gid du groupe), le code actuel peut avoir des résultats inattendus, il faut donc faire un code plus portable qui recherche le gid de procmod au lieu de le stocker en dur. Ce n&#8217;est clairement pas une mauvaise idée ! Seul problème, le patch soumis est le suivant (au cas où certain voudrait réutiliser ce code, je tiens à signaler que c&#8217;est une mauvaise idée !) :</p>
+
+<div>
+  <pre><code class='c'>1  define NI_DOMAIN  &quot;.&quot;
+1  define NI_PATH       &quot;/name=groups/name=procmod&quot;
+1  define NI_KEY        &quot;gid&quot;
+
+// Sucked from netinfo-369.5/tools/niutil/niutil.c
+ni_status ni_read_single_prop(char **property)
+{
+    const char *args[] = {NI_DOMAIN, NI_PATH, NI_KEY};
+    
+    char myname[] = &quot;ni_read_single_prop&quot;;
+    const bool opt_tag = false;
+    const int timeout = 30;
+    
+    ni_namelist nl;
+    void *domain;
+    ni_id dir;  
+    ni_status ret;
+
+    if ((ret = do_open(myname, args[0], &amp;domain, opt_tag, timeout, NULL, NULL)) != 0) return ret;
+
+    /* args[1] should be a directory specification */
+    ret = ni2_pathsearch(domain, &amp;dir, args[1]);
+    if (ret != NI_OK) {
+        fprintf(stderr, &quot;%s: can&#39;t open directory %s: %s
+&quot;, myname, args[1], ni_error(ret));
+        ni_free(domain);
+        return ret;
+    }
+
+    /* get the property values for args[2] */
+    NI_INIT(&amp;nl);
+    ret = ni_lookupprop(domain, &amp;dir, args[2], &amp;nl);
+    if (ret != NI_OK) {
+        fprintf(stderr, &quot;%s: can&#39;t get property %s in directory %s: %s
+&quot;, myname, args[2], args[1], ni_error(ret));
+        ni_free(domain);
+        return ret;
+    }
+    
+    
+    if (nl.ni_namelist_len != 1) {
+        fprintf(stderr, &quot;%s: expected length = 1, found length = %d
+&quot;, myname, nl.ni_namelist_len);
+        return NI_FAILED;
+    }
+    
+    *property = (char*)calloc(strlen(nl.ni_namelist_val[0]) + 1, sizeof(char));
+    strcpy(*property, nl.ni_namelist_val[0]);
+    
+    ni_namelist_free(&amp;nl);
+    ni_free(domain);
+    
+    return NI_OK;
+}</code></pre>
+</div>
+
+
+<p>Donc que fait cette fonction ? C&#8217;est assez simple : elle utilise l&#8217;utilitaire NetInfo d&#8217;Apple pour lire les informations relatives au chemin <code>/groups/procmod</code>. Une fois là dedans elle copie la valeur stockée à la clé <code>gid</code> et renvoie cette chaîne dans le pointeur passé en argument.</p>
+
+<p>Il n&#8217;y a pas à dire&hellip; c&#8217;est une solution qui devrait fonctionner (enfin j&#8217;ai même un doute, car je ne vois pas le groupe procmod apparaître quand je regarde dans NetInfo). Seulement cette solution montre clairement que la personne qui l&#8217;a écrite savait que MacOS utilise un système de groupes, mais avait oublié qu&#8217;en fait c&#8217;est avant tout un système POSIX. Et là, ce qui est intéressant c&#8217;est que sous MacOS X on a accès à l&#8217;API POSIX&hellip; en particulier à la fonction <code>getgrnam</code> qui retourne les informations sur un groupe à partir de son nom.</p>
+
+<p>Donc, pas besoin de dépendance vers NetInfo, pas besoin d&#8217;une recherche dans une arborescence abstraite : NetInfo n&#8217;est qu&#8217;une abstraction de la couche Unix pour simplifier l&#8217;accès aux données par les utilisateurs&hellip; mais ça ne doit pas être un framework d&#8217;abstraction de l&#8217;API POSIX ce qui entraîne nécessairement du code moins portable (et surtout, moins lisible dans le cas présent), moins rapide et plus lourd.</p>
+
+<p>Ici, le code est utilisé dans un programme en C qui est chargé de mettre un objet dans le groupe procmod pour autoriser Virtue à effectuer certaines actions qui nécessitent un accès privilégié au serveur graphique&hellip; ce programme ne fait <em>que</em> changer les permissions. Pourquoi utiliser une API lourde et spécifique à MacOS alors que ce type de programme pourrait clairement être utilisé sur n&#8217;importe quel Unix ?</p>
+
+<p>Voici donc une solution qui fait la même chose que la fonction ci-dessus, en mieux et surtout en beaucoup moins de lignes :</p>
+
+<div>
+  <pre><code class='c'>1  include &lt;grp.h&gt;
+
+static int getProcmodGid()
+{
+    struct group* groupDesc; 
+    int gid = -1; 
+    groupDesc = getgrnam(&quot;procmod&quot;); 
+    if (groupDesc) {
+        gid = groupDesc-&gt;gr_gid; 
+        free(groupDesc); 
+    } 
+    return gid; 
+}</code></pre>
+</div>
+
+
+<p>Pourquoi cette solution est-elle meilleure ?</p>
+
+<ul>
+<li>elle retourne un entier&hellip; on a donc pas besoin de faire une conversion a posteriori</li>
+<li>elle utilise l&#8217;API POSIX et est donc utilisable sur n&#8217;importe quel OS POSIX (donc quasiment tous&hellip; à l&#8217;exception de Windows)</li>
+<li>elle évite toute manipulation inutile de chaîne de caractères</li>
+<li>elle est ne nécessite pas de charger une bibliothèque supplémentaire : <code>getgrnam</code> est dans la <code>libc</code></li>
+<li>elle est drôlement plus courte non ?</li>
+</ul>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Mac C'est Bien... Mais Pas Top]]></title>
+    <link href="http://Fruneau.github.io/blog/2007/05/22/mac-cest-bien-mais-pas-top/"/>
+    <updated>2007-05-22T23:44:00+02:00</updated>
+    <id>http://Fruneau.github.io/blog/2007/05/22/mac-cest-bien-mais-pas-top</id>
+    <content type="html"><![CDATA[<p>Bon, la suite des mes problèmes avec les machines Apple !</p>
+
+<p>Alors que la carte mère de mon portable a été changée il y a un peu plus d&#8217;un mois, mon portable a décidé aujourd&#8217;hui d&#8217;arrêter de vouloir fonctionner. Symptômes ? Il s&#8217;allume (des fois), fonctionne (rarement) quelques secondes puis s&#8217;éteint brutalement&hellip; et ce qu&#8217;il démarre sur secteur, sur batterie ou les deux ensemble, que ce soit sur le disque dur, sur le DVD d&#8217;installation ou encore en mode <em>target</em> (en tant que disque dur externe).</p>
+
+<p>En plus ça lui arrive de s&#8217;allumer tout seul alors que ça fait plusieurs minutes que je ne l&#8217;ai plus touché. Un autre symptôme étrange, la diode de la prise magsafe clignote bizarrement lorsque la machine n&#8217;est pas sous-tension (pas un clignotement vert/rouge, mais une lumière verte continue qui scintille un peu). Tout ça me laisse penser que c&#8217;est l&#8217;alimentation qui est en cause.</p>
+
+<p>Voilà&hellip; les joies des machines de qualité, d&#8217;autant plus que la garantie de la machine a expirée il y a <strong>2</strong> jours (le 19 mai).</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[VirtueDesktops Revient...]]></title>
+    <link href="http://Fruneau.github.io/blog/2007/05/18/virtuedesktops-revient/"/>
+    <updated>2007-05-18T14:25:00+02:00</updated>
+    <id>http://Fruneau.github.io/blog/2007/05/18/virtuedesktops-revient</id>
+    <content type="html"><![CDATA[<p>Voici plus ou moins trois mois que j&#8217;ai découvert <a href="http://synergy2.sf.net">synergy</a>, c&#8217;est vraiment très agréable de pouvoir contrôler les deux ordinateurs sans changer de clavier/souris continuellement. Seul problème, c&#8217;est que sur la machine qui héberge le serveur <code>synergy</code>, <a href="http://virtuedesktops.info">VirtueDesktops</a>, un <em>excellent</em> gestionnaire de bureaux virtuels pour MacOS, n&#8217;arrête pas de crasher. J&#8217;avais donc posté un bugreport sur le trac de Virtue&hellip; malheureusement pour diverses raisons, Tony Arnold a décidé peu après de stopper le développement de Virtue.</p>
+
+<!-- more -->
+
+
+<p>J&#8217;ai donc pris mon courage à 2 mains, et je me suis doucement plongé dans le code de VirtueDesktops (c&#8217;est vraiment bien les applications OpenSource). Il y a maintenant deux semaines, j&#8217;ai soumis le patch permettant de corriger le crash dont je souffrais. Depuis, ce patch a été publié ce qui a conduit la <a href="http://virtuedesktops.info/index.php/2007/05/14/virtuedesktops-054-beta-3/">release de la bêta 3 de Virtue 0.54</a>.</p>
+
+<p>Je me suis relancé dans le développement cette semaine en me fixant comme objectif de corriger plusieurs comportements énervants de Virtue. Par exemple, si je dis que <code>Mail.app</code> doit être sur le bureau Mail, je veux que <strong>toutes</strong> les fenêtres de <code>Mail.app</code> aillent forcément sur ce bureau. Seul problème, c&#8217;est que lorsque je reçois une notification de l&#8217;arrivée d&#8217;un nouveau mail et que je clique sur cette notification, une fenêtre avec le message s&#8217;ouvre sur le bureau courant, et Virtue tourne pour atteindre le bureau de Mail.app&hellip; résultat : j&#8217;ai changé de bureau mais je n&#8217;ai pas accès à la fenêtre que je voulais voir. J&#8217;ai corrigé ce comportement, désormais, la fenêtre est automatiquement déplacée sur le bureau de <code>Mail.app</code> lors de son ouverture.</p>
+
+<p>Autres corrections diverses :</p>
+
+<ul>
+<li>lorsqu&#8217;on ferme une application Virtue reste sur le bureau courant (sauf si il n&#8217;y a plus rien sur le bureau courant)</li>
+<li>lorsqu&#8217;on choisi de changer de bureau, Virtue active désormais la dernière application active connue pour le nouveau bureau</li>
+<li>lorsqu&#8217;on restaure une fenêtre qui était dans le Dock, soit l&#8217;application a le droit d&#8217;être sur le bureau courant et la fenêtre est affichée sur ce bureau sans chercher à changer de bureau, soit l&#8217;application est attribuée à un bureau et dans ce cas la fenêtre est restaurée sur le bureau de l&#8217;application et Virtue change de bureau</li>
+<li>&hellip;</li>
+</ul>
+
+
+<p>Ces changements ont abouti à la <a href="http://virtuedesktops.info/index.php/2007/05/18/virtuedesktops-054-beta-4/">bêta 4</a> et se résument à :</p>
+
+<ul>
+<li>Changing to desktops when you launch, activate, deactivate, minimise, restore or quit an application should be much more consistent;</li>
+<li>Window ordering when changing desktops should be much more consistent;</li>
+</ul>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[La Banane Et L'escargot]]></title>
+    <link href="http://Fruneau.github.io/blog/2007/05/07/la-banane-et-lescargot/"/>
+    <updated>2007-05-07T19:44:00+02:00</updated>
+    <id>http://Fruneau.github.io/blog/2007/05/07/la-banane-et-lescargot</id>
+    <content type="html"><![CDATA[<p>La release de <a href="http://opensource.polytechnique.org/banana/">Banana</a> 1.6 en même temps que celle de plat/al 0.9.14 a mis en évidence un certain nombre de faiblesses dans Banana. En particuliers la génération du spool (mise en cache de l&#8217;arborescence des messages) et des flux RSS s&#8217;est révélé extrêmement lourde pour plusieurs raisons :</p>
+
+<ul>
+<li>l&#8217;accès aux mbox des Mailing-Lists nécessite d&#8217;appel du <code>mbox-helper</code>, et donc un <code>fork</code>&hellip; opération lourde, qui répétée plusieurs fois par mbox devient rapidement très lourde lorsqu&#8217;on a plusieurs dizaines de Mailing-Lists.</li>
+<li>le traitement des données par PHP est loin d&#8217;être immédiats&hellip; et il y a clairement des goulots d&#8217;étranglement dans le code.</li>
+</ul>
+
+
+<p>C&#8217;est pour ces raisons que j&#8217;ai passé Banana au <code>profiler</code>, c&#8217;est à dire que j&#8217;ai analysé l&#8217;exécution de Banana à l&#8217;aide d&#8217;un outil qui permet de tracer l&#8217;exécution du programme et mettant un accent particuliers sur le temps d&#8217;exécution de chaque fonction. L&#8217;outil que j&#8217;ai trouvé pour faire ça est <a href="http://www.xdebug.org">xdebug</a>, utilisé conjointement à <a href="http://kcachegrind.sourceforge.net/">KCacheGrind</a>.</p>
+
+<!-- more -->
+
+
+<h1>Forks</h1>
+
+<p>Je dois avouer que lorsque j&#8217;avais fait mes tests, je n&#8217;avais pas plusieurs centaines de Mailing-Lists à traiter&hellip; et je ne m&#8217;attendais pas à ce qu&#8217;une fois passée en production le script de mise à jour des flux RSS puisse prendre toutes les ressources de la machine pendant plusieurs minutes. Il a donc fallu sérieusement restructurer la gestion des accès aux Mailing-Lists pour restreindre au maximum le nombre d&#8217;accès au <code>mbox-helper</code> (un petit programme écrit en C qui se charge de tous les accès aux mbox), et, en cas d&#8217;accès, limiter au maximum le temps passer sur le <code>mbox-helper</code>.</p>
+
+<p>Donc désormais le <code>mbox-helper</code> n&#8217;est plus appelé que si la mbox a changé depuis le dernier passage (le changement étant détecté par la taille du fichier). Ce qui permet donc de supprimer le lancement d&#8217;environ 500 <code>mbox-helper</code> lors des rafraîchissements des spools (en effet, un nombre négligeable de Mailing-List aura des nouveaux messages lors du passage du script toutes les 5, 10 ou 20 minutes). Ajouté à cela la correction d&#8217;un bug qui faisait que l&#8217;appel au <code>mbox-helper</code> oubliait de spécifier l&#8217;offset où chercher le message à traiter et qui forçait donc le <code>mbox-helper</code> à relire la totalité de la mbox, on peut se permettre de supposer que la prochaine version de Banana sera plus efficace pour la gestion des mbox.</p>
+
+<h1>Array_shift</h1>
+
+<h2>Piles</h2>
+
+<p>Il est souvent extrêment pratique d&#8217;utiliser une pile de données. Cela permet de traiter les informations dans l&#8217;ordre de la pile sans excès de mémoire puisque chaque élément est dépilé avant d&#8217;être traité. C&#8217;est une technique que j&#8217;aime particulièrement lorsque j&#8217;ai une suite de lignes à traiter : je prend un tableau contenant une ligne par entrée et je le parcours avec <code>array_shift</code> qui permet de dépiler le premier élément du tableau. On obtient ainsi un code de la forme</p>
+
+<div>
+  <pre><code class='php'>while (!is_null($line = array_shift($lines))) {
+    do_something($line);
+}
+do_something($lines);</code></pre>
+</div>
+
+
+<p>Un <code>foreach</code> peut très bien faire la même chose, mais on perd les avantages de la piles. Avec cette structure, pour avoir le même comportement que la boucle précédente, il faut ajouter un <code>unset()</code> :</p>
+
+<div>
+  <pre><code class='php'>foreach ($lines as $key=&gt;&amp;$value) {
+    do_something($line);
+    unset($lines[$key]);
+}
+do_something($lines);</code></pre>
+</div>
+
+
+<p>Certes le <code>foreach</code> sera sensiblement plus rapide que le <code>while</code>/<code>array_shift()</code> car il comprend un appel de fonction à chaque itération, mais on peut s&#8217;attendre raisonnablement à ce que cet appel soit en O(1), et ait donc un coût négligeable.</p>
+
+<h2>Profiler</h2>
+
+<p>Là où il y a un problème c&#8217;est que le profiler m&#8217;indique que <code>array_shift</code> prend 57% du temps d&#8217;exécution de Banana. Ces 57% sont partagés entre 80000 appels à la fonction, mais le plus marquant c&#8217;est que parmi ces 80000 appels, ce ne sont que 24000 d&#8217;entre eux qui prennent la quasi-totalité du temps. Pourquoi ces appels particuliers sont-ils si lourd alors que les 60000 autres ont un coût parfaitement négligeable.</p>
+
+<p>La seule différence entre ces deux cas d&#8217;appels c&#8217;est que les <em>lourds</em> traitent un énorme tableau de 24000 lignes, alors que les <em>légers</em> traitent un grand nombre de petits tableaux de quelques dizaines de lignes chacun. Il est donc extrêmement clair que <code>array_shift</code> <strong>n&#8217;est pas</strong> une fonction en O(1)&hellip; J&#8217;ai donc changé la structure de code qui reflétait la structure de données par une simple boucle qui perd en lisibilité dans <a href="http://opensource.polytechnique.org/viewsvn/diff.php?path=/trunk/banana/mbox.inc.php&amp;rev=248&amp;repname=Banana">ce patch</a>. Après ce changement, les 60000 <code>array_shift</code> restant ne prennent que 0.16% du temps d&#8217;exécution de Banana&hellip;</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Vista ?]]></title>
+    <link href="http://Fruneau.github.io/blog/2007/05/03/vista/"/>
+    <updated>2007-05-03T18:07:00+02:00</updated>
+    <id>http://Fruneau.github.io/blog/2007/05/03/vista</id>
+    <content type="html"><![CDATA[<p>Étant curieux, en tout cas pour ce qui est informatique, je n&#8217;ai pas pu m&#8217;empêcher de mettre un Windows Vista en double boot sur mon MacBook Pro&hellip; Grâce à BootCamp, l&#8217;installation ne pose pas de problème. Par contre une fois l&#8217;OS installé, je n&#8217;ai pas arrêtez d&#8217;enchaîner les petits problèmes qui ont été plus une perte de temps qu&#8217;autre chose&hellip;</p>
+
+<!-- more -->
+
+
+<h2>Accueil réussi</h2>
+
+<p>Les problèmes commencent dès l&#8217;arrivée sous Vista. Déjà un premier coup d&#8217;oeil : c&#8217;est loin d&#8217;être laid à regarder&hellip; même si les ombres sont moins agréables que celles de MacOS X et que les effets de flouté sous les fenêtres me fatiguent un peu. Quand on arrive sous Vista, on tombe sur la fenêtre <em>Accueil de Windows</em> ci-dessous :</p>
+
+<p><a href="Fen%C3%AAtre%20d'accueil%20de%20Windows%20Vista|C">((/public/screenshots/Vista/.Vista-accueil1_m.jpg</a>)|/public/screenshots/Vista/Vista-accueil1.PNG)</p>
+
+<p>Cet écran est sympathique : un navigateur pratique pour circuler entre les fonctionnalités de Windows&hellip; le problème provient lorsque justement je clique sur une de ces fonctionnalités, par exemple &ldquo;Transfert de fichiers&rdquo;&hellip; rien ne se passe. Enfin, je m&#8217;attendais à voir surgir un assistant, mais rien n&#8217;apparaît. Après quelques secondes, je me rends compte qu&#8217;en fait l&#8217;en-tête de la fenêtre à changé :</p>
+
+<p><a href="Fen%C3%AAtre%20accueil%20apr%C3%A8s%20s%C3%A9lection|C">((/public/screenshots/Vista/.Vista-accueil2_m.jpg</a>)|/public/screenshots/Vista/Vista-accueil2.PNG)</p>
+
+<p>Il faut cliquer sur le texte en bas de l&#8217;en-tête pour enfin avoir le logiciel de Transfert de fichier&hellip; qui se lance dans un environnement bizarre en plein écran avec une petite fenêtre au milieu.</p>
+
+<h2>Personnalisation</h2>
+
+<p>Le premier réflexe après avoir installé un nouveau système, c&#8217;est de le personnaliser. Ceci passe donc par le changement du fond d&#8217;écran, de l&#8217;écran de veille, etc&hellip; Sous Vista, ceci se fait via une page du panneau de configuration :</p>
+
+<p><a href="R%C3%A9glages%20de%20l'apparence%20de%20Windows|C">((/public/screenshots/Vista/.Vista-apparence_m.jpg</a>)|/public/screenshots/Vista/Vista-apparence.PNG)</p>
+
+<p>C&#8217;est très bien, ça marche&hellip; sauf que lorsqu&#8217;on arrive à la catégorie <em>Thèmes</em>, changer le thème change <strong>tous</strong> les réglages qu&#8217;on avait faits précédemment pour les remplacer par ceux du thème sélectionné&hellip; L&#8217;art et la manière de perdre 10 minutes à faire 2 fois la même configuration, et à refaire tout ce que j&#8217;avais déjà fait alors que si <em>Thèmes</em> se trouvait en première place de cette liste, j&#8217;aurais d&#8217;abord choisi un thème avant de le personnaliser.</p>
+
+<h2>Inquiétude</h2>
+
+<p>Un autre problème se manifeste sous Windows Vista : les ventilateurs de mon MacBook Pro tournent quasiment à fond&hellip; alors qu&#8217;en temps normal c&#8217;est une machine silencieuse, sous Vista mon portable génère un fond sonore désagréable. Comme après avoir cherché un peu, je trouve qu&#8217;il y a un <em>gadget</em> (ce n&#8217;est pas du tout la même chose que les <em>widgets</em> de Dashboard) pour le panneau latéral de Windows qui permet de (plus ou moins) monitorer la charge CPU et l&#8217;occupation mémoire, je l&#8217;active. Et là, quelle bonne surprise ! Vista tourne à 15% proc comme occupation de croisière (étant donné que j&#8217;ai un dual-core, dois-je considérer que c&#8217;est 30% d&#8217;un des coeurs ?)&hellip; Quand je bouge la souris (si si, ça fait varier la charge), une fenêtre, ou que je travail sur une application, la charge proc augmente. Par exemple, les deux captures suivantes montre la charge de la machine lorsque j&#8217;utilise le logiciel de capture d&#8217;écran :</p>
+
+<ul>
+<li>la première lorsque je capture par sélection (une fois la sélection terminée, il est monté aussi à 30% CPU pendant quelques secondes)</li>
+<li>la deuxième lorsque je capture par fenêtre (dans ce cas, il prend du processeur pour faire de joli effets graphiques pour mettre en valeur la fenêtre sélectionnée)</li>
+</ul>
+
+
+<p>((/public/screenshots/Vista/Vista-performances.PNG|Occupation du processeur à vide)) ((/public/screenshots/Vista/Vista-performances2.PNG|Occupation du processeur changement de fenêtre))</p>
+
+<p>C&#8217;est donc mon processeur qui gère les effets graphiques ??? Pourtant j&#8217;ai une bonne carte graphique (ATI X1600) et d&#8217;après les benchmarks effectués par Vista, j&#8217;ai même une bonne machine, bien adaptée à Vista&hellip; je n&#8217;ose pas imaginer ce que ça donnerait sur une machine un peu moins puissante.</p>
+
+<h2>Mais encore&hellip;</h2>
+
+<p>J&#8217;ai également passé beaucoup de temps à chercher comment diminuer l&#8217;espace disque occupé par Windows : je n&#8217;ai alloué que 20Go à la partition pour Windows, et j&#8217;aimerais bien pouvoir y installer 2 ou 3 jeux quand même&hellip; donc limité la taille de la mémoire virtuelle, la taille de la corbeille&hellip; par contre j&#8217;ai mis plus d&#8217;une demi-heure à trouver comment désactiver la restauration système. Et j&#8217;ai eu de la chance de finir par trouver en décochant au hasard une case dans une fenêtre de configuration sur laquelle j&#8217;ai abouti sans trop savoir comment !</p>
+
+<p>Je ne m&#8217;étendrais pas sur tous mes déboires avec le nouveau <em>menu démarrer</em> de windows et le nouveau navigateur de programmes grâce auquel je n&#8217;ai toujours pas réussi à lancer une application du premier coup (à chaque fois je clique sur celle juste au-dessus), ni sur la gestion des droits d&#8217;accès qui n&#8217;arrêtent pas de me demander dans une jolie fenêtre sur un écran grisé si je veux continuer sans me demander de taper le moindre mot de passe (bah oui, mon compte ayant les droits d&#8217;administrateurs, je suppose que ça ne sert à rien de me demander un mot de passe), ni sur le temps et le nombre de clics nécessaires pour supprimer un fichier, ni sur Windows Mail qui ne trouve que 48 des 140 répertoires de mon serveur IMAP, ni même sur le pseudo-Exposé de Windows qui affiche les fenêtres les unes sur les autres et qui me force donc à scroller pour trouver celle que je veux alors qu&#8217;il serait tellement plus efficace de les mettre côte à côte (comme avec Exposé :).</p>
+
+<p>Donc, Vista c&#8217;est beau, mais c&#8217;est tout&hellip; Je trouve l&#8217;ergonomie du nouveau système de microsoft déplorable. Je suis bien content avec mon MacOS X qui utilise la carte graphique pour les effets graphiques, qui ne fait pas trop de fioritures et qui me permet de trouver rapidement ce que je cherche sans avoir à parcourir 50 menus.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[0.9.14 en Ligne !]]></title>
+    <link href="http://Fruneau.github.io/blog/2007/04/29/0914-en-ligne/"/>
+    <updated>2007-04-29T21:09:00+02:00</updated>
+    <id>http://Fruneau.github.io/blog/2007/04/29/0914-en-ligne</id>
+    <content type="html"><![CDATA[<p>Ca y est, comme annoncé dans <a href="http://Fruneau.github.io/mind/post/2007/03/30/Un-apercu-de-la-version-0914-de-plat/al">mon billet de fin mars</a>, la version 0.9.14 de <a href="http://opensource.polytechnique.org/platal">plat/al</a> est en ligne depuis vendredi soir. Comme expliqué précédemment, cette version apporte un grand nombre d&#8217;innovations comme <a href="http://Fruneau.github.io/mind/post/2007/02/25/Un-client-RSS-pour-lire-les-Forums-NNTP-et-les-Mailing-Lists">le flux RSS pour les Mailing-Lists et les Fora</a>, la <a href="http://Fruneau.github.io/mind/post/2007/03/15/Soundex-Francais">recherche par proximité sonore améliorée</a> et généralisée, un système d&#8217;annonces retravaillé pour offrir un approche plus conviviale, et bien sûr, le passage en UTF-8.</p>
+
+<p>Mais de tout cela, j&#8217;en ai déjà parlé&hellip; je tiens par contre à m&#8217;étendre sur les quelques fonctionnalités qui ont été développées durant le dernier mois (en fait, durant les dernières deux semaines de développement, le reste du temps ayant été consacré aux tests).</p>
+
+<!-- more -->
+
+
+<h1>Recherche interactive</h1>
+
+<p>Caribou a réalisé un énorme travail sur la mise en place d&#8217;un remplissage automatique (auto-completion pour les geeks) sur la recherche avancée. Ainsi, lorsqu&#8217;on tape quelques caractères dans un champ, une liste de propositions apparaît avec pour chaque proposition le nombre de camarades correspondant à la requête. Ce qui donne par exemple :</p>
+
+<p>((/mind/public/screenshots/select-ville.png|Auto-Completion sur les villes))</p>
+
+<p>((/mind/public/screenshots/select-pays.png|Auto-Completion sur les pays))</p>
+
+<p>Par contre, là où cela devient très intéressant, c&#8217;est que l&#8217;interface reste flexible : si vous préférez choisir dans une liste des valeurs possibles plutôt que d&#8217;utiliser l&#8217;auto-completion, ce qui est envisageable, il suffit, si c&#8217;est disponible pour le champ correspondant, de cliquer sur la petite icône représentant une liste en fin de ligne&hellip; Ainsi, pour les pays, cela donne :</p>
+
+<p>((/mind/public/screenshots/select-pays-dropdown.png|Choix sur les pays))</p>
+
+<p>Il s&#8217;agit du même champ dont le <input type="text"> a été remplacé par une <select>.</p>
+
+<h1>Sondages</h1>
+
+<p>Les sondages étaient la seule fonctionnalité du site qui avait été perdue lors du passage à plat/al il y a maintenant 2 ans et demi. C&#8217;est maintenant réparé grâce au travail de pika. Cette fonctionnalité étant de fait encore jeune, on peut s&#8217;attendre à ce que l&#8217;interface soit retravaillée fortement dans les prochaines versions du site pour s&#8217;adapter aux attentes des utilisateurs. Néanmoins, il est à noter que l&#8217;édition des sondages a été travaillée de telle sorte qu&#8217;un sondage soit facilement éditable : l&#8217;utilisateur qui crée un sondage peut aisément ajouter, supprimer ou modifier des questions, et les administrateurs ont accès exactement aux mêmes fonctionnalités pour la maintenance des sondages.</p>
+
+<p>Nous attendons maintenant l&#8217;utilisation de cette fonctionnalité pour avoir des retours de la part de nos utilisateurs. Si l&#8217;expérience se révèle concluante, les sondages seront intégrés à Polytechnique.net pour que les animateurs les aient à leur disposition directement depuis l&#8217;interface de gestion des groupes.</p>
+
+<h1>Ensemble d&#8217;utilisateurs</h1>
+
+<p>Il s&#8217;agit de la partie sur laquelle j&#8217;ai travaillé, et donc celle que je connais le mieux, mais c&#8217;est aussi la partie la plus abstraite. Pour l&#8217;utilisateur, ça ne change quasiment rien, par contre au niveau du moteur du site, c&#8217;est à mon sens un pas en avant important vers des interfaces plus adaptées aux besoins des utilisateurs. C&#8217;est pour cette raison que cette partie risque d&#8217;être un poil technique.</p>
+
+<p>Ce dont je parlais au paragraphe précédent est la gestion des ensembles d&#8217;utilisateurs&hellip; mais qu&#8217;est-ce donc ? un ensemble d&#8217;utilisateur est tout simplement une sélection d&#8217;utilisateurs dans l&#8217;annuaire, ça peut être les membres d&#8217;une Mailing-List, les contacts d&#8217;un utilisateur, les membres d&#8217;un groupe, les camarades correspondant à une recherche&hellip;</p>
+
+<p>Le problème est que je voudrais que dès que sélectionne un ensemble d&#8217;utilisateur, je puisse séparer totalement la représentation de ces utilisateurs de la sélection qui est faite : ainsi si je choisi mes contacts, je veux pouvoir afficher mes contacts sur un planisphère, voir le trombinoscope de mes contacts, mais aussi voir leurs fiches&hellip; mais je voudrais avoir les mêmes outils pour toute autre sélection d&#8217;utilisateur.</p>
+
+<p>La résolution propre de ce problème (c&#8217;est-à-dire, sans tout recoder à chaque cas possible d&#8217;utilisation) est l&#8217;utilisation d&#8217;un outil orienté Model/View :</p>
+
+<ul>
+<li>le modèle gère la parti sélection des utilisateurs en fonction de la page</li>
+<li>l&#8217;afficheur sélectionne les données à afficher pour les utilisateurs et génère ce que l&#8217;utilisateur verra</li>
+</ul>
+
+
+<p>Dans plat/al, le Model s&#8217;appelle PlSet (duquel hérite un UserSet spécialisé dans les ensembles d&#8217;utilisateurs), et le View s&#8217;appelle PlView. De cette manière, l&#8217;affichage des contacts se fait en 5 lignes de code :</p>
+
+<div>
+  <pre><code class='php'>$view = new UserSet(&quot;INNER JOIN contacts AS c2 ON (u.user_id = c2.contact)&quot;, &quot; c2.uid = $uid &quot;);
+$view-&gt;addMod(&#39;minifiche&#39;, &#39;Mini-Fiches&#39;, true); 
+$view-&gt;addMod(&#39;trombi&#39;, &#39;Trombinoscope&#39;, false, array(&#39;with_admin&#39; =&gt; false, &#39;with_promo&#39; =&gt; true)); 
+$view-&gt;addMod(&#39;geoloc&#39;, &#39;Planisphère&#39;); 
+$view-&gt;apply(&#39;carnet/contacts&#39;, $page, $action, $subaction);</code></pre>
+</div>
+
+
+<p>On crée le UserSet en lui donnant les critères de sélection des utilisateurs à afficher, puis on ajoute les Views à utiliser, enfin on gère l&#8217;affichage (en fonction des arguments passés à l&#8217;affichage de la page). C&#8217;est le type d&#8217;abstraction qui font vraiment plaisir car finalement on se rapproche du slogan de Qt : .</p>
+
+<p>Bien sûr, il faut développer tout le background, mais le temps de développement est négligeable comparé à celui qu&#8217;on aurait passé à dupliquer ce code, voire justement à ne pas le dupliquer en raison de la complexité de certains cas. Un autre exemple d&#8217;utilisation est sur l&#8217;annuaire des groupes sur Polytechnique.net :</p>
+
+<div>
+  <pre><code class='php'>$view = new UserSet(); 
+$view-&gt;addMod(&#39;trombi&#39;, &#39;Trombinoscope&#39;); 
+$view-&gt;addMod(&#39;geoloc&#39;, &#39;Planisphère&#39;); 
+$view-&gt;apply(&#39;annuaire&#39;, $page, $action, $subaction);</code></pre>
+</div>
+
+
+<p>Dans ce cas, comme UserSet sait que s&#8217;il est appelé dans le cadre d&#8217;un groupe-X sur Polytechnique.net, il ne doit pas sélectionner d&#8217;utilisateurs hors de l&#8217;annuaire de ce groupe, il n&#8217;y a aucune restriction à lui indiquer : tout l&#8217;annuaire du groupe est sélectionné. On ajoute les deux modules de représentation qu&#8217;on désire utiliser : trombinoscope et Planispère, et applique à la page&hellip; en 4 lignes c&#8217;est fait.</p>
+
+<p>Je m&#8217;extasie devant ce travail parce que je suis content du résultat, mais il n&#8217;est pas pour autant parfait. Son problème actuel est dû au background basé sur SQL : chaque élément (PlSet ou PlView) apporte des bribes d&#8217;une requête SQL permettant de finalement obtenir toutes les informations à afficher (PlView) pour les utilisateurs sélectionnés (PlSet), mais il peut arriver qu&#8217;une même donnée soit utilisée pour la sélection et pour l&#8217;affichage. Dans ce cas, la solution la plus simple est de dupliquer les jointures dans la requête, mais c&#8217;est une solution qui peut sérieusement alourdir et ralentir la requête.</p>
+
+<p>L&#8217;implémentation actuelle gère la duplication au cas par cas : les PlView peuvent contenir tester s&#8217;il faut sélectionner un champ ou non en testant la classe du PlSet utilisé. Cette solution n&#8217;est pas particulièrement propre. La meilleure solution envisageable est d&#8217;utiliser une abstraction des champs SQL : chaque élément ne donnerait plus une bribe de requête SQL mais des informations sur &ldquo;comment sélectionner la donnée&rdquo;&hellip; ensuite la génération de la requête consiste à comparer toutes ces informations et à les assembler. Plat/al possède déjà les outils nécessaires pour réaliser ce jeu d&#8217;assemblage&hellip; ce sera très probablement pour la prochaine release.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Stats]]></title>
+    <link href="http://Fruneau.github.io/blog/2007/04/21/stats/"/>
+    <updated>2007-04-21T02:59:00+02:00</updated>
+    <id>http://Fruneau.github.io/blog/2007/04/21/stats</id>
+    <content type="html"><![CDATA[<p>Depuis le début, j&#8217;ai installé <a href="http://awstats.sf.net">awstats</a> pour avoir des statistiques sur l&#8217;utilisation de mon serveur web.</p>
+
+<p>J&#8217;ai choisi awstats un peu par hasard :</p>
+
+<ul>
+<li>on avait utilisé <a href="http://www.mrunix.net/webalizer/">webalizer</a> au <a href="http://www.frankiz.net/binets/reseau">BR</a> et je n&#8217;étais pas spécialement convaincu par le résultat obtenu : beaucoup de chiffres, graphiquement peu attirant et d&#8217;ergonomie d&#8217;utilisation assez mauvaise.</li>
+<li>à <a href="https://www.polytechnique.org">Polytechnique.org</a> par contre, on utilise awstats, même si je n&#8217;ai pas fait le bilant complet des fonctionnalités, il a au moins l&#8217;avantage d&#8217;être lisible et agréable à l&#8217;oeil.</li>
+</ul>
+
+
+<p>Donc <a href="http://stat.mymind.fr/blog">je l&#8217;ai installé</a>, personnalisé&hellip; en particuliers j&#8217;ai ajouté des browsers (principalement des syndicateurs) et robots, amélioré les spécifications de certains OS, et j&#8217;avais également ajouté à l&#8217;outil de configuration le support de <a href="http://www.mamp.info/en/home/">MAMP</a>. J&#8217;ai envoyé le patch au mainteneur du projet. Aujourd&#8217;hui je fais un <code>cvs up</code> sur mon installation du projet et je vois :</p>
+
+<pre><code>P docs/awstats_faq.html
+RCS file: /cvsroot/awstats/awstats/tools/awstats_configure.pl,v
+retrieving revision 1.6
+retrieving revision 1.7
+Merging differences between 1.6 and 1.7 into awstats_configure.pl
+M tools/awstats_configure.pl
+M wwwroot/cgi-bin/awstats.model.conf
+RCS file: /cvsroot/awstats/awstats/wwwroot/cgi-bin/lib/browsers.pm,v
+retrieving revision 1.54
+retrieving revision 1.55
+Merging differences between 1.54 and 1.55 into browsers.pm
+M wwwroot/cgi-bin/lib/browsers.pm
+RCS file: /cvsroot/awstats/awstats/wwwroot/cgi-bin/lib/operating_systems.pm,v
+retrieving revision 1.20
+retrieving revision 1.21
+Merging differences between 1.20 and 1.21 into operating_systems.pm
+M wwwroot/cgi-bin/lib/operating_systems.pm
+RCS file: /cvsroot/awstats/awstats/wwwroot/cgi-bin/lib/robots.pm,v
+retrieving revision 1.44
+retrieving revision 1.45
+Merging differences between 1.44 and 1.45 into robots.pm
+M wwwroot/cgi-bin/lib/robots.pm
+</code></pre>
+
+<p>Bizarrement, tous les fichiers que j&#8217;ai modifié ont été modifié également sur la CVS&hellip; donc je suis allé faire un tour sur le <a href="http://awstats.cvs.sourceforge.net/awstats/awstats/">webvc du projet</a>, et sur les fichiers correspondants, il y a le commentaire <em>Patch florent bruneau</em>.</p>
+
+<p>Voilà, une bonne surprise ! Je suis juste un peu déçu de l&#8217;avoir vu uniquement sur un update de cvs.</p>
 ]]></content>
   </entry>
   

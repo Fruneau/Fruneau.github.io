@@ -1,0 +1,260 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Démon Pour Khtml2png - Mind...</title>
+  <meta name="author" content="Florent Bruneau">
+
+  
+  <meta name="description" content="Une fois qu&#8217;on a un outils pour faire les vignettes de site, il devient utile de pouvoir automatiser le travail. Pour ceci, il existe un démon &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://Fruneau.github.io/blog/2007/03/14/demon-pour-khtml2png">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="Mind..." type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/libs/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Mind...</a></h1>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:Fruneau.github.io" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Démon Pour Khtml2png</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2007-03-14T19:24:00+01:00" pubdate data-updated="true">Mar 14<span>th</span>, 2007</time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>Une fois qu&#8217;on a un outils pour faire les vignettes de site, il devient utile de pouvoir automatiser le travail. Pour ceci, il existe un <a href="http://wiki.goatpron.de/project/khtmld">démon pour khtml2png</a>. Malheureusement (encore une fois), cet outil ne correspondait pas exactement à mes besoins. Donc je l&#8217;ai partiellement réécrit (mais rien d&#8217;extraordinaire).</p>
+
+<!-- more -->
+
+
+<p>Ce démon qui s&#8217;appelle <code>khtmld</code> fonctionne simplement : il lit une file et à chaque entrée dans cette file, il lance <code>khtml2png</code>. Donc, il y a deux étapes.</p>
+
+<p>La première consiste à lancer le démon. Pour ceci, j&#8217;ai développé un script d&#8217;init&hellip; qui sera donc probablement lancé par l&#8217;utilisateur <code>root</code>. Il suffit de modifier ce script pour régler les variables en fonction de son installation, puis dans lancer la commande :</p>
+
+<div>
+  <pre><code class='bash'>./init-script.sh start</code></pre>
+</div>
+
+
+<p>Ensuite il n&#8217;y a plus qu&#8217;à donner au démon la liste des actions à réaliser sous la forme$$Attention à ne pas mettre d&#8217;espace dans le nom du fichier et dans l&#8217;url.$$ :</p>
+
+<div>
+  <pre><code class='bash'>echo &quot;url fichier&quot; &gt;&gt; /tmp/khtmld.spool</code></pre>
+</div>
+
+
+<p>Le principal développement que j&#8217;ai réalisé sur <code>khtmld</code> permet de donner au processus de <code>khtml2png</code> les droits d&#8217;un utilisateur du choix de la personne qui a lancé le démon (certes rien d&#8217;extraordinaire, mais ça manquait au programme).</p>
+
+<p>Voilà, donc un système pour automatiser la réalisation de vignettes même si il reste quelques points sur lesquels il faut réfléchir :</p>
+
+<ul>
+<li>on ne veut pas un service ouvert (faire un screenshot est une opération lourde)</li>
+<li>on ne peut pas mettre ce service sur un serveur de prod (il est hors de question de lancer un X en production)</li>
+</ul>
+
+
+<p>Donc il faut s&#8217;orienter sur la réalisation d&#8217;un serveur de screenshot avec authentification et modération&hellip; non-trivial.</p>
+
+<p>Pour ceux qui voudraient récupérer ma version, elle est disponible dans <a href="/mind/public/khtml2png/khtmld-fru-last.tar.bz2">les téléchargements</a>.</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Florent Bruneau</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2007-03-14T19:24:00+01:00" pubdate data-updated="true">Mar 14<span>th</span>, 2007</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/polytechnique-dot-org/'>Polytechnique.org</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://Fruneau.github.io/blog/2007/03/14/demon-pour-khtml2png/" data-via="FlorentBruneau" data-counturl="http://Fruneau.github.io/blog/2007/03/14/demon-pour-khtml2png/" >Tweet</a>
+  
+  
+  <div class="g-plusone" data-size="medium"></div>
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2007/03/13/outils-pratiques/" title="Previous Post: Outils pratiques">&laquo; Outils pratiques</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/2007/03/15/soundex-francais/" title="Next Post: Soundex Français">Soundex Français &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2009/04/07/yet-another-policy-daemon-for-postfix2/">Yet Another Policy Daemon for Postfix</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2008/06/04/polytechniqueorg-lance-son-blog/">Polytechnique.org Lance Son Blog</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2008/05/19/vieux-trucs/">Vieux Trucs</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2008/03/02/encodage-et-terminal/">Encodage Et Terminal</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2007/11/01/afficher-des-discussions/">Afficher Des Discussions</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2013 - Florent Bruneau -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
+      script.src = 'https://apis.google.com/js/plusone.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(script, s);
+    })();
+  </script>
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = '//platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

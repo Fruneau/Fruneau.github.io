@@ -1,0 +1,258 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Afficher Des Discussions - Mind...</title>
+  <meta name="author" content="Florent Bruneau">
+
+  
+  <meta name="description" content="Lorsqu&#8217;un logiciel a pour vocation d&#8217;afficher des discussions, on attend de sa part qu&#8217;il nous permette de voir simplement qui &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://Fruneau.github.io/blog/2007/11/01/afficher-des-discussions">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="Mind..." type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/libs/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Mind...</a></h1>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:Fruneau.github.io" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Afficher Des Discussions</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2007-11-01T18:24:00+01:00" pubdate data-updated="true">Nov 1<span>st</span>, 2007</time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>Lorsqu&#8217;un logiciel a pour vocation d&#8217;afficher des discussions, on attend de sa part qu&#8217;il nous permette de voir simplement qui répond à qui, dans quel contexte&hellip; Ce n&#8217;est pas toujours ce qui est le mieux fait. Par exemple, les programmes de fora en ligne à la mode (phpBB par exemple) affiche les discussion comme une succession de rectangles juxtaposés et seul le contenu du message permet de voir qu&#8217;il en cite un autre. D&#8217;autres logiciels comme Mail.app ont ce défaut et parfois la fâcheuse manie de ne pas vouloir corriger ce problème.</p>
+
+<p>L&#8217;affichage de l&#8217;arborescence dans <a href="http://opensource.polytechnique.org/banana">Banana</a> est une des fonctionnalités clés&hellip; et elle va beaucoup changer dans la prochaine version.</p>
+
+<!-- more -->
+
+
+<h1> Une ligne par entrée</h1>
+
+<p>La solution habituelle pour afficher l&#8217;arborescence est d&#8217;utiliser un message par ligne de telle, des + ou &ndash; pour ouvrir ou fermer les noeuds. C&#8217;est la solution actuelle de banana.</p>
+
+<p>((/public/screenshots/old-thread.png|Banana Thread up to 1.7))</p>
+
+<p>Avec cette solution, on perd très rapidement en lisibilité : dès que la discussion dépasse une vingtaine de messages, l&#8217;arborescence devient très haute et plus ça va, plus le titre dérive vers la droite rendant parfois le lien inaccessible. Lorsqu&#8217;il y a un troll, il est de fait très courant que certains nouveaux messages se trouvent perdus plusieurs pages en arrière dans l&#8217;arborescence, ou que sur certains navigateurs, il soit difficile d&#8217;y accéder. De plus l&#8217;interface se trouve souvent surchargée, à la limite de la lisibilité : c&#8217;est dur de faire tenir un maximum d&#8217;informations en un minimum de place en gardant la lisibilité de l&#8217;ensemble.</p>
+
+<h1> Une solution plus visuelle</h1>
+
+<p>Je ne sais pas combien de personnes connaissent <a href="http://home.snafu.de/stk/macsoup/">MacSoup</a>. Il s&#8217;agit d&#8217;un petit client NNTP pour MacOS, qui en soit n&#8217;a pas beaucoup d&#8217;intérêt (il est payant et est relativement limité). Le principal atout de MacSoup est son interface de visualisation des threads (les utilisateurs diront qu&#8217;il y a bien plus que l&#8217;interface graphique, mais également l&#8217;interface clavier etc&hellip;). On trouve sur internet quelques captures d&#8217;écran en cherchant dans les <a href="http://www.exalead.com/image/results?q=macsoup%20screenshot">moteurs de recherche d&#8217;image</a> :</p>
+
+<p>((<a href="http://www.fen-net.de/~xx511/bilder/macsoup/Thread.gif">http://www.fen-net.de/~xx511/bilder/macsoup/Thread.gif</a>))</p>
+
+<p>Cette interface est compacte, visuelle et permet d&#8217;accéder rapidement à n&#8217;importe quel message du thread. Pour la prochaine version de Banana, je me suis fortement inspiré de cette interface pour réécrire de 0 l&#8217;affichage de l&#8217;arborescence. Ceci donne :</p>
+
+<p>((/public/screenshots/new-thread.png|Thread view in Banana))</p>
+
+<p>Il s&#8217;agit de la même discussion que précédemment. On voit donc ici facilement l&#8217;arborescence. Lorsqu&#8217;un message est non lu, la branche à laquelle il est attaché est noire au lieu de grise ce qui permet de l&#8217;identifier du premier coup d&#8217;oeil. Les couleurs de fond des noeuds (une idée de <a href="http://www.falco.bz">Falco</a>) sont obtenue à partir d&#8217;un hash quelconque sur l&#8217;émetteur et permettent donc d&#8217;identifier les messages envoyés par la même personne. Lorsqu&#8217;on laisse la souris sur un noeud, le nom de l&#8217;expéditeur et l&#8217;heure du post s&#8217;affichent (malheureusement le pointeur de la souris n&#8217;apparaît pas sur la capture d&#8217;écran)&hellip; et bien sûr quand on clique sur un noeud, on va sur le message correspondant.</p>
+
+<p>Lorsqu&#8217;on est sur un message, on garde également la vue du thread ce qui permet de toujours savoir où on est dans la discussion :</p>
+
+<p>((/public/screenshots/new-thread-nav.png|Thread view with selected message))</p>
+
+<p>Il y a encore un peu de travail à faire pour améliorer les performances de la génération des arbres et pour augmenter sa compacité (éviter les branches qui descendent très bas alors qu&#8217;elles auraient pu trouver leur place dans le l&#8217;espace vide disponible).</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Florent Bruneau</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2007-11-01T18:24:00+01:00" pubdate data-updated="true">Nov 1<span>st</span>, 2007</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/polytechnique-dot-org/'>Polytechnique.org</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://Fruneau.github.io/blog/2007/11/01/afficher-des-discussions/" data-via="FlorentBruneau" data-counturl="http://Fruneau.github.io/blog/2007/11/01/afficher-des-discussions/" >Tweet</a>
+  
+  
+  <div class="g-plusone" data-size="medium"></div>
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2007/10/08/15-000/" title="Previous Post: 15 000">&laquo; 15 000</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/2008/03/02/encodage-et-terminal/" title="Next Post: Encodage et terminal">Encodage et terminal &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2009/04/07/yet-another-policy-daemon-for-postfix2/">Yet Another Policy Daemon for Postfix</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2008/06/04/polytechniqueorg-lance-son-blog/">Polytechnique.org Lance Son Blog</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2008/05/19/vieux-trucs/">Vieux Trucs</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2008/03/02/encodage-et-terminal/">Encodage Et Terminal</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2007/11/01/afficher-des-discussions/">Afficher Des Discussions</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2013 - Florent Bruneau -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
+      script.src = 'https://apis.google.com/js/plusone.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(script, s);
+    })();
+  </script>
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = '//platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,285 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Vignette De Site - Mind...</title>
+  <meta name="author" content="Florent Bruneau">
+
+  
+  <meta name="description" content="Pour continuer sur le sujet de mon billet précédent, voici une solution simple pour réaliser des vignettes de site web. Technique Pour faire une &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://Fruneau.github.io/blog/2007/03/12/vignette-de-site">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="Mind..." type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/libs/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Mind...</a></h1>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:Fruneau.github.io" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Vignette De Site</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2007-03-12T11:40:00+01:00" pubdate data-updated="true">Mar 12<span>th</span>, 2007</time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>Pour continuer sur le sujet de <a href="/post/2007/03/10/A-croire-que-certains-le-font-expres">mon billet précédent</a>, voici une solution simple pour réaliser des vignettes de site web.</p>
+
+<!-- more -->
+
+
+<h2>Technique</h2>
+
+<p>Pour faire une vignette d&#8217;un site web la solution est simple :
+1   on lance un navigateur (c&#8217;est à dire un moteur de rendu) et on ouvre la page dont on eut le screenshot
+1   on fait un screenshot, c&#8217;est à dire qu&#8217;on copie la fenêtre d&#8217;affichage dans une image
+1   on fait du post-traitement sur l&#8217;image obtenue pour l&#8217;adapter à nos besoins</p>
+
+<p>Donc, rien de bien compliqué&hellip; le problème est maintenant le faire de manière automatisée&hellip;</p>
+
+<p>Il existe divers outils pour le faire&hellip; la plupart des sites qui fournissent des services de screenshot sur Internet font leur captures avec Internet Explorer (IE6 la plupart de temps), Exalead le fait avec un moteur KHTML, il existe des outils libres qui le font avec <a href="http://www.hackdiary.com/archives/000055.html">Gecko</a>, avec <a href="http://www.paulhammond.org/webkit2png/">WebKit</a> ou <a href="http://khtml2png.sourceforge.net/">KHTML</a>.</p>
+
+<p>Personnellement <a href="/post/2007/03/10/A-croire-que-certains-le-font-expres">j&#8217;ai travaillé avec khtml2png</a>.</p>
+
+<h2>Mise en place</h2>
+
+<p>Que ce soit la solution qui utilise Gecko, ou celle qui utilise KHTML, il est nécessaire de faire fonctionner le programme dans un serveur X, car il faut réaliser le rendu dans une fenêtre avant d&#8217;en faire une capture. Quand on a un serveur X déjà en place, ça ne pose pas de problème&hellip; mais quand on veut faire tourner ça sur un serveur, ça devient plus casse-pied. La solution la plus courante est d&#8217;utiliser un <code>vncserver</code>.</p>
+
+<p>Le lancement du <code>vncserver</code> nécessite de respecter quelques contraintes :</p>
+
+<ul>
+<li>il faut que le rendu se fasse en couleur vraies&hellip; <code>VNC</code> offre deux modes : 8bits et 32bits, il faut donc choisir 32bits (qui n&#8217;est pas le mode par défaut)</li>
+<li>plus la résolution du serveur X est grande, plus on pourra faire des captures de grande taille (ou faire moins de capture si on fait du pavage). De plus, <code>khtml2png</code> contient un bug qui entraîne des bandes grises dans la capture si celle-ci est trop grande (par exemple, avec un serveur de 1280x960, je ne peux pas faire de capture 1024x768). C&#8217;est un problème sur lequel je vais travailler durant la semaine.$$Edit 12 mars à 23h40 : Ce problème est corrigé dans <a href="/public/khtml2png/khtml2png-fru-last.tar.bz2">la toute dernière version</a>. On peut de fait envisager d&#8217;utiliser un serveur X plus petit sans bug, le rendu reste plus rapide lorsque le serveur X est suffisamment grand.$$</li>
+</ul>
+
+
+<p>Ainsi, j&#8217;utilise la commande suivante pour lancer mon <code>vncserver</code> :</p>
+
+<div>
+  <pre><code class='bash'>vncserver :60 -geometry 1280x960 -depth 32</code></pre>
+</div>
+
+
+<p>Ensuite, il suffit de faire tourner notre outils dans l&#8217;environnement graphique qu&#8217;on vient d&#8217;obtenir. Avec khtml2png, cela donne :</p>
+
+<div>
+  <pre><code class='bash'>./khtml2png2 --display :60 --nocrashhandler --width 840 --height 600 http://fruneau.rznc.net/ /tmp/test-fru.png</code></pre>
+</div>
+
+
+<p>Les différentes options données sont :</p>
+
+<ul>
+<li><code>display</code> est une option Qt qui spécifie le serveur X sur lequel il faut faire tourner le programme. En mettant DISPLAY=&ldquo;:60.0&rdquo; comme variable d&#8217;environnement, on devrait (je n&#8217;ai pas testé) obtenir le même résultat</li>
+<li><code>nocrashhandler</code> est une option KDE qui indique qu&#8217;on ne veut pas que KDE lance le KDE-Crash Handler en cas de plantage&hellip; celui-ci irait encombrer le serveur graphique. Etant donné qu&#8217;on a pas accès à ce serveur graphique, autant éviter de le remplir de fenêtre inutiles</li>
+<li><code>width</code> et <code>height</code> donne la taille du screenshot</li>
+<li>ensuite on donne l&#8217;URL et le nom du fichier (le format est deviné à partir de l&#8217;extension)</li>
+</ul>
+
+
+<p>La ligne précédente donne le résultat suivant :</p>
+
+<p><a href="Test%20de%20screenshots%20avec%20KHTML2PNG|C">((/public/khtml2png/.test-fru_m.jpg</a>)|/public/khtml2png/test-fru.png)</p>
+
+<p>Attention tout de même, la version 2.5.0 (et sans doute les précédentes) de <code>khtml2png</code> est bloquante dans le cas où elle rencontre un type mime non supporté par l&#8217;installation actuelle de KDE. Il vaut mieux utiliser <a href="/public/khtml2png/khtml2png-fru-last.tar.bz2">ma dernière version</a> qui corrige ce bug. Dans tous les cas, en installant les modules adaptés (comme flash), on obtient un meilleur rendu.</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Florent Bruneau</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2007-03-12T11:40:00+01:00" pubdate data-updated="true">Mar 12<span>th</span>, 2007</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/polytechnique-dot-org/'>Polytechnique.org</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://Fruneau.github.io/blog/2007/03/12/vignette-de-site/" data-via="FlorentBruneau" data-counturl="http://Fruneau.github.io/blog/2007/03/12/vignette-de-site/" >Tweet</a>
+  
+  
+  <div class="g-plusone" data-size="medium"></div>
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2007/03/10/a-croire-que-certains-le-font-expres/" title="Previous Post: A croire que certains le font exprès !">&laquo; A croire que certains le font exprès !</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/2007/03/13/joie/" title="Next Post: Joie !">Joie ! &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2009/04/07/yet-another-policy-daemon-for-postfix2/">Yet Another Policy Daemon for Postfix</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2008/06/04/polytechniqueorg-lance-son-blog/">Polytechnique.org Lance Son Blog</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2008/05/19/vieux-trucs/">Vieux Trucs</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2008/03/02/encodage-et-terminal/">Encodage Et Terminal</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2007/11/01/afficher-des-discussions/">Afficher Des Discussions</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2013 - Florent Bruneau -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
+      script.src = 'https://apis.google.com/js/plusone.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(script, s);
+    })();
+  </script>
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = '//platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

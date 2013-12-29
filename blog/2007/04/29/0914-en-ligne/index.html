@@ -1,0 +1,297 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>0.9.14 en Ligne ! - Mind...</title>
+  <meta name="author" content="Florent Bruneau">
+
+  
+  <meta name="description" content="Ca y est, comme annoncé dans mon billet de fin mars, la version 0.9.14 de plat/al est en ligne depuis vendredi soir. Comme expliqué précédemment, &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://Fruneau.github.io/blog/2007/04/29/0914-en-ligne">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="Mind..." type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/libs/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Mind...</a></h1>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:Fruneau.github.io" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">0.9.14 en Ligne !</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2007-04-29T21:09:00+02:00" pubdate data-updated="true">Apr 29<span>th</span>, 2007</time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>Ca y est, comme annoncé dans <a href="/mind/post/2007/03/30/Un-apercu-de-la-version-0914-de-plat/al">mon billet de fin mars</a>, la version 0.9.14 de <a href="http://opensource.polytechnique.org/platal">plat/al</a> est en ligne depuis vendredi soir. Comme expliqué précédemment, cette version apporte un grand nombre d&#8217;innovations comme <a href="/mind/post/2007/02/25/Un-client-RSS-pour-lire-les-Forums-NNTP-et-les-Mailing-Lists">le flux RSS pour les Mailing-Lists et les Fora</a>, la <a href="/mind/post/2007/03/15/Soundex-Francais">recherche par proximité sonore améliorée</a> et généralisée, un système d&#8217;annonces retravaillé pour offrir un approche plus conviviale, et bien sûr, le passage en UTF-8.</p>
+
+<p>Mais de tout cela, j&#8217;en ai déjà parlé&hellip; je tiens par contre à m&#8217;étendre sur les quelques fonctionnalités qui ont été développées durant le dernier mois (en fait, durant les dernières deux semaines de développement, le reste du temps ayant été consacré aux tests).</p>
+
+<!-- more -->
+
+
+<h1>Recherche interactive</h1>
+
+<p>Caribou a réalisé un énorme travail sur la mise en place d&#8217;un remplissage automatique (auto-completion pour les geeks) sur la recherche avancée. Ainsi, lorsqu&#8217;on tape quelques caractères dans un champ, une liste de propositions apparaît avec pour chaque proposition le nombre de camarades correspondant à la requête. Ce qui donne par exemple :</p>
+
+<p>((/mind/public/screenshots/select-ville.png|Auto-Completion sur les villes))</p>
+
+<p>((/mind/public/screenshots/select-pays.png|Auto-Completion sur les pays))</p>
+
+<p>Par contre, là où cela devient très intéressant, c&#8217;est que l&#8217;interface reste flexible : si vous préférez choisir dans une liste des valeurs possibles plutôt que d&#8217;utiliser l&#8217;auto-completion, ce qui est envisageable, il suffit, si c&#8217;est disponible pour le champ correspondant, de cliquer sur la petite icône représentant une liste en fin de ligne&hellip; Ainsi, pour les pays, cela donne :</p>
+
+<p>((/mind/public/screenshots/select-pays-dropdown.png|Choix sur les pays))</p>
+
+<p>Il s&#8217;agit du même champ dont le <input type="text"> a été remplacé par une <select>.</p>
+
+<h1>Sondages</h1>
+
+<p>Les sondages étaient la seule fonctionnalité du site qui avait été perdue lors du passage à plat/al il y a maintenant 2 ans et demi. C&#8217;est maintenant réparé grâce au travail de pika. Cette fonctionnalité étant de fait encore jeune, on peut s&#8217;attendre à ce que l&#8217;interface soit retravaillée fortement dans les prochaines versions du site pour s&#8217;adapter aux attentes des utilisateurs. Néanmoins, il est à noter que l&#8217;édition des sondages a été travaillée de telle sorte qu&#8217;un sondage soit facilement éditable : l&#8217;utilisateur qui crée un sondage peut aisément ajouter, supprimer ou modifier des questions, et les administrateurs ont accès exactement aux mêmes fonctionnalités pour la maintenance des sondages.</p>
+
+<p>Nous attendons maintenant l&#8217;utilisation de cette fonctionnalité pour avoir des retours de la part de nos utilisateurs. Si l&#8217;expérience se révèle concluante, les sondages seront intégrés à Polytechnique.net pour que les animateurs les aient à leur disposition directement depuis l&#8217;interface de gestion des groupes.</p>
+
+<h1>Ensemble d&#8217;utilisateurs</h1>
+
+<p>Il s&#8217;agit de la partie sur laquelle j&#8217;ai travaillé, et donc celle que je connais le mieux, mais c&#8217;est aussi la partie la plus abstraite. Pour l&#8217;utilisateur, ça ne change quasiment rien, par contre au niveau du moteur du site, c&#8217;est à mon sens un pas en avant important vers des interfaces plus adaptées aux besoins des utilisateurs. C&#8217;est pour cette raison que cette partie risque d&#8217;être un poil technique.</p>
+
+<p>Ce dont je parlais au paragraphe précédent est la gestion des ensembles d&#8217;utilisateurs&hellip; mais qu&#8217;est-ce donc ? un ensemble d&#8217;utilisateur est tout simplement une sélection d&#8217;utilisateurs dans l&#8217;annuaire, ça peut être les membres d&#8217;une Mailing-List, les contacts d&#8217;un utilisateur, les membres d&#8217;un groupe, les camarades correspondant à une recherche&hellip;</p>
+
+<p>Le problème est que je voudrais que dès que sélectionne un ensemble d&#8217;utilisateur, je puisse séparer totalement la représentation de ces utilisateurs de la sélection qui est faite : ainsi si je choisi mes contacts, je veux pouvoir afficher mes contacts sur un planisphère, voir le trombinoscope de mes contacts, mais aussi voir leurs fiches&hellip; mais je voudrais avoir les mêmes outils pour toute autre sélection d&#8217;utilisateur.</p>
+
+<p>La résolution propre de ce problème (c&#8217;est-à-dire, sans tout recoder à chaque cas possible d&#8217;utilisation) est l&#8217;utilisation d&#8217;un outil orienté Model/View :</p>
+
+<ul>
+<li>le modèle gère la parti sélection des utilisateurs en fonction de la page</li>
+<li>l&#8217;afficheur sélectionne les données à afficher pour les utilisateurs et génère ce que l&#8217;utilisateur verra</li>
+</ul>
+
+
+<p>Dans plat/al, le Model s&#8217;appelle PlSet (duquel hérite un UserSet spécialisé dans les ensembles d&#8217;utilisateurs), et le View s&#8217;appelle PlView. De cette manière, l&#8217;affichage des contacts se fait en 5 lignes de code :</p>
+
+<div>
+  <pre><code class='php'>$view = new UserSet(&quot;INNER JOIN contacts AS c2 ON (u.user_id = c2.contact)&quot;, &quot; c2.uid = $uid &quot;);
+$view-&gt;addMod(&#39;minifiche&#39;, &#39;Mini-Fiches&#39;, true); 
+$view-&gt;addMod(&#39;trombi&#39;, &#39;Trombinoscope&#39;, false, array(&#39;with_admin&#39; =&gt; false, &#39;with_promo&#39; =&gt; true)); 
+$view-&gt;addMod(&#39;geoloc&#39;, &#39;Planisphère&#39;); 
+$view-&gt;apply(&#39;carnet/contacts&#39;, $page, $action, $subaction);</code></pre>
+</div>
+
+
+<p>On crée le UserSet en lui donnant les critères de sélection des utilisateurs à afficher, puis on ajoute les Views à utiliser, enfin on gère l&#8217;affichage (en fonction des arguments passés à l&#8217;affichage de la page). C&#8217;est le type d&#8217;abstraction qui font vraiment plaisir car finalement on se rapproche du slogan de Qt : .</p>
+
+<p>Bien sûr, il faut développer tout le background, mais le temps de développement est négligeable comparé à celui qu&#8217;on aurait passé à dupliquer ce code, voire justement à ne pas le dupliquer en raison de la complexité de certains cas. Un autre exemple d&#8217;utilisation est sur l&#8217;annuaire des groupes sur Polytechnique.net :</p>
+
+<div>
+  <pre><code class='php'>$view = new UserSet(); 
+$view-&gt;addMod(&#39;trombi&#39;, &#39;Trombinoscope&#39;); 
+$view-&gt;addMod(&#39;geoloc&#39;, &#39;Planisphère&#39;); 
+$view-&gt;apply(&#39;annuaire&#39;, $page, $action, $subaction);</code></pre>
+</div>
+
+
+<p>Dans ce cas, comme UserSet sait que s&#8217;il est appelé dans le cadre d&#8217;un groupe-X sur Polytechnique.net, il ne doit pas sélectionner d&#8217;utilisateurs hors de l&#8217;annuaire de ce groupe, il n&#8217;y a aucune restriction à lui indiquer : tout l&#8217;annuaire du groupe est sélectionné. On ajoute les deux modules de représentation qu&#8217;on désire utiliser : trombinoscope et Planispère, et applique à la page&hellip; en 4 lignes c&#8217;est fait.</p>
+
+<p>Je m&#8217;extasie devant ce travail parce que je suis content du résultat, mais il n&#8217;est pas pour autant parfait. Son problème actuel est dû au background basé sur SQL : chaque élément (PlSet ou PlView) apporte des bribes d&#8217;une requête SQL permettant de finalement obtenir toutes les informations à afficher (PlView) pour les utilisateurs sélectionnés (PlSet), mais il peut arriver qu&#8217;une même donnée soit utilisée pour la sélection et pour l&#8217;affichage. Dans ce cas, la solution la plus simple est de dupliquer les jointures dans la requête, mais c&#8217;est une solution qui peut sérieusement alourdir et ralentir la requête.</p>
+
+<p>L&#8217;implémentation actuelle gère la duplication au cas par cas : les PlView peuvent contenir tester s&#8217;il faut sélectionner un champ ou non en testant la classe du PlSet utilisé. Cette solution n&#8217;est pas particulièrement propre. La meilleure solution envisageable est d&#8217;utiliser une abstraction des champs SQL : chaque élément ne donnerait plus une bribe de requête SQL mais des informations sur &ldquo;comment sélectionner la donnée&rdquo;&hellip; ensuite la génération de la requête consiste à comparer toutes ces informations et à les assembler. Plat/al possède déjà les outils nécessaires pour réaliser ce jeu d&#8217;assemblage&hellip; ce sera très probablement pour la prochaine release.</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Florent Bruneau</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2007-04-29T21:09:00+02:00" pubdate data-updated="true">Apr 29<span>th</span>, 2007</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/polytechnique-dot-org/'>Polytechnique.org</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://Fruneau.github.io/blog/2007/04/29/0914-en-ligne/" data-via="FlorentBruneau" data-counturl="http://Fruneau.github.io/blog/2007/04/29/0914-en-ligne/" >Tweet</a>
+  
+  
+  <div class="g-plusone" data-size="medium"></div>
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2007/04/21/stats/" title="Previous Post: Stats">&laquo; Stats</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/2007/05/03/vista/" title="Next Post: Vista ?">Vista ? &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2009/04/07/yet-another-policy-daemon-for-postfix2/">Yet Another Policy Daemon for Postfix</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2008/06/04/polytechniqueorg-lance-son-blog/">Polytechnique.org Lance Son Blog</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2008/05/19/vieux-trucs/">Vieux Trucs</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2008/03/02/encodage-et-terminal/">Encodage Et Terminal</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2007/11/01/afficher-des-discussions/">Afficher Des Discussions</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2013 - Florent Bruneau -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
+      script.src = 'https://apis.google.com/js/plusone.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(script, s);
+    })();
+  </script>
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = '//platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

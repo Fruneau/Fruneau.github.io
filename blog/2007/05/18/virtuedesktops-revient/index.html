@@ -1,0 +1,252 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>VirtueDesktops Revient... - Mind...</title>
+  <meta name="author" content="Florent Bruneau">
+
+  
+  <meta name="description" content="Voici plus ou moins trois mois que j&#8217;ai découvert synergy, c&#8217;est vraiment très agréable de pouvoir contrôler les deux ordinateurs sans &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://Fruneau.github.io/blog/2007/05/18/virtuedesktops-revient">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="Mind..." type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/libs/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Mind...</a></h1>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:Fruneau.github.io" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">VirtueDesktops Revient...</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2007-05-18T14:25:00+02:00" pubdate data-updated="true">May 18<span>th</span>, 2007</time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>Voici plus ou moins trois mois que j&#8217;ai découvert <a href="http://synergy2.sf.net">synergy</a>, c&#8217;est vraiment très agréable de pouvoir contrôler les deux ordinateurs sans changer de clavier/souris continuellement. Seul problème, c&#8217;est que sur la machine qui héberge le serveur <code>synergy</code>, <a href="http://virtuedesktops.info">VirtueDesktops</a>, un <em>excellent</em> gestionnaire de bureaux virtuels pour MacOS, n&#8217;arrête pas de crasher. J&#8217;avais donc posté un bugreport sur le trac de Virtue&hellip; malheureusement pour diverses raisons, Tony Arnold a décidé peu après de stopper le développement de Virtue.</p>
+
+<!-- more -->
+
+
+<p>J&#8217;ai donc pris mon courage à 2 mains, et je me suis doucement plongé dans le code de VirtueDesktops (c&#8217;est vraiment bien les applications OpenSource). Il y a maintenant deux semaines, j&#8217;ai soumis le patch permettant de corriger le crash dont je souffrais. Depuis, ce patch a été publié ce qui a conduit la <a href="http://virtuedesktops.info/index.php/2007/05/14/virtuedesktops-054-beta-3/">release de la bêta 3 de Virtue 0.54</a>.</p>
+
+<p>Je me suis relancé dans le développement cette semaine en me fixant comme objectif de corriger plusieurs comportements énervants de Virtue. Par exemple, si je dis que <code>Mail.app</code> doit être sur le bureau Mail, je veux que <strong>toutes</strong> les fenêtres de <code>Mail.app</code> aillent forcément sur ce bureau. Seul problème, c&#8217;est que lorsque je reçois une notification de l&#8217;arrivée d&#8217;un nouveau mail et que je clique sur cette notification, une fenêtre avec le message s&#8217;ouvre sur le bureau courant, et Virtue tourne pour atteindre le bureau de Mail.app&hellip; résultat : j&#8217;ai changé de bureau mais je n&#8217;ai pas accès à la fenêtre que je voulais voir. J&#8217;ai corrigé ce comportement, désormais, la fenêtre est automatiquement déplacée sur le bureau de <code>Mail.app</code> lors de son ouverture.</p>
+
+<p>Autres corrections diverses :</p>
+
+<ul>
+<li>lorsqu&#8217;on ferme une application Virtue reste sur le bureau courant (sauf si il n&#8217;y a plus rien sur le bureau courant)</li>
+<li>lorsqu&#8217;on choisi de changer de bureau, Virtue active désormais la dernière application active connue pour le nouveau bureau</li>
+<li>lorsqu&#8217;on restaure une fenêtre qui était dans le Dock, soit l&#8217;application a le droit d&#8217;être sur le bureau courant et la fenêtre est affichée sur ce bureau sans chercher à changer de bureau, soit l&#8217;application est attribuée à un bureau et dans ce cas la fenêtre est restaurée sur le bureau de l&#8217;application et Virtue change de bureau</li>
+<li>&hellip;</li>
+</ul>
+
+
+<p>Ces changements ont abouti à la <a href="http://virtuedesktops.info/index.php/2007/05/18/virtuedesktops-054-beta-4/">bêta 4</a> et se résument à :</p>
+
+<ul>
+<li>Changing to desktops when you launch, activate, deactivate, minimise, restore or quit an application should be much more consistent;</li>
+<li>Window ordering when changing desktops should be much more consistent;</li>
+</ul>
+
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Florent Bruneau</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2007-05-18T14:25:00+02:00" pubdate data-updated="true">May 18<span>th</span>, 2007</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/geektime/'>GeekTime</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://Fruneau.github.io/blog/2007/05/18/virtuedesktops-revient/" data-via="FlorentBruneau" data-counturl="http://Fruneau.github.io/blog/2007/05/18/virtuedesktops-revient/" >Tweet</a>
+  
+  
+  <div class="g-plusone" data-size="medium"></div>
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2007/05/07/la-banane-et-lescargot/" title="Previous Post: La Banane et l'escargot">&laquo; La Banane et l'escargot</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/2007/05/22/mac-cest-bien-mais-pas-top/" title="Next Post: Mac c'est bien... mais pas top">Mac c'est bien... mais pas top &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2009/04/07/yet-another-policy-daemon-for-postfix2/">Yet Another Policy Daemon for Postfix</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2008/06/04/polytechniqueorg-lance-son-blog/">Polytechnique.org Lance Son Blog</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2008/05/19/vieux-trucs/">Vieux Trucs</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2008/03/02/encodage-et-terminal/">Encodage Et Terminal</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2007/11/01/afficher-des-discussions/">Afficher Des Discussions</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2013 - Florent Bruneau -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
+      script.src = 'https://apis.google.com/js/plusone.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(script, s);
+    })();
+  </script>
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = '//platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>
