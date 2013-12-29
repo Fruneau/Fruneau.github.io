@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Polytechnique.org | Mind...]]></title>
   <link href="http://Fruneau.github.io/blog/categories/polytechnique-dot-org/atom.xml" rel="self"/>
   <link href="http://Fruneau.github.io/"/>
-  <updated>2013-12-29T15:42:30+01:00</updated>
+  <updated>2013-12-29T15:48:47+01:00</updated>
   <id>http://Fruneau.github.io/</id>
   <author>
     <name><![CDATA[Florent Bruneau]]></name>
@@ -12,6 +12,19 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Un Client RSS Pour Lire Les Forums NNTP Et Les Mailing-Lists...]]></title>
+    <link href="http://Fruneau.github.io/blog/2007/02/25/un-client-rss-pour-lire-les-forums-nntp-et-les-mailing-lists-dot-dot-dot/"/>
+    <updated>2007-02-25T19:05:42+01:00</updated>
+    <id>http://Fruneau.github.io/blog/2007/02/25/un-client-rss-pour-lire-les-forums-nntp-et-les-mailing-lists-dot-dot-dot</id>
+    <content type="html"><![CDATA[<p>Si il y a un bout de code dont je suis content au sein de <a href="https://www.polytechnique.org">Polytechnique.org</a>, c'est <a href="http://opensource.polytechnique.org/banana/">Banana</a>. Banana est à l'origine un client Web pour le protocole NNTP (c'est à dire le protocole utilisé par Usenet). Depuis sa dernière version (la 1.5), Banana est capable d'utiliser n'importe quel protocole comme source (les protocoles actuellement implémentés étant le NNTP et la lecture de MBox, mais on pourrait envisager d'ajouter le support des Maildir ou d'IMAP sans problème), ainsi, à Polytechnique.org, nous utilisons Banana pour offrir une plateforme Web vers <a href="https://www.polytechnique.org/banana">nos forums</a> et pour mettre en ligne les archives des Mailing-Lists que nous hébergeons.</p>
+
+<p>Banana est à mon avis un bon outils : il permet un rendu plus que correct de la plupart des mails HTML (même ceux dont le formatage est défini dans une feuille de style), il affiche les discussions proprement et rapidement (grâce à un système de cache du côté serveur). C'est donc un gros plus en comparaison des interfaces habituelles de consultation d'archives de Mailing-List qu'on peut trouver sur Internet&hellip; et puis, ce n'est pas un forum php, pas de fioritures à la phpbb : Banana est clair, lisible et rapide&hellip; et facile à installer. Pour s'en convaincre, il suffit de regarder la <a href="http://opensource.polytechnique.org/viewsvn/filedetails.php?repname=Banana&amp;path=/trunk/examples/index.php&amp;rev=0&amp;sc=1">fichier d'exemple</a> qui fournit un banana totalement fonctionnel (à chacun ensuite d'y ajouter sa couche d'authentification si nécessaire).</p>
+
+<p>La grande nouveauté de la prochaine version de Banana est l'intégration de flux RSS&hellip; ainsi il sera possible de lire les forums sans se connecter au site et sans client news, ou de suivre les discussions des mailing-lists sans relever son courrier (le premier des 2 cas étant certainement le plus intéressant). Pour les utilisateurs de Polytechnique.org, la fonctionnalité est d'ores et déjà disponible sur <a href="http://dev.m4x.org/~x2003bruneau/banana">ma version de développement</a>. Deux types de flux son disponibles : soit un flux par groupe, soit un flux regroupant tous les groupes auxquels on est abonné.</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Pourquoi Faire Propre Quand on Peut Faire Sale ?]]></title>
