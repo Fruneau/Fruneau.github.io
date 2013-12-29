@@ -4,7 +4,7 @@
   <title><![CDATA[Mind...]]></title>
   <link href="http://Fruneau.github.io/atom.xml" rel="self"/>
   <link href="http://Fruneau.github.io/"/>
-  <updated>2013-12-29T16:07:37+01:00</updated>
+  <updated>2013-12-29T16:10:43+01:00</updated>
   <id>http://Fruneau.github.io/</id>
   <author>
     <name><![CDATA[Florent Bruneau]]></name>
@@ -229,7 +229,7 @@ n&#8217;est tout bonnement pas pris en compte.</li>
 <p>Mais alors, comment passer d&#8217;un mode à l&#8217;autre ? Un des facteur, toujours d&#8217;après mYk est la présence d&#8217;un tag <code>&lt;?xml ...&gt;</code> en en-tête du fichier, comme par exemple :</p>
 
 <div>
-  <pre><code class='html'>&lt;?xml version=&quot;1.0&quot; encoding=&quot;iso-8859-15&quot;?&gt;
+  <pre><code class='HTML'>&lt;?xml version=&quot;1.0&quot; encoding=&quot;iso-8859-15&quot;?&gt;
 &lt;!DOCTYPE html PUBLIC &quot;-//W3C//DTD XHTML 1.1//EN&quot; &quot;http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd&quot;&gt;
 &lt;html xmlns=&quot;http://www.w3.org/1999/xhtml&quot;&gt;
   &lt;head&gt;

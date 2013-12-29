@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Polytechnique.org | Mind...]]></title>
   <link href="http://Fruneau.github.io/blog/categories/polytechnique-dot-org/atom.xml" rel="self"/>
   <link href="http://Fruneau.github.io/"/>
-  <updated>2013-12-29T16:07:37+01:00</updated>
+  <updated>2013-12-29T16:10:43+01:00</updated>
   <id>http://Fruneau.github.io/</id>
   <author>
     <name><![CDATA[Florent Bruneau]]></name>
@@ -197,7 +197,7 @@ n'est tout bonnement pas pris en compte.</li>
 <p>Mais alors, comment passer d'un mode à l'autre ? Un des facteur, toujours d'après mYk est la présence d'un tag <code>&lt;?xml ...&gt;</code> en en-tête du fichier, comme par exemple :</p>
 
 <p><div>
-  <pre><code class='html'>&amp;lt;?xml version=&amp;ldquo;1.0&amp;rdquo; encoding=&amp;ldquo;iso-8859-15&amp;rdquo;?&gt;
+  <pre><code class='HTML'>&amp;lt;?xml version=&amp;ldquo;1.0&amp;rdquo; encoding=&amp;ldquo;iso-8859-15&amp;rdquo;?&gt;
 &amp;lt;!DOCTYPE html PUBLIC &amp;ldquo;&amp;ndash;//W3C//DTD XHTML 1.1//EN&amp;rdquo; &amp;ldquo;&lt;a href=&quot;http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd&quot;&gt;http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd&lt;/a&gt;&amp;rdquo;&gt;
 &lt;html xmlns=&quot;http://www.w3.org/1999/xhtml&quot;&gt;
   &lt;head&gt;
