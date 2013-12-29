@@ -1,0 +1,265 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Un Premier Bilan Sur La Sécurité... - Mind...</title>
+  <meta name="author" content="Florent Bruneau">
+
+  
+  <meta name="description" content="Sans entrer dans les détails du fonctionnement des filtres de protection de Polytechnique.org (je laisse ce plaisir à ceux qui auront le courage de &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://Fruneau.github.io/blog/2007/02/27/un-premier-bilan-sur-la-securite-dot-dot-dot">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="Mind..." type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/libs/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Mind...</a></h1>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:Fruneau.github.io" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Un Premier Bilan Sur La Sécurité...</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2007-02-27T16:47:51+01:00" pubdate data-updated="true">Feb 27<span>th</span>, 2007</time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>Sans entrer dans les détails du fonctionnement des filtres de protection de <a href="https://www.polytechnique.org">Polytechnique.org</a> (je laisse ce plaisir à ceux qui auront le courage de lire le code de <a href="http://opensource.polytechnique.org/platal/">plat/al</a>), nous avons ces derniers mois fortement amélioré les outils de surveillance. Alors qu&#8217;il y a encore un an, nous ne détections que quelques usurpations par an, nous sommes actuellement à environ une usurpation détectée par semaine.</p>
+
+<!-- more -->
+
+
+<h1>De quoi s&#8217;inquiéter ?</h1>
+
+<p>Certes la fréquence des usurpations est plus importante que nous pensions mais plus on a d&#8217;outils de protection, plus on a d&#8217;usurpations&hellip; non seulement parce qu&#8217;on en détecte plus, mais aussi parce que d&#8217;une certaine manière, on provoque les usurpations. En effet, lorsque nous détectons une usurpation, nous fermons le compte. Lorsque l&#8217;usurpateur se rend compte qu&#8217;il a perdu l&#8217;accès, il usurpe (ou tout au moins tente d&#8217;usurper) un autre compte.</p>
+
+<p>Ainsi, nous avions détecté un usurpateur mi-janvier. Suite à celà il s&#8217;est réinscrit une fois. Nous l&#8217;avons trouvé et nous avons redésactivé le compte&hellip; il s&#8217;est de nouveau réinscrit, mais pour une raison que je ne comprends pas, nous avons manqué cette inscription&hellip; mais finalement, il a oublié son compte, et hier il a retenté de se connecter. Mais cette fois-ci son IP était bannie, et c&#8217;est donc 2 comptes qu&#8217;il a tenté d&#8217;usurper tour à tour.</p>
+
+<p>C&#8217;est donc <strong>5</strong> comptes pour une personne&hellip; pas mal non ? Nous n&#8217;aurions pas détecté la première de ces usurpations, il en serait resté à une seule.</p>
+
+<p>De plus, la plus grande majorité des comptes usurpés sont abandonnés par leur usurpateur dans le mois qui suit l&#8217;inscription. Nous détectons donc majoritairement des comptes abandonnés. Les usurpations sont donc gênantes, mais certainement pas inquiétantes. A force de tests, nous épurons petit-à-petit la base.</p>
+
+<p>Donc, je ne pense pas qu&#8217;il y ait de quoi s&#8217;inquiéter de la fréquence des usurpations et la proportion de comptes usurpés de notre base.</p>
+
+<h1>Sécuriser une inscription peu sélective</h1>
+
+<p>La faille de Polytechnique.org est la faible sélectivité de son système d&#8217;inscription. Le problème est que nous avons une base des alumnis et qu&#8217;il faut faire correspondre chaque entrée à la bonne personne physique. Il est quasiment trivial pour n&#8217;importe qui de trouver les informations nécessaire pour remplir le formulaire d&#8217;inscription&hellip; comment s&#8217;assurer que finalement il s&#8217;agit bien de la bonne personne ?</p>
+
+<p>Nous avons donc plusieurs niveaux de filtrages :</p>
+
+<p>1  Le premier consiste à vérifier autant que possible la crédibilité des informations données dans le formulaire d&#8217;inscription
+1  Le deuxième consiste à réaliser un filtrage &ldquo;humain&rdquo;&hellip; il suffit de vérifier pour chaque inscription les informations de chaque inscription
+1  Traitement comportemental. C&#8217;est le filtrage qu&#8217;il nous faut améliorer actuellement
+1  La vérification de cohérence de la base de donnée (à partir d&#8217;idées données de temps en temps, on défini un critère d&#8217;usurpation <em>probable</em>, et on check)</p>
+
+<p>Là où nous avons fait beaucoup de progrès, c&#8217;est sur le points 1 et 2 : nous sommes désormais en mesure de contrer la plupart des usurpations dès l&#8217;inscription alors qu&#8217;il y a quelques mois, nous n&#8217;avions que le point 4&hellip; c&#8217;est à dire des vérifications éparses.</p>
+
+<h1>Nos points faibles&hellip; et nos évolutions</h1>
+
+<p>Tout d&#8217;abord, si je me permets d&#8217;écire ce billet, c&#8217;est que je pense que nous sommes suffisamment sécurisés pour contrer les petits plaisantins qui en lisant ce texte voudraient tenter une usurpation&hellip; ce n&#8217;est pas de la provocation, mais un bilan.</p>
+
+<p>Nos points faibles sont actuellement dans l&#8217;analyse de la base établie avant la mise en place de nos filtres. Il s&#8217;agit donc d&#8217;améliorer les points 3 et 4 indiqués précédemment. Le 3 repose principalement sur un facteur humain : non seulement personne n&#8217;est parfait, et l&#8217;usurpateur fera quasiment toujours une erreur, mais en plus il sera en contact avec d&#8217;autres utilisateurs et c&#8217;est au travers de ses échanges (que ce soit via une fiche de l&#8217;annuaire ou via des discussions par mail ou sur un forum) que nous pourrons envisager de le cerner.</p>
+
+<p>La vérification de la base de données nécessite des idées&hellip; mais également des informations : nous pouvons vérifier la cohérence de notre base sur le fondement de quelques idées, mais rien ne vaut la comparaison avec des informations que nous savons exactes. Obtenir ces informations est le point bloquant&hellip; et là encore il y a un facteur humain.</p>
+
+<p>Nous ne pouvons donc qu&#8217;espérer que la prochaine fusion de notre annuaire avec celui de l&#8217;<a href="http://www.polytechnicien.com">AX</a>, qui est vérifié par des secrétaires qui ont les moyens matériels et temporels de le faire, sera le meilleur moyen de nettoyer notre annuaire.</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Florent Bruneau</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2007-02-27T16:47:51+01:00" pubdate data-updated="true">Feb 27<span>th</span>, 2007</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/polytechnique-dot-org/'>Polytechnique.org</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://Fruneau.github.io/blog/2007/02/27/un-premier-bilan-sur-la-securite-dot-dot-dot/" data-via="FlorentBruneau" data-counturl="http://Fruneau.github.io/blog/2007/02/27/un-premier-bilan-sur-la-securite-dot-dot-dot/" >Tweet</a>
+  
+  
+  <div class="g-plusone" data-size="medium"></div>
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2007/02/25/un-client-rss-pour-lire-les-forums-nntp-et-les-mailing-lists-dot-dot-dot/" title="Previous Post: Un client RSS pour lire les Forums NNTP et les Mailing-Lists...">&laquo; Un client RSS pour lire les Forums NNTP et les Mailing-Lists...</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/2007/03/01/polytechnique-dot-org-en-retard/" title="Next Post: Polytechnique.org en retard ?">Polytechnique.org en retard ? &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2007/03/01/polytechnique-dot-org-en-retard/">Polytechnique.org en Retard ?</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2007/02/27/un-premier-bilan-sur-la-securite-dot-dot-dot/">Un Premier Bilan Sur La Sécurité...</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2007/02/25/un-client-rss-pour-lire-les-forums-nntp-et-les-mailing-lists-dot-dot-dot/">Un Client RSS Pour Lire Les Forums NNTP Et Les Mailing-Lists...</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2007/02/24/se-decouvrir-sur-internet-dot-dot-dot/">Se Découvrir Sur Internet...</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2007/02/23/pourquoi-faire-propre-quand-on-peut-faire-sale/">Pourquoi Faire Propre Quand on Peut Faire Sale ?</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2013 - Florent Bruneau -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
+      script.src = 'https://apis.google.com/js/plusone.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(script, s);
+    })();
+  </script>
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = '//platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

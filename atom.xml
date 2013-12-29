@@ -4,7 +4,7 @@
   <title><![CDATA[Mind...]]></title>
   <link href="http://Fruneau.github.io/atom.xml" rel="self"/>
   <link href="http://Fruneau.github.io/"/>
-  <updated>2013-12-29T15:48:47+01:00</updated>
+  <updated>2013-12-29T16:07:37+01:00</updated>
   <id>http://Fruneau.github.io/</id>
   <author>
     <name><![CDATA[Florent Bruneau]]></name>
@@ -12,6 +12,152 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Polytechnique.org en Retard ?]]></title>
+    <link href="http://Fruneau.github.io/blog/2007/03/01/polytechnique-dot-org-en-retard/"/>
+    <updated>2007-03-01T16:28:37+01:00</updated>
+    <id>http://Fruneau.github.io/blog/2007/03/01/polytechnique-dot-org-en-retard</id>
+    <content type="html"><![CDATA[<p><a href="https://www.polytechnique.org">Polytechnique.org</a> est, comme l&#8217;indique le nom du logiciel OpenSource sur lequel le site repose (<a href="http://opensource.polytechnique.org/platal/">plat/al</a>), une plateforme pour les anciens élèves de l&#8217;<a href="http://www.polytechnique.fr">École</a>&hellip; c&#8217;est à dire que Polytechnique.org devrait :</p>
+
+<ul>
+<li>apporter de la vie dans la communauté</li>
+<li>faciliter les mises en relation entre les membres</li>
+<li>offrir des services à la communauté</li>
+</ul>
+
+
+<p>Polytechnique.org offre ces trois services&hellip; mais pourtant moins d&#8217;un utilisateur sur 5 se connecte régulièrement au site (une fois par semaine &ndash; et le plus souvent c&#8217;est pour accéder à des sites qui utilisent l&#8217;authentification de Polytechnique.org), environ un sur 3 se connecte une fois par mois, et un sur 3 ne se connecte tout bonnement jamais. Face à cela, on dénombre un grand nombre d&#8217;utilisateurs qui sont intéressés par un groupe Polytechnique sur des outils comme Linked-In&hellip; pourquoi ? parce que le rôle de Polytechnique.org n&#8217;est rempli qu&#8217;à moitié et ce pour plusieurs raisons :</p>
+
+<!-- more -->
+
+
+<h1>Ergonomie</h1>
+
+<p>La catastrophe sur Polytechnique.org c&#8217;est l&#8217;ergonomie&hellip; ce n&#8217;est certes pas la fin du monde (on peut encore s&#8217;y retrouver), mais le site ne donne pas envie de s&#8217;y arrêter. Je vais essayer de détailler les divers problèmes :</p>
+
+<h2>Le menu</h2>
+
+<p><img src="http://Fruneau.github.io/assets/screenshots/menu.jpg" alt="Menu du site" /></p>
+
+<p>Le menu de Polytechnique.org témoigne de la richesse du site : il est long. Comme tout menu, il a fallu choisir l&#8217;ordre des entrées. Le choix de cet ordonnancement laisse clairement à désirer. Par exemple : où chercher un lien vers l&#8217;annuaire ? Dans <em>Services</em> ou <em>Communauté X</em> ? Etant un utilisateur du site depuis longtemps, je mets toujours autant de temps avant de trouver ce que je cherche dans le menu.</p>
+
+<p>Peut-être devrions-nous revoir tout bonnement l&#8217;organisation du menu, par exemple avec des catégories plus parlantes, par exemple un premier jet pourrait donner (mais ça mérite d&#8217;être travaillé) :</p>
+
+<ul>
+<li>Mes emails
+
+<ul>
+<li>Mes redirections</li>
+<li>Mes abonnements</li>
+<li>Antispam</li>
+</ul>
+</li>
+<li>Annuaire
+
+<ul>
+<li>Rechercher</li>
+<li>Mon profil</li>
+</ul>
+</li>
+<li>Communauté
+
+<ul>
+<li>Annonces</li>
+<li>Lettre mensuelle</li>
+<li>Discussions</li>
+</ul>
+</li>
+<li>Emploi</li>
+</ul>
+
+
+<h2>Deux sites séparés</h2>
+
+<p>Polytechnique.org c&#8217;est aussi Polytechnique.net : le site des groupes. Le fait d&#8217;avoir 2 sites totalement séparés pose un grand nombre de problème, depuis le partage de l&#8217;authentification, jusqu&#8217;à la cohérence des données.</p>
+
+<p>Il faut clairement envisager de fusionner les deux sites dans un avenir plus ou moins proche si on veut que les utilisateurs s&#8217;y retrouvent. De la même manière qu&#8217;on peut réorganiser le menu, on peut réorganiser l&#8217;accès général au site&hellip; Par exemple, on pourrait envisager de créer un menu tabulé : dans chaque tab, on retrouve un menu spécifique. Par exemple, on pourrait, au lieu d&#8217;avoir un menu à deux niveaux, des tabs (Mes emails, Annuaire, Annonces&hellip;) et dans chaque tabs un menu spécifique donnant accès aux fonctionnalités correspondantes.</p>
+
+<p><strong>Avantages :</strong> On aurait ainsi un proprement rangé&hellip; le site étant modulaire, chaque module pourrait lui même générer ses entrées dans les menus/tabs, l&#8217;intégration des Polytechnique.net à Polytechnique.org ne serait que l&#8217;ajout d&#8217;un tab &ldquo;Mes groupes X&rdquo;</p>
+
+<p><strong>Défauts :</strong> On a pas d&#8217;accès facile à l&#8217;ensemble des fonctionnalités&hellip; c&#8217;est le seul défaut (pas des moindres) que je vois.</p>
+
+<p>C&#8217;est une solution qui mérite qu&#8217;on s&#8217;y intéresse&hellip; le choix de la meilleur ergonomie possible nécessitera de toute façon des tests.</p>
+
+<h2>Dinosaure</h2>
+
+<p><strong>Toutes</strong> les skins de Polytechnique.org sont carrées&hellip; En particulier la skin par défaut a très mal vieilli. Les polices y sont énormes, toutes les informations sont dans des boîtes carrées. Le site à sérieusement besoin d&#8217;une petite cure de jouvence pour retrouver un design aguichant.</p>
+
+<h1><a href="http://en.wikipedia.org/wiki/Web_2.0">Web 2.0</a></h1>
+
+<p>Dire que son site est Web 2.0 est à la mode&hellip; Polytechnique.org ne l&#8217;est pas vraiment, et ceci pour diverses raisons.</p>
+
+<h2>La pointe de la technologie</h2>
+
+<p>Tout d&#8217;abord le site est trop statique. Quand la page d&#8217;accueil est chargée, elle est chargée&hellip; à la rigueur on peut fermer quelques boites mais c&#8217;est tout. Le site est statique&hellip; Le Web actuel s&#8217;ouvre vers des pages vivantes avec lesquels l&#8217;utilisateur peut interagir&hellip; Le plus souvent cela repose sur des technologies du type Ajax. Polytechnique.org utilise un peu Ajax, mais on va dire que c&#8217;est <em>artisanal</em>&hellip; il y a un gros boulot à faire de ce côté si on veut que le site devienne un outil convivial pour l&#8217;utilisateur.</p>
+
+<p>Une autre technologie qui fait le succès du web est l&#8217;édition dynamique de contenu. Polytechnique.org utilise du wiki pour l&#8217;édition de sa documentation&hellip; mais, en grande majorité, ceci se limite à la simplification du travail d&#8217;administration du site. Par contre pour tous les contenus dynamiques, nous n&#8217;offrons que du texte brut à nos utilisateurs. Là où se trouve le vrai problème, c&#8217;est sur l&#8217;outil d&#8217;hébergement que nous offrons aux groupes : <a href="http://opensource.polytechnique.org/diogenes">Diogenes</a>.</p>
+
+<p>Diogenes a mal vieilli parce que sont apparus face à lui des outils plus simples à utiliser. Aujourd&#8217;hui Diogenes mérite un gros décrassage si on veut pouvoir continuer à l&#8217;utiliser.</p>
+
+<h2>Vie sociale</h2>
+
+<p>Là où Polytechnique.org est le plus en retard, c&#8217;est sur les outils qui permettent de donner vie à la communauté. Certes nous avons nos forums, mais ils ne sont pas vraiment mis en avant sur le site&hellip; Nous n&#8217;avons en effet nulle part des liens qui permettent aux utilisateurs de commenter l&#8217;actualité de la communauté. Pour améliorer ça, nous pourrions par exemple associer à chaque annonce une discussion sur un forum dédié (discussion qui serait initiée par la publication de l&#8217;annonce en question sur le forum en plus de la page d&#8217;accueil).</p>
+
+<h1>Conclusion</h1>
+
+<p>Voilà, tout ceci un peu en vrac pour dire que nous avons des outils, de très bons outils même, largement en avance sur l&#8217;utilisation qu&#8217;en font les utilisateurs. Malheureusement nous souffrons d&#8217;un manque d&#8217;adaptation à l&#8217;utilisateur : l&#8217;utilisateur recherche avant tout un site facile à utiliser sur lequel il puisse faire ce qu&#8217;il cherche le plus rapidement possible.</p>
+
+<p>Il est nécessaire de réorienter fortement le développement vers l&#8217;ergonomie dans les mois qui viennent : à terme il faudrait que les utilisateurs puissent utiliser Polytechnique.org comme une page d&#8217;accueil conviviale offrant des services tels qu&#8217;on en trouve couramment sur les principaux portails (recherche Internet, outils de gestion <a href="http://en.wikipedia.org/wiki/Personal_information_manager">PIM</a>&hellip;) tout en offrant les services de base d&#8217;une plateforme pour alumnis.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Un Premier Bilan Sur La Sécurité...]]></title>
+    <link href="http://Fruneau.github.io/blog/2007/02/27/un-premier-bilan-sur-la-securite-dot-dot-dot/"/>
+    <updated>2007-02-27T16:47:51+01:00</updated>
+    <id>http://Fruneau.github.io/blog/2007/02/27/un-premier-bilan-sur-la-securite-dot-dot-dot</id>
+    <content type="html"><![CDATA[<p>Sans entrer dans les détails du fonctionnement des filtres de protection de <a href="https://www.polytechnique.org">Polytechnique.org</a> (je laisse ce plaisir à ceux qui auront le courage de lire le code de <a href="http://opensource.polytechnique.org/platal/">plat/al</a>), nous avons ces derniers mois fortement amélioré les outils de surveillance. Alors qu&#8217;il y a encore un an, nous ne détections que quelques usurpations par an, nous sommes actuellement à environ une usurpation détectée par semaine.</p>
+
+<!-- more -->
+
+
+<h1>De quoi s&#8217;inquiéter ?</h1>
+
+<p>Certes la fréquence des usurpations est plus importante que nous pensions mais plus on a d&#8217;outils de protection, plus on a d&#8217;usurpations&hellip; non seulement parce qu&#8217;on en détecte plus, mais aussi parce que d&#8217;une certaine manière, on provoque les usurpations. En effet, lorsque nous détectons une usurpation, nous fermons le compte. Lorsque l&#8217;usurpateur se rend compte qu&#8217;il a perdu l&#8217;accès, il usurpe (ou tout au moins tente d&#8217;usurper) un autre compte.</p>
+
+<p>Ainsi, nous avions détecté un usurpateur mi-janvier. Suite à celà il s&#8217;est réinscrit une fois. Nous l&#8217;avons trouvé et nous avons redésactivé le compte&hellip; il s&#8217;est de nouveau réinscrit, mais pour une raison que je ne comprends pas, nous avons manqué cette inscription&hellip; mais finalement, il a oublié son compte, et hier il a retenté de se connecter. Mais cette fois-ci son IP était bannie, et c&#8217;est donc 2 comptes qu&#8217;il a tenté d&#8217;usurper tour à tour.</p>
+
+<p>C&#8217;est donc <strong>5</strong> comptes pour une personne&hellip; pas mal non ? Nous n&#8217;aurions pas détecté la première de ces usurpations, il en serait resté à une seule.</p>
+
+<p>De plus, la plus grande majorité des comptes usurpés sont abandonnés par leur usurpateur dans le mois qui suit l&#8217;inscription. Nous détectons donc majoritairement des comptes abandonnés. Les usurpations sont donc gênantes, mais certainement pas inquiétantes. A force de tests, nous épurons petit-à-petit la base.</p>
+
+<p>Donc, je ne pense pas qu&#8217;il y ait de quoi s&#8217;inquiéter de la fréquence des usurpations et la proportion de comptes usurpés de notre base.</p>
+
+<h1>Sécuriser une inscription peu sélective</h1>
+
+<p>La faille de Polytechnique.org est la faible sélectivité de son système d&#8217;inscription. Le problème est que nous avons une base des alumnis et qu&#8217;il faut faire correspondre chaque entrée à la bonne personne physique. Il est quasiment trivial pour n&#8217;importe qui de trouver les informations nécessaire pour remplir le formulaire d&#8217;inscription&hellip; comment s&#8217;assurer que finalement il s&#8217;agit bien de la bonne personne ?</p>
+
+<p>Nous avons donc plusieurs niveaux de filtrages :</p>
+
+<p>1  Le premier consiste à vérifier autant que possible la crédibilité des informations données dans le formulaire d&#8217;inscription
+1  Le deuxième consiste à réaliser un filtrage &ldquo;humain&rdquo;&hellip; il suffit de vérifier pour chaque inscription les informations de chaque inscription
+1  Traitement comportemental. C&#8217;est le filtrage qu&#8217;il nous faut améliorer actuellement
+1  La vérification de cohérence de la base de donnée (à partir d&#8217;idées données de temps en temps, on défini un critère d&#8217;usurpation <em>probable</em>, et on check)</p>
+
+<p>Là où nous avons fait beaucoup de progrès, c&#8217;est sur le points 1 et 2 : nous sommes désormais en mesure de contrer la plupart des usurpations dès l&#8217;inscription alors qu&#8217;il y a quelques mois, nous n&#8217;avions que le point 4&hellip; c&#8217;est à dire des vérifications éparses.</p>
+
+<h1>Nos points faibles&hellip; et nos évolutions</h1>
+
+<p>Tout d&#8217;abord, si je me permets d&#8217;écire ce billet, c&#8217;est que je pense que nous sommes suffisamment sécurisés pour contrer les petits plaisantins qui en lisant ce texte voudraient tenter une usurpation&hellip; ce n&#8217;est pas de la provocation, mais un bilan.</p>
+
+<p>Nos points faibles sont actuellement dans l&#8217;analyse de la base établie avant la mise en place de nos filtres. Il s&#8217;agit donc d&#8217;améliorer les points 3 et 4 indiqués précédemment. Le 3 repose principalement sur un facteur humain : non seulement personne n&#8217;est parfait, et l&#8217;usurpateur fera quasiment toujours une erreur, mais en plus il sera en contact avec d&#8217;autres utilisateurs et c&#8217;est au travers de ses échanges (que ce soit via une fiche de l&#8217;annuaire ou via des discussions par mail ou sur un forum) que nous pourrons envisager de le cerner.</p>
+
+<p>La vérification de la base de données nécessite des idées&hellip; mais également des informations : nous pouvons vérifier la cohérence de notre base sur le fondement de quelques idées, mais rien ne vaut la comparaison avec des informations que nous savons exactes. Obtenir ces informations est le point bloquant&hellip; et là encore il y a un facteur humain.</p>
+
+<p>Nous ne pouvons donc qu&#8217;espérer que la prochaine fusion de notre annuaire avec celui de l&#8217;<a href="http://www.polytechnicien.com">AX</a>, qui est vérifié par des secrétaires qui ont les moyens matériels et temporels de le faire, sera le meilleur moyen de nettoyer notre annuaire.</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Un Client RSS Pour Lire Les Forums NNTP Et Les Mailing-Lists...]]></title>
