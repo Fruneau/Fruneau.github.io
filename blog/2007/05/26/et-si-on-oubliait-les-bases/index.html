@@ -103,62 +103,61 @@
 
 <p>C&#8217;est intéressant&hellip; jusqu&#8217;à maintenant Virtue suppose que le gid du groupe procmod est celui par défaut de MacOS (c&#8217;est à dire qu&#8217;il vaut 9)&hellip; et le problème est donc que si un utilisateur a un procmod différent (ou si Apple décide un jour de changer le gid du groupe), le code actuel peut avoir des résultats inattendus, il faut donc faire un code plus portable qui recherche le gid de procmod au lieu de le stocker en dur. Ce n&#8217;est clairement pas une mauvaise idée ! Seul problème, le patch soumis est le suivant (au cas où certain voudrait réutiliser ce code, je tiens à signaler que c&#8217;est une mauvaise idée !) :</p>
 
-<div>
-  <pre><code class='c'>#define NI_DOMAIN    &quot;.&quot;
-#define NI_PATH     &quot;/name=groups/name=procmod&quot;
-#define NI_KEY      &quot;gid&quot;
+<div class="highlight"><pre><code class="c"><span class="cp">#define NI_DOMAIN  &quot;.&quot;</span>
+<span class="cp">#define NI_PATH        &quot;/name=groups/name=procmod&quot;</span>
+<span class="cp">#define NI_KEY     &quot;gid&quot;</span>
 
-// Sucked from netinfo-369.5/tools/niutil/niutil.c
-ni_status ni_read_single_prop(char **property)
-{
-    const char *args[] = {NI_DOMAIN, NI_PATH, NI_KEY};
+<span class="c1">// Sucked from netinfo-369.5/tools/niutil/niutil.c</span>
+<span class="n">ni_status</span> <span class="nf">ni_read_single_prop</span><span class="p">(</span><span class="kt">char</span> <span class="o">**</span><span class="n">property</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="k">const</span> <span class="kt">char</span> <span class="o">*</span><span class="n">args</span><span class="p">[]</span> <span class="o">=</span> <span class="p">{</span><span class="n">NI_DOMAIN</span><span class="p">,</span> <span class="n">NI_PATH</span><span class="p">,</span> <span class="n">NI_KEY</span><span class="p">};</span>
     
-    char myname[] = &quot;ni_read_single_prop&quot;;
-    const bool opt_tag = false;
-    const int timeout = 30;
+    <span class="kt">char</span> <span class="n">myname</span><span class="p">[]</span> <span class="o">=</span> <span class="s">&quot;ni_read_single_prop&quot;</span><span class="p">;</span>
+    <span class="k">const</span> <span class="n">bool</span> <span class="n">opt_tag</span> <span class="o">=</span> <span class="nb">false</span><span class="p">;</span>
+    <span class="k">const</span> <span class="kt">int</span> <span class="n">timeout</span> <span class="o">=</span> <span class="mi">30</span><span class="p">;</span>
     
-    ni_namelist nl;
-    void *domain;
-    ni_id dir;  
-    ni_status ret;
+    <span class="n">ni_namelist</span> <span class="n">nl</span><span class="p">;</span>
+    <span class="kt">void</span> <span class="o">*</span><span class="n">domain</span><span class="p">;</span>
+    <span class="n">ni_id</span> <span class="n">dir</span><span class="p">;</span> 
+    <span class="n">ni_status</span> <span class="n">ret</span><span class="p">;</span>
 
-    if ((ret = do_open(myname, args[0], &amp;domain, opt_tag, timeout, NULL, NULL)) != 0) return ret;
+    <span class="k">if</span> <span class="p">((</span><span class="n">ret</span> <span class="o">=</span> <span class="n">do_open</span><span class="p">(</span><span class="n">myname</span><span class="p">,</span> <span class="n">args</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="o">&amp;</span><span class="n">domain</span><span class="p">,</span> <span class="n">opt_tag</span><span class="p">,</span> <span class="n">timeout</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">))</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">)</span> <span class="k">return</span> <span class="n">ret</span><span class="p">;</span>
 
-    /* args[1] should be a directory specification */
-    ret = ni2_pathsearch(domain, &amp;dir, args[1]);
-    if (ret != NI_OK) {
-        fprintf(stderr, &quot;%s: can&#39;t open directory %s: %s
-&quot;, myname, args[1], ni_error(ret));
-        ni_free(domain);
-        return ret;
-    }
+    <span class="cm">/* args[1] should be a directory specification */</span>
+    <span class="n">ret</span> <span class="o">=</span> <span class="n">ni2_pathsearch</span><span class="p">(</span><span class="n">domain</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">dir</span><span class="p">,</span> <span class="n">args</span><span class="p">[</span><span class="mi">1</span><span class="p">]);</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">ret</span> <span class="o">!=</span> <span class="n">NI_OK</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">fprintf</span><span class="p">(</span><span class="n">stderr</span><span class="p">,</span> <span class="s">&quot;%s: can&#39;t open directory %s: %s</span>
+<span class="s">&quot;, myname, args[1], ni_error(ret));</span>
+        <span class="n">ni_free</span><span class="p">(</span><span class="n">domain</span><span class="p">);</span>
+        <span class="k">return</span> <span class="n">ret</span><span class="p">;</span>
+    <span class="p">}</span>
 
-    /* get the property values for args[2] */
-    NI_INIT(&amp;nl);
-    ret = ni_lookupprop(domain, &amp;dir, args[2], &amp;nl);
-    if (ret != NI_OK) {
-        fprintf(stderr, &quot;%s: can&#39;t get property %s in directory %s: %s
-&quot;, myname, args[2], args[1], ni_error(ret));
-        ni_free(domain);
-        return ret;
-    }
+    <span class="cm">/* get the property values for args[2] */</span>
+    <span class="n">NI_INIT</span><span class="p">(</span><span class="o">&amp;</span><span class="n">nl</span><span class="p">);</span>
+    <span class="n">ret</span> <span class="o">=</span> <span class="n">ni_lookupprop</span><span class="p">(</span><span class="n">domain</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">dir</span><span class="p">,</span> <span class="n">args</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="o">&amp;</span><span class="n">nl</span><span class="p">);</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">ret</span> <span class="o">!=</span> <span class="n">NI_OK</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">fprintf</span><span class="p">(</span><span class="n">stderr</span><span class="p">,</span> <span class="s">&quot;%s: can&#39;t get property %s in directory %s: %s</span>
+<span class="s">&quot;, myname, args[2], args[1], ni_error(ret));</span>
+        <span class="n">ni_free</span><span class="p">(</span><span class="n">domain</span><span class="p">);</span>
+        <span class="k">return</span> <span class="n">ret</span><span class="p">;</span>
+    <span class="p">}</span>
     
     
-    if (nl.ni_namelist_len != 1) {
-        fprintf(stderr, &quot;%s: expected length = 1, found length = %d
-&quot;, myname, nl.ni_namelist_len);
-        return NI_FAILED;
-    }
+    <span class="k">if</span> <span class="p">(</span><span class="n">nl</span><span class="p">.</span><span class="n">ni_namelist_len</span> <span class="o">!=</span> <span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">fprintf</span><span class="p">(</span><span class="n">stderr</span><span class="p">,</span> <span class="s">&quot;%s: expected length = 1, found length = %d</span>
+<span class="s">&quot;, myname, nl.ni_namelist_len);</span>
+        <span class="k">return</span> <span class="n">NI_FAILED</span><span class="p">;</span>
+    <span class="p">}</span>
     
-    *property = (char*)calloc(strlen(nl.ni_namelist_val[0]) + 1, sizeof(char));
-    strcpy(*property, nl.ni_namelist_val[0]);
+    <span class="o">*</span><span class="n">property</span> <span class="o">=</span> <span class="p">(</span><span class="kt">char</span><span class="o">*</span><span class="p">)</span><span class="n">calloc</span><span class="p">(</span><span class="n">strlen</span><span class="p">(</span><span class="n">nl</span><span class="p">.</span><span class="n">ni_namelist_val</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="kt">char</span><span class="p">));</span>
+    <span class="n">strcpy</span><span class="p">(</span><span class="o">*</span><span class="n">property</span><span class="p">,</span> <span class="n">nl</span><span class="p">.</span><span class="n">ni_namelist_val</span><span class="p">[</span><span class="mi">0</span><span class="p">]);</span>
     
-    ni_namelist_free(&amp;nl);
-    ni_free(domain);
+    <span class="n">ni_namelist_free</span><span class="p">(</span><span class="o">&amp;</span><span class="n">nl</span><span class="p">);</span>
+    <span class="n">ni_free</span><span class="p">(</span><span class="n">domain</span><span class="p">);</span>
     
-    return NI_OK;
-}</code></pre>
-</div>
+    <span class="k">return</span> <span class="n">NI_OK</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
 
 
 <p>Donc que fait cette fonction ? C&#8217;est assez simple : elle utilise l&#8217;utilitaire NetInfo d&#8217;Apple pour lire les informations relatives au chemin <code>/groups/procmod</code>. Une fois là dedans elle copie la valeur stockée à la clé <code>gid</code> et renvoie cette chaîne dans le pointeur passé en argument.</p>
@@ -171,21 +170,20 @@ ni_status ni_read_single_prop(char **property)
 
 <p>Voici donc une solution qui fait la même chose que la fonction ci-dessus, en mieux et surtout en beaucoup moins de lignes :</p>
 
-<div>
-  <pre><code class='c'>#include &lt;grp.h&gt;
+<div class="highlight"><pre><code class="c"><span class="cp">#include &lt;grp.h&gt;</span>
 
-static int getProcmodGid()
-{
-    struct group* groupDesc; 
-    int gid = -1; 
-    groupDesc = getgrnam(&quot;procmod&quot;); 
-    if (groupDesc) {
-        gid = groupDesc-&gt;gr_gid; 
-        free(groupDesc); 
-    } 
-    return gid; 
-}</code></pre>
-</div>
+<span class="k">static</span> <span class="kt">int</span> <span class="nf">getProcmodGid</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="k">struct</span> <span class="n">group</span><span class="o">*</span> <span class="n">groupDesc</span><span class="p">;</span> 
+    <span class="kt">int</span> <span class="n">gid</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span> 
+    <span class="n">groupDesc</span> <span class="o">=</span> <span class="n">getgrnam</span><span class="p">(</span><span class="s">&quot;procmod&quot;</span><span class="p">);</span> 
+    <span class="k">if</span> <span class="p">(</span><span class="n">groupDesc</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">gid</span> <span class="o">=</span> <span class="n">groupDesc</span><span class="o">-&gt;</span><span class="n">gr_gid</span><span class="p">;</span> 
+        <span class="n">free</span><span class="p">(</span><span class="n">groupDesc</span><span class="p">);</span> 
+    <span class="p">}</span> 
+    <span class="k">return</span> <span class="n">gid</span><span class="p">;</span> 
+<span class="p">}</span>
+</code></pre></div>
 
 
 <p>Pourquoi cette solution est-elle meilleure ?</p>

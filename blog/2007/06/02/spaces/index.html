@@ -99,12 +99,11 @@
 
 <p>A ma grande surprise, tout ceci est en fait géré nativement par MacOS X&hellip; la bibliothèque CoreGraphics contient en effet quelques fonctions cachées qui gèrent l&#8217;attribution d&#8217;une fenêtre à un Workspace et les transitions entre ces Workspaces. On peut trouver la liste complète de ces fonctions sur la <a href="http://trac.virtuedesktops.info/browser/trunk/Shared/Headers/CGSPrivate.h">SVN de VirtueDesktops</a>.</p>
 
-<div>
-  <pre><code class='Objective-C'>extern OSStatus CGSMoveWorkspaceWindowList(const CGSConnection connection, CGSWindow *wids, int count, int toWorkspace);
-extern OSStatus CGSGetWorkspace(const CGSConnection cid, int *workspace);
-extern OSStatus CGSGetWindowWorkspace(const CGSConnection cid, const CGSWindow wid, int *workspace);
-extern OSStatus CGSSetWorkspace(const CGSConnection cid, int workspace);</code></pre>
-</div>
+<div class="highlight"><pre><code class="objective-c"><span class="k">extern</span> <span class="n">OSStatus</span> <span class="nf">CGSMoveWorkspaceWindowList</span><span class="p">(</span><span class="k">const</span> <span class="n">CGSConnection</span> <span class="n">connection</span><span class="p">,</span> <span class="n">CGSWindow</span> <span class="o">*</span><span class="n">wids</span><span class="p">,</span> <span class="kt">int</span> <span class="n">count</span><span class="p">,</span> <span class="kt">int</span> <span class="n">toWorkspace</span><span class="p">);</span>
+<span class="k">extern</span> <span class="n">OSStatus</span> <span class="nf">CGSGetWorkspace</span><span class="p">(</span><span class="k">const</span> <span class="n">CGSConnection</span> <span class="n">cid</span><span class="p">,</span> <span class="kt">int</span> <span class="o">*</span><span class="n">workspace</span><span class="p">);</span>
+<span class="k">extern</span> <span class="n">OSStatus</span> <span class="nf">CGSGetWindowWorkspace</span><span class="p">(</span><span class="k">const</span> <span class="n">CGSConnection</span> <span class="n">cid</span><span class="p">,</span> <span class="k">const</span> <span class="n">CGSWindow</span> <span class="n">wid</span><span class="p">,</span> <span class="kt">int</span> <span class="o">*</span><span class="n">workspace</span><span class="p">);</span>
+<span class="k">extern</span> <span class="n">OSStatus</span> <span class="nf">CGSSetWorkspace</span><span class="p">(</span><span class="k">const</span> <span class="n">CGSConnection</span> <span class="n">cid</span><span class="p">,</span> <span class="kt">int</span> <span class="n">workspace</span><span class="p">);</span>
+</code></pre></div>
 
 
 <p>VirtueDesktops (et également DesktopsManager) n&#8217;est qu&#8217;une interface graphique qui tente d&#8217;utiliser ces fonctions. Et là <a href="http://www.apple.com/fr/macosx/leopard/spaces.html">Spaces</a> part avec une longueur d&#8217;avance car contrairement à VirtueDesktops, il sera facile pour Apple de gérer les ouvertures, fermetures et masquage d&#8217;application ce qui est à mon avis le plus gros point faible de Virtue. J&#8217;ai beaucoup travaillé là-dessus et je pense arriver actuellement aux limites de ce qu&#8217;il est possible de faire avec un gestionnaire de bureaux virtuels sur Tiger.</p>

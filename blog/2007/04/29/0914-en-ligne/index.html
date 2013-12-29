@@ -137,25 +137,23 @@
 
 <p>Dans plat/al, le Model s&#8217;appelle PlSet (duquel hérite un UserSet spécialisé dans les ensembles d&#8217;utilisateurs), et le View s&#8217;appelle PlView. De cette manière, l&#8217;affichage des contacts se fait en 5 lignes de code :</p>
 
-<div>
-  <pre><code class='php'>$view = new UserSet(&quot;INNER JOIN contacts AS c2 ON (u.user_id = c2.contact)&quot;, &quot; c2.uid = $uid &quot;);
-$view-&gt;addMod(&#39;minifiche&#39;, &#39;Mini-Fiches&#39;, true); 
-$view-&gt;addMod(&#39;trombi&#39;, &#39;Trombinoscope&#39;, false, array(&#39;with_admin&#39; =&gt; false, &#39;with_promo&#39; =&gt; true)); 
-$view-&gt;addMod(&#39;geoloc&#39;, &#39;Planisphère&#39;); 
-$view-&gt;apply(&#39;carnet/contacts&#39;, $page, $action, $subaction);</code></pre>
-</div>
+<div class="highlight"><pre><code class="php"><span class="x">$view = new UserSet(&quot;INNER JOIN contacts AS c2 ON (u.user_id = c2.contact)&quot;, &quot; c2.uid = $uid &quot;);</span>
+<span class="x">$view-&gt;addMod(&#39;minifiche&#39;, &#39;Mini-Fiches&#39;, true); </span>
+<span class="x">$view-&gt;addMod(&#39;trombi&#39;, &#39;Trombinoscope&#39;, false, array(&#39;with_admin&#39; =&gt; false, &#39;with_promo&#39; =&gt; true)); </span>
+<span class="x">$view-&gt;addMod(&#39;geoloc&#39;, &#39;Planisphère&#39;); </span>
+<span class="x">$view-&gt;apply(&#39;carnet/contacts&#39;, $page, $action, $subaction); </span>
+</code></pre></div>
 
 
 <p>On crée le UserSet en lui donnant les critères de sélection des utilisateurs à afficher, puis on ajoute les Views à utiliser, enfin on gère l&#8217;affichage (en fonction des arguments passés à l&#8217;affichage de la page). C&#8217;est le type d&#8217;abstraction qui font vraiment plaisir car finalement on se rapproche du slogan de Qt : .</p>
 
 <p>Bien sûr, il faut développer tout le background, mais le temps de développement est négligeable comparé à celui qu&#8217;on aurait passé à dupliquer ce code, voire justement à ne pas le dupliquer en raison de la complexité de certains cas. Un autre exemple d&#8217;utilisation est sur l&#8217;annuaire des groupes sur Polytechnique.net :</p>
 
-<div>
-  <pre><code class='php'>$view = new UserSet(); 
-$view-&gt;addMod(&#39;trombi&#39;, &#39;Trombinoscope&#39;); 
-$view-&gt;addMod(&#39;geoloc&#39;, &#39;Planisphère&#39;); 
-$view-&gt;apply(&#39;annuaire&#39;, $page, $action, $subaction);</code></pre>
-</div>
+<div class="highlight"><pre><code class="php"><span class="x">$view = new UserSet(); </span>
+<span class="x">$view-&gt;addMod(&#39;trombi&#39;, &#39;Trombinoscope&#39;); </span>
+<span class="x">$view-&gt;addMod(&#39;geoloc&#39;, &#39;Planisphère&#39;); </span>
+<span class="x">$view-&gt;apply(&#39;annuaire&#39;, $page, $action, $subaction); </span>
+</code></pre></div>
 
 
 <p>Dans ce cas, comme UserSet sait que s&#8217;il est appelé dans le cadre d&#8217;un groupe-X sur Polytechnique.net, il ne doit pas sélectionner d&#8217;utilisateurs hors de l&#8217;annuaire de ce groupe, il n&#8217;y a aucune restriction à lui indiquer : tout l&#8217;annuaire du groupe est sélectionné. On ajoute les deux modules de représentation qu&#8217;on désire utiliser : trombinoscope et Planispère, et applique à la page&hellip; en 4 lignes c&#8217;est fait.</p>

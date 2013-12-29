@@ -125,16 +125,14 @@
 
 <p>Ainsi, j&#8217;utilise la commande suivante pour lancer mon <code>vncserver</code> :</p>
 
-<div>
-  <pre><code class='bash'>vncserver :60 -geometry 1280x960 -depth 32</code></pre>
-</div>
+<div class="highlight"><pre><code class="bash">vncserver :60 -geometry 1280x960 -depth 32
+</code></pre></div>
 
 
 <p>Ensuite, il suffit de faire tourner notre outils dans l&#8217;environnement graphique qu&#8217;on vient d&#8217;obtenir. Avec khtml2png, cela donne :</p>
 
-<div>
-  <pre><code class='bash'>./khtml2png2 --display :60 --nocrashhandler --width 840 --height 600 http://fruneau.rznc.net/ /tmp/test-fru.png</code></pre>
-</div>
+<div class="highlight"><pre><code class="bash">./khtml2png2 --display :60 --nocrashhandler --width 840 --height 600 http://fruneau.rznc.net/ /tmp/test-fru.png
+</code></pre></div>
 
 
 <p>Les différentes options données sont :</p>

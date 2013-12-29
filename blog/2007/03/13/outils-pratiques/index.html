@@ -99,17 +99,16 @@
 
 <p>Pour pouvoir améliorer la sortie des commandes SVN dans mes consoles, j&#8217;ai fait surchargé la commande <code>svn</code> par une fonction <code>zsh</code> :</p>
 
-<div>
-  <pre><code class='bash'>function svn() {
-    if [[ $1 == &quot;ci&quot; || $1 == &quot;commit&quot; || $1 == &quot;propedit&quot; || $1 == &quot;propset&quot; || $1 == &quot;help&quot; ]]; then
-        /usr/local/bin/svn $*
-    elif [[ $1 == &quot;preci&quot; || $1 == &quot;precommit&quot; ]]; then
-        /usr/local/bin/svn status | grep -v &#39;?&#39; | ~/.zsh/zshcolorsvn
-    else
-        /usr/local/bin/svn $* | ~/.zsh/zshcolorsvn
-    fi
-}</code></pre>
-</div>
+<div class="highlight"><pre><code class="bash"><span class="k">function </span>svn<span class="o">()</span> <span class="o">{</span>
+    <span class="k">if</span> <span class="o">[[</span> <span class="nv">$1</span> <span class="o">==</span> <span class="s2">&quot;ci&quot;</span> <span class="o">||</span> <span class="nv">$1</span> <span class="o">==</span> <span class="s2">&quot;commit&quot;</span> <span class="o">||</span> <span class="nv">$1</span> <span class="o">==</span> <span class="s2">&quot;propedit&quot;</span> <span class="o">||</span> <span class="nv">$1</span> <span class="o">==</span> <span class="s2">&quot;propset&quot;</span> <span class="o">||</span> <span class="nv">$1</span> <span class="o">==</span> <span class="s2">&quot;help&quot;</span> <span class="o">]]</span>; <span class="k">then</span>
+        /usr/local/bin/svn <span class="nv">$*</span>
+    <span class="k">elif</span> <span class="o">[[</span> <span class="nv">$1</span> <span class="o">==</span> <span class="s2">&quot;preci&quot;</span> <span class="o">||</span> <span class="nv">$1</span> <span class="o">==</span> <span class="s2">&quot;precommit&quot;</span> <span class="o">]]</span>; <span class="k">then</span>
+        /usr/local/bin/svn status | grep -v <span class="s1">&#39;?&#39;</span> | ~/.zsh/zshcolorsvn
+    <span class="k">else</span>
+        /usr/local/bin/svn <span class="nv">$*</span> | ~/.zsh/zshcolorsvn
+    <span class="k">fi</span>
+<span class="o">}</span>
+</code></pre></div>
 
 
 <p>Cette fonction est donc très simple :</p>
@@ -128,40 +127,39 @@
 
 <p>C&#8217;est donc extrêmement pratique ; ça permet de distinguer facilement les modifications, ça permet aussi de voir d&#8217;un seul coup d&#8217;oeil les conflits et la liste des fichiers modifiés. En plus ça fonctionne également avec des commandes comme <code>cvs</code> ou <code>diff</code> :</p>
 
-<div>
-  <pre><code class='bash'># SVN
-function svn() {
-    if [[ $1 == &quot;ci&quot; || $1 == &quot;commit&quot; || $1 == &quot;propedit&quot; || $1 == &quot;propset&quot; || $1 == &quot;help&quot; ]]; then
-        /usr/local/bin/svn $*
-    elif [[ $1 == &quot;preci&quot; || $1 == &quot;precommit&quot; ]]; then
-        /usr/local/bin/svn status | grep -v &#39;?&#39; | ~/.zsh/zshcolorsvn
-    else
-        /usr/local/bin/svn $* | ~/.zsh/zshcolorsvn
-    fi; fi
-}
+<div class="highlight"><pre><code class="bash"><span class="c"># SVN</span>
+<span class="k">function </span>svn<span class="o">()</span> <span class="o">{</span>
+    <span class="k">if</span> <span class="o">[[</span> <span class="nv">$1</span> <span class="o">==</span> <span class="s2">&quot;ci&quot;</span> <span class="o">||</span> <span class="nv">$1</span> <span class="o">==</span> <span class="s2">&quot;commit&quot;</span> <span class="o">||</span> <span class="nv">$1</span> <span class="o">==</span> <span class="s2">&quot;propedit&quot;</span> <span class="o">||</span> <span class="nv">$1</span> <span class="o">==</span> <span class="s2">&quot;propset&quot;</span> <span class="o">||</span> <span class="nv">$1</span> <span class="o">==</span> <span class="s2">&quot;help&quot;</span> <span class="o">]]</span>; <span class="k">then</span>
+        /usr/local/bin/svn <span class="nv">$*</span>
+    <span class="k">elif</span> <span class="o">[[</span> <span class="nv">$1</span> <span class="o">==</span> <span class="s2">&quot;preci&quot;</span> <span class="o">||</span> <span class="nv">$1</span> <span class="o">==</span> <span class="s2">&quot;precommit&quot;</span> <span class="o">]]</span>; <span class="k">then</span>
+        /usr/local/bin/svn status | grep -v <span class="s1">&#39;?&#39;</span> | ~/.zsh/zshcolorsvn
+    <span class="k">else</span>
+        /usr/local/bin/svn <span class="nv">$*</span> | ~/.zsh/zshcolorsvn
+    <span class="k">fi</span>; <span class="k">fi</span>
+<span class="o">}</span>
 
-# SVN avec conversion de la sortie en latin1
-function svn_utf8() {
-    if [[ $1 == &quot;ci&quot; || $1 == &quot;commit&quot; ]]; then
-        svn $*
-    else
-        svn $* | iconv -f utf8 -t iso-8859-1
-    fi
-}
+<span class="c"># SVN avec conversion de la sortie en latin1</span>
+<span class="k">function </span>svn_utf8<span class="o">()</span> <span class="o">{</span>
+    <span class="k">if</span> <span class="o">[[</span> <span class="nv">$1</span> <span class="o">==</span> <span class="s2">&quot;ci&quot;</span> <span class="o">||</span> <span class="nv">$1</span> <span class="o">==</span> <span class="s2">&quot;commit&quot;</span> <span class="o">]]</span>; <span class="k">then</span>
+<span class="k">        </span>svn <span class="nv">$*</span>
+    <span class="k">else</span>
+<span class="k">        </span>svn <span class="nv">$*</span> | iconv -f utf8 -t iso-8859-1
+    <span class="k">fi</span>
+<span class="o">}</span>
 
-function cvs() {
-    if [[ $1 == &quot;diff&quot; ]]; then
-        shift 1
-        /usr/bin/cvs diff -ubN $* 2&gt; /dev/null | ~/.zsh/zshcolorsvn
-    elif [[ $1 == &quot;ci&quot; || $1 == &quot;commit&quot; || $1 == &quot;propedit&quot; || $1 == &quot;propset&quot; || $1 == &quot;help&quot; ]]; then
-        /usr/bin/cvs $*
-    else
-        /usr/bin/cvs $* 2&gt; /dev/null | ~/.zsh/zshcolorsvn
-    fi;
-}
+<span class="k">function </span>cvs<span class="o">()</span> <span class="o">{</span>
+    <span class="k">if</span> <span class="o">[[</span> <span class="nv">$1</span> <span class="o">==</span> <span class="s2">&quot;diff&quot;</span> <span class="o">]]</span>; <span class="k">then</span>
+<span class="k">        </span><span class="nb">shift </span>1
+        /usr/bin/cvs diff -ubN <span class="nv">$*</span> 2&gt; /dev/null | ~/.zsh/zshcolorsvn
+    <span class="k">elif</span> <span class="o">[[</span> <span class="nv">$1</span> <span class="o">==</span> <span class="s2">&quot;ci&quot;</span> <span class="o">||</span> <span class="nv">$1</span> <span class="o">==</span> <span class="s2">&quot;commit&quot;</span> <span class="o">||</span> <span class="nv">$1</span> <span class="o">==</span> <span class="s2">&quot;propedit&quot;</span> <span class="o">||</span> <span class="nv">$1</span> <span class="o">==</span> <span class="s2">&quot;propset&quot;</span> <span class="o">||</span> <span class="nv">$1</span> <span class="o">==</span> <span class="s2">&quot;help&quot;</span> <span class="o">]]</span>; <span class="k">then</span>
+        /usr/bin/cvs <span class="nv">$*</span>
+    <span class="k">else</span>
+        /usr/bin/cvs <span class="nv">$*</span> 2&gt; /dev/null | ~/.zsh/zshcolorsvn
+    <span class="k">fi</span>;
+<span class="o">}</span>
 
-function diff() { /usr/bin/diff -u $* | ~/.zsh/zshcolordiff }</code></pre>
-</div>
+<span class="k">function </span>diff<span class="o">()</span> <span class="o">{</span> /usr/bin/diff -u <span class="nv">$*</span> | ~/.zsh/zshcolordiff <span class="o">}</span>
+</code></pre></div>
 
 
 <p>Les scripts nécessaires sont disponibles : <a href="/public/misc/zshcolorsvn">zshcolorsvn</a> et <a href="/public/misc/zshcolordiff">zshcolordiff</a></p>

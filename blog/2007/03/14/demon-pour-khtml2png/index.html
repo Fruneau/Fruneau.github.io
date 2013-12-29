@@ -101,16 +101,14 @@
 
 <p>La première consiste à lancer le démon. Pour ceci, j&#8217;ai développé un script d&#8217;init&hellip; qui sera donc probablement lancé par l&#8217;utilisateur <code>root</code>. Il suffit de modifier ce script pour régler les variables en fonction de son installation, puis dans lancer la commande :</p>
 
-<div>
-  <pre><code class='bash'>./init-script.sh start</code></pre>
-</div>
+<div class="highlight"><pre><code class="bash">./init-script.sh start
+</code></pre></div>
 
 
 <p>Ensuite il n&#8217;y a plus qu&#8217;à donner au démon la liste des actions à réaliser sous la forme$$Attention à ne pas mettre d&#8217;espace dans le nom du fichier et dans l&#8217;url.$$ :</p>
 
-<div>
-  <pre><code class='bash'>echo &quot;url fichier&quot; &gt;&gt; /tmp/khtmld.spool</code></pre>
-</div>
+<div class="highlight"><pre><code class="bash"><span class="nb">echo</span> <span class="s2">&quot;url fichier&quot;</span> &gt;&gt; /tmp/khtmld.spool
+</code></pre></div>
 
 
 <p>Le principal développement que j&#8217;ai réalisé sur <code>khtmld</code> permet de donner au processus de <code>khtml2png</code> les droits d&#8217;un utilisateur du choix de la personne qui a lancé le démon (certes rien d&#8217;extraordinaire, mais ça manquait au programme).</p>

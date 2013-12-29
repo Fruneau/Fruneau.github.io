@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Polytechnique.org | Mind...]]></title>
   <link href="http://blog.mymind.fr/blog/categories/polytechnique-dot-org/atom.xml" rel="self"/>
   <link href="http://blog.mymind.fr/"/>
-  <updated>2013-12-29T21:11:19+01:00</updated>
+  <updated>2013-12-29T21:33:05+01:00</updated>
   <id>http://blog.mymind.fr/</id>
   <author>
     <name><![CDATA[Florent Bruneau]]></name>
@@ -113,30 +113,26 @@
 
 <p>Il est souvent extrêment pratique d'utiliser une pile de données. Cela permet de traiter les informations dans l'ordre de la pile sans excès de mémoire puisque chaque élément est dépilé avant d'être traité. C'est une technique que j'aime particulièrement lorsque j'ai une suite de lignes à traiter : je prend un tableau contenant une ligne par entrée et je le parcours avec <code>array_shift</code> qui permet de dépiler le premier élément du tableau. On obtient ainsi un code de la forme</p>
 
-<p><div>
-  <pre><code class='php'>while (!is_null($line = array_shift($lines))) {&lt;/p&gt;
+<p><div class="highlight"><pre><code class="php"><span class="x">while (!is_null($line = array_shift($lines))) {&lt;/p&gt;</span>
 
-&lt;pre&gt;&lt;code&gt;do_something($line);
-&lt;/code&gt;&lt;/pre&gt;
+<span class="x">&lt;pre&gt;&lt;code&gt;do_something($line);</span>
+<span class="x">&lt;/code&gt;&lt;/pre&gt;</span>
 
-&lt;p&gt;}
-do_something($lines);</code></pre>
-</div>
-</p>
+<span class="x">&lt;p&gt;}</span>
+<span class="x">do_something($lines);</span>
+</code></pre></div></p>
 
 <p>Un <code>foreach</code> peut très bien faire la même chose, mais on perd les avantages de la piles. Avec cette structure, pour avoir le même comportement que la boucle précédente, il faut ajouter un <code>unset()</code> :</p>
 
-<p><div>
-  <pre><code class='php'>foreach ($lines as $key=&gt;&amp;amp;$value) {&lt;/p&gt;
+<p><div class="highlight"><pre><code class="php"><span class="x">foreach ($lines as $key=&gt;&amp;amp;$value) {&lt;/p&gt;</span>
 
-&lt;pre&gt;&lt;code&gt;do_something($line);
-unset($lines[$key]);
-&lt;/code&gt;&lt;/pre&gt;
+<span class="x">&lt;pre&gt;&lt;code&gt;do_something($line);</span>
+<span class="x">unset($lines[$key]);</span>
+<span class="x">&lt;/code&gt;&lt;/pre&gt;</span>
 
-&lt;p&gt;}
-do_something($lines);</code></pre>
-</div>
-</p>
+<span class="x">&lt;p&gt;}</span>
+<span class="x">do_something($lines);</span>
+</code></pre></div></p>
 
 <p>Certes le <code>foreach</code> sera sensiblement plus rapide que le <code>while</code>/<code>array_shift()</code> car il comprend un appel de fonction à chaque itération, mais on peut s'attendre raisonnablement à ce que cet appel soit en O(1), et ait donc un coût négligeable.</p>
 
@@ -198,26 +194,22 @@ do_something($lines);</code></pre>
 
 <p>Dans plat/al, le Model s'appelle PlSet (duquel hérite un UserSet spécialisé dans les ensembles d'utilisateurs), et le View s'appelle PlView. De cette manière, l'affichage des contacts se fait en 5 lignes de code :</p>
 
-<p><div>
-  <pre><code class='php'>$view = new UserSet(&amp;ldquo;INNER JOIN contacts AS c2 ON (u.user_id = c2.contact)&amp;rdquo;, &amp;ldquo; c2.uid = $uid &amp;rdquo;);
-$view-&gt;addMod(&amp;lsquo;minifiche&amp;rsquo;, &amp;lsquo;Mini-Fiches&amp;rsquo;, true);
-$view-&gt;addMod(&amp;lsquo;trombi&amp;rsquo;, &amp;lsquo;Trombinoscope&amp;rsquo;, false, array(&amp;lsquo;with_admin&amp;rsquo; =&gt; false, &amp;lsquo;with_promo&amp;rsquo; =&gt; true));
-$view-&gt;addMod(&amp;lsquo;geoloc&amp;rsquo;, &amp;lsquo;Planisphère&amp;rsquo;);
-$view-&gt;apply(&amp;lsquo;carnet/contacts&amp;rsquo;, $page, $action, $subaction);</code></pre>
-</div>
-</p>
+<p><div class="highlight"><pre><code class="php"><span class="x">$view = new UserSet(&amp;ldquo;INNER JOIN contacts AS c2 ON (u.user_id = c2.contact)&amp;rdquo;, &amp;ldquo; c2.uid = $uid &amp;rdquo;);</span>
+<span class="x">$view-&gt;addMod(&amp;lsquo;minifiche&amp;rsquo;, &amp;lsquo;Mini-Fiches&amp;rsquo;, true);</span>
+<span class="x">$view-&gt;addMod(&amp;lsquo;trombi&amp;rsquo;, &amp;lsquo;Trombinoscope&amp;rsquo;, false, array(&amp;lsquo;with_admin&amp;rsquo; =&gt; false, &amp;lsquo;with_promo&amp;rsquo; =&gt; true));</span>
+<span class="x">$view-&gt;addMod(&amp;lsquo;geoloc&amp;rsquo;, &amp;lsquo;Planisphère&amp;rsquo;);</span>
+<span class="x">$view-&gt;apply(&amp;lsquo;carnet/contacts&amp;rsquo;, $page, $action, $subaction);</span>
+</code></pre></div></p>
 
 <p>On crée le UserSet en lui donnant les critères de sélection des utilisateurs à afficher, puis on ajoute les Views à utiliser, enfin on gère l'affichage (en fonction des arguments passés à l'affichage de la page). C'est le type d'abstraction qui font vraiment plaisir car finalement on se rapproche du slogan de Qt : .</p>
 
 <p>Bien sûr, il faut développer tout le background, mais le temps de développement est négligeable comparé à celui qu'on aurait passé à dupliquer ce code, voire justement à ne pas le dupliquer en raison de la complexité de certains cas. Un autre exemple d'utilisation est sur l'annuaire des groupes sur Polytechnique.net :</p>
 
-<p><div>
-  <pre><code class='php'>$view = new UserSet();
-$view-&gt;addMod(&amp;lsquo;trombi&amp;rsquo;, &amp;lsquo;Trombinoscope&amp;rsquo;);
-$view-&gt;addMod(&amp;lsquo;geoloc&amp;rsquo;, &amp;lsquo;Planisphère&amp;rsquo;);
-$view-&gt;apply(&amp;lsquo;annuaire&amp;rsquo;, $page, $action, $subaction);</code></pre>
-</div>
-</p>
+<p><div class="highlight"><pre><code class="php"><span class="x">$view = new UserSet();</span>
+<span class="x">$view-&gt;addMod(&amp;lsquo;trombi&amp;rsquo;, &amp;lsquo;Trombinoscope&amp;rsquo;);</span>
+<span class="x">$view-&gt;addMod(&amp;lsquo;geoloc&amp;rsquo;, &amp;lsquo;Planisphère&amp;rsquo;);</span>
+<span class="x">$view-&gt;apply(&amp;lsquo;annuaire&amp;rsquo;, $page, $action, $subaction);</span>
+</code></pre></div></p>
 
 <p>Dans ce cas, comme UserSet sait que s'il est appelé dans le cadre d'un groupe-X sur Polytechnique.net, il ne doit pas sélectionner d'utilisateurs hors de l'annuaire de ce groupe, il n'y a aucune restriction à lui indiquer : tout l'annuaire du groupe est sélectionné. On ajoute les deux modules de représentation qu'on désire utiliser : trombinoscope et Planispère, et applique à la page&hellip; en 4 lignes c'est fait.</p>
 

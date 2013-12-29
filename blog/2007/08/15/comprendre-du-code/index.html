@@ -101,11 +101,10 @@
 
 
 
-<div>
-  <pre><code class='c'>do {
-  ++(*pos);
-} while (*(pos++) == 0);</code></pre>
-</div>
+<div class="highlight"><pre><code class="c"><span class="k">do</span> <span class="p">{</span>
+  <span class="o">++</span><span class="p">(</span><span class="o">*</span><span class="n">pos</span><span class="p">);</span>
+<span class="p">}</span> <span class="k">while</span> <span class="p">(</span><span class="o">*</span><span class="p">(</span><span class="n">pos</span><span class="o">++</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">);</span>
+</code></pre></div>
 
 
 <p>Vous pouvez remarquer dès à présent que ce code n&#8217;est pas volontairement rendu illisible (il serait facile de supprimer des parenthèses et de changer le test de nullité en une négation. Le but est donc de comprendre la suite d&#8217;instruction, de dire ce qu&#8217;elle fait et ensuite de comprendre dans quel contexte elle est utilisable. La question est aussi de savoir en combien de temps vous allez trouver la solution.</p>
@@ -168,9 +167,9 @@ Pour être plus précis, il s&#8217;agit d&#8217;un incrémenteur d&#8217;entier
 
 Bon, pour ceux qui tiennent vraiment à s&#8217;assurer que ce n&#8217;est pas du code illisible, voici une version vraiment illisible de la même machine :
 
-<div>
-  <pre><code class='c'>for(++*pos;!*pos++;++*pos);</code></pre>
-</div>
+
+<div class="highlight"><pre><code class="c"><span class="k">for</span><span class="p">(</span><span class="o">++*</span><span class="n">pos</span><span class="p">;</span><span class="o">!*</span><span class="n">pos</span><span class="o">++</span><span class="p">;</span><span class="o">++*</span><span class="n">pos</span><span class="p">);</span>
+</code></pre></div>
 
 
 (Merci Falco)

@@ -103,22 +103,20 @@
 
 <p>Par contre, je ne sais pas pourquoi, mais en PHP, l&#8217;API est incohérente&hellip; l&#8217;exemple le plus simple est sans doute celui du remplacement et de la recherche dans une variable. Si, par exemple, je veux rechercher un élément :</p>
 
-<div>
-  <pre><code class='php'>//Dans une chaîne de caractères :
-strpos($string, $findme);
-//Dans un tableau, c&#39;est l&#39;inverse :
-in_array($findme, $array);
-array_search($findme, $array);</code></pre>
-</div>
+<div class="highlight"><pre><code class="php"><span class="x">//Dans une chaîne de caractères :</span>
+<span class="x">strpos($string, $findme);</span>
+<span class="x">//Dans un tableau, c&#39;est l&#39;inverse :</span>
+<span class="x">in_array($findme, $array);</span>
+<span class="x">array_search($findme, $array);</span>
+</code></pre></div>
 
 
 <p>Si je veux faire un remplacement dans une chaîne de caractères :</p>
 
-<div>
-  <pre><code class='php'>strtr($string, $search, $replace);
-str_replace($search, $replace, $string);
-preg_replace($search, $replace, $string);</code></pre>
-</div>
+<div class="highlight"><pre><code class="php"><span class="x">strtr($string, $search, $replace);</span>
+<span class="x">str_replace($search, $replace, $string);</span>
+<span class="x">preg_replace($search, $replace, $string);</span>
+</code></pre></div>
 
 
 <p>Chic ! Grâce à ça, même si je connais le nom de la fonction à utiliser, je suis quasiment forcé à chaque fois d&#8217;aller regarder dans la documentation de PHP (ce que j&#8217;ai fait pour écrire ce paragraphe, sinon j&#8217;aurais <em>&lsquo;forcément</em>&rsquo; inversé les arguments)&hellip; heureusement que celle-ci est bien faite et permet de trouver rapidement les fonctions dont on connaît le nom.</p>

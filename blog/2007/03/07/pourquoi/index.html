@@ -101,19 +101,18 @@
 
 <p>Par exemple, pourquoi un gars poste-t-il un algorithme pour remplacer <code>str_repeat</code> sur php.net :</p>
 
-<div>
-  <pre><code class='php'>&lt;?php
-if(!function_exists(&quot;str_repeat&quot;)) {
-    function str_repeat($word, $length) {
-        $repeated = &quot;&quot;;
-        for($i=0; $i &lt; $length; $i++) {
-            $repeated .= $word;
-        }
-        return $repeated;
-    }
-}
-?&gt;</code></pre>
-</div>
+<div class="highlight"><pre><code class="php"><span class="cp">&lt;?php</span>
+<span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="nb">function_exists</span><span class="p">(</span><span class="s2">&quot;str_repeat&quot;</span><span class="p">))</span> <span class="p">{</span>
+    <span class="k">function</span> <span class="nf">str_repeat</span><span class="p">(</span><span class="nv">$word</span><span class="p">,</span> <span class="nv">$length</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nv">$repeated</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="p">;</span>
+        <span class="k">for</span><span class="p">(</span><span class="nv">$i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="nv">$i</span> <span class="o">&lt;</span> <span class="nv">$length</span><span class="p">;</span> <span class="nv">$i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nv">$repeated</span> <span class="o">.=</span> <span class="nv">$word</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="k">return</span> <span class="nv">$repeated</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+<span class="cp">?&gt;</span><span class="x"></span>
+</code></pre></div>
 
 
 <p>Non seulement, j&#8217;espère que les utilisateurs qui n&#8217;ont pas la fonction en question (PHP &lt; 4) sauront d&#8217;eux-même reproduire cette algorithme sans avoir à le recopier (sans quoi on peut se demander pourquoi ils utilisent PHP vu qu&#8217;ils ne savent tout bonnement pas programmer un algorithme trivial)&hellip; mais en plus cet algorithme est absolument sous-optimal (à chaque tour de boucle il faut réallouer le buffer stockant <code>$repeated</code> et le recopier&hellip;) et il n&#8217;y a donc pas de quoi être fier d&#8217;avoir écrit cette fonction.</p>

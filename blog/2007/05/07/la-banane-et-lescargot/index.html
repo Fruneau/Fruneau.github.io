@@ -117,23 +117,21 @@
 
 <p>Il est souvent extrêment pratique d&#8217;utiliser une pile de données. Cela permet de traiter les informations dans l&#8217;ordre de la pile sans excès de mémoire puisque chaque élément est dépilé avant d&#8217;être traité. C&#8217;est une technique que j&#8217;aime particulièrement lorsque j&#8217;ai une suite de lignes à traiter : je prend un tableau contenant une ligne par entrée et je le parcours avec <code>array_shift</code> qui permet de dépiler le premier élément du tableau. On obtient ainsi un code de la forme</p>
 
-<div>
-  <pre><code class='php'>while (!is_null($line = array_shift($lines))) {
-    do_something($line);
-}
-do_something($lines);</code></pre>
-</div>
+<div class="highlight"><pre><code class="php"><span class="x">while (!is_null($line = array_shift($lines))) {</span>
+<span class="x">    do_something($line);</span>
+<span class="x">}</span>
+<span class="x">do_something($lines);</span>
+</code></pre></div>
 
 
 <p>Un <code>foreach</code> peut très bien faire la même chose, mais on perd les avantages de la piles. Avec cette structure, pour avoir le même comportement que la boucle précédente, il faut ajouter un <code>unset()</code> :</p>
 
-<div>
-  <pre><code class='php'>foreach ($lines as $key=&gt;&amp;$value) {
-    do_something($line);
-    unset($lines[$key]);
-}
-do_something($lines);</code></pre>
-</div>
+<div class="highlight"><pre><code class="php"><span class="x">foreach ($lines as $key=&gt;&amp;$value) {</span>
+<span class="x">    do_something($line);</span>
+<span class="x">    unset($lines[$key]);</span>
+<span class="x">}</span>
+<span class="x">do_something($lines);</span>
+</code></pre></div>
 
 
 <p>Certes le <code>foreach</code> sera sensiblement plus rapide que le <code>while</code>/<code>array_shift()</code> car il comprend un appel de fonction à chaque itération, mais on peut s&#8217;attendre raisonnablement à ce que cet appel soit en O(1), et ait donc un coût négligeable.</p>

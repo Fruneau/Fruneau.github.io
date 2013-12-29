@@ -103,12 +103,11 @@
 
 <p>Par exemple :</p>
 
-<div>
-  <pre><code class='cpp'>QString filename = &quot;/tmp/khtml2png.png&quot;;
-int g = sprintf(nrStr,&quot;_x%iy%i&quot;,xNr,yNr);
-nrStr[g]=&#39;\\\\0&#39;;
-filename+=QString(nrStr);</code></pre>
-</div>
+<div class="highlight"><pre><code class="cpp"><span class="n">QString</span> <span class="n">filename</span> <span class="o">=</span> <span class="s">&quot;/tmp/khtml2png.png&quot;</span><span class="p">;</span>
+<span class="kt">int</span> <span class="n">g</span> <span class="o">=</span> <span class="n">sprintf</span><span class="p">(</span><span class="n">nrStr</span><span class="p">,</span><span class="s">&quot;_x%iy%i&quot;</span><span class="p">,</span><span class="n">xNr</span><span class="p">,</span><span class="n">yNr</span><span class="p">);</span>
+<span class="n">nrStr</span><span class="p">[</span><span class="n">g</span><span class="p">]</span><span class="o">=</span><span class="err">&#39;\\\\</span><span class="mi">0</span><span class="err">&#39;</span><span class="p">;</span>
+<span class="n">filename</span><span class="o">+=</span><span class="n">QString</span><span class="p">(</span><span class="n">nrStr</span><span class="p">);</span>
+</code></pre></div>
 
 
 <p>Quitte à utiliser l&#8217;API C autant le faire proprement, en vérifiant la taille du buffer (dans le cas présent, le buffer nrStr avait une taille de 10)&hellip; mais en plus pourquoi faire ça de cette manière alors que Qt fournit l&#8217;API suffisant pour coder ces 4 lignes sans le moindre risque de buffer overflow ?</p>
@@ -120,38 +119,36 @@ QString filename = QString( &ldquo;/tmp/khtml2png.png_x%1y%2&rdquo;).arg(xNr).ar
 
 <p>Ensuite (toujours dans la gestion des chaînes de caractères), la méthode pour éviter le buffer overflow était le &ldquo;Je fais un gros buffer, au moins je suis sûr que ça ne débordera pas&rdquo;&hellip; mais le problème, c&#8217;est que ça peut déborder !</p>
 
-<div>
-  <pre><code class='cpp'>char   [5000], //command line string
+<div class="highlight"><pre><code class="cpp"><span class="kt">char</span>  <span class="p">[</span><span class="mi">5000</span><span class="p">],</span> <span class="c1">//command line string</span>
 
-memset(cmd,0,sizeof(cmd));
+<span class="n">memset</span><span class="p">(</span><span class="n">cmd</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="k">sizeof</span><span class="p">(</span><span class="n">cmd</span><span class="p">));</span>
 
-//append the row images from top to bottom to one image
-strcpy(cmd,&quot;convert &quot;);
+<span class="c1">//append the row images from top to bottom to one image</span>
+<span class="n">strcpy</span><span class="p">(</span><span class="n">cmd</span><span class="p">,</span><span class="s">&quot;convert &quot;</span><span class="p">);</span>
 
-for (int y=0; y &lt; yNr; y++)
-    sprintf(cmd,&quot;%s /tmp/khtml2png.png_r%i&quot;,cmd,y);
+<span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">y</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">y</span> <span class="o">&lt;</span> <span class="n">yNr</span><span class="p">;</span> <span class="n">y</span><span class="o">++</span><span class="p">)</span>
+    <span class="n">sprintf</span><span class="p">(</span><span class="n">cmd</span><span class="p">,</span><span class="s">&quot;%s /tmp/khtml2png.png_r%i&quot;</span><span class="p">,</span><span class="n">cmd</span><span class="p">,</span><span class="n">y</span><span class="p">);</span>
         
-sprintf(cmd,&quot;%s -append %s&quot;,cmd,args-&gt;arg(1));
-system(cmd);</code></pre>
-</div>
+<span class="n">sprintf</span><span class="p">(</span><span class="n">cmd</span><span class="p">,</span><span class="s">&quot;%s -append %s&quot;</span><span class="p">,</span><span class="n">cmd</span><span class="p">,</span><span class="n">args</span><span class="o">-&gt;</span><span class="n">arg</span><span class="p">(</span><span class="mi">1</span><span class="p">));</span>
+<span class="n">system</span><span class="p">(</span><span class="n">cmd</span><span class="p">);</span>
+</code></pre></div>
 
 
 <p>Dans ce cas précis, <code>args-&gt;arg(1)</code> est contrôlé par l&#8217;utilisateur (c&#8217;est en fait le fichier destination de la capture demandée&hellip; le <code>sprintf</code> est donc une <strong>erreur impardonnable</strong>&hellip; sans compter qu&#8217;en plus cet argument qui est passé à un exécutable externe sans le moindre check sur le contenu de la chaîne. On risque non seulement le buffer overflow, mais également l&#8217;injection de code dans le <code>system</code> (par exemple, je peux appeler mon fichier <code>fichier;sh</code>, ça me lancera un shell avec les droits de l&#8217;utilisateur qui a lancé le programme.</p>
 
 <p>Une solution (non testée) pourrait être :</p>
 
-<div>
-  <pre><code class='cpp'>QProcess process(&quot;convert&quot;);
-for (int y=0 ; y &lt; yNr ; y++) {
-    process.addArgument(QString(&quot;/tmp/khtml2png.png_r%i&quot;).arg(y);
-}
-process.addArgument(&quot;-append&quot;);
-process.addArgument(args-&gt;arg(1));
-process.start();
-while (process.isRunning()) {
-    wait(10); // nombre choisi aléatoirement
-}</code></pre>
-</div>
+<div class="highlight"><pre><code class="cpp"><span class="n">QProcess</span> <span class="n">process</span><span class="p">(</span><span class="s">&quot;convert&quot;</span><span class="p">);</span>
+<span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">y</span><span class="o">=</span><span class="mi">0</span> <span class="p">;</span> <span class="n">y</span> <span class="o">&lt;</span> <span class="n">yNr</span> <span class="p">;</span> <span class="n">y</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">process</span><span class="p">.</span><span class="n">addArgument</span><span class="p">(</span><span class="n">QString</span><span class="p">(</span><span class="s">&quot;/tmp/khtml2png.png_r%i&quot;</span><span class="p">).</span><span class="n">arg</span><span class="p">(</span><span class="n">y</span><span class="p">);</span>
+<span class="p">}</span>
+<span class="n">process</span><span class="p">.</span><span class="n">addArgument</span><span class="p">(</span><span class="s">&quot;-append&quot;</span><span class="p">);</span>
+<span class="n">process</span><span class="p">.</span><span class="n">addArgument</span><span class="p">(</span><span class="n">args</span><span class="o">-&gt;</span><span class="n">arg</span><span class="p">(</span><span class="mi">1</span><span class="p">));</span>
+<span class="n">process</span><span class="p">.</span><span class="n">start</span><span class="p">();</span>
+<span class="k">while</span> <span class="p">(</span><span class="n">process</span><span class="p">.</span><span class="n">isRunning</span><span class="p">())</span> <span class="p">{</span>
+    <span class="n">wait</span><span class="p">(</span><span class="mi">10</span><span class="p">);</span> <span class="c1">// nombre choisi aléatoirement</span>
+<span class="p">}</span>
+</code></pre></div>
 
 
 <p>Cette solution a le mérite :</p>
@@ -199,11 +196,10 @@ while (process.isRunning()) {
 
 <p>Je comprends parfaitement que les développeurs n&#8217;aient pas pensé que ces boîtes de dialogues puissent être gênantes car ils doivent travailler dans un environnement graphique et les voir&hellip; moi non ! Mais en fait, ce que je comprends moins bien c&#8217;est qu&#8217;ils ont clairement déjà rencontré le problème dans le cadre de la réalisation du screenshot. En effet, on y trouve le code (pour sélectionner les fenêtres-filles qui méritent d&#8217;apparaître dans le screenshot) :</p>
 
-<div>
-  <pre><code class='cpp'>if ( child-&gt;isWidgetType() &amp;&amp;
-    ((QWidget *)child)-&gt;geometry().intersects( w-&gt;rect() ) &amp;&amp;
-    ! child-&gt;inherits( &quot;QDialog&quot; ) ) {</code></pre>
-</div>
+<div class="highlight"><pre><code class="cpp"><span class="k">if</span> <span class="p">(</span> <span class="n">child</span><span class="o">-&gt;</span><span class="n">isWidgetType</span><span class="p">()</span> <span class="o">&amp;&amp;</span>
+    <span class="p">((</span><span class="n">QWidget</span> <span class="o">*</span><span class="p">)</span><span class="n">child</span><span class="p">)</span><span class="o">-&gt;</span><span class="n">geometry</span><span class="p">().</span><span class="n">intersects</span><span class="p">(</span> <span class="n">w</span><span class="o">-&gt;</span><span class="n">rect</span><span class="p">()</span> <span class="p">)</span> <span class="o">&amp;&amp;</span>
+    <span class="o">!</span> <span class="n">child</span><span class="o">-&gt;</span><span class="n">inherits</span><span class="p">(</span> <span class="s">&quot;QDialog&quot;</span> <span class="p">)</span> <span class="p">)</span> <span class="p">{</span>
+</code></pre></div>
 
 
 <p>Les développeurs ont donc déjà rencontré des QDialog&hellip; pourquoi ne pas déjà les avoir désactivés ?</p>

@@ -119,14 +119,13 @@ read&lt;MaClass&gt;(const char* buffer) // lit un objet de type "MaClass"
 
 <p>En fait un template est, comme son nom l&#8217;indique, qu&#8217;un modèle de fonction. Lors de la compilation d&#8217;un programme qui utilise des templates, le compilateur regarde la liste des instances de cette fonction qui sont utilisées et les génère. Plus explicitement, si j&#8217;appelle read<double>(), le compilateur va générer cette fonction :</p>
 
-<div>
-  <pre><code class='cpp'>double read&lt;double&gt;(const char *buffer) 
-{
-    double val;
-    memcpy(&amp;val, buffer, sizeof(double));
-    return val;
-}</code></pre>
-</div>
+<div class="highlight"><pre><code class="cpp"><span class="kt">double</span> <span class="n">read</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span><span class="p">(</span><span class="k">const</span> <span class="kt">char</span> <span class="o">*</span><span class="n">buffer</span><span class="p">)</span> 
+<span class="p">{</span>
+    <span class="kt">double</span> <span class="n">val</span><span class="p">;</span>
+    <span class="n">memcpy</span><span class="p">(</span><span class="o">&amp;</span><span class="n">val</span><span class="p">,</span> <span class="n">buffer</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="kt">double</span><span class="p">));</span>
+    <span class="k">return</span> <span class="n">val</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
 
 
 <p>Ainsi, l&#8217;appel à read<double> devient un appel de fonction classique.</p>
@@ -135,50 +134,45 @@ read&lt;MaClass&gt;(const char* buffer) // lit un objet de type "MaClass"
 
 <p>Le préprocesseur en C possède des outils sympathique&hellip; Nous nous attarderons particulièrement sur le ##. Il s&#8217;agit tout simplement d&#8217;un opérateur de concaténation. Donc :</p>
 
-<div>
-  <pre><code class='c'>#define Truc(Machin) Truc ## Machin
+<div class="highlight"><pre><code class="c"><span class="cp">#define Truc(Machin) Truc ## Machin</span>
 
-Truc(Bidule) /* génère TrucBidule */</code></pre>
-</div>
+<span class="n">Truc</span><span class="p">(</span><span class="n">Bidule</span><span class="p">)</span> <span class="cm">/* génère TrucBidule */</span>
+</code></pre></div>
 
 
 <p>C&#8217;est donc très pratique. On peut facilement par exemple, imaginer une petite macro du genre :</p>
 
-<div>
-  <pre><code class='c'>#define maFonction(Type) maFonction_ ## Type</code></pre>
-</div>
+<div class="highlight"><pre><code class="c"><span class="cp">#define maFonction(Type) maFonction_ ## Type</span>
+</code></pre></div>
 
 
 <p>Si dans ce cas, on défini par exemple maFonction_int, maFonction_double, maFonction_MaStruct (oui, les classes n&#8217;existent pas en C), on pourra faire</p>
 
-<div>
-  <pre><code class='c'>maFonction(int)(args); /* appelle maFonction_int */
-maFonction(double)(args); /* appelle maFonction_double */
-maFonction(MaStruct)(args); /* appelle maFonction_MaStruct */</code></pre>
-</div>
+<div class="highlight"><pre><code class="c"><span class="n">maFonction</span><span class="p">(</span><span class="kt">int</span><span class="p">)(</span><span class="n">args</span><span class="p">);</span> <span class="cm">/* appelle maFonction_int */</span>
+<span class="n">maFonction</span><span class="p">(</span><span class="kt">double</span><span class="p">)(</span><span class="n">args</span><span class="p">);</span> <span class="cm">/* appelle maFonction_double */</span>
+<span class="n">maFonction</span><span class="p">(</span><span class="n">MaStruct</span><span class="p">)(</span><span class="n">args</span><span class="p">);</span> <span class="cm">/* appelle maFonction_MaStruct */</span>
+</code></pre></div>
 
 
 <p>Maintenant, il ne reste plus qu&#8217;à générer les fonctions&hellip; sans avoir à toutes les écrire une à une. Pour ceci, nous allons encore une fois profiter de la présence du préprocesseur.</p>
 
-<div>
-  <pre><code class='c'>#define maFonctionBuild(Type) \\\\
-  Type maFonction_ ## Type(const char* buffer) { \\\\
-    Type val; \\\\
-    memcpy(&amp;val, buffer, sizeof(Type)); \\\\
-    return val; \\\\
-  } 
+<div class="highlight"><pre><code class="c"><span class="cp">#define maFonctionBuild(Type) \\\\</span>
+<span class="cp">  Type maFonction_ ## Type(const char* buffer) { \\\\</span>
+<span class="cp">    Type val; \\\\</span>
+<span class="cp">    memcpy(&amp;val, buffer, sizeof(Type)); \\\\</span>
+<span class="cp">    return val; \\\\</span>
+<span class="cp">  } </span>
 
-maFonctionBuild(int) /* génère maFonction_int */
-maFonctionBuild(double) /* génère maFonction_double */
-maFonctionBuild(MaStruct) /* génère maFonction_MaStruct */</code></pre>
-</div>
+<span class="n">maFonctionBuild</span><span class="p">(</span><span class="kt">int</span><span class="p">)</span> <span class="cm">/* génère maFonction_int */</span>
+<span class="n">maFonctionBuild</span><span class="p">(</span><span class="kt">double</span><span class="p">)</span> <span class="cm">/* génère maFonction_double */</span>
+<span class="n">maFonctionBuild</span><span class="p">(</span><span class="n">MaStruct</span><span class="p">)</span> <span class="cm">/* génère maFonction_MaStruct */</span>
+</code></pre></div>
 
 
 <p>Il ne reste donc qu&#8217;à appeler maFonctionBuild(Type) sur chacun des types pour lesquels nous avons besoin d&#8217;instancier la fonction, et d&#8217;appeler maFonction(Type) chaque fois qu&#8217;on veut appeler maFonction pour le type en question. D&#8217;une certaine manière on peut dès lors dire que les fonctions sont :</p>
 
-<div>
-  <pre><code class='c'>Type maFonction(Type)(const char* buffer);</code></pre>
-</div>
+<div class="highlight"><pre><code class="c"><span class="n">Type</span> <span class="nf">maFonction</span><span class="p">(</span><span class="n">Type</span><span class="p">)(</span><span class="k">const</span> <span class="kt">char</span><span class="o">*</span> <span class="n">buffer</span><span class="p">);</span>
+</code></pre></div>
 
 
 <h2> Et voilà !</h2>

@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Général | Mind...]]></title>
   <link href="http://blog.mymind.fr/blog/categories/general/atom.xml" rel="self"/>
   <link href="http://blog.mymind.fr/"/>
-  <updated>2013-12-29T21:11:19+01:00</updated>
+  <updated>2013-12-29T21:33:05+01:00</updated>
   <id>http://blog.mymind.fr/</id>
   <author>
     <name><![CDATA[Florent Bruneau]]></name>
@@ -177,21 +177,19 @@ conversions = {
 
 <p>J'ai demandé à NC s'il pouvait me donner les sources d'un mail signé qui a le mérite d'apparaître comme correctement signé chez lui, et mal signé chez moi. J'ai comparé les 2 versions du mail&hellip; et le <code>diff</code> a été on ne peut plus troublant :</p>
 
-<p><div>
-  <pre><code class='diff'>&amp;mdash;nextPart1631992.9B81mC3O8N
--Content-Type: text/plain;
+<p><div class="highlight"><pre><code class="diff"> &amp;mdash;nextPart1631992.9B81mC3O8N
+<span class="gd">-Content-Type: text/plain;</span>
 &amp;ndash;  charset=&amp;ldquo;iso-8859-1&amp;rdquo;
  Content-Transfer-Encoding: quoted-printable
-+Content-Type: text/plain;
-+       charset=iso-8859-1
+<span class="gi">+Content-Type: text/plain;</span>
+<span class="gi">+       charset=iso-8859-1</span>
  Content-Disposition: inline
  ///&lt;/p&gt;
 
 &lt;p&gt;Le contenu de la partie signée n&#39;est pas identique dans les deux mails. Pour ceux qui ne connaissent pas la structure d&#39;un mail signé, je les invite à jeter un coup d&#39;oeil à la [RFC1847|&lt;a href=&quot;http://www.faqs.org/rfcs/rfc1847.html&quot;&gt;http://www.faqs.org/rfcs/rfc1847.html&lt;/a&gt;] qui se résume au schéma suivant :&lt;/p&gt;
 
-&lt;p&gt;</code></pre>
-</div>
-
+&lt;p&gt;
+</code></pre></div>
 Content-Type: multipart/signed; protocol=&ldquo;TYPE/STYPE&rdquo;;</p>
 
 <pre><code>     micalg="MICALG"; boundary="Signed Boundary"
