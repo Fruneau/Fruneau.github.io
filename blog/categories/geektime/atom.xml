@@ -4,7 +4,7 @@
   <title><![CDATA[Category: GeekTime | Mind...]]></title>
   <link href="http://blog.mymind.fr/blog/categories/geektime/atom.xml" rel="self"/>
   <link href="http://blog.mymind.fr/"/>
-  <updated>2013-12-29T22:01:44+01:00</updated>
+  <updated>2013-12-30T09:01:09+01:00</updated>
   <id>http://blog.mymind.fr/</id>
   <author>
     <name><![CDATA[Florent Bruneau]]></name>
@@ -12,6 +12,73 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[From Dotclear to Octopress]]></title>
+    <link href="http://blog.mymind.fr/blog/2013/12/29/from-dotclear-to-octopress/"/>
+    <updated>2013-12-29T22:07:24+01:00</updated>
+    <id>http://blog.mymind.fr/blog/2013/12/29/from-dotclear-to-octopress</id>
+    <content type="html"><![CDATA[<p>After more than four years of inactivity on my personal blog
+(I&rsquo;ve been busy <a href="https://techtalk.intersec.com">blogging professionally</a>
+in the meantime), I&rsquo;ve decided to migrate my old blog to
+<a href="http://octopress.org">Octopress</a>.</p>
+
+<p>Several reasons for this. The first one is mostly that I don&rsquo;t believe
+<a href="http://dotclear.org">Dotclear</a> has a future anymore. At the time I chose
+Dotclear over Wordpress, it was in very active development, going from 1.x
+to 2.x with regular release and a very active community: it was a
+promising software that could have fought side by side with wordpress.
+Morevoer, it was a french software.</p>
+
+<p>However, Dotclear is probably to much of a carbon copy of wordpress: same
+technology (PHP), same admin architecture, &hellip; to make the difference.
+Wordpress is backed by a dedicated compagny, and Dotclear which is made as a
+hobby project just can&rsquo;t catch up. As a consequence, there is no technical
+reason to use dotclear over wordpress anymore: the later has a much more
+active development pace, a wide ecosystem and a very active community&hellip;
+Dotclear has been completely forgotten: only its own community care about
+it. Tools such as Disqus don&rsquo;t provide any integrated solution for dotclear,
+leaving users to hack the code of their theme if they wish to integrate
+that kind of service. Even tools that aims at providing migration utility
+to other blogging platform don&rsquo;t list Dotclear as a source platform.</p>
+
+<p>The second reason is that I find it completely overkill to run some PHP
+to serve a near-static content. My blog has not been update for 4 years, but
+every time someone reads a page, it goes through some PHP. PHP may be (have
+been) great for dynamic sites, but not for delivering content: it consumes
+resources and may contain security hole. The sole dynamic part of the site
+that is user-facing is the comment system&hellip; however nowadays services like
+Disqus, Google or Facebook can be integrated in your site for this in just
+a few lines of HTML/javascript (and by selling your soul to the devil):
+you may have an interactive site with only static pages.</p>
+
+<p>So, its done, my site has been migrated to a new static platform and is
+hosted by github (which wasn&rsquo;t mandatory but frees me from a bit of system
+administration). I couldn&rsquo;t find any packaged tool to perform the migration
+so I wrote one <a href="https://gist.github.com/Fruneau/8174826">small script</a> by
+myself. If the script is of interest for you here is how to proceed:</p>
+
+<ul>
+<li>export the database and the media library of your blog from Dotclear maintenance
+page</li>
+<li>unpack the media library in the <code>source/assets</code> directory of Octopress</li>
+<li>run the Python script on the database export (which should be named
+<code>python dotclear-octopress.py &lt;date&gt;-&lt;blogname&gt;-&lt;backup&gt;.txt</code> (the scripts
+runs in Python and requires <code>pip install phpserialize</code>)</li>
+<li>the script should have generated a new directory that contains a series of
+<code>.csv</code> file and a subdirectory called <code>_posts</code> that contains the markdown
+pages for your old blog posts.</li>
+<li>copy the content of <code>_posts</code> to <code>source/_posts</code> of Octopress.</li>
+</ul>
+
+
+<p>At this point, the result is not perfect (but I&rsquo;m sure the script can be improved),
+you&rsquo;ll still have to go through your posts and check that they were properly
+<em>markdownified</em> (Dotclear source text is in a Dotclear-specific wiki syntax,
+the script tries to do the conversion, but it is not 100% accurate and will
+miss some corner cases).</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Yet Another Policy Daemon for Postfix]]></title>
@@ -352,36 +419,6 @@ Tout ceci n'était bien sûr qu'un exemple. Il est toujours très dur de compren
 
 </div>
 
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Khtml2png 2.6.5 Est Sorti]]></title>
-    <link href="http://blog.mymind.fr/blog/2007/06/06/khtml2png-265-est-sorti/"/>
-    <updated>2007-06-06T00:31:00+02:00</updated>
-    <id>http://blog.mymind.fr/blog/2007/06/06/khtml2png-265-est-sorti</id>
-    <content type="html"><![CDATA[<p>Après 3 mois d'un travail pas très intensif, une nouvelle version de <a href="http://khtml2png.sf.net">khtml2png</a> est disponible. Cette version est partie du fait que les versions précédentes du programme ont parfois du mal à gérer les grandes captures d'écran (en fait, des bugs peuvent apparaître dès que la taille de la zone à capturer est plus grande que la taille affichable).</p>
-
-<p>Donc, rapidement après la sortie de la 2.6.0, j'avais envoyé un correctif (en fait une réécriture du moteur de rendu) au développeur de <code>khtml2png</code>. Malheureusement, ce correctif ne fonctionnait pas correctement chez lui. Donc, pendant 3 mois, j'ai fait du débuggage à distance : j'envoie une version modifiée (1 ou 2 lignes à chaque fois), j'attends 2 ou 3 semaine une réponse, etc&hellip; Du développement efficace !</p>
-
-<p>Bon, toujours est-il que maintenant, la version 2.6.5 fonctionne à la fois chez moi (à la fois Debian + xvnc et sur MacOS X), et chez Hauke (sur Debian également, mais avec des réglages différents).</p>
-
-<p>Le Changelog annonce :</p>
-
-<blockquote><p> fix: Now produces screenshots on my Debian Etch system under KDE 3.5.5 without glitches. %%%
- fix: Maybe better working on other systems too. Please test.</p></blockquote>
-
-<p>J'aimerais y rajouter quelques points :</p>
-
-<ul>
-<li>meilleur moteur de rendu (qui ne scroll plus, mais déplace la fenêtre pour s'affranchir de certains bugs de KDE et/ou Qt)</li>
-<li>meilleure détection de la taille de la capture à réaliser</li>
-<li>possibilité de choisir le comportement de <code>khtml2png</code> face aux redirections, au javascript, au java, au flash&hellip; via la ligne de commande</li>
-<li>la détection automatique de la dimension par un <code>id</code> devient compatible avec le format utilisé dans les version &lt;= 2.5</li>
-</ul>
-
-
-<p>Comme d'habitude, vous pouvez télécharger <a href="/mind/public/khtml2png/khtml2png-fru-last.tar.bz2">ma dernière version du programme</a>.</p>
 ]]></content>
   </entry>
   

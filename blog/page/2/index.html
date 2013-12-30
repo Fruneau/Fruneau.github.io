@@ -9,7 +9,7 @@
   <meta name="author" content="Florent Bruneau">
 
   
-  <meta name="description" content="Les temps sont durs pour les utilisateurs de IMAP&hellip; jusqu&#8217;à présent je n&#8217;ai pas trouvé de client idéal pour travailler avec ce &hellip;">
+  <meta name="description" content="Juste parce que je trouve ça amusant : lorsque Vista plante en raison d&#8217;une erreur sérieuse, il fait un écran bleu (exactement le même que sous &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -63,6 +63,49 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2007/07/28/bluescreen/">BlueScreen</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2007-07-28T23:15:00+02:00" pubdate data-updated="true">Jul 28<span>th</span>, 2007</time>
+        
+           | <a href="/blog/2007/07/28/bluescreen/#disqus_thread"
+             data-disqus-identifier="http://blog.mymind.fr/blog/2007/07/28/bluescreen/">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Juste parce que je trouve ça amusant : lorsque Vista plante en raison d&#8217;une erreur sérieuse, il fait un écran bleu (exactement le même que sous Windows XP). Ce qui est amusant, c&#8217;est le message affiché lors du démarrage suivant de Windows.</p>
+
+<p><img src="http://blog.mymind.fr/assets/screenshots/BlueScreen.png" alt="Vista-bluescreen" /></p>
+
+<p>Windows récupère donc d&#8217;une erreur de type &ldquo;BlueScreen&rdquo;&hellip; cela a l&#8217;intérêt d&#8217;être précis. En temps normal, on identifie une erreur à sa cause, et non à sa conséquence.</p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -498,83 +541,6 @@
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2007/04/21/stats/">Stats</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2007-04-21T02:59:00+02:00" pubdate data-updated="true">Apr 21<span>st</span>, 2007</time>
-        
-           | <a href="/blog/2007/04/21/stats/#disqus_thread"
-             data-disqus-identifier="http://blog.mymind.fr/blog/2007/04/21/stats/">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Depuis le début, j&#8217;ai installé <a href="http://awstats.sf.net">awstats</a> pour avoir des statistiques sur l&#8217;utilisation de mon serveur web.</p>
-
-<p>J&#8217;ai choisi awstats un peu par hasard :</p>
-
-<ul>
-<li>on avait utilisé <a href="http://www.mrunix.net/webalizer/">webalizer</a> au <a href="http://www.frankiz.net/binets/reseau">BR</a> et je n&#8217;étais pas spécialement convaincu par le résultat obtenu : beaucoup de chiffres, graphiquement peu attirant et d&#8217;ergonomie d&#8217;utilisation assez mauvaise.</li>
-<li>à <a href="https://www.polytechnique.org">Polytechnique.org</a> par contre, on utilise awstats, même si je n&#8217;ai pas fait le bilant complet des fonctionnalités, il a au moins l&#8217;avantage d&#8217;être lisible et agréable à l&#8217;oeil.</li>
-</ul>
-
-
-<p>Donc <a href="http://stat.mymind.fr/blog">je l&#8217;ai installé</a>, personnalisé&hellip; en particuliers j&#8217;ai ajouté des browsers (principalement des syndicateurs) et robots, amélioré les spécifications de certains OS, et j&#8217;avais également ajouté à l&#8217;outil de configuration le support de <a href="http://www.mamp.info/en/home/">MAMP</a>. J&#8217;ai envoyé le patch au mainteneur du projet. Aujourd&#8217;hui je fais un <code>cvs up</code> sur mon installation du projet et je vois :</p>
-
-<pre><code>P docs/awstats_faq.html
-RCS file: /cvsroot/awstats/awstats/tools/awstats_configure.pl,v
-retrieving revision 1.6
-retrieving revision 1.7
-Merging differences between 1.6 and 1.7 into awstats_configure.pl
-M tools/awstats_configure.pl
-M wwwroot/cgi-bin/awstats.model.conf
-RCS file: /cvsroot/awstats/awstats/wwwroot/cgi-bin/lib/browsers.pm,v
-retrieving revision 1.54
-retrieving revision 1.55
-Merging differences between 1.54 and 1.55 into browsers.pm
-M wwwroot/cgi-bin/lib/browsers.pm
-RCS file: /cvsroot/awstats/awstats/wwwroot/cgi-bin/lib/operating_systems.pm,v
-retrieving revision 1.20
-retrieving revision 1.21
-Merging differences between 1.20 and 1.21 into operating_systems.pm
-M wwwroot/cgi-bin/lib/operating_systems.pm
-RCS file: /cvsroot/awstats/awstats/wwwroot/cgi-bin/lib/robots.pm,v
-retrieving revision 1.44
-retrieving revision 1.45
-Merging differences between 1.44 and 1.45 into robots.pm
-M wwwroot/cgi-bin/lib/robots.pm
-</code></pre>
-
-<p>Bizarrement, tous les fichiers que j&#8217;ai modifié ont été modifié également sur la CVS&hellip; donc je suis allé faire un tour sur le <a href="http://awstats.cvs.sourceforge.net/awstats/awstats/">webvc du projet</a>, et sur les fichiers correspondants, il y a le commentaire <em>Patch florent bruneau</em>.</p>
-
-<p>Voilà, une bonne surprise ! Je suis juste un peu déçu de l&#8217;avoir vu uniquement sur un update de cvs.</p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/3/">&larr; Older</a>
@@ -592,6 +558,10 @@ M wwwroot/cgi-bin/lib/robots.pm
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2013/12/29/from-dotclear-to-octopress/">From Dotclear to Octopress</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2009/04/07/yet-another-policy-daemon-for-postfix2/">Yet Another Policy Daemon for Postfix</a>
       </li>
     
@@ -605,10 +575,6 @@ M wwwroot/cgi-bin/lib/robots.pm
     
       <li class="post">
         <a href="/blog/2008/03/02/encodage-et-terminal/">Encodage Et Terminal</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2007/11/01/afficher-des-discussions/">Afficher Des Discussions</a>
       </li>
     
   </ul>

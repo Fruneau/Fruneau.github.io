@@ -4,7 +4,7 @@
   <title><![CDATA[Mind...]]></title>
   <link href="http://blog.mymind.fr/atom.xml" rel="self"/>
   <link href="http://blog.mymind.fr/"/>
-  <updated>2013-12-29T22:01:44+01:00</updated>
+  <updated>2013-12-30T09:01:09+01:00</updated>
   <id>http://blog.mymind.fr/</id>
   <author>
     <name><![CDATA[Florent Bruneau]]></name>
@@ -12,6 +12,73 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[From Dotclear to Octopress]]></title>
+    <link href="http://blog.mymind.fr/blog/2013/12/29/from-dotclear-to-octopress/"/>
+    <updated>2013-12-29T22:07:24+01:00</updated>
+    <id>http://blog.mymind.fr/blog/2013/12/29/from-dotclear-to-octopress</id>
+    <content type="html"><![CDATA[<p>After more than four years of inactivity on my personal blog
+(I&rsquo;ve been busy <a href="https://techtalk.intersec.com">blogging professionally</a>
+in the meantime), I&rsquo;ve decided to migrate my old blog to
+<a href="http://octopress.org">Octopress</a>.</p>
+
+<p>Several reasons for this. The first one is mostly that I don&rsquo;t believe
+<a href="http://dotclear.org">Dotclear</a> has a future anymore. At the time I chose
+Dotclear over Wordpress, it was in very active development, going from 1.x
+to 2.x with regular release and a very active community: it was a
+promising software that could have fought side by side with wordpress.
+Morevoer, it was a french software.</p>
+
+<p>However, Dotclear is probably to much of a carbon copy of wordpress: same
+technology (PHP), same admin architecture, &hellip; to make the difference.
+Wordpress is backed by a dedicated compagny, and Dotclear which is made as a
+hobby project just can&rsquo;t catch up. As a consequence, there is no technical
+reason to use dotclear over wordpress anymore: the later has a much more
+active development pace, a wide ecosystem and a very active community&hellip;
+Dotclear has been completely forgotten: only its own community care about
+it. Tools such as Disqus don&rsquo;t provide any integrated solution for dotclear,
+leaving users to hack the code of their theme if they wish to integrate
+that kind of service. Even tools that aims at providing migration utility
+to other blogging platform don&rsquo;t list Dotclear as a source platform.</p>
+
+<p>The second reason is that I find it completely overkill to run some PHP
+to serve a near-static content. My blog has not been update for 4 years, but
+every time someone reads a page, it goes through some PHP. PHP may be (have
+been) great for dynamic sites, but not for delivering content: it consumes
+resources and may contain security hole. The sole dynamic part of the site
+that is user-facing is the comment system&hellip; however nowadays services like
+Disqus, Google or Facebook can be integrated in your site for this in just
+a few lines of HTML/javascript (and by selling your soul to the devil):
+you may have an interactive site with only static pages.</p>
+
+<p>So, its done, my site has been migrated to a new static platform and is
+hosted by github (which wasn&rsquo;t mandatory but frees me from a bit of system
+administration). I couldn&rsquo;t find any packaged tool to perform the migration
+so I wrote one <a href="https://gist.github.com/Fruneau/8174826">small script</a> by
+myself. If the script is of interest for you here is how to proceed:</p>
+
+<ul>
+<li>export the database and the media library of your blog from Dotclear maintenance
+page</li>
+<li>unpack the media library in the <code>source/assets</code> directory of Octopress</li>
+<li>run the Python script on the database export (which should be named
+<code>python dotclear-octopress.py &lt;date&gt;-&lt;blogname&gt;-&lt;backup&gt;.txt</code> (the scripts
+runs in Python and requires <code>pip install phpserialize</code>)</li>
+<li>the script should have generated a new directory that contains a series of
+<code>.csv</code> file and a subdirectory called <code>_posts</code> that contains the markdown
+pages for your old blog posts.</li>
+<li>copy the content of <code>_posts</code> to <code>source/_posts</code> of Octopress.</li>
+</ul>
+
+
+<p>At this point, the result is not perfect (but I&rsquo;m sure the script can be improved),
+you&rsquo;ll still have to go through your posts and check that they were properly
+<em>markdownified</em> (Dotclear source text is in a Dotclear-specific wiki syntax,
+the script tries to do the conversion, but it is not 100% accurate and will
+miss some corner cases).</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Yet Another Policy Daemon for Postfix]]></title>
@@ -1018,53 +1085,6 @@ Même si je ne me fais pas trop d'illusion sur le sujet, j'espère que ce genre 
 <p>Je m&#8217;extasie devant ce travail parce que je suis content du résultat, mais il n&#8217;est pas pour autant parfait. Son problème actuel est dû au background basé sur SQL : chaque élément (PlSet ou PlView) apporte des bribes d&#8217;une requête SQL permettant de finalement obtenir toutes les informations à afficher (PlView) pour les utilisateurs sélectionnés (PlSet), mais il peut arriver qu&#8217;une même donnée soit utilisée pour la sélection et pour l&#8217;affichage. Dans ce cas, la solution la plus simple est de dupliquer les jointures dans la requête, mais c&#8217;est une solution qui peut sérieusement alourdir et ralentir la requête.</p>
 
 <p>L&#8217;implémentation actuelle gère la duplication au cas par cas : les PlView peuvent contenir tester s&#8217;il faut sélectionner un champ ou non en testant la classe du PlSet utilisé. Cette solution n&#8217;est pas particulièrement propre. La meilleure solution envisageable est d&#8217;utiliser une abstraction des champs SQL : chaque élément ne donnerait plus une bribe de requête SQL mais des informations sur &ldquo;comment sélectionner la donnée&rdquo;&hellip; ensuite la génération de la requête consiste à comparer toutes ces informations et à les assembler. Plat/al possède déjà les outils nécessaires pour réaliser ce jeu d&#8217;assemblage&hellip; ce sera très probablement pour la prochaine release.</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Stats]]></title>
-    <link href="http://blog.mymind.fr/blog/2007/04/21/stats/"/>
-    <updated>2007-04-21T02:59:00+02:00</updated>
-    <id>http://blog.mymind.fr/blog/2007/04/21/stats</id>
-    <content type="html"><![CDATA[<p>Depuis le début, j&#8217;ai installé <a href="http://awstats.sf.net">awstats</a> pour avoir des statistiques sur l&#8217;utilisation de mon serveur web.</p>
-
-<p>J&#8217;ai choisi awstats un peu par hasard :</p>
-
-<ul>
-<li>on avait utilisé <a href="http://www.mrunix.net/webalizer/">webalizer</a> au <a href="http://www.frankiz.net/binets/reseau">BR</a> et je n&#8217;étais pas spécialement convaincu par le résultat obtenu : beaucoup de chiffres, graphiquement peu attirant et d&#8217;ergonomie d&#8217;utilisation assez mauvaise.</li>
-<li>à <a href="https://www.polytechnique.org">Polytechnique.org</a> par contre, on utilise awstats, même si je n&#8217;ai pas fait le bilant complet des fonctionnalités, il a au moins l&#8217;avantage d&#8217;être lisible et agréable à l&#8217;oeil.</li>
-</ul>
-
-
-<p>Donc <a href="http://stat.mymind.fr/blog">je l&#8217;ai installé</a>, personnalisé&hellip; en particuliers j&#8217;ai ajouté des browsers (principalement des syndicateurs) et robots, amélioré les spécifications de certains OS, et j&#8217;avais également ajouté à l&#8217;outil de configuration le support de <a href="http://www.mamp.info/en/home/">MAMP</a>. J&#8217;ai envoyé le patch au mainteneur du projet. Aujourd&#8217;hui je fais un <code>cvs up</code> sur mon installation du projet et je vois :</p>
-
-<pre><code>P docs/awstats_faq.html
-RCS file: /cvsroot/awstats/awstats/tools/awstats_configure.pl,v
-retrieving revision 1.6
-retrieving revision 1.7
-Merging differences between 1.6 and 1.7 into awstats_configure.pl
-M tools/awstats_configure.pl
-M wwwroot/cgi-bin/awstats.model.conf
-RCS file: /cvsroot/awstats/awstats/wwwroot/cgi-bin/lib/browsers.pm,v
-retrieving revision 1.54
-retrieving revision 1.55
-Merging differences between 1.54 and 1.55 into browsers.pm
-M wwwroot/cgi-bin/lib/browsers.pm
-RCS file: /cvsroot/awstats/awstats/wwwroot/cgi-bin/lib/operating_systems.pm,v
-retrieving revision 1.20
-retrieving revision 1.21
-Merging differences between 1.20 and 1.21 into operating_systems.pm
-M wwwroot/cgi-bin/lib/operating_systems.pm
-RCS file: /cvsroot/awstats/awstats/wwwroot/cgi-bin/lib/robots.pm,v
-retrieving revision 1.44
-retrieving revision 1.45
-Merging differences between 1.44 and 1.45 into robots.pm
-M wwwroot/cgi-bin/lib/robots.pm
-</code></pre>
-
-<p>Bizarrement, tous les fichiers que j&#8217;ai modifié ont été modifié également sur la CVS&hellip; donc je suis allé faire un tour sur le <a href="http://awstats.cvs.sourceforge.net/awstats/awstats/">webvc du projet</a>, et sur les fichiers correspondants, il y a le commentaire <em>Patch florent bruneau</em>.</p>
-
-<p>Voilà, une bonne surprise ! Je suis juste un peu déçu de l&#8217;avoir vu uniquement sur un update de cvs.</p>
 ]]></content>
   </entry>
   

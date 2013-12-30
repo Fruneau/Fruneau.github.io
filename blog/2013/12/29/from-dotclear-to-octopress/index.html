@@ -5,11 +5,13 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Mac C'est Bien... Mais Pas Top - Mind...</title>
+  <title>From Dotclear to Octopress - Mind...</title>
   <meta name="author" content="Florent Bruneau">
 
   
-  <meta name="description" content="Bon, la suite des mes problèmes avec les machines Apple ! Alors que la carte mère de mon portable a été changée il y a un peu plus d&#8217;un mois, &hellip;">
+  <meta name="description" content="After more than four years of inactivity on my personal blog
+(I&rsquo;ve been busy blogging professionally
+in the meantime), I&rsquo;ve decided to &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -18,7 +20,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://blog.mymind.fr/blog/2007/05/22/mac-cest-bien-mais-pas-top">
+  <link rel="canonical" href="http://blog.mymind.fr/blog/2013/12/29/from-dotclear-to-octopress">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="/atom.xml" rel="alternate" title="Mind..." type="application/atom+xml">
@@ -66,7 +68,7 @@
   
   <header>
     
-      <h1 class="entry-title">Mac C'est Bien... Mais Pas Top</h1>
+      <h1 class="entry-title">From Dotclear to Octopress</h1>
     
     
       <p class="meta">
@@ -82,7 +84,7 @@
   
 
 
-<time datetime="2007-05-22T23:44:00+02:00" pubdate data-updated="true">May 22<span>nd</span>, 2007</time>
+<time datetime="2013-12-29T22:07:24+01:00" pubdate data-updated="true">Dec 29<span>th</span>, 2013</time>
         
            | <a href="#disqus_thread"
              data-disqus-identifier="http://blog.mymind.fr">Comments</a>
@@ -92,13 +94,65 @@
   </header>
 
 
-<div class="entry-content"><p>Bon, la suite des mes problèmes avec les machines Apple !</p>
+<div class="entry-content"><p>After more than four years of inactivity on my personal blog
+(I&rsquo;ve been busy <a href="https://techtalk.intersec.com">blogging professionally</a>
+in the meantime), I&rsquo;ve decided to migrate my old blog to
+<a href="http://octopress.org">Octopress</a>.</p>
 
-<p>Alors que la carte mère de mon portable a été changée il y a un peu plus d&#8217;un mois, mon portable a décidé aujourd&#8217;hui d&#8217;arrêter de vouloir fonctionner. Symptômes ? Il s&#8217;allume (des fois), fonctionne (rarement) quelques secondes puis s&#8217;éteint brutalement&hellip; et ce qu&#8217;il démarre sur secteur, sur batterie ou les deux ensemble, que ce soit sur le disque dur, sur le DVD d&#8217;installation ou encore en mode <em>target</em> (en tant que disque dur externe).</p>
+<p>Several reasons for this. The first one is mostly that I don&rsquo;t believe
+<a href="http://dotclear.org">Dotclear</a> has a future anymore. At the time I chose
+Dotclear over Wordpress, it was in very active development, going from 1.x
+to 2.x with regular release and a very active community: it was a
+promising software that could have fought side by side with wordpress.
+Morevoer, it was a french software.</p>
 
-<p>En plus ça lui arrive de s&#8217;allumer tout seul alors que ça fait plusieurs minutes que je ne l&#8217;ai plus touché. Un autre symptôme étrange, la diode de la prise magsafe clignote bizarrement lorsque la machine n&#8217;est pas sous-tension (pas un clignotement vert/rouge, mais une lumière verte continue qui scintille un peu). Tout ça me laisse penser que c&#8217;est l&#8217;alimentation qui est en cause.</p>
+<p>However, Dotclear is probably to much of a carbon copy of wordpress: same
+technology (PHP), same admin architecture, &hellip; to make the difference.
+Wordpress is backed by a dedicated compagny, and Dotclear which is made as a
+hobby project just can&rsquo;t catch up. As a consequence, there is no technical
+reason to use dotclear over wordpress anymore: the later has a much more
+active development pace, a wide ecosystem and a very active community&hellip;
+Dotclear has been completely forgotten: only its own community care about
+it. Tools such as Disqus don&rsquo;t provide any integrated solution for dotclear,
+leaving users to hack the code of their theme if they wish to integrate
+that kind of service. Even tools that aims at providing migration utility
+to other blogging platform don&rsquo;t list Dotclear as a source platform.</p>
 
-<p>Voilà&hellip; les joies des machines de qualité, d&#8217;autant plus que la garantie de la machine a expirée il y a <strong>2</strong> jours (le 19 mai).</p>
+<p>The second reason is that I find it completely overkill to run some PHP
+to serve a near-static content. My blog has not been update for 4 years, but
+every time someone reads a page, it goes through some PHP. PHP may be (have
+been) great for dynamic sites, but not for delivering content: it consumes
+resources and may contain security hole. The sole dynamic part of the site
+that is user-facing is the comment system&hellip; however nowadays services like
+Disqus, Google or Facebook can be integrated in your site for this in just
+a few lines of HTML/javascript (and by selling your soul to the devil):
+you may have an interactive site with only static pages.</p>
+
+<p>So, its done, my site has been migrated to a new static platform and is
+hosted by github (which wasn&rsquo;t mandatory but frees me from a bit of system
+administration). I couldn&rsquo;t find any packaged tool to perform the migration
+so I wrote one <a href="https://gist.github.com/Fruneau/8174826">small script</a> by
+myself. If the script is of interest for you here is how to proceed:</p>
+
+<ul>
+<li>export the database and the media library of your blog from Dotclear maintenance
+page</li>
+<li>unpack the media library in the <code>source/assets</code> directory of Octopress</li>
+<li>run the Python script on the database export (which should be named
+<code>python dotclear-octopress.py &lt;date&gt;-&lt;blogname&gt;-&lt;backup&gt;.txt</code> (the scripts
+runs in Python and requires <code>pip install phpserialize</code>)</li>
+<li>the script should have generated a new directory that contains a series of
+<code>.csv</code> file and a subdirectory called <code>_posts</code> that contains the markdown
+pages for your old blog posts.</li>
+<li>copy the content of <code>_posts</code> to <code>source/_posts</code> of Octopress.</li>
+</ul>
+
+
+<p>At this point, the result is not perfect (but I&rsquo;m sure the script can be improved),
+you&rsquo;ll still have to go through your posts and check that they were properly
+<em>markdownified</em> (Dotclear source text is in a Dotclear-specific wiki syntax,
+the script tries to do the conversion, but it is not 100% accurate and will
+miss some corner cases).</p>
 </div>
 
 
@@ -121,12 +175,12 @@
   
 
 
-<time datetime="2007-05-22T23:44:00+02:00" pubdate data-updated="true">May 22<span>nd</span>, 2007</time>
+<time datetime="2013-12-29T22:07:24+01:00" pubdate data-updated="true">Dec 29<span>th</span>, 2013</time>
       
 
 <span class="categories">
   
-    <a class='category' href='/blog/categories/general/'>Général</a>
+    <a class='category' href='/blog/categories/geektime/'>GeekTime</a>
   
 </span>
 
@@ -135,7 +189,7 @@
     
       <div class="sharing">
   
-  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://blog.mymind.fr/blog/2007/05/22/mac-cest-bien-mais-pas-top/" data-via="FlorentBruneau" data-counturl="http://blog.mymind.fr/blog/2007/05/22/mac-cest-bien-mais-pas-top/" >Tweet</a>
+  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://blog.mymind.fr/blog/2013/12/29/from-dotclear-to-octopress/" data-via="FlorentBruneau" data-counturl="http://blog.mymind.fr/blog/2013/12/29/from-dotclear-to-octopress/" >Tweet</a>
   
   
   <div class="g-plusone" data-size="medium"></div>
@@ -146,10 +200,8 @@
     
     <p class="meta">
       
-        <a class="basic-alignment left" href="/blog/2007/05/18/virtuedesktops-revient/" title="Previous Post: VirtueDesktops revient...">&laquo; VirtueDesktops revient...</a>
+        <a class="basic-alignment left" href="/blog/2009/04/07/yet-another-policy-daemon-for-postfix2/" title="Previous Post: Yet another policy daemon for postfix">&laquo; Yet another policy daemon for postfix</a>
       
-      
-        <a class="basic-alignment right" href="/blog/2007/05/26/et-si-on-oubliait-les-bases/" title="Next Post: Et si on oubliait les bases ?">Et si on oubliait les bases ? &raquo;</a>
       
     </p>
   </footer>
@@ -224,8 +276,8 @@
       
         
         // var disqus_developer = 1;
-        var disqus_identifier = 'http://blog.mymind.fr/blog/2007/05/22/mac-cest-bien-mais-pas-top/';
-        var disqus_url = 'http://blog.mymind.fr/blog/2007/05/22/mac-cest-bien-mais-pas-top/';
+        var disqus_identifier = 'http://blog.mymind.fr/blog/2013/12/29/from-dotclear-to-octopress/';
+        var disqus_url = 'http://blog.mymind.fr/blog/2013/12/29/from-dotclear-to-octopress/';
         var disqus_script = 'embed.js';
       
     (function () {

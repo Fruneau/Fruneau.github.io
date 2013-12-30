@@ -9,7 +9,9 @@
   <meta name="author" content="Florent Bruneau">
 
   
-  <meta name="description" content="MadCoder announced it months ago, he has been working on the pfixtools. The second tool of the postfix-related toolsuite is named postlicyd. &hellip;">
+  <meta name="description" content="After more than four years of inactivity on my personal blog
+(I&rsquo;ve been busy blogging professionally
+in the meantime), I&rsquo;ve decided to &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -63,6 +65,103 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/12/29/from-dotclear-to-octopress/">From Dotclear to Octopress</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-12-29T22:07:24+01:00" pubdate data-updated="true">Dec 29<span>th</span>, 2013</time>
+        
+           | <a href="/blog/2013/12/29/from-dotclear-to-octopress/#disqus_thread"
+             data-disqus-identifier="http://blog.mymind.fr/blog/2013/12/29/from-dotclear-to-octopress/">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>After more than four years of inactivity on my personal blog
+(I&rsquo;ve been busy <a href="https://techtalk.intersec.com">blogging professionally</a>
+in the meantime), I&rsquo;ve decided to migrate my old blog to
+<a href="http://octopress.org">Octopress</a>.</p>
+
+<p>Several reasons for this. The first one is mostly that I don&rsquo;t believe
+<a href="http://dotclear.org">Dotclear</a> has a future anymore. At the time I chose
+Dotclear over Wordpress, it was in very active development, going from 1.x
+to 2.x with regular release and a very active community: it was a
+promising software that could have fought side by side with wordpress.
+Morevoer, it was a french software.</p>
+
+<p>However, Dotclear is probably to much of a carbon copy of wordpress: same
+technology (PHP), same admin architecture, &hellip; to make the difference.
+Wordpress is backed by a dedicated compagny, and Dotclear which is made as a
+hobby project just can&rsquo;t catch up. As a consequence, there is no technical
+reason to use dotclear over wordpress anymore: the later has a much more
+active development pace, a wide ecosystem and a very active community&hellip;
+Dotclear has been completely forgotten: only its own community care about
+it. Tools such as Disqus don&rsquo;t provide any integrated solution for dotclear,
+leaving users to hack the code of their theme if they wish to integrate
+that kind of service. Even tools that aims at providing migration utility
+to other blogging platform don&rsquo;t list Dotclear as a source platform.</p>
+
+<p>The second reason is that I find it completely overkill to run some PHP
+to serve a near-static content. My blog has not been update for 4 years, but
+every time someone reads a page, it goes through some PHP. PHP may be (have
+been) great for dynamic sites, but not for delivering content: it consumes
+resources and may contain security hole. The sole dynamic part of the site
+that is user-facing is the comment system&hellip; however nowadays services like
+Disqus, Google or Facebook can be integrated in your site for this in just
+a few lines of HTML/javascript (and by selling your soul to the devil):
+you may have an interactive site with only static pages.</p>
+
+<p>So, its done, my site has been migrated to a new static platform and is
+hosted by github (which wasn&rsquo;t mandatory but frees me from a bit of system
+administration). I couldn&rsquo;t find any packaged tool to perform the migration
+so I wrote one <a href="https://gist.github.com/Fruneau/8174826">small script</a> by
+myself. If the script is of interest for you here is how to proceed:</p>
+
+<ul>
+<li>export the database and the media library of your blog from Dotclear maintenance
+page</li>
+<li>unpack the media library in the <code>source/assets</code> directory of Octopress</li>
+<li>run the Python script on the database export (which should be named
+<code>python dotclear-octopress.py &lt;date&gt;-&lt;blogname&gt;-&lt;backup&gt;.txt</code> (the scripts
+runs in Python and requires <code>pip install phpserialize</code>)</li>
+<li>the script should have generated a new directory that contains a series of
+<code>.csv</code> file and a subdirectory called <code>_posts</code> that contains the markdown
+pages for your old blog posts.</li>
+<li>copy the content of <code>_posts</code> to <code>source/_posts</code> of Octopress.</li>
+</ul>
+
+
+<p>At this point, the result is not perfect (but I&rsquo;m sure the script can be improved),
+you&rsquo;ll still have to go through your posts and check that they were properly
+<em>markdownified</em> (Dotclear source text is in a Dotclear-specific wiki syntax,
+the script tries to do the conversion, but it is not 100% accurate and will
+miss some corner cases).</p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -495,49 +594,6 @@ read&lt;MaClass&gt;(const char* buffer) // lit un objet de type "MaClass"
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2007/07/28/bluescreen/">BlueScreen</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2007-07-28T23:15:00+02:00" pubdate data-updated="true">Jul 28<span>th</span>, 2007</time>
-        
-           | <a href="/blog/2007/07/28/bluescreen/#disqus_thread"
-             data-disqus-identifier="http://blog.mymind.fr/blog/2007/07/28/bluescreen/">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Juste parce que je trouve ça amusant : lorsque Vista plante en raison d&#8217;une erreur sérieuse, il fait un écran bleu (exactement le même que sous Windows XP). Ce qui est amusant, c&#8217;est le message affiché lors du démarrage suivant de Windows.</p>
-
-<p><img src="http://blog.mymind.fr/assets/screenshots/BlueScreen.png" alt="Vista-bluescreen" /></p>
-
-<p>Windows récupère donc d&#8217;une erreur de type &ldquo;BlueScreen&rdquo;&hellip; cela a l&#8217;intérêt d&#8217;être précis. En temps normal, on identifie une erreur à sa cause, et non à sa conséquence.</p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/2/">&larr; Older</a>
@@ -553,6 +609,10 @@ read&lt;MaClass&gt;(const char* buffer) // lit un objet de type "MaClass"
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2013/12/29/from-dotclear-to-octopress/">From Dotclear to Octopress</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2009/04/07/yet-another-policy-daemon-for-postfix2/">Yet Another Policy Daemon for Postfix</a>
       </li>
     
@@ -566,10 +626,6 @@ read&lt;MaClass&gt;(const char* buffer) // lit un objet de type "MaClass"
     
       <li class="post">
         <a href="/blog/2008/03/02/encodage-et-terminal/">Encodage Et Terminal</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2007/11/01/afficher-des-discussions/">Afficher Des Discussions</a>
       </li>
     
   </ul>
