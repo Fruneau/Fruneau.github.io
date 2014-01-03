@@ -3,6 +3,6 @@
 
 ul, ol { &, ul, ol { margin-left: 2.3em; }}
 
-header { display: none; }
+body > header { display: none; }
 
-header hgroup h1 a { @extend .mono; }
+header > hgroup h1 a { @extend .mono; }
