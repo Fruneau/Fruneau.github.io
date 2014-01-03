@@ -3,4 +3,6 @@
 
 ul, ol { &, ul, ol { margin-left: 2.3em; }}
 
+header { display: none; }
+
 header hgroup h1 a { @extend .mono; }
