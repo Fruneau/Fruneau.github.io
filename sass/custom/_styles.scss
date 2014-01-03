@@ -2,3 +2,5 @@
 // Add styles here to make changes without digging in too much
 
 ul, ol { &, ul, ol { margin-left: 2.3em; }}
+
+header hgroup h1 a { @extend .mono; }
