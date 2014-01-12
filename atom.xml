@@ -4,7 +4,7 @@
   <title><![CDATA[mind.dump()]]></title>
   <link href="http://blog.mymind.fr/atom.xml" rel="self"/>
   <link href="http://blog.mymind.fr/"/>
-  <updated>2014-01-03T22:44:32+01:00</updated>
+  <updated>2014-01-12T14:10:23+01:00</updated>
   <id>http://blog.mymind.fr/</id>
   <author>
     <name><![CDATA[Florent Bruneau]]></name>
@@ -77,6 +77,9 @@ you&rsquo;ll still have to go through your posts and check that they were proper
 <em>markdownified</em> (Dotclear source text is in a Dotclear-specific wiki syntax,
 the script tries to do the conversion, but it is not 100% accurate and will
 miss some corner cases).</p>
+
+<p>The script also dump a file <code>rss.xml</code> that contains the extended RSS format that
+can be used to import discussions on <a href="http://disqus.com">Disqus</a>.</p>
 ]]></content>
   </entry>
   
