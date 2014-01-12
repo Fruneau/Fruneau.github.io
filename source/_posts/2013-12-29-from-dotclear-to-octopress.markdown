@@ -61,3 +61,6 @@ you'll still have to go through your posts and check that they were properly
 _markdownified_ (Dotclear source text is in a Dotclear-specific wiki syntax,
 the script tries to do the conversion, but it is not 100% accurate and will
 miss some corner cases).
+
+The script also dump a file `rss.xml` that contains the extended RSS format that
+can be used to import discussions on [Disqus](http://disqus.com).
